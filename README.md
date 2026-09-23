@@ -12,13 +12,15 @@ Rather than organizing physics as isolated subjects, this project follows a conn
 
 The objective is not to claim that every engineering equation can be literally derived from the Standard Model. The objective is to understand **where engineering models come from, what assumptions produce them, what they discard, and when those approximations stop being valid.**
 
+> **This is a hierarchy of physical descriptions, not a claim that every higher-level theory can currently be derived quantitatively from the Standard Model.** Some connections in this repository are exact mathematical reductions. Many are controlled physical approximations. Some are structural correspondences — two different systems sharing one piece of mathematics without one producing the other. A few are honest analogies, and some are phenomenological models fit to experiment. See "Notation and Conventions" below for how each connection is marked, and "Known Limitations" for where this project is intentionally still heuristic.
+
 ---
 
 ## The Core Idea
 
 The structure can be viewed as a descending hierarchy:
 
-```text
+```
 Fundamental Physics
         │
         ▼
@@ -48,11 +50,7 @@ The important question is therefore not only:
 
 but also:
 
-> **Where did it come from?**
-> **What was assumed?**
-> **What was discarded?**
-> **When does it fail?**
-> **What model should replace it?**
+> **Where did it come from?** **What was assumed?** **What was discarded?** **When does it fail?** **What model should replace it?**
 
 ---
 
@@ -64,12 +62,12 @@ The Physics Core is organized into four major layers connected by controlled tra
 
 The starting point:
 
-* Standard Model
-* General Relativity / Einstein–Hilbert action
-* Gauge symmetries
-* Fields and interactions
-* Conservation laws
-* Open problems and unknown physics
+- Standard Model
+- General Relativity / Einstein–Hilbert action
+- Gauge symmetries
+- Fields and interactions
+- Conservation laws
+- Open problems and unknown physics
 
 The framework intentionally leaves room for physics beyond the currently established theories.
 
@@ -81,17 +79,17 @@ The first major descent isolates physical systems that can be treated approximat
 
 Topics include:
 
-* Dirac equation
-* Nonrelativistic limits
-* Foldy–Wouthuysen transformation
-* Schrödinger and Pauli equations
-* Spin
-* Hydrogen
-* Atomic structure
-* Molecular bonding
-* Periodic systems
-* Band theory
-* Quantum scattering
+- Dirac equation
+- Nonrelativistic limits
+- Foldy–Wouthuysen transformation
+- Schrödinger and Pauli equations
+- Spin
+- Hydrogen
+- Atomic structure
+- Molecular bonding
+- Periodic systems
+- Band theory
+- Quantum scattering
 
 ---
 
@@ -101,16 +99,16 @@ This layer develops the microscopic physics underlying matter and materials.
 
 Major threads include:
 
-* Quantum mechanics
-* Angular momentum
-* Spin and exchange
-* Atomic physics
-* Molecular physics
-* Solid-state physics
-* Nuclear physics
-* Quantum scattering
-* Topological concepts
-* Collective phenomena
+- Quantum mechanics
+- Angular momentum
+- Spin and exchange
+- Atomic physics
+- Molecular physics
+- Solid-state physics
+- Nuclear physics
+- Quantum scattering
+- Topological concepts
+- Collective phenomena
 
 ---
 
@@ -118,7 +116,7 @@ Major threads include:
 
 Several different limits emerge from the microscopic description:
 
-```text
+```
 ħ → 0
       ↓
 Classical Mechanics
@@ -152,21 +150,21 @@ The microscopic description becomes macroscopic.
 
 This layer contains:
 
-* Classical mechanics
-* Lagrangian mechanics
-* Hamiltonian mechanics
-* Thermodynamics
-* Statistical mechanics
-* Electromagnetism
-* Fluid mechanics
-* Continuum mechanics
-* Elasticity
-* Heat transfer
-* Transport phenomena
-* Wave equations
-* Diffusion equations
-* Constitutive relations
-* Linear response
+- Classical mechanics
+- Lagrangian mechanics
+- Hamiltonian mechanics
+- Thermodynamics
+- Statistical mechanics
+- Electromagnetism
+- Fluid mechanics
+- Continuum mechanics
+- Elasticity
+- Heat transfer
+- Transport phenomena
+- Wave equations
+- Diffusion equations
+- Constitutive relations
+- Linear response
 
 The common mathematical structures become increasingly visible.
 
@@ -178,7 +176,7 @@ Engineering systems are obtained by discretizing, integrating, lumping, lineariz
 
 Examples include:
 
-```text
+```
 PDE
  │
  ├── Control-volume integration
@@ -195,65 +193,65 @@ PDE
 
 Examples:
 
-* Transmission lines
-* Beam models
-* Thermal networks
-* Hydraulic networks
-* Mass-spring-damper systems
-* Electrical circuits
-* Finite-element models
-* Process models
+- Transmission lines
+- Beam models
+- Thermal networks
+- Hydraulic networks
+- Mass-spring-damper systems
+- Electrical circuits
+- Finite-element models
+- Process models
 
 ---
 
 ### Layer 3 — Engineering Systems
 
-The final layer instantiates the same mathematical structures across engineering disciplines.
+The final layer instantiates the same mathematical structures across engineering disciplines. **Layer 3 is not a survey of engineering disciplines. It is the test of whether the preceding physical abstractions actually unify across engineering domains** — Chapters 18–21 are the proof of concept for everything Chapters 0–17 set up.
 
 #### Electrical Engineering
 
-* Circuits
-* RLC systems
-* Power systems
-* Electromagnetics
-* Signals
-* Filters
-* Electrical machines
-* Semiconductor systems
+- Circuits
+- RLC systems
+- Power systems
+- Electromagnetics
+- Signals
+- Filters
+- Electrical machines
+- Semiconductor systems
 
 #### Mechanical Engineering
 
-* Mechanics
-* Vibrations
-* Machines
-* Rotordynamics
-* Thermodynamics
-* Heat transfer
-* Fluid systems
-* Acoustics
-* HVAC
+- Mechanics
+- Vibrations
+- Machines
+- Rotordynamics
+- Thermodynamics
+- Heat transfer
+- Fluid systems
+- Acoustics
+- HVAC
 
 #### Civil Engineering
 
-* Structural mechanics
-* Beam and frame systems
-* Finite elements
-* Soil mechanics
-* Groundwater
-* Hydraulics
-* Consolidation
-* Infrastructure systems
+- Structural mechanics
+- Beam and frame systems
+- Finite elements
+- Soil mechanics
+- Groundwater
+- Hydraulics
+- Consolidation
+- Infrastructure systems
 
 #### Chemical Engineering
 
-* Material balances
-* Energy balances
-* Reaction kinetics
-* Reactor design
-* Mass transfer
-* Separation processes
-* Process systems
-* Process control
+- Material balances
+- Energy balances
+- Reaction kinetics
+- Reactor design
+- Mass transfer
+- Separation processes
+- Process systems
+- Process control
 
 ---
 
@@ -263,27 +261,27 @@ A major objective of the final chapters is to identify mathematical structures s
 
 For example:
 
-| Physical domain | Effort-like variable   | Flow-like variable | Typical model      |
-| --------------- | ---------------------- | ------------------ | ------------------ |
-| Electrical      | Voltage                | Current            | RLC                |
-| Mechanical      | Force                  | Velocity           | Mass–spring–damper |
-| Thermal         | Temperature difference | Heat flow          | Thermal RC         |
-| Hydraulic       | Pressure               | Volumetric flow    | Hydraulic network  |
-| Chemical        | Chemical potential     | Molar flow         | Process network    |
+|Physical domain|Effort-like variable|Flow-like variable|Typical model|
+|---|---|---|---|
+|Electrical|Voltage|Current|RLC|
+|Mechanical|Force|Velocity|Mass–spring–damper|
+|Thermal|Temperature difference|Heat flow|Thermal RC|
+|Hydraulic|Pressure|Volumetric flow|Hydraulic network|
+|Chemical|Chemical potential|Molar flow|Process network|
 
 The analogy is useful because the **mathematical structure can remain similar even when the underlying physics differs**.
 
 This leads naturally to:
 
-* Transfer functions
-* State-space models
-* Feedback
-* Stability
-* Frequency response
-* PID control
-* Observers
-* Optimal control
-* Model predictive control
+- Transfer functions
+- State-space models
+- Feedback
+- Stability
+- Frequency response
+- PID control
+- Observers
+- Optimal control
+- Model predictive control
 
 The final engineering abstraction is therefore not a particular discipline, but a **system model**.
 
@@ -295,7 +293,7 @@ Several ideas are deliberately followed through multiple layers.
 
 ### 1. Conservation
 
-```text
+```
 Symmetry
    ↓
 Conservation Law
@@ -309,18 +307,20 @@ Engineering Network
 
 Examples include:
 
-* Energy
-* Momentum
-* Angular momentum
-* Electric charge
-* Mass
-* Species
+- Energy
+- Momentum
+- Angular momentum
+- Electric charge
+- Mass
+- Species
+
+The full worked example of this thread — symmetry through to Kirchhoff's current law, with every intermediate step named — is in `00 Map.md`, §0.2 and §3.1.
 
 ---
 
 ### 2. Variational Structure
 
-```text
+```
 Action
   ↓
 Euler–Lagrange Equations
@@ -340,17 +340,17 @@ Engineering Optimization / Control
 
 Many macroscopic transport equations can be understood through the general structure:
 
-```text
+```
 Flux = Transport Coefficient × Driving Force
 ```
 
 Examples include:
 
-* Electrical conduction
-* Heat conduction
-* Diffusion
-* Viscous momentum transport
-* Mass transfer
+- Electrical conduction
+- Heat conduction
+- Diffusion
+- Viscous momentum transport
+- Mass transfer
 
 The exact physical coefficients and driving forces differ, but the mathematical framework is closely related.
 
@@ -358,25 +358,27 @@ The exact physical coefficients and driving forces differ, but the mathematical 
 
 ### 4. Phase Transitions and Symmetry Breaking
 
-The project follows symmetry breaking from fundamental physics into macroscopic phenomena.
+The project follows symmetry breaking from fundamental physics into macroscopic phenomena — but as parallel, independent instances of one mathematical template, not as a single causal lineage. The Higgs mechanism is an **example** of spontaneous symmetry breaking in field theory; it is not the ancestor of ferromagnetism or superconductivity:
 
-Examples include:
-
-```text
-Higgs mechanism
-      ↓
-Symmetry breaking
-      ↓
-Landau theory
-      ↓
-Ferromagnetism
-      ↓
-Superconductivity
-      ↓
-Engineering hysteresis / bistability
+```
+Spontaneous / effective symmetry breaking
+     (order parameter + sign-changing coefficient — one template)
+                    │
+        ┌───────────┼───────────┐
+        ↓           ↓           ↓
+     Higgs        Landau     (any other physical
+   mechanism      theory      order-parameter system)
+  (~246 GeV)         │
+                ┌────┴─────┐
+                ↓          ↓
+         Ferromagnetism  Superconductivity
+                │
+                ↓
+     Engineering hysteresis /
+          bistability
 ```
 
-The connections are treated as structural relationships rather than as claims that all phenomena are literally the same mechanism.
+Higgs and Landau theory are connected by sharing the same free-energy structure ($\mu^2 \leftrightarrow \mu^2(T_c-T)$), not by one causing the other. The full derivation of this point, with each arrow tagged, is in `00 Map.md`, §0.3.
 
 ---
 
@@ -384,7 +386,7 @@ The connections are treated as structural relationships rather than as claims th
 
 A recurring mathematical distinction is between:
 
-```text
+```
 Hyperbolic systems
       ↓
 Waves / propagation
@@ -396,14 +398,14 @@ Diffusion / dissipation
 
 This distinction reappears throughout:
 
-* Electromagnetics
-* Acoustics
-* Structural dynamics
-* Heat transfer
-* Mass diffusion
-* Fluid mechanics
-* Signal processing
-* Control
+- Electromagnetics
+- Acoustics
+- Structural dynamics
+- Heat transfer
+- Mass diffusion
+- Fluid mechanics
+- Signal processing
+- Control
 
 ---
 
@@ -417,18 +419,18 @@ A model is therefore not treated as an isolated equation.
 
 For important equations, the intended analysis is:
 
-| Question                        | Purpose                    |
-| ------------------------------- | -------------------------- |
-| Where does it originate?        | Identify the parent theory |
-| What approximation was made?    | Understand the reduction   |
-| What assumptions are required?  | Define validity            |
-| What information was discarded? | Understand limitations     |
-| What phenomena are excluded?    | Identify failure modes     |
-| What model comes next?          | Know when to move upward   |
+|Question|Purpose|
+|---|---|
+|Where does it originate?|Identify the parent theory|
+|What approximation was made?|Understand the reduction|
+|What assumptions are required?|Define validity|
+|What information was discarded?|Understand limitations|
+|What phenomena are excluded?|Identify failure modes|
+|What model comes next?|Know when to move upward|
 
 For example:
 
-```text
+```
 Newtonian Mechanics
        │
        │ fails when relativistic effects matter
@@ -438,7 +440,7 @@ Relativistic Mechanics
 
 or:
 
-```text
+```
 Lumped Thermal Model
        │
        │ fails when internal gradients matter
@@ -446,23 +448,25 @@ Lumped Thermal Model
 Heat Equation
 ```
 
-The goal is to make **model selection** part of learning physics and engineering.
+The goal is to make **model selection** part of learning physics and engineering. Individual chapters implement this as a per-equation **Model Ledger** block — see "Notation and Conventions" below.
 
 ---
 
 # Chapter Map
 
-| Chapter  | Main subject                                          |
-| -------- | ----------------------------------------------------- |
-| 00       | Complete Layer Map                                    |
-| 01–17    | Fundamental → Quantum → Classical → Continuum Physics |
-| 18       | Electrical Engineering Systems                        |
-| 19       | Mechanical & Thermal Systems                          |
-| 20       | Civil & Chemical Engineering Systems                  |
-| 21       | Feedback, Control & Cross-Branch Integration          |
-| Epilogue | The Unfinished Equation                               |
+|Chapter|Main subject|
+|---|---|
+|00|Complete Layer Map|
+|01–17|Fundamental → Quantum → Classical → Continuum Physics|
+|18|Electrical Engineering Systems|
+|19|Mechanical & Thermal Systems|
+|20|Civil & Chemical Engineering Systems|
+|21|Feedback, Control & Cross-Branch Integration|
+|Epilogue|The Unfinished Equation|
 
-The exact structure and transitions are documented in [`00 Map.md`](00%20Map.md).
+The exact structure and transitions are documented in [`00 Map.md`](https://github.com/The-Studio-of-Sadiq/Engineering-Physics/blob/main/00%20Map.md).
+
+The chapter count is frozen at 21 + Epilogue. Future work deepens this architecture — corrections, derivations, references, diagrams, examples, cross-links — rather than extending it with new chapters.
 
 ---
 
@@ -470,22 +474,22 @@ The exact structure and transitions are documented in [`00 Map.md`](00%20Map.md)
 
 This repository is:
 
-* A personal physics and engineering knowledge system
-* A long-form conceptual map
-* A study framework
-* A collection of derivations and physical connections
-* An attempt to reduce disciplinary fragmentation
-* A reference for understanding engineering models from their physical origins
+- A personal physics and engineering knowledge system
+- A long-form conceptual map
+- A study framework
+- A collection of derivations and physical connections
+- An attempt to reduce disciplinary fragmentation
+- A reference for understanding engineering models from their physical origins
 
 # What This Project Is Not
 
 It is **not** intended to claim that:
 
-* all engineering equations are directly derivable from the Standard Model;
-* all engineering constitutive laws are fundamental laws;
-* every mathematical similarity represents the same physical mechanism;
-* current fundamental physics is complete;
-* every model is valid outside its stated assumptions.
+- all engineering equations are directly derivable from the Standard Model;
+- all engineering constitutive laws are fundamental laws;
+- every mathematical similarity represents the same physical mechanism;
+- current fundamental physics is complete;
+- every model is valid outside its stated assumptions.
 
 Many engineering models are empirical, phenomenological, effective, or calibrated from experiment.
 
@@ -501,7 +505,7 @@ The project follows a simple principle:
 
 Physics and engineering are often taught as separate subjects:
 
-```text
+```
 Mechanics
 Thermodynamics
 Electromagnetism
@@ -517,7 +521,7 @@ This project instead asks what happens when those subjects are placed on a commo
 
 The objective is to see:
 
-```text
+```
 Fundamental laws
       ↓
 Approximations
@@ -541,16 +545,16 @@ The deeper lesson is that **engineering models are not isolated mathematical obj
 
 Unless otherwise stated:
 
-* SI units are used.
-* Standard mathematical and physical notation is preferred.
-* Approximation limits are stated where relevant.
-* Dimensional consistency should be maintained.
-* Sign conventions are stated when they affect the result.
-* Equivalent formulations may be presented when they illuminate different physical interpretations.
+- SI units are used.
+- Standard mathematical and physical notation is preferred.
+- Approximation limits are stated where relevant.
+- Dimensional consistency should be maintained.
+- Sign conventions are stated when they affect the result.
+- Equivalent formulations may be presented when they illuminate different physical interpretations.
 
 Connections between theories should be interpreted according to their actual status:
 
-```text
+```
 DERIVATION
     Exact or controlled mathematical reduction.
 
@@ -558,7 +562,9 @@ APPROXIMATION
     A theory obtained under explicit limiting assumptions.
 
 STRUCTURAL CONNECTION
-    Different physical systems share mathematical structure.
+    Different physical systems share mathematical structure,
+    because both are instances of the same underlying object —
+    not because one causes or produces the other.
 
 ANALOGY
     A conceptual correspondence that should not be mistaken for identity.
@@ -567,13 +573,43 @@ PHENOMENOLOGICAL MODEL
     A model whose parameters or form depend on experiment or effective description.
 ```
 
-This distinction becomes increasingly important as the project moves from fundamental physics toward engineering.
+This distinction becomes increasingly important as the project moves from fundamental physics toward engineering. Inline, a tagged connection is written as a blockquote immediately before or after the equation it qualifies:
+
+```
+> **[DERIVATION]**
+> Schrödinger dynamics emerges as the nonrelativistic limit of the
+> Dirac equation under the stated assumptions.
+
+> **[STRUCTURAL CONNECTION]**
+> Thermal RC networks and electrical RC networks share the same
+> first-order differential-equation structure.
+```
+
+**Model Ledger.** For major equations, a short table records where the model sits in the hierarchy:
+
+```
+### Model Ledger
+
+| Property | Description |
+|---|---|
+| Parent theory | Navier–Stokes |
+| Reduction | Low-Reynolds / slender-beam approximation |
+| Model | Euler–Bernoulli beam |
+| Assumptions | Small deflection, slender beam, linear elasticity |
+| Retained physics | Bending deformation |
+| Neglected physics | Shear deformation, rotary inertia |
+| Valid when | Slender beam, low-frequency regime |
+| Fails when | Thick beam / high-frequency dynamics |
+| Next model | Timoshenko beam theory |
+```
+
+One Ledger per major boxed equation, not one per chapter — most chapters contain several distinct models.
 
 ---
 
 # Repository Structure
 
-```text
+```
 Engineering-Physics/
 │
 ├── 00 Map.md
@@ -601,7 +637,7 @@ The chapter files form the main body of the Physics Core.
 
 Start with:
 
-```text
+```
 00 Map.md
    ↓
 Chapter 0
@@ -623,7 +659,7 @@ Alternatively, use the map to jump directly to a subject and trace its connectio
 
 For example:
 
-```text
+```
 Control
   ↓
 Transfer Function
@@ -645,21 +681,41 @@ This reverse-tracing approach is particularly useful when encountering an engine
 
 ---
 
+# Known Limitations
+
+This project is a conceptual synthesis rather than a formal textbook or a complete derivation of modern physics.
+
+Some connections presented here are:
+
+- exact mathematical reductions;
+- controlled physical approximations;
+- effective-theory relationships;
+- structural mathematical correspondences;
+- phenomenological engineering models.
+
+The distinction above is marked wherever a connection is load-bearing to the book's argument, but some sections remain intentionally heuristic and are candidates for future formalization — in particular, sections not yet audited for the notation tags described above.
+
+This repository does not yet carry a systematic citation apparatus. Claims that are standard textbook material are left unreferenced; claims that are non-obvious, contested, or original to this synthesis should carry a citation and, where they do not yet, should be read with correspondingly more caution.
+
+The repository should therefore be treated as a research/study map, not as an authoritative replacement for specialist textbooks.
+
+---
+
 # Status
 
 **Current structure:** Physics Core — Chapters 0–21 + Epilogue
 
 The architecture is intended to remain relatively stable. Future work should primarily improve:
 
-* Mathematical rigor
-* Derivations
-* References
-* Cross-links
-* Definitions
-* Model-validity statements
-* Diagrams
-* Examples
-* Corrections and clarifications
+- Mathematical rigor
+- Derivations
+- References
+- Cross-links
+- Definitions
+- Model-validity statements
+- Diagrams
+- Examples
+- Corrections and clarifications
 
 The goal is not to continually add chapters.
 
@@ -673,26 +729,26 @@ This repository represents only one part of a larger personal academic framework
 
 The broader system is planned as several interconnected cores:
 
-```text
-                    ┌─────────────────────┐
-                    │    PHYSICS CORE     │
-                    │ Fundamental → Eng.  │
-                    └──────────┬──────────┘
-                               │
-        ┌──────────────────────┼──────────────────────┐
-        │                      │                      │
-        ▼                      ▼                      ▼
- MATERIALS CORE        ENGINEERING &          MACHINE &
-                       ARCHITECTURE CORE      SYSTEMS CORE
-        │
-        ├──────────────────────────────────────────────┐
-        │                                              │
-        ▼                                              ▼
- CIRCUIT & SIGNALS CORE                       ELECTRONICS & DSA CORE
-        │                                              │
-        └──────────────────────┬───────────────────────┘
-                               ▼
-                    APPLICATIONS & INTEGRATION
+```
+                   ┌─────────────────────┐
+                   │    PHYSICS CORE     │
+                   │ Fundamental → Eng.  │
+                   └──────────┬──────────┘
+                              │
+       ┌──────────────────────┼──────────────────────┐
+       │                      │                      │
+       ▼                      ▼                      ▼
+MATERIALS CORE        ENGINEERING &          MACHINE &
+                      ARCHITECTURE CORE      SYSTEMS CORE
+       │
+       ├──────────────────────────────────────────────┐
+       │                                              │
+       ▼                                              ▼
+CIRCUIT & SIGNALS CORE                       ELECTRONICS & DSA CORE
+       │                                              │
+       └──────────────────────┬───────────────────────┘
+                              ▼
+                   APPLICATIONS & INTEGRATION
 ```
 
 The **Physics Core** provides the underlying physical foundation.
@@ -729,4 +785,4 @@ This repository is an attempt to trace that distance carefully.
 
 ## License
 
-See the repository license for the terms under which this work may be used and modified.
+Unless otherwise stated, the contents of this repository are licensed as indicated in `LICENSE`. See the repository license for the terms under which this work may be used and modified.
