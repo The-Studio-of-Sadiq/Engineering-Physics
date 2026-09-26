@@ -34,7 +34,7 @@ The destination is Newton's law $F = -GMm/r^2$ — but we will pass through gene
 
 From Ch. 0 §0.3: varying $S_{EH}$ with respect to the inverse metric $g^{\mu\nu}$ gives the **Einstein field equations** (in SI units):
 
-$$\boxed{G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4},T_{\mu\nu}}$$
+$$\boxed{G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}\,T_{\mu\nu}}$$
 
 Everything in this equation has appeared before, but let us restate it clearly:
 
@@ -114,7 +114,7 @@ $$\partial^\mu\bar h_{\mu\nu} = 0$$
 
 the linearized Einstein equations simplify dramatically to:
 
-$$\boxed{\Box\bar h_{\mu\nu} = -\frac{16\pi G}{c^4},T_{\mu\nu}}$$
+$$\boxed{\Box\bar h_{\mu\nu} = -\frac{16\pi G}{c^4}\,T_{\mu\nu}}$$
 
 This is a set of ten wave equations — one for each independent component of $\bar h_{\mu\nu}$. The source is the stress-energy tensor; the retarded solution is a superposition of gravitational waves propagating at $c$.
 
@@ -443,7 +443,7 @@ The rule of thumb: **Newton's law is sufficient when $GM/rc^2 \ll 1$ and $v \ll 
 
 Three conditions applied to the Einstein field equations:
 
-$$G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}$$
+$$G_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu}$$
 
 |Condition|Mathematical operation|What it removes|
 |---|---|---|

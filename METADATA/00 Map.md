@@ -40,9 +40,9 @@ $$\boxed{S_{\text{eff}} = S_{EH} + S_{SM} + S_{\text{unknown}} = \int d^4x\,\sqr
 
 **What we know about $\mathcal{F}$, even without knowing $\mathcal{F}$:**
 
-- It must be a Lorentz scalar (action is coordinate-independent)
+- It must be a scalar (more precisely, a scalar density assembled from diffeomorphism- and local-Lorentz-invariant ingredients), so that the action is coordinate-independent
 - It must reduce to zero correction in all regimes that $\mathcal{L}_{SM} + R/16\pi G$ already handles correctly
-- It must include topological terms — the SM already has one (the QCD θ-term, $\theta \frac{g^2}{32\pi^2} G^a_{\mu\nu}\tilde{G}^{a\mu\nu}$), and anomaly structure strongly constrains what additional terms are allowed
+- It *may* include further topological terms. The SM already carries one (the QCD θ-term, $\theta \frac{g^2}{32\pi^2} G^a_{\mu\nu}\tilde{G}^{a\mu\nu}$), and the anomaly structure strongly constrains which additional topological terms are allowed — whether any beyond the SM are genuinely required is an open question, not a premise
 - Known candidates: dark matter fields, dark energy beyond Λ, quantum gravity corrections (R², Gauss-Bonnet), explanation of why the QCD θ-parameter ≈ 0 (the strong CP problem), possible extension of the gauge group to SU(5)/SO(10) (GUTs), supersymmetric partners
 
 **The pedagogical stance:** this equation is the best framework humanity has. Every chapter of this book is a controlled, named approximation to it. Students who finish this book will know which approximations they are standing on at every moment of their career — and will know exactly when to distrust those approximations.

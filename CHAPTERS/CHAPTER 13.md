@@ -27,7 +27,7 @@ $$\text{flux} = -L \cdot \nabla\phi$$
 
 The claim was that Ohm's law, Fourier's law, Fick's law, Newton's law of viscosity, and Hooke's law are the same formula with different labels.
 
-**This chapter delivers the framework.** All five response coefficients ($\sigma$, $\kappa$, $D$, $\eta$, $C$) are *expressible* through the **Green–Kubo relation**, but each one requires its own generalized force, its own current operator, its own closure, and — for $C$ — a different limiting procedure. What is shared is the response structure, not the calculation:
+**This chapter delivers the framework.** Four of the five response coefficients ($\sigma$, $\kappa$, $D$, $\eta$) are genuine **Green–Kubo transport coefficients**; the fifth, $C$, is a static susceptibility taken from the curvature of the free energy rather than from a current autocorrelation. Each coefficient requires its own generalized force, its own current operator, and its own closure. What is shared is the response structure, not the calculation:
 
 | Law | Generalized force $\hat A$ | Current operator $\hat B$ | Extra step needed |
 |---|---|---|---|
@@ -747,7 +747,7 @@ $ZT > 1$ is the threshold for useful thermoelectric devices. Best materials (Bi�
 
 ## 13.10 — The Generalized Transport Law: The Complete Table
 
-The five constitutive laws, each in its Green–Kubo form. Read the table as *five instances of one template*, not five outputs of one calculation — and note that $C$ is a static susceptibility, not a transport coefficient (§13.9.2):
+Five constitutive laws sharing one linear-response template. Read the table as *five instances of one template*, not five outputs of one calculation — and note the distinction in the last column: the first four rows are Green–Kubo transport coefficients, whereas $C$ is a static curvature of the free energy, not a transport coefficient (§13.9.2):
 
 $$\boxed{\mathbf{J}_X = -L_{XX}\nabla\phi_X}$$
 

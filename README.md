@@ -151,7 +151,7 @@ Applied inline, a tag is a blockquote attached to the equation it qualifies:
 
 > **[APPROXIMATION]** Dirac equation → nonrelativistic expansion in $(v/c)^2$ → Pauli equation, retaining the Zeeman and spin–orbit terms to order $(v/c)^2$.
 
-> **[STRUCTURAL CONNECTION]** An electrical RC network and a thermal RC network both obey $C\,dT/dt = (T_{in}-T)/R$. Same lumped differential-equation structure, different physical variables, constitutive parameters, and energy-storage mechanisms.
+> **[STRUCTURAL CONNECTION]** An electrical RC network and a thermal RC network obey the same lumped first-order form, $C_x\,dx/dt=(x_{in}-x)/R_x$, with $x=V$ and $C_x=C$ for the electrical case and $x=T$ and $C_x=\rho c_p V$ for the thermal case. Same differential-equation structure, different physical variables, constitutive parameters, and energy-storage mechanisms.
 
 ---
 

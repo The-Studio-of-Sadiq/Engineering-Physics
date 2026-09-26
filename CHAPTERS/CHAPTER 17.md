@@ -135,11 +135,11 @@ From Ch. 16 §16.10.1, the lumping criterion for each domain:
 
 ---
 
-## 17.2 — Effort and Flow: The Universal Variable Pair
+## 17.2 — Effort and Flow: A Cross-Domain Variable Pair
 
 ### 17.2.1 — Definitions
 
-From the lumped control volume, every physical domain has exactly two conjugate variable types:
+Across the domains modelled in this book, a consistent description of a two-terminal lumped element can be built on a pair of conjugate variable types:
 
 **Effort variable $e$:** The "potential" — the quantity that drives the flow, does work per unit of flow passing through. Measured across an element.
 
@@ -178,7 +178,7 @@ From the lumped control volume, every physical domain has exactly two conjugate 
 
 **The generalized displacement** (integral of flow): $q_f = \int f\,dt$ (charge $Q = \int I\,dt$ in electrical, displacement $x = \int v\,dt$ in mechanical)
 
-### 17.2.3 — Why Exactly Two Variables?
+### 17.2.3 — Why a Pair, and Not More?
 
 From the network perspective (Ch. 1 §1.7): many conserved physical quantities participate in a pair of power-conjugate variables whenever a suitable lumped representation exists. Conservation is a statement about a Noether current; the effort–flow pair is a modelling choice that corresponds to one in the electrical case and only indirectly in the mechanical case. In the electrical case the conserved charge becomes the flow variable and its conjugate potential (from the Hamiltonian formulation, Ch. 1 §1.6) becomes the effort variable; in the mechanical case the power-conjugate pair is velocity and force, and what is transported is the momentum flux $\Pi_{ij}$ rather than either member of the pair. (Two rows of the table above are weaker than this picture — thermal and magnetic — and the caveats are recorded there.)
 

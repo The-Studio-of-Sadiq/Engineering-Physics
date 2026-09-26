@@ -1,6 +1,6 @@
 # The Unified PDE: Waves and Diffusion Across All Domains
 
-### One Equation, Every Medium, Every Branch
+### Shared PDE Structures: Waves and Diffusion Across Domains
 
 ---
 
@@ -300,7 +300,7 @@ $$\boxed{G_{diff}(\mathbf{r},t\,\mathbf{r}',t') = \frac{1}{[4\pi D(t-t')]^{3/2}}
 
 A **Gaussian** centered at $\mathbf{r}'$, spreading with time as $\sigma^2 = 2D(t-t')$. This is the fundamental solution — any initial condition spreads according to convolution with this Gaussian.
 
-**Key property:** $G_{diff}(\mathbf{r},t;\mathbf{r}',t') \neq 0$ for any $|\mathbf{r}-\mathbf{r}'|$ at $t > t'$ — information travels at **infinite speed** in the diffusion equation. This is not a physical paradox; it is an approximation that breaks down for $|\mathbf{r}-\mathbf{r}'| \gtrsim c_s(t-t')$ (the thermal phonon speed).
+**Key property:** $G_{diff}(\mathbf{r},t\,\mathbf{r}',t') \neq 0$ for any $|\mathbf{r}-\mathbf{r}'|$ at $t > t'$ — information travels at **infinite speed** in the diffusion equation. This is not a physical paradox; it is an approximation that breaks down for $|\mathbf{r}-\mathbf{r}'| \gtrsim c_s(t-t')$ (the thermal phonon speed).
 
 **Wave equation** in free 3D space:
 
