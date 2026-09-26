@@ -49,7 +49,14 @@ The full Standard Model Lagrangian (Chapter 0) contains three gauge sectors: SU(
 
 - **SU(3)$_C$:** Acts only on quarks. Electrons carry no color charge. This sector is completely invisible to electrons. Discard it.
     
-- **SU(2)$_L$:** Acts on left-handed fermions and is mediated by $W^\pm$ and $Z^0$ bosons. The interaction strength at atomic energies is suppressed by $G_F E^2/(\hbar c)^3 \approx 10^{-11}$ relative to electromagnetism (where $G_F \approx 1.17\times10^{-5}\,\text{GeV}^{-2}$ is the Fermi constant and $E \sim 10\,\text{eV}$ for an atomic electron). This ratio is $\sim 10^{-22}$ — experimentally undetectable. Discard it.
+- **SU(2)$_L$:** Acts on left-handed fermions and is mediated by $W^\pm$ and $Z^0$ bosons. The dimensionless weak coupling at energy $E$ is $G_F E^2$ (with $G_F \approx 1.17\times10^{-5}\,\text{GeV}^{-2}$, so $E$ must be expressed in GeV). For an atomic electron, $E \sim 10\,\text{eV} = 10^{-8}\,\text{GeV}$, giving $G_F E^2 \sim 1.17\times10^{-5}\times 10^{-16} \sim 10^{-21}$. Measured against the electromagnetic coupling $\alpha \approx 7.3\times 10^{-3}$, the ratio is
+
+$$\frac{G_F E^2}{\alpha} \sim \frac{1.2\times 10^{-21}}{7.3\times 10^{-3}} \sim 10^{-19}$$
+
+small enough to discard for atomic structure — but it is three orders of
+magnitude larger than the value a careless estimate would suggest, and the
+order-of-magnitude is not the interesting part. What matters is the reasoning.
+Two traps are worth flagging. $G_F$ carries units of $\text{GeV}^{-2}$, so $G_F E^2$ is dimensionless *only* if $E$ is in GeV; writing $E\sim10$ without converting silently gains or loses nine orders of magnitude. And there is no $\hbar c$ to divide out, because the combination is already dimensionless in natural units. The ratio is also energy-dependent: at $E\sim1$ GeV the same calculation gives $\sim10^{-3}$, which is precisely why the weak interaction dominates at collider energies while being irrelevant in atoms. Discard it.
     
 - **U(1)$_{EM}$:** Electromagnetism. After the Higgs mechanism (§0.7), the physical photon $A_\mu$ couples to electrons with charge $-e$. This is the only force relevant for atomic structure.
     

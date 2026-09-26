@@ -45,12 +45,28 @@ they are often conflated:
 Reduction B is subtle. The Dirac spinor has large and small components, and they
 are *not* independent — $\chi$ is coupled to $\phi$ by $c\boldsymbol{\sigma}\cdot\hat{\boldsymbol{\pi}}$.
 You cannot simply set $\chi=0$. The Foldy–Wouthuysen transformation is what
-makes the decoupling legitimate: it is an exact unitary change of basis in which
-the mixing appears as an odd operator $\mathcal{O}$, and the equation becomes
+makes the decoupling legitimate, and it is worth being precise about how it works,
+because the usual shorthand attaches the eigenvalues to the wrong operator.
 
-$$\left(\mathcal{O} + \mathcal{E}\right)\phi = E\phi,\qquad \left(\mathcal{O} - \mathcal{E}\right)\chi = E\chi$$
+The Dirac Hamiltonian splits by parity:
 
-Diagonalise $\mathcal{O}$ (eigenvalues $\pm m_ec^2$), keep the $\mathcal{O} = +m_ec^2$ block, and iterate on the correction. One iteration produces the order-$(v/c)^2$ Hamiltonian.
+$$H = \underbrace{\beta m_ec^2 + \mathcal{E}}_{\text{even}} + \underbrace{\mathcal{O}}_{\text{odd}}, \qquad \mathcal{O} = c\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}} - e\boldsymbol{\sigma}\cdot\mathbf{E}$$
+
+The Foldy–Wouthuysen transformation is an **exact** unitary change of basis,
+$U^\dagger\mathcal{O}U = 0$. Note what it does *not* do: it does not diagonalise
+$\mathcal{O}$. It annihilates it. That is the entire content of the trick — once
+the odd operator is gone, what remains is even, and an even operator is block
+diagonal in $\beta$.
+
+**The $\pm m_ec^2$ eigenvalues belong to the mass term $\beta m_ec^2$, not to
+$\mathcal{O}$.** The odd operator has no such spectrum at all: $\mathcal{O}^2$ is
+assembled from $\hat\pi^2$ and the spin–electric terms, and is suppressed by
+$\alpha^2$ relative to $m_e^2c^2$. Carrying the positive/negative energy
+separation is the job of $\beta m_ec^2$, and the selection rule that follows is a
+projection onto a $\beta$ block.
+
+Projecting onto $\beta = +1$ and iterating once on the transformed correction
+produces the order-$(v/c)^2$ effective Hamiltonian of step 3.
 
 ---
 
@@ -74,14 +90,39 @@ $$\boxed{i\hbar\frac{\partial\phi}{\partial t} = \left[\frac{(\hat{\mathbf{p}} -
 Two components, not four. Spin now lives in a $2\times2$ matrix, so
 spin-dependent physics becomes algebra.
 
-**Check that $g=2$ was not put in by hand.** Expand the covariant kinetic term
-in the Coulomb gauge and use $\mathbf{B} = \nabla\times\mathbf{A}$:
+**Check that $g=2$ was not put in by hand — from the right place.** The obvious
+place to look is the orbital minimal-coupling term, and that is exactly where the
+check fails. In the Coulomb gauge ($\nabla\cdot\mathbf{A}=0$):
 
-$$\frac{1}{2m_e}\left(\hat{\mathbf{p}} - \frac{e}{c}\mathbf{A}\right)^2 = \frac{\hat p^2}{2m_e} - \frac{e}{2m_ec}\left(\hat{\mathbf{L}} + 2\hat{\mathbf{S}}\right)\cdot\mathbf{B}$$
+$$\frac{1}{2m_e}\left(\hat{\mathbf{p}} - \frac{e}{c}\mathbf{A}\right)^2 = \frac{\hat p^2}{2m_e} - \frac{e}{m_ec}\mathbf{A}\cdot\hat{\mathbf{p}} + \frac{e^2}{2m_ec^2}\mathbf{A}^2$$
 
-The factor of 2 in front of $\hat{\mathbf{S}}$ is the $g_e = 2$ of §3.4.2. It was
-never inserted — it fell out. That is the single best test of whether a descent
-is real: the new structure should appear whether or not you were looking for it.
+No $\hat{\mathbf{S}}$ appears anywhere in this — unsurprisingly, because the term
+is spin-free by construction. It also retains the diamagnetic $A^2$ piece. So a
+derivation that "finds" $g=2$ by expanding this square has smuggled the spin term
+into an expression that cannot contain it. (As written it does not even have the
+right units: pairing $\hat{\mathbf{S}}$ with $\frac{e}{2m_ec}$ yields a length, not
+an energy.)
+
+The spin coupling comes from a *different* piece of the Dirac equation. The
+time-derivative half of the interaction, $-\frac{e}{c}\boldsymbol{\alpha}\cdot\mathbf{A}$,
+is an **odd** operator, so it belongs to $\mathcal{O}$ and not to the even kinetic
+term. Iterating that odd piece once in the Foldy–Wouthuysen reduction generates
+*both* magnetic couplings at once:
+
+$$H_{\text{Zeeman}} = \frac{e}{2m_e}\left(\hat{\mathbf{L}} + g_e\,\hat{\mathbf{S}}\right)\cdot\mathbf{B}, \qquad g_e = 2$$
+
+The orbital piece and the spin piece descend from the *same* operator
+$\boldsymbol{\alpha}\cdot\mathbf{A}$, and the algebra fixes their ratio at exactly
+2. That ratio is the $g_e = 2$ of §3.4.2, and it is the same number as
+$-\frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B}$ in step 3, since
+$2\hat{\mathbf{S}} = \hbar\boldsymbol{\sigma}$.
+
+So $g=2$ really does fall out — it was never inserted — but it falls out of the
+**odd** sector, and only after the projection onto the large component. The
+kinetic term is where a careless derivation goes looking for it and finds a
+spurious answer. That is the single best test of whether a descent is real: the
+new structure should appear whether or not you were looking for it, *and from the
+term that can actually produce it.*
 
 ---
 

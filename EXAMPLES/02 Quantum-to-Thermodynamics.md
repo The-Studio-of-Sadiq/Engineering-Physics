@@ -96,13 +96,20 @@ temperature, the work done on the gas, and $\Delta S$.
 
 Reversible adiabatic means $S$ is constant, and for an ideal gas
 $S = nC_V\ln T + nR\ln V + \text{const}$, so $TV^{\gamma-1} = \text{const}$
-with $\gamma = C_P/C_V = 5/3$.
+with $\gamma = C_P/C_V = 5/3$. Equivalently $T_2/T_1 = (P_2/P_1)^{(\gamma-1)/\gamma}$.
+Note the direction: this process is a **compression**, $P_2 > P_1$, so $T_2 > T_1$.
+(The reciprocal form $(P_1/P_2)^{(\gamma-1)/\gamma}$ is the *expansion* case, where
+$T_2 < T_1$ and the gas cools — it is the same equation read with $P_1 \leftrightarrow P_2$
+swapped, and using it here would silently describe a different process.)
 
-$$T_2 = T_1\left(\frac{P_1}{P_2}\right)^{(\gamma-1)/\gamma} = 300\left(\frac{1}{5}\right)^{0.4} = 300 \times 0.525 = 158\ \text{K}$$
+$$T_2 = T_1\left(\frac{P_2}{P_1}\right)^{(\gamma-1)/\gamma} = 300\left(\frac{5}{1}\right)^{0.4} = 300 \times 1.904 = 571\ \text{K}$$
 
-$$W_{on} = \Delta U = nC_V(T_2 - T_1) = 1.00 \times 12.47 \times (158-300) = -1.77\ \text{kJ}$$
+$$W_{on} = \Delta U = nC_V(T_2 - T_1) = 1.00 \times 12.47 \times (571-300) = +3.38\ \text{kJ}$$
 
-$$\Delta S = nC_V\ln\frac{T_2}{T_1} + nR\ln\frac{V_2}{V_1} = 0 \quad\text{(both terms cancel)}$$
+The work is **positive** because work is done *on* the gas, and the temperature
+rises. A compression that cooled the gas would be a physical contradiction.
+
+$$\Delta S = nC_V\ln\frac{T_2}{T_1} + nR\ln\frac{V_2}{V_1} = 12.47(0.6438) + 8.314(-0.9657) = 0 \quad\text{(the two terms cancel)}$$
 
 Three engineering numbers, all from step 4, and the last one is a *check*: it is
 zero because "reversible adiabatic" means exactly that. If a compressor model
@@ -110,7 +117,7 @@ returns $\Delta S \neq 0$, either the compression is irreversible or the model
 is wrong.
 
 **Design consequence.** Compressing gas is how a compressor is specified, and
-the $T_2 = 157$ K outlet temperature is what forces intercooling. The whole
+the $T_2 = 571$ K outlet temperature is what forces intercooling. The whole
 engineering rationale for multi-stage compression with intercooling falls out
 of $\gamma$, which falls out of the equipartition count.
 

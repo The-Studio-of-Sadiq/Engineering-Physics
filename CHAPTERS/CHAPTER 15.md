@@ -241,9 +241,22 @@ where:
 - $2\mu\dot\varepsilon_{ij}$: deviatoric (shear) viscous stress ($\mu$ = dynamic viscosity)
 - $\lambda\dot\varepsilon_{kk}\delta_{ij}$: bulk viscous stress from volume rate of change
 
-**Stokes' hypothesis** ($\lambda = -\frac{2}{3}\mu$): the bulk viscosity is zero for monoatomic ideal gases (well-verified) and approximately zero for most Newtonian liquids. With Stokes' hypothesis and incompressibility ($\dot\varepsilon_{kk} = \nabla\cdot\mathbf{v} = 0$):
+**Stokes' hypothesis** ($\lambda = -\frac{2}{3}\mu$). This is a **constitutive closure, not a derivation.** It does not follow from the Navier–Stokes equations, and nothing in the preceding steps forces it. The Navier–Stokes statement above says only that $\lambda$ is *some* coefficient; the particular value $\lambda = -\frac{2}{3}\mu$ is imported, on the argument that monatomic gases have no internal degrees of freedom that could store energy in a uniform compression. That is a physical argument about molecular structure, not a theorem, and it is the sort of step this book otherwise labels honestly.
+
+The status of the claim that follows — "the bulk viscosity is zero" — is correspondingly weaker than "well-verified" suggests. For dilute monatomic gases the bulk viscosity is *very small*, which is why the hypothesis works so well in practice; but it is not identically zero, and modern Green–Kubo determinations — equilibrium
+molecular dynamics and their quantum-statistical refinements — resolve a small but
+nonzero value for dilute argon. (The same Green–Kubo machinery used in Ch. 13 to
+*derive* $\mu$ is what detects this: a nice illustration that a coefficient thought
+to be a postulate turns out to be measurable.) It is also simply false for many
+ordinary fluids — $\lambda$ is substantial in liquids, and large in melts,
+emulsions and other complex media, which is one reason they need a constitutive
+model rather than this one.
+
+With Stokes' hypothesis adopted and incompressibility imposed ($\dot\varepsilon_{kk} = \nabla\cdot\mathbf{v} = 0$), the bulk term drops out and
 
 $$\sigma_{ij} = -p\,\delta_{ij} + 2\mu\dot\varepsilon_{ij}$$
+
+Note the ordering of the two moves: the *assumption* kills the term, and incompressibility would have done so anyway. Keeping them distinct is what lets you see which assumption is load-bearing.
 
 ### 15.6.2 — The Navier-Stokes Equation
 

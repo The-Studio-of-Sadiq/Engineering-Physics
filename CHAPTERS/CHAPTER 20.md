@@ -109,12 +109,26 @@ where:
 
 | Field | Content |
 |---|---|
-| Parent theory | Linear elasticity (Ch. 15 §15.9): $\sigma_{ij} = \lambda\varepsilon_{ij}\delta_{ij} + \mu\varepsilon_{ij}$, $\varepsilon_{ij} = \tfrac12(\partial_i u_j + \partial_j u_i)$ |
+| Parent theory | Linear elasticity (Ch. 15 §15.9): $\sigma_{ij} = \lambda\varepsilon_{kk}\delta_{ij} + 2\mu_L\varepsilon_{ij}$, $\varepsilon_{ij} = \tfrac12(\partial_i u_j + \partial_j u_i)$, $\varepsilon_{kk} = \nabla\cdot\mathbf{u}$ |
 | Reduction | static equilibrium; small strain; linear elastic material; prismatic geometry; conforming interpolation |
 | Model | $\mathbf{K}\mathbf{u} = \mathbf{F}$, with $\mathbf{K}$ assembled from element matrices |
 | Assumptions | $\varepsilon \ll 1$; $\sigma = D\varepsilon$ with constant $D$; no body force in the element; full continuity of $u$ across elements |
 | Physics retained | load path through stiffness; stress redistribution; equilibrium |
 | Physics neglected | inertia (dynamics), geometric non-linearity, plasticity, fracture, contact, thermal strain |
+
+> **Note on the constitutive form.** The isotropic law has two structurally
+> distinct pieces, and both are load-bearing. The term
+> $\lambda\varepsilon_{kk}\delta_{ij}$ is the *volumetric* response: it is
+> multiplied by the trace $\varepsilon_{kk} = \nabla\cdot\mathbf{u}$, and it
+> produces stress even in a pure hydrostatic strain where
+> $\varepsilon_{ij} = 0$ for $i \ne j$. The factor of $2$ in
+> $2\mu_L\varepsilon_{ij}$ is fixed by the requirement that $\mu_L$ be the
+> shear modulus, i.e. that $\sigma_{ij}=2\mu_L\varepsilon_{ij}$ in pure shear
+> where $\varepsilon_{kk}=0$. Writing $\lambda\varepsilon_{ij}\delta_{ij}$
+> drops the trace dependence, and writing $\mu_L\varepsilon_{ij}$ without the 2
+> makes $\mu_L$ the wrong modulus by a factor of two. An element stiffness
+> matrix built on a corrupted form of this equation will pass equilibrium
+> checks and still give the wrong displacements.
 | Validity | deflections $\lesssim L/100$; stresses below yield; mesh refined so element stiffness converges |
 | Fails when | large deflection (buckling, $P$-$\Delta$), yielding, or a singular/non-conforming element stiffness |
 | Next model | nonlinear FEM; dynamic stiffness (modal analysis, Ch. 21); plastic $D(\varepsilon)$ |

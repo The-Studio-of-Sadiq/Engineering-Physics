@@ -201,21 +201,40 @@ $$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(0)\hat A(t)\rangle_0\,e^{i\
 > [!warning] This is the *classical* limit, not the general quantum relation
 > `[APPROXIMATION]` The boxed formula is valid when $\hbar\omega \ll k_BT$ — the
 > **classical (high-temperature) regime**, where the quantum energy scale is
-> negligible compared with thermal energy and the Bose/detailed-balance factor
-> reduces to $1/k_BT$.
+> negligible compared with thermal energy.
 >
-> The general quantum fluctuation-dissipation relation carries a spectral
-> factor that depends on $\hbar\omega/k_BT$. One standard convention is
+> The general quantum fluctuation-dissipation relation depends on whether the
+> spectrum $S_A$ is **symmetrized** or **unsymmetrized**, and the two
+> normalizations differ. The $S_A$ defined above is unsymmetrized (it carries the
+> ordering $\langle\hat A(0)\hat A(t)\rangle$, not a commutator average), so the
+> matching statement is
 >
-> $$\text{Im}[\tilde\chi_{AA}(\omega)] = \frac{\omega}{1-e^{-\hbar\omega/k_BT}}\big[S_A(\omega)-S_A(-\omega)\big]$$
+> $$\boxed{\text{Im}[\tilde\chi_{AA}(\omega)] = \frac{1-e^{-\hbar\omega/k_BT}}{2\hbar}\,S_A(\omega)}$$
 >
-> For $k \gg 1$ (classical) the prefactor $\to \omega/2k_BT$ and detailed balance
-> $S_A(\omega) = e^{-\hbar\omega/k_BT}S_A(-\omega)$ makes the bracket $\propto k_BT$,
-> recovering the boxed result. For $\hbar\omega \gtrsim k_BT$ — zero-point
-> fluctuations, cryogenic electronics, any genuinely quantum regime — it does
-> not, and the classical form must not be used. Since this chapter presents
-> itself as *quantum* linear-response theory, the distinction is flagged rather
-> than glossed.
+> which is equivalently $S_A(\omega) = \dfrac{2\hbar}{1-e^{-\beta\hbar\omega}}\text{Im}[\tilde\chi_{AA}(\omega)]$.
+> The **detailed-balance** relation that the equilibrium spectrum must satisfy is
+>
+> $$S_A(-\omega) = e^{-\hbar\omega/k_BT}\,S_A(\omega)$$
+>
+> so the same result can be written as the antisymmetric combination
+> $\text{Im}[\tilde\chi_{AA}] = \big[S_A(\omega)-S_A(-\omega)\big]/2\hbar$ — note
+> the $1/2\hbar$, and note that the spectral factor belongs in the *numerator*.
+>
+> **Check the classical limit explicitly.** For $x = \hbar\omega/k_BT \ll 1$,
+> $1-e^{-x} \to x$, and the boxed general form gives
+> $\frac{\hbar\omega}{2\hbar k_BT}S_A = \frac{\omega}{2k_BT}S_A$ — exactly the
+> classical result above. In the deep quantum regime $x \gtrsim 1$ the factor
+> $1-e^{-x} \to 1$ saturates, so the classical form must not be used: zero-point
+> fluctuations, cryogenic electronics, and any genuinely quantum regime all fall
+> here. Since this chapter presents itself as *quantum* linear-response theory,
+> the distinction is flagged rather than glossed.
+>
+> If one prefers the **symmetrized** spectrum
+> $S_{sym} = \tfrac12\int e^{i\omega t}\langle\hat A(0)\hat A(t)+\hat A(t)\hat A(0)\rangle\,dt$,
+> the compact statement is $S_{sym}(\omega) = \hbar\coth\!\big(\frac{\hbar\omega}{2k_BT}\big)\text{Im}[\tilde\chi_{AA}(\omega)]$,
+> whose classical limit is again $\text{Im}[\tilde\chi_{AA}] = \frac{\omega}{2k_BT}S_{sym}$:
+> $\coth(x)\approx 1/x$. Both forms are standard; the only thing that matters is
+> that $S$ and the prefactor are quoted for the *same* convention.
 
 **Physical interpretation:** The rate at which the system absorbs energy from an external drive at frequency $\omega$ is exactly determined by how strongly the system spontaneously fluctuates at the same frequency at equilibrium. Noise and dissipation are the same phenomenon.
 

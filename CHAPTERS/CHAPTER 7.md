@@ -231,7 +231,7 @@ $$S_\theta = \frac{\theta e^2}{2\pi h}\int d^3r\,dt\,\mathbf{E}\cdot\mathbf{B}$$
 
 For a trivial insulator: $\theta = 0$. For a strong TI: $\theta = \pi$.
 
-The **mathematical structure is the same class of object** as the QCD θ-term from Ch. 0 §0.9: $\theta\frac{g^2}{32\pi^2}G_{\mu\nu}\tilde G^{\mu\nu}$, with EM fields in place of gluon fields — a total-derivative term $\theta\,F\tilde F$ whose coefficient is integer-valued and therefore topologically protected. This is a `[STRUCTURAL CONNECTION]`, and the structural language is deliberate: the systems, the effective theories, and the physics are **not** the same. In QCD, $\theta$ is a single number whose smallness ($\lesssim10^{-10}$) is the strong-CP problem, measured in a fundamental theory of the Standard Model. In a topological insulator, $\theta = \pi$ is a *response coefficient* of an effective band theory, fixed by the bulk band structure. The $\pi$ here is a quantized, measurable, and entirely mundane topological invariant; the QCD $\theta$ is a free parameter of a fundamental theory. Sharing a mathematical form is not sharing an explanation, and the analogy earns its keep by illuminating the *form* of the strong-CP problem, not by equating the two $\theta$'s.
+The **mathematical structure is the same class of object** as the QCD θ-term from Ch. 0 §0.9: $\theta\frac{g^2}{32\pi^2}G_{\mu\nu}\tilde G^{\mu\nu}$, with EM fields in place of gluon fields — a total-derivative term $\theta\,F\tilde F$ whose coefficient is **defined only modulo $2\pi$** and which time-reversal symmetry pins to a discrete set of values. This is a `[STRUCTURAL CONNECTION]`, and the structural language is deliberate: the systems, the effective theories, and the physics are **not** the same. In QCD, $\theta$ is a single number whose smallness ($\lesssim10^{-10}$) is the strong-CP problem, measured in a fundamental theory of the Standard Model. In a three-dimensional time-reversal-invariant topological insulator, time reversal sends $\theta \to -\theta$, so the only values consistent with the symmetry are $\theta = 0$ or $\pi \pmod{2\pi}$. Two distinctions matter here. First, $\theta$ is **not** an integer-valued coefficient: it is a continuous variable, defined modulo $2\pi$, that the symmetry restricts to two classes. The integers in this story live in the *band-structure invariant* — the Chern number or the $\mathbb{Z}_2$ index — not in the coefficient of $F\tilde F$. Second, $\theta$ is a genuine physical response coefficient: it is proportional to the half-quantized magnetoelectric polarizability $P_3$, measurable as a surface Hall conductance. The QCD $\theta$, by contrast, is a free parameter of a fundamental theory, and nothing in the Standard Model fixes it. Sharing a mathematical form is not sharing an explanation, and the analogy earns its keep by illuminating the *form* of the strong-CP problem, not by equating the two $\theta$'s.
 
 The Peccei-Quinn mechanism (Ch. 0) promotes $\theta$ to a dynamical field — the **axion**. Proposed axion dark matter could be detected by its coupling $\mathbf{E}\cdot\mathbf{B}$ — using topological insulator heterostructures as detectors. **This is a direct link from the unknown sector $\mathcal{F}[\ldots]$ of Ch. 0 to a table-top condensed matter experiment.**
 
@@ -486,8 +486,8 @@ Five connections between the topology of Ch. 0 and the physics of this chapter:
 |θ-term in QCD|Axion electrodynamics in TI; $\theta = \pi$|§7.4.4|`[STRUCTURAL CONNECTION]` — same topological term, different field content|
 |Weyl fermion field $\psi_L$ in $\mathcal{L}_{SM}$|Weyl quasiparticle in TaAs, NbAs|§7.5.1|`[STRUCTURAL CONNECTION]` — same Dirac algebra, emergent spectrum|
 |ABJ chiral anomaly|Negative magnetoresistance in Weyl metals|§7.5.4|`[DERIVATION]` — the anomaly is universal and the calculation is the same|
-|Higgs mechanism: local gauge $U(1)$ → photon mass|Meissner: global $U(1)$ condensate + Anderson–Higgs → photon mass in SC|§7.7.1|`[STRUCTURAL CONNECTION]` — same field-theoretic mechanism, different symmetry status (§7.6.3)|
-|Anomaly cancellation in SM requires specific particle content|Nielsen-Ninomiya: Weyl nodes come in equal and opposite pairs|§7.5.2|`[DERIVATION]` — same theorem, applied to the Brillouin zone|
+|Higgs mechanism: $SU(2)_L\times U(1)_Y \to U(1)_{\rm EM}$; $W^\pm$ and $Z$ acquire mass, **the photon does not** ($m_\gamma = 0$, since $U(1)_{\rm EM}$ is unbroken)|Meissner: broken global $U(1)$ condensate + Anderson–Higgs → effective photon mass *inside the superconductor*|§7.7.1|`[STRUCTURAL CONNECTION]` — same field-theoretic mechanism (a condensate makes the gauge field massive), different symmetry status (§7.6.3)|
+|Anomaly cancellation in SM requires specific particle content|Nielsen–Ninomiya: Weyl nodes come in equal and opposite pairs|§7.5.2|`[STRUCTURAL CONNECTION]` — *not* the same theorem; related through the fermion-doubling obstruction, but one is a continuum gauge-anomaly constraint and the other a lattice no-go result (§7.10.2)|
 
 ### 7.10.1 — What this thread is, and what it is not
 
@@ -507,9 +507,9 @@ What is genuinely shared:
 - The **chiral anomaly** and the **ABJ anomaly** are the same theorem. The
   calculation is not analogous to itself; it is one result, applied once to
   quark fields and once to Weyl quasiparticles.
-- The **Nielsen–Ninomiya theorem** constrains both the Standard Model's fermion
-  content and the existence of isolated Weyl nodes in a Brillouin zone. Same
-  theorem, different lattice.
+
+The Nielsen–Ninomiya theorem is *not* on this list, and the distinction is worth
+making explicitly — see §7.10.2.
 
 What is *not* shared, and what "the same action" would wrongly imply:
 
@@ -545,6 +545,37 @@ matter are **the same mathematics applied to different systems**. That is a real
 and useful connection — it is why techniques transfer — but it is a statement
 about mathematics, not about one theory descending from the other, and the two
 should not be conflated.
+
+### 7.10.2 — Anomaly cancellation and Nielsen–Ninomiya are not the same theorem
+
+`[STRUCTURAL CONNECTION]` — These two are constantly conflated because they are
+both about anomalies and chiral fermions, and because a real mathematical
+relationship connects them. They are nevertheless different theorems with
+different hypotheses, different conclusions, and different provenances, and
+labelling the second `[DERIVATION]`-equivalent to the first overstates the case.
+
+| | SM anomaly cancellation | Nielsen–Ninomiya |
+|---|---|---|
+| Setting | continuum relativistic chiral gauge theory | lattice-regularized fermion theory |
+| Statement | gauge and gravitational anomalies must cancel for the theory to be consistent, fixing the required fermion representation content of $SU(2)\times U(1)$ | a single Weyl fermion cannot be put on a lattice with locality, translational invariance, and Hermiticity: nodes of opposite chirality must occur, with total chirality vanishing on the Brillouin torus |
+| Origin | Adler–Bell–Jackiw anomaly and its descendants | fermion doubling / topological charge in the Brillouin zone |
+| What it constrains | particle content of a fundamental theory | existence of isolated Weyl nodes in a band structure |
+
+The relationship is real but indirect, and it runs through the **fermion-doubling
+obstruction**: the Nielsen–Ninomiya theorem is one of the obstructions that
+make it difficult to formulate a consistent purely-chiral continuum gauge theory
+without additional structure, and anomaly cancellation is part of the price of
+making such a theory work anyway. But the logical directions differ — Nielsen–
+Ninomiya says a *lattice* chiral theory must double; anomaly cancellation says a
+*continuum* chiral gauge theory needs matching representations. Neither is
+obtained from the other by relabelling $\psi$ or by changing the sign of a
+momentum, and the Brillouin zone is not a place where gauge anomalies are
+evaluated.
+
+The honest label is `[STRUCTURAL CONNECTION]`: a shared root concern (what
+blocks a consistent chiral fermion description) reached by different arguments.
+The connection earns its keep as a warning about doubling, not as a license to
+transfer SM particle-content arguments into band theory.
 
 ---
 

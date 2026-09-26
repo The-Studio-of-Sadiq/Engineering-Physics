@@ -296,7 +296,7 @@ $$\phi(\mathbf{r}, t) = \int G(\mathbf{r},t\,\mathbf{r}',t')\,S(\mathbf{r}',t')\
 
 **Diffusion equation** in free 3D space ($t > t'$):
 
-$$\boxed{G_{diff}(\mathbf{r},t;\mathbf{r}',t') = \frac{1}{[4\pi D(t-t')]^{3/2}}\exp!\left(-\frac{|\mathbf{r}-\mathbf{r}'|^2}{4D(t-t')}\right)}$$
+$$\boxed{G_{diff}(\mathbf{r},t\,\mathbf{r}',t') = \frac{1}{[4\pi D(t-t')]^{3/2}}\exp!\left(-\frac{|\mathbf{r}-\mathbf{r}'|^2}{4D(t-t')}\right)}$$
 
 A **Gaussian** centered at $\mathbf{r}'$, spreading with time as $\sigma^2 = 2D(t-t')$. This is the fundamental solution — any initial condition spreads according to convolution with this Gaussian.
 
@@ -310,7 +310,7 @@ An **expanding spherical shell** at radius $v(t-t')$ from the source. Informatio
 
 **1D diffusion (heat or mass):**
 
-$$G_{diff}^{1D}(x,t;x',t') = \frac{1}{\sqrt{4\pi D(t-t')}}\exp!\left(-\frac{(x-x')^2}{4D(t-t')}\right)$$
+$$G_{diff}^{1D}(x,t\,x',t') = \frac{1}{\sqrt{4\pi D(t-t')}}\exp!\left(-\frac{(x-x')^2}{4D(t-t')}\right)$$
 
 This gives the solution to the semi-infinite solid problem of Ch. 14 §14.8.1 directly by convolution with the initial condition.
 

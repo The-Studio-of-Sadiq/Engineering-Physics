@@ -478,7 +478,26 @@ The hydrogen atom solution rests on three pillars, each of which you now have:
 
 **Pillar 3:** Boundary conditions imposing quantization — the same principle as the infinite square well, now in 3D with three separate conditions giving three separate quantum numbers
 
-Together they give a complete, exact description of the hydrogen atom that agrees with spectroscopic data to better than one part in $10^8$.
+Together they give a **complete and exact solution of the nonrelativistic Coulomb Schrödinger model** for hydrogen.
+
+That claim needs its two halves kept apart, because they are different claims. *Exact* is
+true of the model: for a point nucleus of infinite mass and no relativistic or
+radiative corrections, the separation-of-variables solution above is the whole
+answer, with no residual equation left to solve. *Accurate for real hydrogen* is
+not, and the gap is far larger than the model's elegance suggests. The physical
+spectrum carries, among others:
+
+- **finite proton mass** — the reduced-mass correction, worth $\approx 5\times 10^{-4}$ on its own;
+- **relativistic** fine structure (spin–orbit, relativistic mass, Darwin);
+- the **Lamb shift** and other radiative corrections;
+- **hyperfine** structure, recoil, and finite proton size.
+
+The reduced-mass correction alone is some $10^4$ times larger than one part in
+$10^8$, so the model cannot be said to reproduce spectroscopy to that accuracy
+under any reading. The honest summary is: **exact solution of the
+nonrelativistic Coulomb model**, accurate to about one part in $10^4$ for real
+hydrogen, with the rest supplied by the corrections catalogued in §4.13 and
+developed in Ch. 5.
 
 ---
 

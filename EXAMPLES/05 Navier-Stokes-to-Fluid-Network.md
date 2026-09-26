@@ -8,8 +8,8 @@
 [Ch. 19](../CHAPTERS/CHAPTER%2019.md) §§19.7.1–19.7.3 (hydraulic effort–flow pair, pipe networks, pump curves) →
 [Ch. 20](../CHAPTERS/CHAPTER%2020.md) §20.3 (open-channel hydraulics)
 
-**Question answered:** Pipe-network analysis uses exactly Ohm's law. Under what
-conditions is that legitimate, and what does the condition look like numerically?
+**Question answered:** How close is pipe-network analysis to Ohm's law, and which
+term breaks the analogy? The answer turns out to be friction, not inertia.
 
 ---
 
@@ -43,17 +43,39 @@ results of Ch. 13, not postulates:
 | E | Empirical friction factor $f(Re,\varepsilon/D)$ | `[PHENOMENOLOGICAL]` | Moody chart / Colebrook |
 
 **Reduction B is the dangerous one.** Dropping inertia is a *low*-Reynolds
-assumption, and a whole lot of real pipe flow is high-Reynolds. The resolution:
-inertia can be retained in a lumped form. The momentum equation integrated
-along a pipe gives the **Darcy–Weisbach** relation, which keeps inertia:
+assumption, and a whole lot of real pipe flow is high-Reynolds. The resolution
+is that inertia can be retained in a lumped form — and, importantly, it comes
+out **linear**.
 
-$$\Delta p = \underbrace{\left(\rho L\,\frac{v^2}{D}\right)}_{\text{inertance, retained}} \cdot \underbrace{f\frac{v^2}{2g\,D}}_{\text{friction}}\ +\ \underbrace{\rho g\,\Delta z}_{\text{gravity}}$$
+**Inertia is linear.** For uniform (plug) acceleration $a = \dot v$, the pressure
+force $\Delta p\,A$ balances the fluid's inertia $\rho A L a$:
 
-So the hydraulic network is a **linear-inertial** model, not a linear one: it has
-an $L$-like element (inertance $\mathcal{I} = \rho L/A$) whose pressure drop
-depends on $v^2$, not $v$. This is the same $\mathcal{I}$ as a mechanical mass,
-with the same quadratic nonlinearity. A pipe network is therefore *not* an
-electrical circuit, and the distinction is exactly the $I^2R$ term.
+$$\Delta p = \rho L\dot v = \frac{\rho L}{A}\dot Q, \qquad \boxed{\mathcal{I}_h = \frac{\rho L}{A}}$$
+
+This is linear in $\dot Q$ and it is *exactly* the inductor law $V = L_{ind}\dot I$.
+Hydraulic inertance is a genuine energy-storing element, and the inductor analogy
+holds term for term.
+
+**Friction is what is nonlinear.** The steady momentum balance, with friction
+retained, gives **Darcy–Weisbach**:
+
+$$\boxed{\Delta p = f\frac{L}{D}\frac{\rho v^2}{2}\ +\ \rho g\,\Delta z} \qquad\text{or in head form}\qquad \boxed{\Delta h = f\frac{L}{D}\frac{v^2}{2g}\ +\ \Delta z}$$
+
+The $v^2$ belongs to *this* term, and this term is quadratic drag, not inertia.
+It is worth being explicit about the difference, because conflating them is the
+classic error: an inertance whose drop went as $v^2$ would be dimensionally
+plausible but physically meaningless, and it would destroy the inductor
+correspondence that makes hydraulic networks tractable at all. Darcy–Weisbach
+itself contains no time derivative, so it says nothing about inertia either way.
+
+The complete lumped pipe segment, for a transient, is the sum of the three
+separate contributions:
+
+$$\Delta p = \underbrace{\frac{\rho L}{A}\dot Q}_{\text{inertance, linear}} \ +\ \underbrace{f\frac{L}{D}\frac{\rho Q^2}{2A^2}}_{\text{friction, quadratic, } f\text{ empirical}} \ +\ \underbrace{\rho g\,\Delta z}_{\text{gravity, static}}$$
+
+So the hydraulic network is a linear RLC-like circuit *plus* one nonlinear,
+curve-fitted element. The nonlinearity is real, but it enters in one place only,
+and it is the empirical one.
 
 ---
 
@@ -87,11 +109,17 @@ Network elements, exactly parallel to the electrical case:
 
 | Physical element | Hydraulic form | Electrical analog | Notes |
 |---|---|---|---|
-| Pipe | $R_h = \Delta p/Q$ | resistor | $R_h \propto L/D^4$ laminar, $\propto L/D^5$ turbulent |
+| Pipe, laminar | $R_h = \frac{128\mu L}{\pi D^4}$, $R_h = \Delta p/Q$ | resistor | linear; exact, `[DERIVATION]` |
+| Pipe, turbulent | $R_h = \frac{fL}{D}\frac{\rho v}{2}$, $f = f(Re,\varepsilon/D)$ | nonlinear resistor | $I^2R$-like; $f$ empirical |
 | Fitting / valve | $R_h$ | resistor | K-resistance; highly empirical |
-| Fluid column | $\Delta p = \rho(L/A)\dot Q^2/2$ | **inductor, nonlinear** | inertance; $I^2R$ analog |
+| Fluid column in transit | $\Delta p = \frac{\rho L}{A}\dot Q$ | **inductor** | inertance $\mathcal{I}_h = \rho L/A$; **linear**, energy-storing |
 | Expansion vessel / tank | $C = dV/dp$ | capacitor | compressibility storage |
 | Pump | pressure source | voltage source | head–flow curve, not an ideal source |
+
+Note the asymmetry that trips people up: the **inertance row is linear** and the
+**friction row is not**. A pipe is therefore an $RLC$ segment in the linear
+regime, and it is the turbulent $f$ — not the inertia — that makes real
+networks nonlinear.
 
 **Node and loop rules are exact.**
 
@@ -127,11 +155,26 @@ Close. $v \approx 3.8$ m/s gives $h_f \approx 20.4$ m. **Converged: $v \approx 3
 
 $$Q = vA = 3.76\times\frac{\pi(0.04)^2}{4} = 3.76\times 1.257\times 10^{-3} = 4.72\times 10^{-3}\ \text{m}^3/\text{s} \approx 4.7\ \text{L/s}$$
 
-**The design finding.** Velocity and head loss scale as $v^2$, so available head
-is consumed by flow rate as the *square root* of the driving head. Adding a
-second parallel pipe would roughly double $Q$ — not double it, because each pipe
-sees a reduced effective head as flow rises. Networks are not linear even
-though each element's *resistance* is.
+**The design finding.** Head loss scales as $v^2$, so for a fixed pipe the
+available head is consumed as the *square root* of the flow rate: $Q\propto\sqrt{\Delta h}$.
+That is the nonlinearity that matters, and it is why a pump curve has to be
+intersected with a system curve numerically.
+
+**What a second parallel pipe does — and does not — change.** Adding an
+identical second pipe between the same two reservoirs **doubles the flow
+exactly**: $Q_{total} = 2Q_1$. Each parallel branch spans the same two nodes, so
+each sees the *same* head difference of 20 m, each runs at the same $Re$ and the
+same $f$, and each independently carries $Q_1 = 4.7$ L/s. For this example that
+gives $Q_{total} \approx 9.4$ L/s. Head is *shared* between parallel branches, not
+divided among them; it is **series** elements that split the available head, each
+taking a share in proportion to its resistance.
+
+(This is exact only while the branches really are in parallel between common
+nodes. If the two pipes share a common upstream run of finite resistance, that
+shared run develops a pressure drop as total flow rises, the effective head across
+each branch falls, and the gain is less than a factor of two. The doubling is the
+ideal limit, and stating it as "roughly double, but not quite" is wrong for the
+clean case and vague for the imperfect one.)
 
 ---
 
@@ -143,7 +186,7 @@ though each element's *resistance* is.
 | Incompressible | $M > 0.3$, cavitation | compressible flow; flashing |
 | $Re < 2000$, Hagen–Poiseuille | $Re > 2300$ | Colebrook/Moody; $f$ empirical |
 | Fully developed | $L/D < 20$, fittings | entrance lengths; $K$-factors |
-| **Inertia dropped** | — | **retained as inertance here; dropped only if $Re \ll 1$** |
+| **Inertia dropped** | $Re$ large, or transients of interest | **retained as the linear inertance $\rho L/A$; drop it only for slow, quasi-steady, low-$Re$ analysis** |
 | Lumped per segment | fittings, valves, short lines | Ch. 15 §15.8.2 — turbulence has no exact closed-form model |
 | Single-phase | two-phase, flashing | two-phase flow correlations |
 | $f$ constant with $Q$ | varying $Re$ over the operating range | solve network iteratively |
@@ -154,11 +197,12 @@ $Q^2$. A pump curve intersecting a system curve needs a numerical solution, not
 algebra, and treating $f$ as constant is a common source of wrong answers.
 
 **What this example demonstrates.** Ohm's law for pipes is genuinely the same
-algebra, and it comes from the same conservation laws. But the *network* is
-nonlinear through the inertial term, and one constitutive coefficient ($f$) is
-empirical. Pipe-network analysis is circuit theory with a memory and a
-curve-fit — close enough that the analogy is productive, different enough that
-it must be bounded.
+algebra, and it comes from the same conservation laws. The inertia is linear and
+maps cleanly onto an inductor; the nonlinearity enters through *friction*, and
+the one coefficient that governs it ($f$) is empirical. So a pipe network is
+circuit theory with a curve-fit in the resistive branch — closer to RLC than the
+usual "pipes are not circuits" refrain suggests, but different enough that the
+$f$ dependence must be respected rather than assumed away.
 
 ---
 
