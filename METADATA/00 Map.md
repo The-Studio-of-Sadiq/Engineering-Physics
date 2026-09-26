@@ -20,7 +20,7 @@ This document is the **conceptual argument** of the repository: how the whole sy
 - [Layer 3](#layer-3--the-engineering-systems-scale) — engineering systems
 - [Notation](#notation-how-to-read-every-connection) · [Model Ledger](#model-ledger-the-convention) · [Cross-Layer Threads](#cross-layer-threads)
 
-**Companion files.** [`README.md`](../README.md) — what the repository is. [`REFERENCES.md`](../REFERENCES.md) — sources for load-bearing claims. [`EXAMPLES/`](../EXAMPLES/) — single descents worked end to end, each with its validity limits. [`AUTHORING.md`](../AUTHORING.md) — the rules for extending any of this.
+**Companion files.** [`README.md`](../README.md) — what the repository is. [`REFERENCES.md`](../REFERENCES.md) — sources for load-bearing claims. [`EXAMPLES/`](../EXAMPLES/) — single descents worked end to end, each with its validity limits. [`AUTHORING.md`](CONTRIBUTING.md) — the rules for extending any of this.
 
 ---
 

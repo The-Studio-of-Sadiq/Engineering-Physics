@@ -2,8 +2,7 @@
 
 **This file is the standard for how this book is written.** It covers structure,
 notation, epistemic stance, and the review checklist. It is not a contribution
-workflow document — if you are looking for how to submit a pull request, see the
-repository's own contribution guidance instead.
+workflow document
 
 If anything here conflicts with `00 Map.md` or `README.md`, those two are
 authoritative and the conflict here is a bug in this file.

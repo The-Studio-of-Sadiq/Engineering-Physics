@@ -243,7 +243,7 @@ The chapter count will not grow. What the project needs now is rigour, not bread
 - [ ] Pin CODATA / PDG citations to fixed dataset editions
 - [ ] Second-pass verification of Chapters 16, 17, 19, 20 against primary sources
 
-Read it as a **research and study map**, not as an authoritative replacement for specialist textbooks. The detailed conceptual argument — every layer expanded, every discarded term named, every arrow tagged — lives in [`00 Map.md`](METADATA/00%20Map.md). Writing rules for extending it are in [`AUTHORING.md`](AUTHORING.md).
+Read it as a **research and study map**, not as an authoritative replacement for specialist textbooks. The detailed conceptual argument — every layer expanded, every discarded term named, every arrow tagged — lives in [`00 Map.md`](METADATA/00%20Map.md). Writing rules for extending it are in [`AUTHORING.md`](CONTRIBUTING.md).
 
 ---
 
