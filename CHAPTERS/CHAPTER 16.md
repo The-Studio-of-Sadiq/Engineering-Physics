@@ -575,7 +575,19 @@ Integrate the PDE over control volumes; apply flux conservation across faces. Na
 
 **The master equation governing all of them:** $$\frac{\partial^2\phi}{\partial t^2} + \beta\frac{\partial\phi}{\partial t} = v^2\nabla^2\phi - \omega_c^2\phi + S(\mathbf{r},t)$$
 
-One equation. Every domain. Only the labels change.
+**One canonical form. Many domains. Often only the labels change — but not always.**
+
+> [!warning] This is a canonical form, not a universal law of physics
+> Read the table above as: *many* important engineering PDEs can be brought to this form. That is a strong and useful statement, and it is worth knowing exactly *why* it works, because the reasons are what tell you when it will fail.
+>
+> Getting a system into this form requires several restrictive steps, each of which is a real approximation:
+> - **Linearity.** The coefficients ($v$, $\beta$, $\omega_c$) must be constant. Nonlinear elasticity, compressible flow with density-dependent coefficients, and most reaction-diffusion systems are genuinely nonlinear and do not reduce to it.
+> - **A single scalar field $\phi$.** Systems needing several coupled fields (Navier–Stokes velocity and pressure, Maxwell $\mathbf{E}$ and $\mathbf{B}$, multi-phase flow) carry extra structure this form has no slot for.
+> - **A single characteristic speed.** Wave-like transport with genuinely different speeds in different directions (flexural waves, where $v \propto \sqrt{\omega}$) or genuine anisotropy needs a tensorial operator, not $v^2\nabla^2$.
+> - **Diffusion-dominated regimes.** Pure diffusion is the $\omega_c = \beta = 0$ limit, which is why the table shows "—" for the inertial column. Steady incompressible flow, pure reaction kinetics, and algebraic constraints are not described by this equation at all.
+> - **Time derivatives of order two.** First-order-in-time systems, delay equations, and fractional-order systems need different forms.
+>
+> So the accurate formulation is: **many engineering PDEs admit canonical wave/diffusion/storage forms after appropriate linearisation, scalar reduction, and limiting.** That is more valuable than a universal claim, because it tells the reader both *why* the same equation keeps appearing and *when* it will not.
 
 ---
 

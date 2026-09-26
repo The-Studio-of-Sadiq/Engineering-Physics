@@ -42,15 +42,17 @@ Everything in this equation has appeared before, but let us restate it clearly:
 
 - $g_{\mu\nu}$: the metric tensor — the dynamical field of gravity, encoding distances and angles in curved spacetime
 - $R_{\mu\nu}$: the Ricci tensor — a contraction of the Riemann curvature tensor, measuring how much parallel transport around a loop rotates a vector
-- $R = g^{\mu\nu}R_{\mu\nu}$: the Ricci scalar — a single number at each point measuring the total local curvature
+- $R = g^{\mu\nu}R_{\mu\nu}$: the Ricci scalar — a scalar contraction of the Riemann tensor giving one particular local curvature invariant. It does **not** measure the total local curvature: a nonzero $R$ does not imply a curved spacetime (the Schwarzschild vacuum has $R=0$ yet non-zero Weyl curvature), and a zero $R$ does not imply flat spacetime (Ch. 0 §0.3).
 - $G_{\mu\nu}$: the Einstein tensor — the unique symmetric, divergence-free ($\nabla^\mu G_{\mu\nu} = 0$), second-order combination of the metric
 
 **Right side — matter:**
 
-- $T_{\mu\nu}$: the stress-energy tensor — the Noether current of spacetime translations (Ch. 1 §1.9.3), encoding:
+- $T_{\mu\nu}$: the stress-energy tensor — matter's energy-momentum content, encoding:
     - $T^{00} = $ energy density (including rest mass energy $\rho c^2$)
     - $T^{0i} = $ momentum density (energy flux)
     - $T^{ij} = $ stress tensor (pressure and shear)
+
+    Its connection to Noether's theorem needs a caveat, because in general relativity the naive statement is not correct. In **flat-space** field theory, translation invariance is a continuous symmetry and the (canonical, or symmetrised Belinfante) stress-energy tensor is indeed the Noether current of spacetime translations (Ch. 1 §1.9.3). In **GR** this becomes delicate: the diffeomorphism group is a *gauge* redundancy rather than a physical global symmetry, so translations are not an ordinary Noether symmetry of general covariance. Gravitational energy cannot be assigned a local gauge-invariant density at all (it lives in the pseudotensor or in the ADM/ Ashtekar variables at infinity), and the quantity appearing on the right of Einstein's equation is the **matter** stress tensor, which is covariantly conserved ($\nabla_\mu T^{\mu\nu}=0$) rather than being a plain Noether current. The safe statement, used here: **$T_{\mu\nu}$ is the stress-energy tensor associated with matter's energy-momentum; in flat-space field theory it is connected to translation symmetry through Noether's theorem.**
 
 **The equation in words:**
 
@@ -80,7 +82,7 @@ where $\eta_{\mu\nu} = \text{diag}(-1,+1,+1,+1)$ is the flat Minkowski metric an
 | Neutron star surface | $\sim 0.3$ | Not weak! GR required exactly |
 | Black hole horizon | $\sim 1$ | Full GR, no perturbation theory |
 
-The perturbative treatment is valid for everything from a laboratory balance to the GPS network to gravitational wave emission from neutron star binaries in their inspiral phase.
+The perturbative treatment is valid from a laboratory balance through the GPS network, and in the **weak-field wave zone** of systems such as neutron-star binaries during portions of their inspiral. That last case needs care: linearised gravity handles the early inspiral and the far-field wave zone well, but the **late inspiral and merger involve strong-field, nonlinear general relativity** where the first-order $h_{\mu\nu}$ expansion fails and post-Newtonian or numerical methods are required. One does not compute merger with $g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu}$ and $|h_{\mu\nu}|\ll1$.
 
 ### 8.2.2 — Linearized Ricci Tensor
 

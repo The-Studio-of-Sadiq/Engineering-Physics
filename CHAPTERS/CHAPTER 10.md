@@ -96,7 +96,8 @@ $$\langle\hat A\rangle = \text{Tr}(\hat\rho\hat A)$$
 
 This works for both pure and mixed states. Thermodynamics is the study of
 expectation values of macroscopic observables (energy, pressure, magnetization,
-etc.) in the $N\to\infty$ limit.
+etc.) in the thermodynamic limit — $N,V\to\infty$ at fixed density, together
+with the statistical/ensemble description (see the Bridge B.b table above).
 
 ### 10.1.3 — The Reduced Density Matrix and Decoherence
 
@@ -117,7 +118,7 @@ is obtained by tracing out the environment's degrees of freedom. This operation:
 **This is the mathematical operation of Bridge B.b:** tracing out environmental
 degrees of freedom converts the pure, reversible quantum dynamics into the
 irreversible statistical mechanics of the reduced system. Irreversibility is
-not put in by hand — it emerges from the $N\to\infty$ environmental degrees
+not put in by hand — it emerges from coarse-graining over many ($N\sim10^{23}$) environmental degrees
 of freedom.
 
 ---
@@ -327,7 +328,7 @@ If the ground state is non-degenerate: $\hat\rho\to|0\rangle\langle 0|$, a pure 
 and $S = -k_B\text{Tr}(\hat\rho\ln\hat\rho) \to 0$.
 
 If the ground state is $g$-fold degenerate: $S\to k_B\ln g$. For macroscopic
-systems, $g \ll e^N$ so $S/N\to 0$ as $N\to\infty$ — the extensive entropy
+systems, $g \ll e^N$ so $S/N\to 0$ as $N,V\to\infty$ at fixed density — the extensive entropy
 per particle still vanishes.
 
 **Engineering consequence:** As $T\to 0$, all specific heats $C\to 0$

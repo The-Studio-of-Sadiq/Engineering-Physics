@@ -10,7 +10,7 @@
 
 ## 18.0 — Overview
 
-Chapter 17 established the universal Layer-3 template: effort and flow, R/C/L in every domain, KCL-type and KVL-type conservation at every node and loop, and the second-order ODE as the governing equation for every system.
+Chapter 17 established the Layer-3 template: effort and flow, the R/C/L storage-dissipation-inertia pattern, KCL-type and KVL-type conservation at nodes and loops, and the canonical second-order R/C/L ODE that appears in many lumped linear systems. It also established where that template stops: first-order, higher-order, algebraic, differential-algebraic, stochastic, nonlinear, hybrid, delayed, and constrained systems all need other forms, and lumping is conditional on a stated criterion. This chapter instantiates the template in the electrical domain, where the RLC second-order case is realised most completely.
 
 This chapter instantiates that template in the electrical domain. Every concept introduced here already appeared in some form in earlier chapters:
 

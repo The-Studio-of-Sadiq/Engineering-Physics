@@ -974,13 +974,13 @@ When you lump any continuous domain, two types of variable emerge:
 |Chemical|Chem. potential μ [J/mol]|Molar flow ṅ [mol/s]|Watts [W]|
 
 > [!warning] The thermal row needs the entropy flow, not the heat flow
-> $T\dot Q$ has units K·W and is **not** power. Temperature is power-conjugate to the **entropy rate** $\dot S = \dot Q/T$ [W/K], so that $T\dot S = \dot Q$ [W]. Engineering texts instead quote $R_{th} = \Delta T/\dot Q$ [K/W] (Ch. 14, 17, 19); that is the same physics with $T$ absorbed into the coefficient, and the two conventions must not be mixed. Full treatment and the caveat on the "conserved quantity" column: Ch. 17 §17.2.
+> $T\dot Q$ has units K·W and is **not** power. Temperature is power-conjugate to the **entropy rate** $\dot S$ [W/K], so that $T\dot S = \dot Q$ [W]. Engineering texts instead quote $R_{th} = \Delta T/\dot Q$ [K/W] (Ch. 14, 17, 19). The two are related only by a **small-signal linearisation** about a reference temperature $T_0$: $\dot S \approx \dot Q/T_0$, giving $R_S \approx T_0 R_{th}$. This is not an exact identity — across a finite $\Delta T$ the relation is nonlinear, and the transfer generates entropy $\dot Q(1/T_{cold} - 1/T_{hot})$. Full treatment, plus the caveat on the "conserved quantity" column: Ch. 17 §17.2.
 
 ---
 
 ### Bridge C.2 — The Universal R/C/L Template
 
-Every lumped domain has exactly three passive element types, arising from the three ways energy can appear in the transport equations:
+Many lumped physical systems can be represented using storage, dissipation, and inertial elements — the R/C/L template — arising from the three ways energy can appear in the transport equations. This is a **powerful template, not a theorem**: the enumeration below is a guide to what to look for, not a claim that every physical domain possesses exactly three passive element types and nothing else.
 
 |Element|Electrical|Mechanical (trans.)|Thermal|Hydraulic|
 |---|---|---|---|---|

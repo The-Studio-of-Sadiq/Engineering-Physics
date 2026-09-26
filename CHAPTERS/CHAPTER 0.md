@@ -385,17 +385,24 @@ $$V(H) = -\mu^2|H|^2 + \lambda|H|^4$$
 |Region|Shape|Meaning|
 |---|---|---|
 |$\lvert H\rvert = 0$|Origin of the potential — a local maximum|Symmetry unbroken; the field sits at the centre|
-|$\lvert H\rvert = v/\sqrt{2}$|Circle of degenerate minima (the "Mexican hat")|Spontaneous symmetry breaking; the vacuum picks one point on the circle|
+|$\lvert H\rvert = v/\sqrt{2}$|Degenerate manifold of minima in field space (the "Mexican hat"); after gauge fixing, a single representative is chosen|Spontaneous symmetry breaking; the vacuum settles into the degenerate set|
 
-The minimum occurs at: $$|H|_{\min} = \frac{v}{\sqrt{2}}, \quad v = \sqrt{\frac{\mu^2}{\lambda}} \approx 246\,\text{GeV}$$
+The minimum occurs at: $$\lvert H\rvert_{\min} = \frac{v}{\sqrt{2}}, \quad v = \sqrt{\frac{\mu^2}{\lambda}} \approx 246\,\text{GeV}$$
 
-$v$ is the **vacuum expectation value (VEV)** of the Higgs field. In "empty" space, the Higgs field is not zero — it sits at the bottom of the Mexican hat, at $|H| = v/\sqrt{2}$. This nonzero background value permeates all of spacetime.
+$v$ is the **vacuum expectation value (VEV)** of the Higgs field. In "empty" space, the Higgs field is not zero — it sits in the degenerate set of vacuum minima at $\lvert H\rvert = v/\sqrt{2}$. This nonzero background value permeates all of spacetime.
+
+> [!warning] "Circle of degenerate minima" is a picture, not the geometry
+> The familiar Mexican-hat image shows a **circle of degenerate minima**. Strictly, $H$ is a complex $SU(2)$ doublet, i.e. **four real components**, and the minimum condition is
+> $$H^\dagger H = \frac{v^2}{2}$$
+> In four-dimensional real field space this level set is an **$S^3$**, not a circle $S^1$. The 2D circle picture is the correct picture for a *complex scalar* (two real components), and it is what almost every textbook draws. It is a legitimate pedagogical representation of the *pattern* — a flat degenerate manifold of minima — but it is not the literal geometry, and the distinction matters as soon as one asks how many Goldstone directions there are. (There are three, which you can see from $\mathrm{dim}\,S^3 = 3$ or, equivalently, from $\mathrm{dim}\,SU(2) - \mathrm{dim}\,U(1)_{EM} = 3 - 1 = 2$ broken generators; the naive $S^1$ picture would wrongly suggest one.)
+>
+> **A second subtlety: this is a gauge symmetry.** Calling $SU(2)_L \times U(1)_Y \to U(1)_{EM}$ "spontaneous symmetry breaking" is the standard and useful shorthand, and this book uses it. But the electroweak symmetry is a *gauge redundancy*, not a physical global symmetry, so strictly the gauge-fixed vacuum is a **choice of representative**, not a selection of a preferred physical state. The physical content is the pattern of symmetry of the vacuum and the masses it produces; the particular point chosen is a gauge convention. The conventional statement is retained throughout, with that understood.
 
 ### Spontaneous Symmetry Breaking
 
 The vacuum state breaks SU(2)$_L \times$ U(1)$_Y$ down to U(1)$_{EM}$. We choose: $$\langle H\rangle = \begin{pmatrix}0\\v/\sqrt{2}\end{pmatrix}$$
 
-(Any point on the circle of minima is equivalent — we "gauge away" the others.)
+(Any point in the degenerate set of minima is equivalent; we fix one representative by gauge choice.)
 
 Writing $H = \langle H\rangle + $ perturbations, four degrees of freedom split:
 
@@ -451,7 +458,7 @@ The Yukawa matrices $Y^u_{ij}$ and $Y^d_{ij}$ are generally not diagonal. Diagon
 
 This complex phase is the source of **CP violation** in the quark sector — the slight asymmetry between matter and antimatter in certain decays. (It is insufficient alone to explain the matter-antimatter asymmetry of the observable universe — another entry in the $\mathcal{F}$ placeholder.)
 
-For leptons, a corresponding **PMNS matrix** $U_{PMNS}$ describes neutrino mixing — the phenomenon of neutrino oscillations (see §0.10).
+For **leptons**, a corresponding **PMNS matrix** $U_{PMNS}$ describes neutrino mixing — the phenomenon of neutrino oscillations (see §0.10). Two precision points, consistent with the parameter count in §0.12: this is a matrix over *neutrino* weak eigenstates and mass eigenstates, not over charged leptons (charged-lepton mixing is unphysical and rotated away). And it exists **only if neutrinos have masses** — in the minimal massless-neutrino Standard Model there is no PMNS matrix, because massless neutrinos of different flavour do not oscillate. Its appearance is therefore direct evidence that the minimal SM needs extension.
 
 ### What Yukawa Couplings Do Not Explain
 
@@ -565,9 +572,24 @@ $\mathcal{F}$ is **explicitly unknown**. It is not a gap we are filling lazily �
 
 $$\sum_{\text{fermions}} Y^3 = 0$$
 
-Computing this sum using the actual particle content of the SM (quarks coming in 3 colors, specific hypercharges for all particles): $$3\Bigl[\bigl(\tfrac{1}{6}\bigr)^3 \times 2 + \bigl(\tfrac{2}{3}\bigr)^3 \times (-1) + \bigl(-\tfrac{1}{3}\bigr)^3\times(-1)\Bigr]_{\text{quarks}} + \Bigl[\bigl(-\tfrac{1}{2}\bigr)^3\times 2 + (-1)^3\Bigr]_{\text{leptons}} = 0$$
+> [!warning] Convention first: the sum runs over **left-handed Weyl fermions**
+> The $U(1)_Y^3$ anomaly is a sum over left-handed Weyl fields only. Right-handed fields are not counted separately — each is replaced by its left-handed charge conjugate, and that conjugation **reverses the hypercharge**, $Y \to -Y$. Since the anomaly is cubic, this sign flip is essential, and getting it wrong produces a plausible-looking sum that does not vanish. The hypercharges that actually enter the sum are therefore:
 
-This works **only because quarks come in 3 colors and have those specific hypercharges, and only when leptons are included.** Change the particle content and the anomaly does not cancel — the theory becomes inconsistent. This is a profound constraint: the structure of $\mathcal{F}$ must be anomaly-free.
+|Field|Type|$Y$|Multiplicity|
+|---|---|---|---|
+|$Q_L$|left-handed|$+\tfrac{1}{6}$|6 (3 colours × 2 $SU(2)$ components)|
+|$u_R^c$|left-handed charge conjugate of $u_R$|$-\tfrac{2}{3}$|3 (3 colours)|
+|$d_R^c$|left-handed charge conjugate of $d_R$|$+\tfrac{1}{3}$|3 (3 colours)|
+|$L_L$|left-handed|$-\tfrac{1}{2}$|2 ($SU(2)$ doublet)|
+|$e_R^c$|left-handed charge conjugate of $e_R$|$+1$|1|
+
+Note especially that $d_R^c$ carries $+\tfrac13$ (not $-\tfrac13$) and $e_R^c$ carries $+1$ (not $-1$), because both are charge conjugates. With these values the sum is:
+
+$$\mathcal{A}_{U(1)_Y^3} = 3\left[2\left(\tfrac{1}{6}\right)^3 + \left(-\tfrac{2}{3}\right)^3 + \left(\tfrac{1}{3}\right)^3\right] + \left[2\left(-\tfrac{1}{2}\right)^3 + (1)^3\right] = 0$$
+
+The arithmetic checks term by term: the quark bracket is $\tfrac{1}{108} - \tfrac{8}{27} + \tfrac{1}{27} = -\tfrac{1}{4}$, and the lepton bracket is $-\tfrac{1}{4} + 1 = \tfrac{3}{4}$, so the total is $3\left(-\tfrac{1}{4}\right) + \tfrac{3}{4} = -\tfrac{3}{4} + \tfrac{3}{4} = 0$. $\checkmark$
+
+This works **only because quarks come in 3 colors and have those specific hypercharges, and only when leptons are included.** Change the particle content and the anomaly does not cancel — the theory becomes inconsistent. This is a profound constraint: the structure of $\mathcal{F}$ must be anomaly-free. It is worth registering how strong this is: the cancellation is not approximate and not fitted. No free parameter is adjusted to achieve it, and it holds generation by generation.
 
 **Global anomalies** (Witten anomaly, etc.) provide additional constraints on what $\mathcal{F}$ can contain.
 
@@ -612,15 +634,24 @@ Together, these equations encode all known fundamental dynamics.
 
 ## 0.12 — The Counting: How Complex Is This Equation?
 
-The Standard Model alone (without gravity) has:
+**The minimal Standard Model, with neutrinos massless, has 19 free parameters.** The count is:
 
-- **3** gauge coupling constants: $g_1, g_2, g_3$
-- **2** Higgs parameters: $\mu^2, \lambda$
-- **3+3+3 = 9** Yukawa coupling magnitudes (quark masses, lepton masses)
-- **4** CKM matrix parameters (3 angles + 1 CP-violating phase)
-- **3** PMNS matrix parameters (if neutrinos are Dirac)
-- **1** QCD θ-parameter
-- **Total: ~19 free parameters** — all measured, none derived from a deeper principle
+|Source|Count|Detail|
+|---|---|---|
+|Gauge couplings $g_1, g_2, g_3$|3|one per gauge group|
+|Higgs potential $\mu^2, \lambda$|2|the only free parameters in the scalar sector|
+|Charged-fermion Yukawa eigenvalues|9|$3+3+3$ for up, down, and charged leptons|
+|CKM matrix|4|3 mixing angles + 1 CP-violating phase|
+|QCD $\theta$|1|strong-CP angle|
+|**Total**|**19**|$3+2+9+4+1 = 19$|
+
+**There is no physical PMNS matrix in the minimal massless-neutrino Standard Model.** Without neutrino masses there is nothing for neutrinos to mix *with*, so the PMNS matrix is not a free parameter of that model — including one in the count of 19 would be a bookkeeping error. This is exactly why neutrino masses are experimentally significant: they prove the minimal SM is incomplete.
+
+**Extending to Dirac neutrino masses** adds 3 neutrino Yukawa eigenvalues, 3 additional mixing angles, and 1 Dirac CP-violating phase:
+
+$$19 + 3 + 3 + 1 = \boxed{26}$$
+
+For **Majorana** neutrinos the count differs again, because Majorana phases add further physical parameters (two extra phases per generation for three generations, with one combination removable). The clean statement: **the minimal Standard Model with massless neutrinos has 19 free parameters; neutrino masses and mixing require an extension of the minimal SM and introduce additional parameters.**
 
 A true Theory of Everything would predict these numbers. The fact that we cannot yet derive them is a measure of how much of $\mathcal{F}$ remains unknown.
 
