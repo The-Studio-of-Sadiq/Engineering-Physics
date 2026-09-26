@@ -2,7 +2,7 @@
 
 ## A Detailed Layer Map with Smooth Transitions
 
-_v3 — four layers, three bridges, one honest caveat_
+_v4 — four layers, three bridges, one honest caveat, corrections per external review_
 
 ---
 
@@ -26,6 +26,26 @@ $$\boxed{S = \int d^4x, \sqrt{-g} \left[ \frac{R}{16\pi G} + \mathcal{L}_{SM} + 
 - Known candidates: dark matter fields, dark energy beyond Λ, quantum gravity corrections (R², Gauss-Bonnet), explanation of why the QCD θ-parameter ≈ 0 (the strong CP problem), possible extension of the gauge group to SU(5)/SO(10) (GUTs), supersymmetric partners
 
 **The pedagogical stance:** this equation is the best framework humanity has. Every chapter of this book is a controlled, named approximation to it. Students who finish this book will know which approximations they are standing on at every moment of their career — and will know exactly when to distrust those approximations.
+
+> **This is a hierarchy of physical descriptions, not a claim that every higher-level theory can currently be derived quantitatively from the Standard Model.** Some arrows in this map are exact derivations. Many are controlled approximations. Some are structural correspondences — two different systems sharing one piece of mathematics without one causing the other. A few are honest analogies. The notation below tells you, at every arrow, which kind you are looking at.
+
+---
+
+## Notation: How to Read Every Connection
+
+Dense chains of the form A → B → C → D appear throughout this book. Each arrow can mean something different, and collapsing them into one visual weight is the single most common way this kind of map overstates itself. Every non-trivial arrow in this document is tagged with one of five labels (defined in full in `README.md`, "Notation and Conventions"):
+
+> **[DERIVATION]** An exact or controlled mathematical reduction: apply calculus or algebra to the prior result under the stated assumptions, and this follows.
+
+> **[APPROXIMATION]** A theory obtained by dropping terms under an explicit, named limiting assumption (a small parameter going to zero, a scale separation, etc.).
+
+> **[STRUCTURAL CONNECTION]** Two different physical systems obey the same mathematics because both are instances of the same underlying mathematical object (a conserved current, a topological invariant, a free-energy expansion) — not because one causes or produces the other.
+
+> **[ANALOGY]** A conceptual correspondence, useful for intuition or pedagogy, that should not be mistaken for identity.
+
+> **[PHENOMENOLOGICAL]** A model whose parameters or functional form come from experiment or an effective theory, not from a controlled derivation.
+
+Where a chain in this map does not carry a tag, treat it as informal narrative connective tissue, not a claim of derivation.
 
 ---
 
@@ -104,7 +124,19 @@ $$\mathcal{L}_{SM} = \underbrace{-\frac{1}{4}F^a_{\mu\nu}F^{a\mu\nu}}_{\text{gau
 |U(1) gauge (EM)|Electric charge|Kirchhoff's current law|
 |SU(3) gauge|Color charge|(Confined inside nuclei; never reaches Layer 3)|
 
-The student should be told explicitly: **Kirchhoff's current law is Noether's theorem applied to U(1) gauge symmetry, seen from very far away.** This thread will be made visible at every layer it passes through.
+**KCL is not one step from Noether's theorem — it is the endpoint of a six-link chain, each link a separate, named operation:**
+
+> **[DERIVATION]** U(1) gauge invariance of the action ⟹ (Noether's theorem) ⟹ a conserved current $j^\mu$ exists.
+
+> **[DERIVATION]** That conservation law is exactly the continuity equation $\partial_\mu j^\mu = 0$ — worked out explicitly in Bridge B.c below.
+
+> **[DERIVATION]** Integrating $\partial_\mu j^\mu = 0$ over a finite spatial volume and applying the divergence theorem gives an integral charge-balance statement: the rate of charge accumulation inside any closed surface equals the net current crossing that surface.
+
+> **[APPROXIMATION]** Bridge C's lumped-node approximation ($L_{element} \ll \lambda_{field}$, defined in full in Bridge C below) shrinks that closed surface down to a single circuit node, discarding spatial variation inside it.
+
+> **[DERIVATION]** In steady state, with no charge accumulating at the node, the integral balance reduces algebraically to $\sum I_{node} = 0$ — Kirchhoff's current law.
+
+The compressed slogan — "KCL is Noether's theorem, seen from far away" — is a useful thing to say to a student _after_ they have walked this chain once. It is not, by itself, a derivation, and this book does not present it as one. The chain is made visible at every layer it passes through: the continuity-equation step lives in Bridge B.c, the lumping step lives in Bridge C, and the final algebraic form is assembled in §3.1.
 
 ---
 
@@ -112,7 +144,11 @@ The student should be told explicitly: **Kirchhoff's current law is Noether's th
 
 The Higgs potential $V(H) = -\mu^2|H|^2 + \lambda|H|^4$ has a "Mexican hat" shape. The ground state sits in a circle of degenerate minima. The system "picks one" — breaking the SU(2)×U(1) symmetry. This gives masses.
 
-**Mark this mechanism.** It will reappear in Layer 2 (phase transitions, Landau theory) with $\mu^2 \sim (T_c - T)$ as the temperature-dependent coefficient. Ferromagnetism, superconductivity, and Bose-Einstein condensation are all the same Mexican hat, at lower energy and longer length scales. The student should see symmetry breaking as a scale-independent phenomenon, not an exotic particle physics artifact.
+**Mark this mechanism, not this instance.** [STRUCTURAL CONNECTION] The Higgs mechanism is _one example_ of spontaneous symmetry breaking in field theory — it is not the physical ancestor of ferromagnetism or superconductivity. Landau theory (Layer 2, §2.3) is the general mathematical template underneath all of them: a free energy expanded in an order parameter, with a coefficient that changes sign at a critical point.
+
+$$ \begin{aligned} &\text{Spontaneous / effective symmetry breaking (the Mexican-hat template)} \ &\quad\longrightarrow \text{Higgs mechanism} && [\text{DERIVATION, within the Standard Model}],\ \sim 246\ \text{GeV} \ &\quad\longrightarrow \text{Landau theory} && [\text{STRUCTURAL CONNECTION — same template, independently applied}] \ &\qquad\quad\longrightarrow \text{Ferromagnetism} && [\text{APPROXIMATION, Landau applied to spin order}] \ &\qquad\quad\longrightarrow \text{Superconductivity (Ginzburg-Landau)} && [\text{APPROXIMATION, Landau applied to Cooper-pair order}] \ &\qquad\qquad\quad\longrightarrow \text{Engineering hysteresis / bistability} && [\text{ANALOGY}] \end{aligned} $$
+
+Higgs and Landau theory both instantiate the same mathematical template — the dictionary between them is $\mu^2 \leftrightarrow \mu^2(T_c - T)$ — but Higgs is not upstream of ferromagnetism in any causal sense. Both are independent downstream instances of the same free-energy structure, at wildly different energy scales ($\sim 246$ GeV versus $\sim$ meV). The student should see symmetry breaking as a scale-independent _mathematical_ phenomenon with multiple independent physical realizations, not as a single lineage running through the Higgs field.
 
 ---
 
@@ -121,6 +157,8 @@ The Higgs potential $V(H) = -\mu^2|H|^2 + \lambda|H|^4$ has a "Mexican hat" shap
 The θ-term is a topological term — it integrates to a topological invariant (the Pontryagin number) over closed spacetime regions. It doesn't contribute to the classical equations of motion (it's a total derivative) but profoundly affects the quantum vacuum structure.
 
 Why tell engineering students this? Because **topology has already reached semiconductor labs.** The quantum Hall effect, topological insulators, and Weyl semimetals all derive their exotic properties from topological terms in their effective Layer-1 Hamiltonians — which are shadows of Layer-0 topology. The f(φ) placeholder is where a more complete understanding of this topology will eventually sit.
+
+[STRUCTURAL CONNECTION] Note in advance: the θ-term, the Chern numbers of Layer 1, and any topological invariant appearing later in this book (including in control theory, Ch. 21) share a common branch of mathematics — the classification of maps by winding number or degree — without one being derived from another. This point is made explicit where the chain is completed, in Ch. 21 §21.11.2.
 
 ---
 
@@ -139,7 +177,7 @@ Why tell engineering students this? Because **topology has already reached semic
 |Fermion field $\psi(x,t)$|Wavefunction $\Psi(\mathbf{r},t)$|
 |Gauge coupling $D_\mu = \partial_\mu + ieA_\mu$|Minimal coupling: $\mathbf{p} \to \mathbf{p} - e\mathbf{A}$|
 |Lorentz group representations|Spin-1/2; Pauli matrices|
-|U(1) symmetry (Noether: charge conservation)|Continuity equation $\partial_t|
+|U(1) symmetry (Noether: charge conservation)|Continuity equation $\partial_t\rho + \nabla\cdot\mathbf{J} = 0$|
 |SU(3) (strong force)|Reduced to nuclear binding (residual force); not discarded, just confined|
 
 ### Bridge A.2 — What Gets Discarded and Why It Is Allowed
@@ -253,7 +291,7 @@ $$\Psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}} u_{n\mathbf{k}
 |In a gap, gap ~ kT–3eV|Semiconductor|EEE (devices)|
 |In a gap, gap ~ 1–10eV|Optical material|EEE (photonics, LEDs)|
 
-**Topological bands (forward pointer to f(φ)):** Some band structures have a non-trivial topological invariant (Chern number, Z₂ invariant). These give quantum Hall conductance, topological insulator surface states, and Weyl semimetal behavior — effects that survive disorder and temperature in a way ordinary band theory can't explain. This is where Layer-0 topology (the θ-term and anomaly structure) has already reached the lab bench.
+**Topological bands (forward pointer to f(φ)):** Some band structures have a non-trivial topological invariant (Chern number, Z₂ invariant). These give quantum Hall conductance, topological insulator surface states, and Weyl semimetal behavior — effects that survive disorder and temperature in a way ordinary band theory can't explain. This is where Layer-0 topology (the θ-term and anomaly structure) has already reached the lab bench. [STRUCTURAL CONNECTION — same mathematical object as the θ-term (a topological invariant), independently applied to a different physical system.]
 
 ---
 
@@ -299,7 +337,11 @@ Layer 1
 
 **What you are assuming small:** $\hbar/S_{action}$ where $S_{action}$ is the characteristic classical action of the system. For a macroscopic object, $S_{action}/\hbar \sim 10^{34}$ — the approximation is essentially exact.
 
-**The Ehrenfest theorem** gives the first sign that this limit works: $$\frac{d\langle\mathbf{p}\rangle}{dt} = -\left\langle\nabla V\right\rangle$$ This is Newton's second law for the expectation value of momentum.
+**The Ehrenfest theorem** gives the first sign that this limit works:
+
+$$\frac{d\langle\mathbf{p}\rangle}{dt} = -\left\langle\nabla V\right\rangle$$
+
+This is Newton's second law for the expectation value of momentum.
 
 **The path integral perspective:** Feynman's path integral says the amplitude for going from A to B sums over _all_ paths, each weighted by $e^{iS/\hbar}$. When $\hbar \to 0$, the integrand oscillates wildly for all paths _except_ the one where $\delta S = 0$ — the stationary phase path. The **classical trajectory** emerges from the stationary phase of the quantum path integral. This is the most transparent connection between Layer 0's action principle and Layer 2's classical mechanics.
 
@@ -317,7 +359,9 @@ Layer 1
 
 **What you are assuming:** that you cannot track all $N \sim 10^{23}$ microstates — only macroscopic averages matter.
 
-**The density matrix** $\hat\rho$ describes a statistical mixture of quantum states: $$S = -k_B \text{Tr}(\hat\rho \ln\hat\rho) \quad \text{(von Neumann entropy)}$$
+**The density matrix** $\hat\rho$ describes a statistical mixture of quantum states:
+
+$$S = -k_B \text{Tr}(\hat\rho \ln\hat\rho) \quad \text{(von Neumann entropy)}$$
 
 In the $N \to \infty$ limit with maximum entropy (least-biased) reasoning:
 
@@ -325,9 +369,13 @@ In the $N \to \infty$ limit with maximum entropy (least-biased) reasoning:
 - Partition function $Z = \text{Tr}(e^{-\hat H/k_BT})$ encodes all thermodynamics
 - All four laws of thermodynamics emerge as statistical statements, not axioms
 
-**Phase transitions via Landau theory:** Near a phase transition, write the free energy as a power series in an order parameter $\phi$: $$F = F_0 + a(T)\phi^2 + b\phi^4 + \cdots$$ When $a(T) = a_0(T-T_c)$ changes sign, the minimum shifts from $\phi=0$ to $\phi\neq 0$ — spontaneous symmetry breaking.
+**Phase transitions via Landau theory:** Near a phase transition, write the free energy as a power series in an order parameter $\phi$:
 
-**This is the Mexican hat from Layer 0, seen from far away.** The Higgs mechanism at $\sim 246$ GeV and the ferromagnetic transition at $\sim 10^{-3}$ eV are governed by identical mathematics. The student has already seen this. Tell them.
+$$F = F_0 + a(T)\phi^2 + b\phi^4 + \cdots$$
+
+When $a(T) = a_0(T-T_c)$ changes sign, the minimum shifts from $\phi=0$ to $\phi\neq 0$ — spontaneous symmetry breaking.
+
+**This is the same free-energy template as §0.3** [STRUCTURAL CONNECTION] — the Higgs mechanism (~246 GeV) and the ferromagnetic transition (~10⁻³ eV) are independent instances of identical mathematics, not one causing the other. The student has already seen this template. Tell them.
 
 **Bridge zone: Quantum statistical mechanics.** The Fermi-Dirac and Bose-Einstein distributions sit between quantum (Layer 1) and classical thermodynamics (Layer 2). At $k_BT \gg \hbar\omega$, they reduce to the classical Maxwell-Boltzmann distribution. At $k_BT \ll E_F$ (the Fermi energy), electron behavior is dominated by quantum statistics — this is why metals have the electronic specific heat they do, and why the Layer-2 classical equipartition theorem fails for electrons.
 
@@ -337,15 +385,25 @@ In the $N \to \infty$ limit with maximum entropy (least-biased) reasoning:
 
 **What you are assuming:** Many photons in coherent states, so quantum fluctuations are negligible; fields are smooth and classical.
 
-The U(1) piece of $\mathcal{L}_{SM}$ is: $$\mathcal{L}_{EM} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + j^\mu A_\mu$$ where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
+The U(1) piece of $\mathcal{L}_{SM}$ is:
 
-Applying the Euler-Lagrange equations to this action: $$\partial_\mu F^{\mu\nu} = j^\nu$$
+$$\mathcal{L}_{EM} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + j^\mu A_\mu$$
+
+where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
+
+Applying the Euler-Lagrange equations to this action:
+
+$$\partial_\mu F^{\mu\nu} = j^\nu$$
 
 In 3+1 notation, this is exactly $\nabla\cdot\mathbf{E} = \rho/\epsilon_0$ and $\nabla\times\mathbf{B} - \partial_t\mathbf{E}/c^2 = \mu_0\mathbf{J}$. The other two Maxwell equations ($\nabla\cdot\mathbf{B}=0$, $\nabla\times\mathbf{E} = -\partial_t\mathbf{B}$) follow from the antisymmetry of $F_{\mu\nu}$ — they are mathematical identities (Bianchi identity), not independent physical laws.
 
 **Four Maxwell equations = one covariant equation + one algebraic identity. Both fall directly out of the Layer-0 action.**
 
-**Noether thread:** U(1) gauge invariance → charge conservation survives here as $\partial_\mu j^\mu = 0$, the continuity equation for electric charge.
+**The KCL thread, link 2 of 6 (see §0.2):** [DERIVATION] U(1) gauge invariance → charge conservation survives here as the continuity equation
+
+$$\partial_\mu j^\mu = 0$$
+
+This is the exact statement that will be integrated over a control volume and lumped in Bridge C to produce Kirchhoff's current law in §3.1. Nothing about circuits has been assumed yet — this is still pure field theory.
 
 ---
 
@@ -353,9 +411,13 @@ In 3+1 notation, this is exactly $\nabla\cdot\mathbf{E} = \rho/\epsilon_0$ and $
 
 **What you are assuming:** $h_{\mu\nu}$ is small, where $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$. For Earth's surface: $h_{00} \approx 2GM/rc^2 \approx 10^{-9}$ — extremely small.
 
-Varying the Einstein-Hilbert action w.r.t. $g_{\mu\nu}$ gives: $$G_{\mu\nu} = 8\pi G T_{\mu\nu}$$
+Varying the Einstein-Hilbert action w.r.t. $g_{\mu\nu}$ gives:
 
-In the weak-field, non-relativistic limit, the 00-component reduces to: $$\nabla^2\Phi = 4\pi G\rho \quad\Longrightarrow\quad F = -\frac{GMm}{r^2}$$
+$$G_{\mu\nu} = 8\pi G T_{\mu\nu}$$
+
+In the weak-field, non-relativistic limit, the 00-component reduces to:
+
+$$\nabla^2\Phi = 4\pi G\rho \quad\Longrightarrow\quad F = -\frac{GMm}{r^2}$$
 
 Newton's law of gravitation is a first-order expansion of general relativity. The corrections (perihelion precession, gravitational lensing, frame dragging) are higher-order terms in $h_{\mu\nu}$ — small but measurable, and engineers running GPS systems must account for them (general relativistic time dilation of ~45 μs/day is corrected for in GPS). This is Layer-0 physics quietly inside everyday technology.
 
@@ -365,7 +427,9 @@ Newton's law of gravitation is a first-order expansion of general relativity. Th
 
 **What you are assuming:** Linear response (perturbative E field), statistical averaging over the ensemble, and that the current-current correlator decays (i.e., the system has some scattering — a real material at finite T or with disorder).
 
-The **Green-Kubo formula** for any transport coefficient $L_{AB}$: $$L_{AB} = \frac{1}{Vk_BT}\int_0^\infty \langle \hat{A}(0)\hat{B}(t)\rangle_0 , dt$$
+The **Green-Kubo formula** for any transport coefficient $L_{AB}$:
+
+$$L_{AB} = \frac{1}{Vk_BT}\int_0^\infty \langle \hat{A}(0)\hat{B}(t)\rangle_0 , dt$$
 
 This single formula, with different operators $\hat A$, $\hat B$, gives:
 
@@ -374,7 +438,7 @@ This single formula, with different operators $\hat A$, $\hat B$, gives:
 |Current $\hat{J}$, $\hat{J}$|Electrical conductivity σ|Ohm|$\mathbf{J} = \sigma\mathbf{E}$|
 |Heat current $\hat{J}_Q$, $\hat{J}_Q$|Thermal conductivity κ|Fourier|$\mathbf{q} = -\kappa\nabla T$|
 |Particle current $\hat{J}_N$, $\hat{J}_N$|Diffusivity D|Fick|$\mathbf{J}_N = -D\nabla c$|
-|Momentum flux $\hat\Pi$, $\hat\Pi$|Viscosity η|Newton viscosity|$\tau = -\eta,dv/dy$|
+|Momentum flux $\hat\Pi$, $\hat\Pi$|Viscosity η|Newton viscosity|$\tau = -\eta, dv/dy$|
 |Stress $\hat\sigma$, $\hat\sigma$|Elastic moduli|Hooke|$\sigma = C:\varepsilon$|
 
 **The convergence chapter: every transport law in every branch is one formula applied to a different conserved quantity.** The coefficient in each law (σ, κ, D, η, C) is a time-integrated autocorrelation of the corresponding flux operator in the equilibrium quantum state. Ohm's law and Fourier's law are not analogies — they are the same computation.
@@ -428,7 +492,7 @@ The four laws, now derived not postulated (Bridge B.b):
 - Second: entropy never decreases for isolated systems — falls out of the statistical definition, because the volume of high-entropy macrostates is astronomically larger than low-entropy ones
 - Third: entropy → 0 as T → 0 (the ground state is unique or finitely degenerate)
 
-Phase transitions with Landau theory: the symmetry-breaking template from Layer 0 and Bridge B.b now applied to:
+Phase transitions with Landau theory: the symmetry-breaking template from §0.3 and Bridge B.b, now applied to:
 
 - Liquid-gas transitions (ChE, ME)
 - Solid-liquid (solidification in ME/CE)
@@ -443,14 +507,33 @@ Phase transitions with Landau theory: the symmetry-breaking template from Layer 
 
 Derived in Bridge B.c, now written in the forms engineers actually use:
 
-**Differential form** (for field problems): $$\nabla\cdot\mathbf{D} = \rho_f, \quad \nabla\times\mathbf{H} = \mathbf{J}_f + \frac{\partial\mathbf{D}}{\partial t}$$ $$\nabla\cdot\mathbf{B} = 0, \quad \nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t}$$
+**Differential form** (for field problems):
+
+$$\nabla\cdot\mathbf{D} = \rho_f, \quad \nabla\times\mathbf{H} = \mathbf{J}_f + \frac{\partial\mathbf{D}}{\partial t}$$
+
+$$\nabla\cdot\mathbf{B} = 0, \quad \nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t}$$
 
 **Integral form** (for Kirchhoff's laws and circuit theory — pointing forward to Layer 3):
 
-- $\oint\mathbf{E}\cdot d\mathbf{l} = -\frac{d\Phi_B}{dt}$ → Faraday's law → basis for KVL at low frequency
-- $\oint\mathbf{H}\cdot d\mathbf{l} = I_{enc}$ → Ampere's law → basis for KCL
+$$\oint\mathbf{E}\cdot d\mathbf{l} = -\frac{d\Phi_B}{dt}, \qquad \oint\mathbf{H}\cdot d\mathbf{l} = I_{enc}$$
 
-**Constitutive relations** (bringing in Layer-1 band theory output): $$\mathbf{D} = \epsilon\mathbf{E}, \quad \mathbf{B} = \mu\mathbf{H}, \quad \mathbf{J} = \sigma\mathbf{E}$$ These ε, μ, σ are not phenomenological constants — they are the Layer-1 band structure and scattering physics, packaged into single numbers valid at low frequency and moderate field strength. The student should know where these numbers come from and when they break.
+Neither integral form maps onto a Kirchhoff law by itself. **KCL and KVL come from two different parts of the Maxwell/continuity structure, taken through two different limits — they are not mirror images of each other via Faraday and Ampère.**
+
+$$ \begin{aligned} &\text{Maxwell's equations} \ &\quad\text{Faraday: } \oint\mathbf{E}\cdot d\mathbf{l} = -\dfrac{d\Phi_B}{dt} && [\text{STRUCTURAL CONNECTION}] \longrightarrow \text{circuit voltage relations} \ &\quad\text{Ampère–Maxwell: } \oint\mathbf{H}\cdot d\mathbf{l} = I_{enc} + \dfrac{d\Phi_D}{dt} && [\text{STRUCTURAL CONNECTION}] \longrightarrow \text{field/current relations} \ &\quad\text{Charge continuity: } \partial_\mu j^\mu = 0 && [\text{DERIVATION, Bridge B.c}] \longrightarrow \text{KCL} \end{aligned} $$
+
+**KCL** comes from the charge-continuity branch above — already derived in Bridge B.c and carried through Bridge C's lumped-node approximation (§0.2, §3.1). It is not read directly off Ampère's law; Ampère's law is where the _field_ equation that current sources into lives, but the _conservation statement_ that becomes KCL is continuity, a separate (Bianchi-adjacent) piece of structure.
+
+**KVL** requires a second, independent step — the quasi-static / lumped approximation that defines Bridge C:
+
+$$ \begin{aligned} \text{Maxwell (full)}\ &\overset{[\text{APPROXIMATION: quasi-static}, \ \partial\Phi_B/\partial t \text{ negligible over the loop}]}{\longrightarrow}\ \text{lumped circuit theory} \ &\overset{[\text{DERIVATION, Bridge C lumping}]}{\longrightarrow}\ \text{KCL} + \text{KVL} \end{aligned} $$
+
+Under the quasi-static assumption, Faraday's law integrated around a lumped loop reduces to $\sum V_{loop} = 0$ — KVL. Away from that assumption (high frequency, electrically large loops), the induced-EMF term does not vanish, KVL stops being exact, and the full Faraday integral must be used instead — which is exactly why transmission-line theory (Bridge C.3) exists as a separate model.
+
+**Constitutive relations** (bringing in Layer-1 band theory output):
+
+$$\mathbf{D} = \epsilon\mathbf{E}, \quad \mathbf{B} = \mu\mathbf{H}, \quad \mathbf{J} = \sigma\mathbf{E}$$
+
+These ε, μ, σ are not phenomenological constants — they are the Layer-1 band structure and scattering physics, packaged into single numbers valid at low frequency and moderate field strength. The student should know where these numbers come from and when they break.
 
 ---
 
@@ -461,7 +544,10 @@ The continuum limit of $N\to\infty$ particles (Bridge B.b, spatial version):
 **Fluid mechanics:**
 
 - Conservation of mass: $\frac{\partial\rho}{\partial t} + \nabla\cdot(\rho\mathbf{v}) = 0$
-- Conservation of momentum: Navier-Stokes equation $$\rho\left(\frac{\partial\mathbf{v}}{\partial t} + \mathbf{v}\cdot\nabla\mathbf{v}\right) = -\nabla p + \eta\nabla^2\mathbf{v} + \mathbf{f}$$
+- Conservation of momentum: Navier-Stokes equation
+
+$$\rho\left(\frac{\partial\mathbf{v}}{\partial t} + \mathbf{v}\cdot\nabla\mathbf{v}\right) = -\nabla p + \eta\nabla^2\mathbf{v} + \mathbf{f}$$
+
 - The viscosity η here is the Kubo transport coefficient from Bridge B.e — not an empirical constant but a Layer-1 momentum scattering rate
 
 **Solid mechanics:**
@@ -508,7 +594,7 @@ $$\underbrace{\text{Flux}}_{\text{what flows}} = -\underbrace{L}_{\text{material
 |Mass/species|Molar flux **J**_N|D (diffusivity)|Concentration c|Fick|ChE, CE (env.)|
 |Fluid momentum|Shear stress τ|η (viscosity)|Velocity u|Newton viscosity|ME, CE (fluid)|
 |Structural|Stress σ|E (modulus)|Strain ε|Hooke|CE, ME|
-|Chemical|Reaction rate r|k (rate const.)|Concentration c|Arrhenius (modified)|ChE|
+|Chemical|Reaction rate r|k (rate const.)|Concentration c|Arrhenius (modified) [PHENOMENOLOGICAL]|ChE|
 
 Every coefficient L is traceable to a Layer-1 Kubo calculation. When these coefficients break down (high field, quantum regime, exotic material), the student knows exactly where to go: back to Layer 1, sometimes Layer 0.
 
@@ -526,6 +612,8 @@ Every coefficient L is traceable to a Layer-1 Kubo calculation. When these coeff
 |Thermal|$L \ll$ diffusion length|Almost always valid for lumped masses|
 |Fluid|$L \ll$ acoustic wavelength|Valid for most pipe network problems|
 |Structural|$L \ll$ elastic wavelength|Valid for most quasi-static structures|
+
+This is the operation referenced in §0.2 as link 4 of the KCL chain, and in §2.4 as the second stage of the KVL derivation.
 
 ---
 
@@ -559,9 +647,13 @@ Every lumped domain has exactly three passive element types, arising from the th
 |**C** (potential E. storage)|Capacitor|Spring|Thermal capacitance|Accumulator|
 |**L** (kinetic E. storage)|Inductor|Mass/inertia|(rare)|Fluid inertia|
 
-**The governing equation in every domain:** $$L\ddot{x} + R\dot{x} + \frac{x}{C} = e_{source}$$ An RLC circuit, a damped mass-spring, a hydraulic pipe-with-inertia, and a first-order thermal system: all described by this ODE. Only the labels change.
+**The governing equation in every domain:**
 
-**Why is this not an analogy?** Because all of these are derived from the same Layer-2 conservation law (continuity of a Noether charge) + the same constitutive relation (the Generalized Transport Law), just integrated over different control volumes with different units. The structural identity is exact.
+$$L\ddot{x} + R\dot{x} + \frac{x}{C} = e_{source}$$
+
+An RLC circuit, a damped mass-spring, a hydraulic pipe-with-inertia, and a first-order thermal system: all described by this ODE. Only the labels change.
+
+**Why is this not an analogy?** Because all of these are derived from the same Layer-2 conservation law (continuity of a Noether charge) + the same constitutive relation (the Generalized Transport Law), just integrated over different control volumes with different units. The structural identity is exact — this is [STRUCTURAL CONNECTION] in the strongest sense the tag allows, one step short of a literal derivation across domains.
 
 ---
 
@@ -569,9 +661,17 @@ Every lumped domain has exactly three passive element types, arising from the th
 
 The bridge zone between Layer 2 and Layer 3 is the set of models that are neither full PDEs nor fully lumped:
 
-**The transmission line** (EEE): $$\frac{\partial V}{\partial x} = -L'\frac{\partial I}{\partial t} - R'I, \quad \frac{\partial I}{\partial x} = -C'\frac{\partial V}{\partial t} - G'V$$ This retains spatial variation along x (Layer 2 PDE) while lumping in the transverse directions (Layer 3 approximation). It is exactly the right model when the component is long compared to its cross-section but not short compared to the wavelength.
+**The transmission line** (EEE):
 
-**The Euler-Bernoulli beam** (CE/ME): $$EI\frac{\partial^4 w}{\partial x^4} + \rho A\frac{\partial^2 w}{\partial t^2} = q(x,t)$$ Again: PDE along the beam axis, lumped in cross-section.
+$$\frac{\partial V}{\partial x} = -L'\frac{\partial I}{\partial t} - R'I, \quad \frac{\partial I}{\partial x} = -C'\frac{\partial V}{\partial t} - G'V$$
+
+This retains spatial variation along x (Layer 2 PDE) while lumping in the transverse directions (Layer 3 approximation). It is exactly the right model when the component is long compared to its cross-section but not short compared to the wavelength — precisely the regime where §2.4's KVL derivation stops applying.
+
+**The Euler-Bernoulli beam** (CE/ME):
+
+$$EI\frac{\partial^4 w}{\partial x^4} + \rho A\frac{\partial^2 w}{\partial t^2} = q(x,t)$$
+
+Again: PDE along the beam axis, lumped in cross-section.
 
 Both of these models will be shown to be living between Layer 2 and Layer 3 — students who understand this will know exactly when to use each.
 
@@ -595,7 +695,9 @@ The conservation laws from Layer 0 (Noether's theorem) survive all the way here.
 |Momentum conservation|$\sum F_{node} = 0$|Equilibrium (structural)|
 |Momentum conservation|$\sum F = m\ddot{x}$|Newton's 2nd (dynamic)|
 
-**The student should feel the weight of this:** KCL has a 3000-word derivation starting from U(1) gauge symmetry at Layer 0. At Layer 3, it's written in two seconds as $\sum I = 0$. Both are true. The short form is what you use every day. The long form is what you reach for when the short form stops working — at nanoscale, at high frequency, in a quantum device.
+**The student should feel the weight of this:** KCL has a full derivation chain, not a one-line pedigree — U(1) gauge symmetry (§0.2) → conserved current (Noether) → continuity equation $\partial_\mu j^\mu = 0$ (Bridge B.c) → integral charge balance → lumped-node approximation (Bridge C) → $\sum I = 0$. At Layer 3, it's written in two seconds. Both are true. The short form is what you use every day. The long form is what you reach for when the short form stops working — at nanoscale, at high frequency, in a quantum device.
+
+KVL follows a parallel but distinct chain (§2.4): Faraday's law → quasi-static approximation → Bridge C lumping → $\sum V = 0$. It is not the same chain as KCL, and does not reduce to the same physics.
 
 ---
 
@@ -603,7 +705,7 @@ The conservation laws from Layer 0 (Noether's theorem) survive all the way here.
 
 Built from R/C/L in the electrical domain:
 
-- Circuit analysis (node/mesh — these are KCL/KVL, i.e., Noether)
+- Circuit analysis (node/mesh — these are KCL/KVL, i.e., Noether plus the quasi-static approximation)
 - AC analysis and impedance (Fourier decomposition of the Layer-2 Maxwell equations)
 - Semiconductor devices (built on Layer-1 band structure + Layer-2 drift-diffusion)
 - Signal processing (Fourier/Laplace — mathematical tools inherited from Layer-2 wave equations)
@@ -639,13 +741,15 @@ Built from R/C/L in chemical and thermal domains:
 - Reactors: material and energy balance = continuity + 1st law, over a control volume
 - Heat exchangers: thermal R/C in a distributed-parameter model (Bridge C zone)
 - Distillation/absorption: Fick's law (Layer-2 mass transport) → stage-by-stage (lumped)
-- Reaction kinetics: Layer-1 activation energy → Arrhenius rate law → Layer-2 reaction-diffusion PDE → Layer-3 reactor ODE
+- Reaction kinetics: Layer-1 activation energy → Arrhenius rate law [PHENOMENOLOGICAL, structurally matched to the Boltzmann factor] → Layer-2 reaction-diffusion PDE → Layer-3 reactor ODE
 
 ---
 
 ### 3.6 — The Cross-Branch Capstone: Feedback and Control
 
-A PID controller is: $$u(t) = K_p e(t) + K_i\int e,dt + K_d\frac{de}{dt}$$
+A PID controller is:
+
+$$u(t) = K_p e(t) + K_i\int e,dt + K_d\frac{de}{dt}$$
 
 It doesn't know what domain it's in. It doesn't know if e is a voltage error, a temperature error, a position error, or a flow error. It doesn't know if u is a current, a valve opening, or a throttle position.
 
@@ -678,9 +782,14 @@ Thread 1: NOETHER'S THEOREM
   Layer 0: Formal theorem — every symmetry ↔ conservation law
   Layer 1: Charge conservation → continuity equation for |Ψ|²
   Layer 2: Conservation of energy/momentum/charge as PDEs
-  Layer 3: Kirchhoff's laws, force balance, mass balance — all Noether
+  Layer 3: Kirchhoff's laws, force balance, mass balance — all Noether,
+           via the explicit chain worked in §0.2 and §3.1 (KCL) and
+           §2.4 and §3.1 (KVL) — these are two related but separate chains.
 
 Thread 2: SYMMETRY BREAKING (The Mexican Hat)
+  All four layers below are independent instances of one mathematical
+  template (order parameter + sign-changing coefficient), not a single
+  causal lineage running through the Higgs field — see §0.3.
   Layer 0: Higgs potential — SU(2)×U(1) → U(1) at ~246 GeV
   Layer 1: Crystal symmetry breaking → band gaps, piezoelectricity
   Layer 2: Landau theory — phase transitions at ~meV–eV scale
@@ -702,8 +811,12 @@ Thread 5: TOPOLOGY
   Layer 0: θ-term in QCD; anomaly cancellation constrains particle charges
   Layer 1: Chern number, Berry phase → quantum Hall, topological insulators
   Layer 2: Topological defects in ordered media (vortices, domain walls)
-  Layer 3: (Mostly invisible — until it breaks something at Layer 1, which is why
-           the f(φ) placeholder matters)
+  Layer 3: (Mostly invisible at the engineering level — until it breaks
+           something at Layer 1, which is why the f(φ) placeholder matters.
+           Note: any topological invariant appearing in Layer-3 control
+           theory, such as the Nyquist encirclement count, shares only the
+           underlying mathematics with this thread — see Ch. 21 §21.11.2 —
+           not a physical lineage.)
 ```
 
 ---
@@ -715,7 +828,7 @@ S = ∫ √-g [R/16πG + L_SM + f(φ?,topology)]
 │
 │  LAYER 0: The Framework Scale
 │  Symmetry generates force. Noether connects symmetry to conservation.
-│  Higgs breaks symmetry to give mass. Topology is already in the action.
+│  Higgs is one instance of symmetry breaking. Topology is already in the action.
 │
 ╠══════════════ BRIDGE A ══════════════╗
 ║  Operation: isolate matter fields,   ║
@@ -733,6 +846,7 @@ S = ∫ √-g [R/16πG + L_SM + f(φ?,topology)]
 ║  B.a: ħ→0 → Newton/Lagrangian     Bridge zone: WKB           ║
 ║  B.b: N→∞ → Thermo/stat mech      Bridge zone: Fermi-Dirac   ║
 ║  B.c: U(1) classical → Maxwell    Bridge zone: coherent field ║
+║       (continuity ∂_μj^μ=0 — link 2/6 of the KCL chain)       ║
 ║  B.d: weak field metric → gravity                             ║
 ║  B.e: Kubo → Generalized Transport Law (all five laws)        ║
 ╚═══════════════════════════════════════════════════════════════╝
@@ -742,6 +856,8 @@ S = ∫ √-g [R/16πG + L_SM + f(φ?,topology)]
 │  One transport law: flux = −L·∇φ, in five domains.
 │  One PDE: wave equation, in three domains.
 │  One PDE: diffusion equation, in three domains.
+│  Maxwell splits into two separate chains here: Faraday+quasi-static→KVL,
+│  continuity+lumping→KCL. Not the same chain (§2.4).
 │
 ╠══════════════ BRIDGE C ══════════════╗
 ║  Operation: integrate PDE over       ║
@@ -751,11 +867,14 @@ S = ∫ √-g [R/16πG + L_SM + f(φ?,topology)]
 ║               Euler-Bernoulli beam   ║
 ║  Discards: spatial variation within  ║
 ║  each element                        ║
+║  (link 4/6 of the KCL chain;         ║
+║   also the lumping step for KVL)     ║
 ╚══════════════════════════════════════╝
 │
 │  LAYER 3: Engineering Systems Scale
 │  Effort/flow pairs. R/C/L in every domain.
 │  EEE │ ME │ CE │ ChE — same ODE, different units.
+│  KCL and KVL assembled explicitly, §3.1.
 │  Feedback and control: branch-agnostic capstone.
 │  ← Break points mapped back to Layer 1 or Layer 0.
 │
