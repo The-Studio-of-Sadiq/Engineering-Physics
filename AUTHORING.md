@@ -203,8 +203,10 @@ The same discipline applies to the book's own load-bearing claims. Three of them
 are **synthesis** rather than sourced fact, and must be labelled that way
 wherever they appear:
 
-1. the convergence thesis (Ch. 13) — Ohm, Fourier, Fick, viscosity, and Hooke
-   from one Kubo calculation
+1. the convergence thesis (Ch. 13) — Ohm, Fourier, Fick, and viscosity within a
+   common linear-response framework, with Hooke's law appearing as a static
+   susceptibility (zero-frequency limit) rather than an ordinary transport
+   coefficient
 2. the Mexican-hat cross-thread (Ch. 10, Ch. 21) — Higgs, BCS, and Landau as
    instances of one template
 3. the four-way correspondence classification (Ch. 20 §20.0.1)

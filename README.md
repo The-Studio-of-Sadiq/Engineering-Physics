@@ -80,7 +80,7 @@ The descent is not a single vertical stack. It branches, runs in parallel, and r
 
 Two features of this diagram carry the argument:
 
-- **The reconvergence is real.** Five apparently independent fundamental threads — gauge structure, gravity, quantum statistics, scattering, and field topology — all discharge into the *same* small set of classical continuum equations. The Generalized Transport Law (Ch. 13) is where this is stated most sharply: Ohm, Fourier, Fick and Newton viscosity are instances of one linear-response framework with different operators and closures, while Hooke's law enters only as a static limit. This is a shared *framework*, not one calculation producing five results.
+- **The reconvergence is real.** Several apparently independent fundamental threads — gauge structure, gravity, quantum statistics, scattering, and field topology — converge on a small set of classical continuum descriptions used throughout engineering. The Generalized Transport Law (Ch. 13) is where this is stated most sharply: Ohm, Fourier, Fick and Newton viscosity are instances of one linear-response framework with different operators and closures, while Hooke's law enters only as a static limit. This is a shared *framework*, not one calculation producing five results.
 - **The four engineering branches reconverge too.** They are not four subjects that happen to share methods. They are four choices of effort/flow pair, instantiated on one R/C/L template — a statement about representations rather than about shared physics, and strongest exactly where the lumping criterion holds. Chapters 18–21 are the proof of concept for everything Chapters 0–17 set up.
 
 The full tagged version of this graph — every arrow labelled, every discarded term named — is in the [Master Map](METADATA/00%20Map.md).
@@ -127,7 +127,7 @@ The full tagged version of this graph — every arrow labelled, every discarded 
 | 19 | Mechanical and thermal systems: dynamics, machines, heat transfer, fluids, acoustics | L₃ |
 | 20 | Civil and chemical systems: structures, hydraulics, geotechnics, reactors, separations | L₃ |
 | 21 | Feedback, control, and the cross-branch capstone | L₃ |
-| — | Epilogue — the unfinished equation, and what the $f(\phi)$ placeholder still hides | — |
+| — | Epilogue — the unfinished equation, and what the unknown sector $\mathcal{F}[\ldots]$ still hides | — |
 
 Chapters 18–21 are the load-bearing part. Without them this is an unconventional physics textbook; with them it is a physics-to-engineering abstraction framework.
 

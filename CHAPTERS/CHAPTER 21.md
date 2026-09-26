@@ -683,7 +683,7 @@ You cannot have $|S| < 1$ (good disturbance rejection) at some frequencies witho
 The full descent from the Standard Model action to engineering control systems:
 
 ```
-LAYER 0: S = ∫√-g [R/16πG + L_SM + f(φ?,topology)] d⁴x
+LAYER 0: S = ∫√-g [(R−2Λ)/16πG + L_SM + F[…]] d⁴x
               │
          BRIDGE A (E ≪ mc², v ≪ c, single particle)
               │
@@ -748,7 +748,7 @@ This placeholder represents:
 
 **These are not failures of the book's framework.** They are failures of our current knowledge of $\mathcal{F}$. The framework itself is sound — the four-layer architecture, the five threads, the named approximations — all of this remains valid when $\mathcal{F}$ is discovered or constrained.
 
-**The f(φ) placeholder tells you exactly where the frontier is.** Every future discovery in fundamental physics — a dark matter direct detection, a graviton, a proton decay event, a new particle at a future collider — will be described as a modification of $\mathcal{F}$. Engineers who understand this will recognize the new physics for what it is: a refinement of Layer 0, whose effects propagate down through Layers 1, 2, and 3 via the same bridges described in this book.
+**The $\mathcal{F}[\ldots]$ placeholder tells you exactly where the frontier is.** Every future discovery in fundamental physics — a dark matter direct detection, a graviton, a proton decay event, a new particle at a future collider — will be described as a modification of the unknown sector. Engineers who understand this will recognize the new physics for what it is: a refinement of Layer 0, whose effects propagate down through Layers 1, 2, and 3 via the same bridges described in this book.
 
 ---
 

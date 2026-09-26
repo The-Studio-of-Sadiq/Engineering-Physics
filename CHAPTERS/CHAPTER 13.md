@@ -84,9 +84,9 @@ calculation.
 | Parent theory | Quantum many-body Hamiltonian $\hat H_0$ in thermal equilibrium (Ch. 5, Ch. 6) |
 | Reduction | Weak perturbation; first order in the field; equilibrium initial state; replace the bath with a relaxation time $\tau$ (Drude closure) |
 | Model | $L_{\alpha\beta} = \frac{1}{Vk_BT}\int_0^\infty \langle \hat J^\alpha(0)\hat J^\beta(t)\rangle_0\,e^{i\omega t}\,dt$; then $L = \frac{nq^2\tau}{m}$ |
-| Assumptions | linear response; equilibrium; ergodicity (so $\tau$ is a state variable, not history-dependent); elastic scattering only; single-exponential relaxation closure; molecular chaos (first Stosszahlansatz, valid for $L \gg \ell$). Note: the derivation uses a *classical* equipartition prefactor, but it cancels against the $1/k_BT$ in the Green–Kubo prefactor, so the result remains valid in the degenerate regime $k_BT \ll E_F$ — see §13.4.2 Step 3 |
-| Physics retained | dissipation, the arrow of time, the relation between charge/heat/momentum diffusion coefficients |
-| Physics neglected | inelastic and memory-dependent scattering, phonon drag, interactions (in the elastic limit), non-equilibrium distributions. The **free** Fermi gas is exact and gives $\sigma\to\infty$; all finite resistivity comes from the closure |
+| Assumptions | linear response; equilibrium; ergodicity (so $\tau$ is a state variable, not history-dependent); elastic scattering only; **single relaxation time** (the Drude closure — the only modelling input); Boltzmann equation valid in the local, diffusive regime (fails for $L \lesssim \ell$, §13.4.4). Note: the result is derived via the linearized Boltzmann equation and the Fermi-surface $\delta$-function, so it holds for degenerate electrons ($k_BT \ll E_F$) without a classical-equipartition assumption — see §13.4.2 |
+| Physics retained | dissipation, the arrow of time, the relation between charge/heat/momentum diffusion coefficients; Fermi-surface restriction of the current-carrying states |
+| Physics neglected | inelastic and memory-dependent scattering, phonon drag, interactions (in the elastic limit), non-equilibrium distributions, band-structure anisotropy. The **free** Fermi gas is exact and gives $\sigma\to\infty$; all finite resistivity comes from the closure |
 | Validity | diffusive regime $\ell \ll L_{\text{device}}$; $\omega\tau \ll 1$; well-defined $\tau$ |
 | Fails when | $\ell \gtrsim L$ (ballistic/Landauer, §13.11), $\omega\tau \gtrsim 1$, strong correlations, or non-equilibrium driving |
 | Next model | memory kernel / non-Markovian response; Landauer (ballistic); hydrodynamic transport; BTE (Ch. 19 for phonons) |
@@ -198,6 +198,25 @@ where the **spectral density** (power spectrum of fluctuations):
 
 $$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(0)\hat A(t)\rangle_0\,e^{i\omega t}\,dt$$
 
+> [!warning] This is the *classical* limit, not the general quantum relation
+> `[APPROXIMATION]` The boxed formula is valid when $\hbar\omega \ll k_BT$ — the
+> **classical (high-temperature) regime**, where the quantum energy scale is
+> negligible compared with thermal energy and the Bose/detailed-balance factor
+> reduces to $1/k_BT$.
+>
+> The general quantum fluctuation-dissipation relation carries a spectral
+> factor that depends on $\hbar\omega/k_BT$. One standard convention is
+>
+> $$\text{Im}[\tilde\chi_{AA}(\omega)] = \frac{\omega}{1-e^{-\hbar\omega/k_BT}}\big[S_A(\omega)-S_A(-\omega)\big]$$
+>
+> For $k \gg 1$ (classical) the prefactor $\to \omega/2k_BT$ and detailed balance
+> $S_A(\omega) = e^{-\hbar\omega/k_BT}S_A(-\omega)$ makes the bracket $\propto k_BT$,
+> recovering the boxed result. For $\hbar\omega \gtrsim k_BT$ — zero-point
+> fluctuations, cryogenic electronics, any genuinely quantum regime — it does
+> not, and the classical form must not be used. Since this chapter presents
+> itself as *quantum* linear-response theory, the distinction is flagged rather
+> than glossed.
+
 **Physical interpretation:** The rate at which the system absorbs energy from an external drive at frequency $\omega$ is exactly determined by how strongly the system spontaneously fluctuates at the same frequency at equilibrium. Noise and dissipation are the same phenomenon.
 
 ### 13.3.2 — Johnson-Nyquist Noise
@@ -267,133 +286,151 @@ $$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty \langle\hat{\mathbf{J}}(0)\cdot\ha
 
 The $\frac{1}{3}$ is the **isotropic average** $\langle k_\alpha k_\beta\rangle \to \frac{1}{3}k^2\delta_{\alpha\beta}$ — it is required because a conductor has no preferred direction. It is *not* a fudge factor, and the next step shows exactly what it does.
 
-### 13.4.2 — The Drude Result from Kubo
+### 13.4.2 — The Drude Result
 
-This section has to separate two things that are often run together: the
-**algebraic step**, which is exact, and the **modelling step**, which is a
-closure. Kubo relates a correlation function to a response coefficient. It does
-*not* tell you what the correlation function is. That second question is where
-the physics — and the honest labelling — lives.
+The honest structure of this result is a chain, and it is worth writing the chain
+down before filling in any of its links:
 
-#### Step 1 (exact): the free electron gas has *no* resistivity
+```text
+Kubo                        exact linear-response relation
+  ↓
+current–current correlator exact many-body object (not elementary)
+  ↓
+Boltzmann / memory function microscopic transport equation
+  ↓
+relaxation-time closure     ← the one modelling assumption
+  ↓
+Drude form                  σ = nₑe²τ/mₑ
+```
 
-Start from the occupation correlator of a non-interacting Fermi gas. Since a
-fermionic mode satisfies $n_k^2 = n_k$,
+Each arrow is a different kind of step. Only the first is "the framework".
+
+#### Why the correlator cannot be skipped, and why it cannot be guessed
+
+An earlier version of this section tried to evaluate $\langle \hat J^\alpha\hat J^\beta\rangle$
+directly and reached the right answer through a wrong correlator. The failure is
+instructive, so it is worth recording what actually blocks the direct route.
+
+Start from the one occupation relation that *is* elementary. Since a fermionic
+mode satisfies $n_k^2 = n_k$,
 
 $$\langle \hat n_k \hat n_{k'}\rangle_0 = \delta_{kk'}\,\langle n_k^2\rangle_0 = \delta_{kk'} f_k, \qquad f_k = \frac{1}{e^{\beta(\epsilon_k-\mu)}+1}$$
 
-Note what this is *not*. The variance $\mathrm{Var}(n_k) = f_k(1-f_k)$ governs
-number and charge fluctuations (and shot noise); it is not what enters dc
-conductivity. The correlator above is a bare Fermi–Dirac occupation average.
+(Note what this is *not*: the variance $\mathrm{Var}(n_k) = f_k(1-f_k)$ governs
+number and charge fluctuations and shot noise. It is not the dc conductivity.)
 
-Now the decisive step. For a quadratic dispersion, total momentum is conserved:
+But the correct number correlator does not deliver the current correlator. Two
+obstructions:
 
-$$\hat{\mathbf{J}} = -\frac{e}{m_e}\hat{\mathbf{P}}, \qquad [\hat{\mathbf{P}},\hat{H}_0] = 0$$
+1. **A non-interacting gas has no resistivity at all.** For quadratic
+   dispersion, $[\hat{\mathbf{P}},\hat{H}_0]=0$, so
+   $\hat{\mathbf{J}} = -e\hat{\mathbf{P}}/m_e$ is conserved and
+   $\langle \hat{\mathbf{J}}(0)\!\cdot\!\hat{\mathbf{J}}(t)\rangle_0$ is
+   time-independent. The Green–Kubo integral of a constant **diverges**:
+   $\sigma_{DC}\to\infty$, the perfect conductor. *That is the correct exact
+   answer for a collision-free gas.* All finite resistivity is a statement
+   about collisions, so the decay cannot be derived from the free gas.
+2. **The classical shortcut is invalid here.** Conduction electrons in a metal
+   are degenerate, $k_BT \ll E_F$, with typical speed $v_F$ — *not*
+   $\sqrt{k_BT/m_e}$. The familiar classical velocity autocorrelation
+   $C_{vv}(t) = \frac{k_BT}{m_e}e^{-t/\tau}$ is built on equipartition and is
+   simply **not a valid microscopic description of these electrons**.
 
-so $\hat{\mathbf{J}}$ commutes with the Hamiltonian and
+> [!warning] A retraction worth stating explicitly
+> It is tempting to write the classical correlator, notice that its $k_BT$
+> cancels against the $1/k_BT$ in the Green–Kubo prefactor, and conclude the
+> classical form must be fine. **That inference is invalid.** A factor that
+> happens to cancel in the final answer does not repair an incorrect
+> intermediate object. The correlator is a physical quantity in its own right —
+> it governs shot noise, current fluctuations, and the full optical response —
+> and it is wrong for degenerate electrons regardless of what survives
+> division. Where the cancellation *is* genuinely useful is in justifying the
+> classical *Boltzmann* treatment of transport (§13.6), not in licensing a
+> classical correlator for a quantum gas.
 
-$$\langle \hat{\mathbf{J}}(0)\cdot\hat{\mathbf{J}}(t)\rangle_0 = \langle \hat{\mathbf{J}}^2\rangle_0 \qquad \text{(independent of } t\text{)}$$
+So the correlator is a genuine many-body object: Fermi-surface geometry,
+occupation factors, band structure, and scattering matrix elements all enter.
+The efficient way to handle it is not to write it down, but to compute the
+transport coefficient from the kinetic equation that governs the distribution
+function.
 
-The Green–Kubo integral of a constant **diverges**, giving
-$\sigma_{DC}\to\infty$: the perfect conductor. *This is the correct exact answer
-for a collision-free gas.*
+#### The legitimate route: linearized Boltzmann transport
 
-The consequence is worth stating plainly, because it is the honest structure of
-the whole result: **the exponential decay cannot be derived from the free
-electron gas.** Any finite resistivity is a statement about collisions. Kubo is
-not incomplete here — it is accurately reporting that dissipation requires a
-dissipation mechanism, and that mechanism has to be supplied.
+`[DERIVATION]` The one-particle distribution function obeys the Boltzmann
+equation. Linearizing about equilibrium $f_0$ in a uniform field $\mathbf{E}$,
+and writing $\delta f$ for the perturbation:
 
-#### Step 2 (closure): the relaxation-time model
+$$\frac{\partial\,\delta f}{\partial t} + \frac{e\mathbf{E}}{m_e}\cdot\nabla_{\mathbf{k}}f_0(\mathbf{k}) = -\frac{\delta f - \delta f_{eq}}{\tau}$$
 
-`[PHENOMENOLOGICAL]` The one modelling input is a **single relaxation time**
-$\tau$ (Ch. 6 §6.7.3), modelling electron–phonon and electron–impurity
-scattering as a memory kernel with one time constant. In the uniform-field
-limit this is the Drude/BGK kinetic equation,
+`[PHENOMENOLOGICAL]` The right-hand side is the **relaxation-time closure**: all
+scattering — electron–phonon, electron–impurity, electron–electron — is
+replaced by a single time constant $\tau$ (Ch. 6 §6.7.3). In steady state,
+$\partial_t \delta f = 0$, and to leading order in $\mathbf{E}$ the $\delta f_{eq}$
+term drops, giving
 
-$$\frac{\partial f}{\partial t} - \frac{e\mathbf{E}}{m_e}\cdot\nabla_{\mathbf{v}}f = -\frac{f - f_0}{\tau}$$
+$$\delta f(\mathbf{k}) = e\tau\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\left(-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\right)$$
 
-where $f_0$ is the (field-shifted) equilibrium distribution. Solving for a
-tagged particle and taking the velocity autocorrelation gives
+The current density is then
 
-$$C^{\alpha\beta}_{vv}(t) \equiv \langle \hat v^\alpha(0)\hat v^\beta(t)\rangle_0 = \frac{k_BT}{m_e}\,\delta_{\alpha\beta}\,e^{-t/\tau}$$
+$$\mathbf{J} = e\int \mathbf{v}_{\mathbf{k}}\,\delta f(\mathbf{k})\,\frac{d^3k}{(2\pi)^3} = e^2\tau\int \frac{d^3k}{(2\pi)^3}\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\left(-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\right)\mathbf{v}_{\mathbf{k}}$$
 
-Two ingredients, both named deliberately:
+**This is where degeneracy is handled correctly.** The Fermi–Dirac derivative
+becomes a surface delta function as $T\to0$:
 
-- the **exponential** $e^{-t/\tau}$ — this is the closure. A single time
-  constant is an approximation; the true correlator has a long tail.
-- the **prefactor** $k_BT/m_e$ — this is *classical* equipartition,
-  $\tfrac{1}{2}m_e\langle v^2\rangle = \tfrac{3}{2}k_BT$ per degree of freedom.
+$$-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}} = \frac{1}{4k_BT}\operatorname{sech}^2\!\left(\frac{\epsilon_{\mathbf{k}}-\mu}{2k_BT}\right) \;\xrightarrow[T\to0]{}\; \delta(\epsilon_{\mathbf{k}}-\mu)$$
 
-#### Step 3: why that classical ingredient is legitimate anyway
+So the current is carried by states *on the Fermi surface* — which is the actual
+physical content of conduction in a degenerate metal, and something the
+classical correlator cannot express at all. Performing the angular average,
 
-This is the subtle point, and it is where a naive derivation goes wrong. A real
-metal is a strongly degenerate Fermi gas with $k_BT \ll E_F$. In that regime
-per-particle equipartition is **false**: the typical speed is $v_F$, not
-$\sqrt{k_BT/m_e}$, and $\langle v^2\rangle \neq 3k_BT/m_e$. Using equipartition
-here looks like a contradiction.
+$$\int \frac{d^3k}{(2\pi)^3}\,\delta(\epsilon_{\mathbf{k}}-\mu)\,v^\alpha v^\beta = \frac{n_e}{m_e}\,\delta_{\alpha\beta}$$
 
-It is not, and the reason is structural. The $k_BT$ sitting in $C_{vv}$ is
-**divided out** by the $1/(k_BT)$ in the Green–Kubo prefactor. It cancels
-identically before any physical result is formed.
+(here $\int \frac{d^3k}{(2\pi)^3}\delta(\epsilon_{\mathbf{k}}-\mu)v^2 = \frac{3n_e}{m_e}$ using
+$v_F^2 = \hbar^2k_F^2/m_e^2$ and $n_e = k_F^3/3\pi^2$; the isotropic $\frac{1}{3}$
+is contained in the angular average and is compensated by the trace). Therefore
 
-> **General Green–Kubo fact.** The $1/k_BT$ normalization is what converts a raw
-> correlation function into a response coefficient. Because it cancels the
-> classical thermal scale in the correlator, Green–Kubo formulas routinely *look*
-> classical while remaining valid in strongly quantum systems. The Drude
-> conductivity is a standard instance: it is correct for copper despite the
-> equipartition argument being inapplicable to copper's electrons.
+$$\mathbf{J} = \frac{n_e e^2\tau}{m_e}\,\mathbf{E} \quad\Longrightarrow\quad \boxed{\sigma_{DC} = \frac{n_e e^2\tau}{m_e}}$$
 
-A fully quantum treatment of the degenerate gas gives a correlator with $O(T^2)$
-corrections and a non-exponential tail; the memory-function formulation absorbs
-these into $M(\omega)$, and the leading low-frequency result is unchanged.
-
-#### Step 4: total current, and the result
-
-Under the same closure, and using **molecular chaos** (Boltzmann's first
-Stosszahlansatz: distinct particles have uncorrelated velocities,
-$\langle \hat v_i^\alpha(0)\hat v_j^\beta(t)\rangle_0 = \delta_{ij}C^{\alpha\beta}_{vv}(t)$),
-
-$$\hat{\mathbf{J}} = -e\sum_{i=1}^{N}\hat{\mathbf{v}}_i \quad\Longrightarrow\quad \langle \hat J^\alpha(0)\hat J^\beta(t)\rangle_0 = e^2 N C^{\alpha\beta}_{vv}(t) = \frac{n_e e^2 V k_BT}{m_e}\,\delta_{\alpha\beta}\,e^{-t/\tau}$$
-
-with $n_e$ the number density and $N = n_eV$ the electron count. Dimension check:
-$[e^2k_BT/m_e] = \text{C}^2\!\cdot\!\text{J}/\text{kg} = (\text{C}\!\cdot\!\text{m/s})^2$, current squared — correct for two *total* currents.
-
-Substituting into the Green–Kubo formula, with the $\delta_{\alpha\beta}$
-contraction $\mathbf{J}\cdot\mathbf{J} = \sum_\alpha\langle J_\alpha J_\alpha\rangle$
-supplying the factor of 3 that cancels the isotropic $\frac{1}{3}$:
-
-$$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty \frac{n_e e^2 Vk_BT}{m_e}\,\underbrace{3}_{\delta_{\alpha\beta}\ \text{contraction}}\,\underbrace{e^{-t/\tau}dt}_{\tau} = \frac{1}{3Vk_BT}\cdot\frac{3n_e e^2 Vk_BT\tau}{m_e}$$
-
-$$\boxed{\sigma_{DC} = \frac{n_e e^2\tau}{m_e}}$$
-
-The $V$ and $k_BT$ cancel between correlator and prefactor; the $1/3$ and 3
-cancel. What survives is $n_e e^2\tau/m_e$ — the **Drude formula**: $e^2$ because
-the current is *charge* current, $n_e$ because it is a carrier density, and
-$\tau$ because it is the integral of the decay. The mean free path is
-$\ell = v_F\tau$, and the resistivity:
+The $e^2$ because the current is *charge* current; $n_e$ because only states in
+a shell at the Fermi surface respond; $\tau$ because it is the closure
+parameter. The mean free path is $\ell = v_F\tau$, so
 
 $$\rho = \frac{1}{\sigma} = \frac{m_e}{n_e e^2\tau} = \frac{m_e v_F}{n_e e^2\ell}$$
 
-**Frequency-dependent conductivity** (same closure, with the $e^{i\omega t}$ weight
-converting the time integral to a frequency response):
+**Frequency dependence.** Retaining $\partial_t \delta f$ gives the Drude form
 
-$$\sigma(\omega) = \frac{n_ee^2\tau}{m_e}\cdot\frac{1}{1 - i\omega\tau}, \qquad \sigma_0 = \frac{n_e e^2\tau}{m_e}$$
+$$\sigma(\omega) = \frac{n_e e^2\tau}{m_e}\cdot\frac{1}{1 - i\omega\tau}, \qquad \sigma_0 = \frac{n_e e^2\tau}{m_e}$$
 
 At $\omega\tau \ll 1$: purely real, Ohmic. At $\omega\tau \gg 1$: purely imaginary, reactive. The crossover at $\omega = 1/\tau \sim 10^{13}$–$10^{14}$ Hz (infrared) marks where metals transition from good reflectors to transparent.
 
-> [!warning] Epistemic summary of this derivation
+#### The classical Drude model, and why it agrees
+
+The 1900-era Drude model treats electrons as classical billiard balls between
+collisions. It gets the same answer — and it is *not* the same argument. In that
+picture one writes $\mathbf{v}(t) = \mathbf{v}(0)e^{-t/\tau}$ for a tagged
+particle and uses equipartition for $\langle v^2\rangle$, which is legitimate
+*for that model*. The two routes converge because at $T\to0$ the only thing
+$\tau$ needs to encode is momentum relaxation, and both the classical and the
+quantum descriptions deliver it.
+
+The agreement is the reassuring part: the Drude formula is robust to the choice
+of description, because the Fermi-surface $\delta$-function of the quantum
+treatment and the momentum-relaxation assumption of the classical treatment
+encode the same physics. What is *not* legitimate is borrowing the classical
+model's equipartition correlator and presenting it as the quantum result.
+
+> [!warning] Epistemic summary
 > | Step | Status |
 > |---|---|
 > | Kubo relates correlator to response | `[DERIVATION]` — exact given linear response |
 > | Free Fermi gas gives $\sigma\to\infty$ | `[DERIVATION]` — exact, and the reason a closure is needed |
-> | Exponential decay $e^{-t/\tau}$ | `[PHENOMENOLOGICAL]` — **closure**, not derived |
-> | Equipartition prefactor $k_BT/m_e$ | `[APPROXIMATION]` — classical, but cancels out of $\sigma$ |
-> | Molecular chaos | `[APPROXIMATION]` — valid for $L \gg \ell$; breaks in ballistic mesoscopic regimes |
+> | Current correlator from Fermi-surface integrals | `[DERIVATION]` via linearized Boltzmann |
+> | Single relaxation time $\tau$ | `[PHENOMENOLOGICAL]` — **the closure**; the only modelling input |
+> | Classical $C_{vv} = \frac{k_BT}{m}e^{-t/\tau}$ | **not used** — invalid for degenerate electrons |
 > | $\sigma = n_e e^2\tau/m_e$ | `[DERIVATION]` within the closure |
 >
-> The framework is exact; the closure is a model; and the result is correct for
-> degenerate metals because the one classical ingredient cancels.
+> The framework is exact, the closure is a model, and the result does not depend
+> on a classical approximation that fails for the electrons in question.
 
 ### 13.4.3 — Ohm's Law as an Emergent, Not Fundamental, Law
 
@@ -485,15 +522,18 @@ $$D = \frac{1}{3}\cdot 3\cdot\frac{k_BT}{m}\tau = \frac{k_BT\tau}{m} = \frac{k_B
 
 where $\ell$ is the mean free path and $v_{th} = \sqrt{k_BT/m}$ is the thermal velocity.
 
-> [!note] Same correlator, different justification than §13.4.2
-> The velocity autocorrelation used here is formally identical to the one in
-> §13.4.2, but the classical equipartition prefactor is *genuinely* appropriate
-> here: a Brownian tracer in a classical thermal medium is non-degenerate, so
-> $v_{th} = \sqrt{k_BT/m}$ really is the relevant speed. For conduction electrons
-> in a metal it is not, which is why §13.4.2 Step 3 has to argue that the
-> classical prefactor cancels out of $\sigma_{DC}$. Same building block, different
-> regime — worth keeping straight, because applying the Einstein relation to
-> degenerate electrons without noticing the cancellation is a common error.
+> [!note] When the classical correlator *is* legitimate — and when it is not
+> The velocity autocorrelation $C_{vv}(t) = \frac{k_BT}{m}e^{-t/\tau}$ used above
+> is **legitimate here**, because a Brownian tracer in a classical thermal medium
+> is non-degenerate: $v_{th} = \sqrt{k_BT/m}$ really is the relevant speed, and
+> equipartition really does apply.
+>
+> The same expression is **not** legitimate for conduction electrons in a metal,
+> which are degenerate with $v \sim v_F$. That is why §13.4.2 does not use it —
+> it derives the Drude result from the Fermi-surface $\delta$-function instead.
+> The contrast is worth keeping straight: the two cases share a formula but not
+> its justification, and transferring the classical result to degenerate electrons
+> without re-examining the correlator is a common and consequential error.
 
 ### 13.6.2 — The Einstein-Smoluchowski Relation
 
@@ -680,11 +720,31 @@ $$\boxed{\mathbf{J}_X = -L_{XX}\nabla\phi_X}$$
 
 ## 13.11 — Beyond Kubo: Landauer and Topology
 
-### 13.11.1 — When Kubo Fails: The Ballistic Regime
+### 13.11.1 — Ballistic Transport and the Limits of the Bulk Formulation
 
-Kubo assumes **diffusive transport**: the electron scatters many times in traversing the device ($L \gg \ell_{mfp}$). As devices shrink below the mean free path, the Kubo formula overestimates the resistance.
+Kubo linear response is **not** restricted to diffusive transport — it is the
+general framework. What is restricted is the *bulk conductivity* formulation
+used in §13.4, in which a local constitutive law $\mathbf{J} = \sigma\mathbf{E}$
+with a single material constant is assumed to be meaningful. That assumption
+requires the sample to be large compared with the mean free path, so that
+scattering is frequent and a local $\sigma$ exists:
 
-For a **ballistic conductor** (no scattering inside the channel), each transverse mode contributes a conductance:
+```text
+Linear response
+      │
+      ├── bulk / diffusive  (L ≫ ℓ)  → Kubo conductivity, local σ
+      │
+      └── open ballistic mesoscopic (L ≲ ℓ) → Landauer / scattering, mode-resolved
+```
+
+For $L \lesssim \ell_{mfp}$, an electron crosses the device without scattering,
+so no local bulk conductivity is defined. The Drude estimate then *overestimates*
+the resistance, because it assumes a scattering probability that the geometry
+never gives the electron the chance to take. The right object is then the
+transmission of individual modes, not a material constant.
+
+For a **ballistic conductor** (negligible scattering inside the channel), each
+transverse mode contributes a conductance:
 
 $$G_n = \frac{2e^2}{h}T_n$$
 
@@ -710,15 +770,42 @@ Topological: G = νe²/h  (Tₙ = 1, protected by topology)
 
 ### 13.11.2 — The Quantum Hall Conductance from Topology
 
-In the integer quantum Hall effect (Ch. 7 §7.3), each edge channel has $T_n = 1$ (backscattering forbidden by chirality) and there are $\nu$ channels:
+In the integer quantum Hall effect (Ch. 7 §7.3), the fundamental statement is
+about a **conductivity**, not a conductance:
 
-$$G_{Hall} = \frac{\nu e^2}{h}$$
+$$\boxed{\sigma_{xy} = \nu\frac{e^2}{h}}$$
 
-This is the Landauer formula with perfect transmission — but the reason for $T_n = 1$ is topological (Chern number), not accidental. The Kubo formula gives the same result when applied to the full 2D system:
+the quantized **Hall conductivity**, with $\nu$ the number of filled Landau levels
+and the longitudinal conductivity vanishing ($\sigma_{xx} = 0$) on the plateau.
+
+The microscopic content, from Kubo applied to the full 2D system, is the
+Chern-number integral over the Brillouin zone:
 
 $$\sigma_{xy} = \frac{e^2}{h}\sum_{n\in\text{filled}}\frac{1}{2\pi}\iint_{\text{BZ}}\Omega_n(\mathbf{k})\,d^2k = \nu\frac{e^2}{h}$$
 
-**The Kubo formula and topology connect at the integer QHE** — the Kubo integral over the Brillouin zone counts the Chern number. This is the TKNN result (Ch. 7 §7.2.1), now seen from the transport theory perspective.
+where $\Omega_n$ is the Berry curvature of band $n$. This is the TKNN result
+(Ch. 7 §7.2.1) seen from the transport-theory side: the Kubo integral *counts
+Chern number*, which is why the value is topologically protected and
+independent of disorder, carrier density, and sample geometry.
+
+> [!note] Conductivity vs. conductance — a distinction worth keeping
+> $\sigma_{xy}$ and $G$ are different quantities, and identifying them is a
+> common shortcut. $\sigma_{xy}$ is an intrinsic **material/response** property
+> (conductivity, S), whereas $G$ is a **device** property (conductance, S) that
+> depends on geometry and contacts.
+>
+> In a suitable ideal Hall-bar geometry with well-separated edge channels and
+> equilibrating contacts, the two-terminal conductance of the same sample also
+> takes the quantized value $G = \nu e^2/h$, because the contact resistance is
+> negligible and $\sigma_{xx}=0$ forces the current to be carried entirely by the
+> edges. That is a *consequence* of the conductivity quantization plus the
+> geometry, not the primary statement — and in a two-terminal device without
+> equilibrating contacts the Hall voltage and the two-terminal conductance are
+> in general *not* quantized, because of contact and fringe effects.
+>
+> For this book's purposes the clean formulation is: the Hall **conductivity**
+> is quantized; suitable geometries then exhibit the corresponding quantized
+> conductance.
 
 ---
 
@@ -754,7 +841,7 @@ Bridge B.e is complete. The five transport laws, unified:
 |Hooke's law|Free energy second derivative|$C_{ijkl}$ from DFT or Kubo|
 |Onsager matrix|Cross-correlators + reciprocity|Seebeck-Peltier-Thomson relations|
 |Landauer|Ballistic transport|$G = (2e^2/h)\sum T_n$|
-|Topology|$T_n = 1$ protected|$G = \nu e^2/h$ (QHE)|
+|Topology|$T_n = 1$ protected|$\sigma_{xy} = \nu e^2/h$ (QHE); $G$ quantized in ideal Hall-bar geometry|
 
 ---
 
@@ -774,7 +861,7 @@ Bridge B.e is complete. The five transport laws, unified:
 |$ZT = S^2\sigma T/\kappa$|Thermoelectric device efficiency optimization|
 |Johnson-Nyquist $S_V = 4k_BTR$|Amplifier noise floor; sensor sensitivity limit; low-noise design|
 |Landauer $G = (2e^2/h)\sum T_n$|Nanoscale transistor resistance; quantum point contact sensors|
-|QHE $G = \nu e^2/h$|Primary resistance standard; metrological applications|
+|QHE $\sigma_{xy} = \nu e^2/h$|Primary resistance standard; metrological applications (Hall-bar geometry)|
 
 ---
 

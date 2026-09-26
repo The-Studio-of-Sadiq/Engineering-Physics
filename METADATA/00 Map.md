@@ -288,7 +288,7 @@ The last column is the argument for building the map bottom-up in the first plac
 ## Architecture Overview
 
 ```
-LAYER 0    S = ∫ √-g [ R/16πG + L_SM + f(φ?,topology) ]
+LAYER 0    S = ∫ √-g [ (R−2Λ)/16πG + L_SM + F[…] ]
            The Framework Scale — the universe unresolved
                           │
               ══════ BRIDGE A ══════
@@ -579,7 +579,7 @@ $$\Psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}} u_{n\mathbf{k}
 |In a gap, gap ~ kT–3eV|Semiconductor|EEE (devices)|
 |In a gap, gap ~ 1–10eV|Optical material|EEE (photonics, LEDs)|
 
-**Topological bands (forward pointer to f(φ)):** Some band structures have a non-trivial topological invariant (Chern number, Z₂ invariant). These give quantum Hall conductance, topological insulator surface states, and Weyl semimetal behavior — effects that survive disorder and temperature in a way ordinary band theory can't explain. This is where Layer-0 topology (the θ-term and anomaly structure) has already reached the lab bench. [STRUCTURAL CONNECTION — same mathematical object as the θ-term (a topological invariant), independently applied to a different physical system.]
+**Topological bands (forward pointer to the unknown sector $\mathcal{F}[\ldots]$):** Some band structures have a non-trivial topological invariant (Chern number, Z₂ invariant). These give quantum Hall conductance, topological insulator surface states, and Weyl semimetal behavior — effects that survive disorder and temperature in a way ordinary band theory can't explain. This is where Layer-0 topology (the θ-term and anomaly structure) has already reached the lab bench. [STRUCTURAL CONNECTION — same mathematical object as the θ-term (a topological invariant), independently applied to a different physical system.]
 
 ---
 
@@ -1100,7 +1100,7 @@ Every chapter in Layer 3 should end with one paragraph answering: **when does th
 |High-frequency EM (above ~GHz)|Lumping criterion violated|Back to Layer 2 (transmission line, full Maxwell)|
 |Turbulence (high Re)|Navier-Stokes → chaotic|Stays in Layer 2, no closed Layer-3 model|
 |Extreme temperature materials (nuclear, aerospace)|Radiation damage, plasma|Back to Layer 1 or Layer 0|
-|Novel materials (graphene, Weyl semimetals)|Topology, Dirac-like dispersion|Back to Layer 0 for the f(φ) corrections|
+|Novel materials (graphene, Weyl semimetals)|Topology, Dirac-like dispersion|Back to Layer 0 for the unknown-sector corrections|
 
 ---
 
@@ -1145,7 +1145,7 @@ Thread 5: TOPOLOGY  (shared mathematical thread — NOT a physical descent)
            → integer classifying a map over the Brillouin torus
   Layer 2: topological defects in ordered media (vortices, domain walls)
   Layer 3: (Mostly invisible at the engineering level — until it breaks
-           something at Layer 1, which is why the f(φ) placeholder
+           something at Layer 1, which is why the unknown sector $\mathcal{F}[\ldots]$
            matters. Where it does appear explicitly — the Nyquist
            encirclement count, Ch. 21 §21.3.4 and §21.11.2 — it shares
            only the *mathematics* of integer invariants under smooth
@@ -1158,7 +1158,7 @@ Thread 5: TOPOLOGY  (shared mathematical thread — NOT a physical descent)
 ## Final Visual Map (Complete)
 
 ```
-S = ∫ √-g [R/16πG + L_SM + f(φ?,topology)]
+S = ∫ √-g [(R−2Λ)/16πG + L_SM + F[…]]
 │
 │  LAYER 0: The Framework Scale
 │  Symmetry generates force. Noether connects symmetry to conservation.
@@ -1215,7 +1215,7 @@ S = ∫ √-g [R/16πG + L_SM + f(φ?,topology)]
 │  ← Break points mapped back to Layer 1 or Layer 0.
 │
 └──────────────────────────────────────────────────
-     EPILOGUE: The f(φ) placeholder is still empty.
+     EPILOGUE: The unknown sector F[…] is still empty.
      Dark matter. Dark energy. Quantum gravity.
      Topology we haven't named yet.
      The student who finishes this book knows

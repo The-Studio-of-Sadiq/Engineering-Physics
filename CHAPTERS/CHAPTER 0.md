@@ -50,7 +50,31 @@ $$d^4x = dx^0\,dx^1\,dx^2\,dx^3$$
 
 This is the four-dimensional volume element over spacetime. $x^0 = ct$ is the time coordinate; $x^1, x^2, x^3$ are the three spatial coordinates. The action integrates the Lagrangian density $\mathcal{L}$ over all of spacetime — summing contributions from every point in space at every moment in time.
 
-This is why $\mathcal{L}$ is called a _density_: it has units of energy per unit volume, and $\int d^4x\,\mathcal{L}$ has units of energy × time = action (units of $\hbar$, or J·s).
+This is why $\mathcal{L}$ is called a _density_: it carries units per unit volume, and the action is the spacetime integral of that density.
+
+> [!warning] Dimensional bookkeeping in the measure — and why natural units are used
+> This trips up almost everyone at first reading, so it is worth doing carefully.
+>
+> **In SI, with $x^0 = ct$:** all four coordinates have dimensions of length, so
+> $[d^4x] = L^4$. An energy density has $[\mathcal{L}] = \text{J}/\text{m}^3$, and
+> therefore
+> $$[d^4x\,\mathcal{L}] = m^4\cdot\frac{\text{J}}{m^3} = \text{J}\!\cdot\!\text{m}$$
+> which is energy × **length**, not energy × time. To recover the familiar
+> "action has units of $\hbar$" statement one must either divide the measure by
+> $c$ (equivalently, use $x^0 = t$ and write $d^4x/c$), or restore the
+> dimension-carrying constants explicitly.
+>
+> **In the natural units declared above ($\hbar = c = 1$):** time and length
+> carry the same dimension, and energy carries dimensions of *inverse* length
+> ($E = pc$, with $p \sim 1/L$). So
+> $$[S] = [E]\cdot[L] = \frac{1}{L}\cdot L = 1$$
+> — **the action is dimensionless**, and the scale that would otherwise be
+> carried by $\hbar$ is simply set to 1. The measure, the Lagrangian, and the
+> statement "$S$ has units of $\hbar$" are then all mutually consistent.
+>
+> Everything in §§0.2–0.6 is written in these natural units. SI is restored
+> explicitly wherever a number is quoted ($G$, the Higgs mass, engineering
+> quantities), and the conversion is flagged at the point of use.
 
 ### 0.2.2 — The Factor $\sqrt{-g}$
 
@@ -74,9 +98,9 @@ In curved spacetime (near a mass, for instance), $g_{\mu\nu}$ is a nontrivial ma
 
 ### The Term
 
-$$S_{EH} = \int d^4x\,\sqrt{-g}\,\frac{R}{16\pi G}$$
+$$S_{EH} = \frac{1}{16\pi G}\int d^4x\,\sqrt{-g}\,\big(R - 2\Lambda\big)$$
 
-This is the **Einstein-Hilbert action**, the simplest possible action for gravity.
+This is the **Einstein–Hilbert action**, the simplest possible action for gravity. The $\Lambda$ term is the cosmological constant; §0.10 returns to why its *physical origin and magnitude* remain one of the deepest open problems, but it belongs here rather than in the unknown sector.
 
 ### The Objects
 
@@ -84,19 +108,43 @@ This is the **Einstein-Hilbert action**, the simplest possible action for gravit
 
 **$g_{\mu\nu}$** — the metric tensor (already introduced). This is the **dynamical variable** of gravity — the field that "is" gravity in GR. In classical GR, it is a smooth classical field; how to quantize it is unknown and is one of the primary targets of the $\mathcal{F}$ placeholder in §0.10.
 
-**$R$** — the **Ricci scalar**. Built from the metric and its derivatives: $$R = g^{\mu\nu} R_{\mu\nu}$$ where $R_{\mu\nu}$ is the Ricci tensor: $$R_{\mu\nu} = \partial_\rho \Gamma^\rho_{\mu\nu} - \partial_\nu \Gamma^\rho_{\mu\rho} + \Gamma^\rho_{\rho\lambda}\Gamma^\lambda_{\mu\nu} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\rho}$$ and $\Gamma^\rho_{\mu\nu}$ are the **Christoffel symbols** — functions of $g_{\mu\nu}$ and its first derivatives that encode how the geometry curves. $R$ at a point is a single number that summarizes "how much spacetime is curved here."
+**$R$** — the **Ricci scalar**. Built from the metric and its derivatives: $$R = g^{\mu\nu} R_{\mu\nu}$$ where $R_{\mu\nu}$ is the Ricci tensor: $$R_{\mu\nu} = \partial_\rho \Gamma^\rho_{\mu\nu} - \partial_\nu \Gamma^\rho_{\mu\rho} + \Gamma^\rho_{\rho\lambda}\Gamma^\lambda_{\mu\nu} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\rho}$$ and $\Gamma^\rho_{\mu\nu}$ are the **Christoffel symbols** — functions of $g_{\mu\nu}$ and its first derivatives that encode how the geometry curves. $R$ at a point is a single number that summarizes "how much spacetime is curved here." But it is only **one scalar contraction** of the full Riemann tensor, so its sign and value must not be read off as a verdict on curvature:
 
-- $R = 0$: flat spacetime (empty space, far from matter)
-- $R > 0$: positively curved (near a mass)
-- $R < 0$: negatively curved (rare; anti-de Sitter space)
+- $R = 0$ does **not** by itself mean flat spacetime
+- $R > 0$: net positive scalar curvature (as near an isolated mass)
+- $R < 0$: net negative scalar curvature (anti-de Sitter-type geometry)
+
+> [!warning] $R = 0$ does not imply flat spacetime
+> This is one of the most common misconceptions in the subject, and it is worth
+> stating precisely. **Flat spacetime requires the entire Riemann tensor to
+> vanish:**
+> $$R^\rho{}_{\sigma\mu\nu} = 0 \quad\text{(all components)}$$
+> The Ricci scalar $R = g^{\mu\nu}R_{\mu\nu}$ is a single number obtained by
+> contracting that tensor twice. A nonzero tensor can easily have all its
+> contractions cancel.
+>
+> **The standard counterexample is the Schwarzschild exterior.** Outside the
+> source the field is vacuum, so
+> $$R_{\mu\nu} = 0 \;\Rightarrow\; R = 0$$
+> yet spacetime there is genuinely curved: the Riemann tensor is nonzero, tidal
+> forces are measurable, and the geometry is not Minkowski. A geodesic deviation
+> equation gives $\xi^{\mu''} = -\frac{1}{2}R^\mu{}_{\nu\rho\sigma}u^\nu u^\rho \xi^\sigma \neq 0$.
+>
+> The correct summary is: **vacuum implies $R_{\mu\nu} = 0$, not
+> $R^\rho{}_{\sigma\mu\nu} = 0$.** Weyl curvature (tidal effects, the part not
+> determined by the matter distribution) survives in vacuum. The distinction
+> reappears in action design (§0.3) and in the Riemann-based expansion around
+> flat spacetime used in Chapter 8.
 
 ### The Symmetry
 
-This term is the **unique** term (up to the cosmological constant, which belongs in $\mathcal{F}$) that is:
+Setting $\Lambda = 0$, the $R$ term is the **unique** local scalar, linear in the Riemann tensor, that is at most second order in the metric derivatives and whose variation yields equations of motion at most second order in $g_{\mu\nu}$:
 
 - A scalar built from the metric and at most its second derivatives
 - Invariant under all diffeomorphisms (coordinate reparametrizations)
 - At most second order in the equations of motion
+
+Two qualifications keep this from being overstated. It is unique **within linear-in-curvature, second-order, and no-ghost** choices: adding $R^2$ or $R_{\mu\nu}R^{\mu\nu}$ also yields a scalar of the same symmetry class, but produces fourth-order equations and is excluded by the requirement of no unphysical (ghost) degrees of freedom. And the cosmological constant $\Lambda$ is *not* excluded by any of this — it is the unique cosmological term, which is why it sits inside $S_{EH}$ above rather than in $\mathcal{F}$.
 
 **Diffeomorphism invariance** is the gauge symmetry of gravity: physics cannot depend on which coordinate system you use to describe spacetime.
 
@@ -104,11 +152,13 @@ This term is the **unique** term (up to the cosmological constant, which belongs
 
 Varying $S_{EH}$ with respect to $g^{\mu\nu}$ gives the **Einstein field equations**:
 
-$$\boxed{G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = 8\pi G,T_{\mu\nu}}$$
+$$\boxed{G_{\mu\nu} + \Lambda g_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R + \Lambda g_{\mu\nu} = 8\pi G\,T_{\mu\nu}}$$
 
-$G_{\mu\nu}$ is the **Einstein tensor** — geometric information about curvature. $T_{\mu\nu}$ is the **stress-energy tensor** — energy, momentum, and stress content of matter and fields. This equation says:
+$G_{\mu\nu}$ is the **Einstein tensor** — geometric information about curvature. $T_{\mu\nu}$ is the **stress-energy tensor** — energy, momentum, and stress content of matter and fields. The $\Lambda g_{\mu\nu}$ term is the vacuum energy contribution. This equation says:
 
-> **"Spacetime curvature = (constant) × energy-momentum content"**
+> **"Spacetime curvature = (constant) × energy-momentum content + vacuum energy"**
+
+Setting $\Lambda = 0$ recovers the vacuum form $R_{\mu\nu} = 0$ of §0.3 — which, as noted above, constrains only the Ricci tensor, not the full Riemann tensor.
 
 ### Limits and Descendants
 
@@ -495,7 +545,7 @@ $\mathcal{F}$ is **explicitly unknown**. It is not a gap we are filling lazily �
 |Missing physics|Why $\mathcal{F}$ must contain it|
 |---|---|
 |**Dark matter**|27% of the universe's mass-energy is gravitationally confirmed but has no particle in $\mathcal{L}_{SM}$|
-|**Dark energy / cosmological constant**|68% of mass-energy; drives accelerating expansion; $\Lambda g_{\mu\nu}$ is the simplest candidate but may not be the full story|
+|**Dark energy**|68% of mass-energy; drives accelerating expansion. The minimal $\Lambda g_{\mu\nu}$ term is *already in $S_{EH}$* — what $\mathcal{F}$ must supply is an explanation of **why $\Lambda \approx 10^{-52}\,\text{m}^{-2}$** (naturalness, see the Epilogue), or a dynamical alternative to a bare constant|
 |**Quantum gravity**|The Einstein-Hilbert term is classical; at Planck scale ($E \sim 10^{19}$ GeV), $R/16\pi G$ must be replaced or corrected|
 |**Strong CP resolution**|Why $\theta \approx 0$? Possibly an axion field $a(x)$ in $\mathcal{F}$|
 |**Neutrino masses**|Measured nonzero (from oscillations); require Majorana or Dirac mass terms beyond minimal SM|
@@ -530,23 +580,21 @@ This works **only because quarks come in 3 colors and have those specific hyperc
 
 ## 0.11 — The Complete Equation: Everything Together
 
-$$\boxed{ S = \int d^4x\sqrt{-g}\left[ \frac{R}{16\pi G}
+$$\boxed{ S = \int d^4x\sqrt{-g}\left[ \frac{R - 2\Lambda}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}[\ldots] \right] }$$
 
-- \frac{1}{4}B_{\mu\nu}B^{\mu\nu}
-- \frac{1}{4}W^a_{\mu\nu}W^{a\mu\nu}
-- \frac{1}{4}G^a_{\mu\nu}G^{a\mu\nu}
+with the Standard Model piece expanded as
 
-- \sum_f i\bar\psi_f\gamma^\mu D_\mu\psi_f
-- |D_\mu H|^2 - V(H)
-- Y_{ij}\bar\psi_i H\psi_j + \text{h.c.}
-- \frac{\theta g_3^2}{32\pi^2}G^a_{\mu\nu}\tilde G^{a\mu\nu}
-- \mathcal{F}[\text{topology, anomalies}, \phi_?] \right] }$$
+$$\mathcal{L}_{SM} = -\frac{1}{4}B_{\mu\nu}B^{\mu\nu} - \frac{1}{4}W^a_{\mu\nu}W^{a\mu\nu} - \frac{1}{4}G^a_{\mu\nu}G^{a\mu\nu} + \sum_f i\bar\psi_f\gamma^\mu D_\mu\psi_f + |D_\mu H|^2 - V(H) + Y_{ij}\bar\psi_i H\psi_j + \text{h.c.} + \frac{\theta g_3^2}{32\pi^2}G^a_{\mu\nu}\tilde G^{a\mu\nu}$$
+
+Note the structure: the cosmological constant sits in the **known** gravitational
+sector alongside $R$, the Standard Model is known, and only $\mathcal{F}$ is
+explicitly unknown.
 
 ### Varying with respect to each field gives:
 
 |Vary w.r.t.|Equation of motion|Name|
 |---|---|---|
-|$g^{\mu\nu}$|$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$|Einstein field equations|
+|$g^{\mu\nu}$|$G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G\,T_{\mu\nu}$|Einstein field equations|
 |$B_\mu$|$\partial^\nu B_{\nu\mu} = g_1 j^\mu_Y$|Hypercharge Maxwell equation|
 |$W^a_\mu$|$D^\nu W^a_{\nu\mu} = g_2 j^{a\mu}_W$|Weak field equations|
 |$G^a_\mu$|$D^\nu G^a_{\nu\mu} = g_3 j^{a\mu}_C$|QCD field equations|
@@ -619,7 +667,7 @@ Chapter 0  S = ∫ d⁴x √-g [R/16πG + L_SM + F[topology,...]]
      Ch. 13 (Bridge B.e): Kubo
      → Ohm, Fourier, Fick, viscosity, Hooke
            │
-     Ch. 14–19 (Bridge C): lumped elements
+     Ch. 17–21 (Bridge C + Layer 3): lumped elements
      → EEE│ME│CE│ChE
 ```
 
@@ -627,7 +675,22 @@ Chapter 0  S = ∫ d⁴x √-g [R/16πG + L_SM + F[topology,...]]
 
 ## 0.15 — One Last Note Before the Descent
 
-This equation is not a decoration at the front of the book. Every derivation in every subsequent chapter will appeal to one or more terms in it. When you derive Ohm's law in Chapter 13, you are working in the U(1) gauge sector, with the Kubo formula applied to the fermion kinetic term, in the limit of weak electric fields, finite temperature, and finite disorder. When you write KCL at a circuit node in Chapter 15, you are using charge conservation — which is Noether's theorem applied to the U(1)$_Y$ symmetry in the first line of the gauge kinetic sector.
+This equation is not a decoration at the front of the book. Every derivation in every subsequent chapter will appeal to one or more terms in it.
+
+When you derive Ohm's law in Chapter 13, you are working in the $U(1)$ gauge sector, with the linear-response (Kubo) formalism applied to the fermion kinetic term, in the limit of weak electric fields, finite temperature, and finite disorder.
+
+When you write KCL at a circuit node in **Chapter 18**, you are using charge conservation. The conceptual chain has several links, and it is worth keeping them distinct rather than compressing them:
+
+```text
+U(1) gauge structure
+   → conserved charge current (Noether)
+   → local continuity equation  ∂μjμ = 0
+   → integral charge balance over a closed surface (divergence theorem)
+   → lumped-node approximation (Ch. 17, Bridge C)
+   → KCL:  Σ I = 0 at a node
+```
+
+Note what is *not* being claimed: KCL is not a direct application of the hypercharge symmetry $U(1)_Y$ to a circuit node. The electromagnetic $U(1)_{em}$ that couples to charge is a *combination* of $U(1)_Y$ and $SU(2)_L$ fixed by the Higgs vacuum (Ch. 7 §7.4), and $U(1)_Y$ by itself does not commute with $SU(2)_L$ after symmetry breaking. KCL is a **macroscopic conservation statement** — charge does not accumulate in a node faster than it leaves — obtained by integrating the continuity equation and then *approximating* the spatially distributed current by a single value per node. The gauge-symmetry reasoning establishes the conservation law; the lumping approximation turns it into a circuit equation. The two steps are separate, and the second is an approximation with a validity criterion (Ch. 17 §17.1.1).
 
 **The equation is the map. Every chapter is a destination on that map.**
 

@@ -200,7 +200,7 @@ $$\partial_1 F_{23} + \partial_2 F_{31} + \partial_3 F_{12} = 0 \quad\Longrighta
 Model — and this is why. The equation $\nabla\cdot\mathbf{B} = 0$ is a
 mathematical consequence of writing $\mathbf{B} = \nabla\times\mathbf{A}$,
 which is guaranteed by the field tensor structure. (Note: if magnetic monopoles
-are discovered — possibly in the f(φ) sector — $\nabla\cdot\mathbf{B} = \mu_0\rho_m$
+are discovered — possibly in the $\mathcal{F}[\ldots]$ sector — $\nabla\cdot\mathbf{B} = \mu_0\rho_m$
 would need to be added.)
 
 **Components $(\lambda,\mu,\nu) = (0,i,j)$:**

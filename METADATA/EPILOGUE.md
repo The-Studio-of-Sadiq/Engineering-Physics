@@ -92,8 +92,11 @@ PandaX, LZ — nothing has been found. The parameter space is narrowing.
 ### E.3.2 — Dark Energy: 68% of the Universe's Energy Budget
 
 The universe's expansion is accelerating. The cosmological constant $\Lambda$
-(which can be added to $S_{EH}$ as $\mathcal{F} = \Lambda$) describes this
-mathematically. But why is it so small?
+is the simplest explanation, and it belongs **inside the known gravitational
+sector** as the $\tfrac{1}{16\pi G}\int d^4x\sqrt{-g}(-2\Lambda)$ term of
+$S_{EH}$ (Ch. 0 §0.3) — it is not part of the unknown sector $\mathcal{F}$. What
+is unknown is not the term's place in the action but its **value and origin**.
+Why is it so small?
 
 The measured value: $\Lambda \approx 10^{-52}$ m$^{-2}$ → energy density
 $\rho_\Lambda \approx 10^{-9}$ J/m³.
@@ -112,12 +115,13 @@ The ratio: $\rho_\Lambda/\rho_{vac}^{QFT} \sim 10^{-120}$.
 science.** A discrepancy of 120 orders of magnitude between the measured
 cosmological constant and the naive expectation from quantum field theory.
 
-Something in $\mathcal{F}$ either generates $\Lambda$ at the observed value
-(dynamical dark energy — a quintessence field $\phi$ with appropriate potential),
-or cancels the QFT contributions with extraordinary precision (fine-tuning,
-whose origin is unknown), or changes the framework entirely (modifications of
-gravity at cosmological scales, or the landscape of string theory with
-anthropic selection). We do not know which.
+Something beyond the minimal $\Lambda$ term either generates the observed value
+dynamically (quintessence and related fields), or cancels the QFT contributions
+with extraordinary precision (fine-tuning, whose origin is unknown), or changes
+the framework entirely (modifications of gravity at cosmological scales, or the
+landscape of string theory with its many possible vacua, possibly selected
+anthropically). We do not know which. The **discrepancy is the open problem**;
+the term's location in the action is not.
 
 ### E.3.3 — Quantum Gravity: The Incompatibility at the Planck Scale
 
@@ -310,26 +314,47 @@ $\mathcal{F}$ is not the only open question. Each layer has its own frontier:
 
 This book made one central claim. It can now be stated precisely:
 
-> **Every equation that governs engineering practice — from KCL to Navier-Stokes
-> to the Arrhenius rate law to the PID controller — is a consequence of the
-> Standard Model action plus the Einstein-Hilbert term, obtained through a
-> sequence of named, quantified, reversible approximations.**
->
-> **The approximations are: (Bridge A) restriction to one particle with energy
-> below $m_e c^2$; (Bridge B.a) $\hbar\to 0$ classical limit; (Bridge B.b)
-> $N\to\infty$ statistical limit; (Bridge B.c) classical field limit of U(1);
-> (Bridge B.d) weak-field, slow-motion metric limit; (Bridge B.e) Kubo linear
-> response averaging; (Bridge C) spatial lumping to $L/\lambda \ll 1$ control volumes.**
->
-> **Each approximation has a named validity criterion. When the criterion fails,
-> one must ascend to the appropriate higher layer. No engineering formula in
-> this book was postulated — each was derived.**
+> **Many equations used in engineering practice — from KCL to Navier–Stokes to
+> the Arrhenius rate law to the PID controller — can be connected to deeper
+> physical theories through a sequence of controlled limits, constitutive
+> assumptions, statistical closures, discretisations, and phenomenological
+> models. Where a controlled derivation exists, this book shows it; where an
+> empirical or constitutive model enters, the book marks that boundary
+> explicitly.**
 
-The qualifier "the Standard Model action plus the Einstein-Hilbert term" is
-the honest version. It acknowledges that $\mathcal{F}$ exists, that we do not
-know its content, and that the engineering consequences of $\mathcal{F}$ are
-unmeasurably small — but real. The framework is correct; it is simply incomplete
-at the level of the action itself.
+The chain that makes this possible is
+
+```text
+fundamental theory → controlled approximation → effective theory
+   → constitutive closure → discretisation → engineering model
+```
+
+and the bridges name the steps: (Bridge A) restriction to one particle below
+$m_ec^2$; (Bridge B.a) $\hbar\to 0$ classical limit; (Bridge B.b) $N\to\infty$
+statistical limit; (Bridge B.c) classical field limit of U(1); (Bridge B.d)
+weak-field, slow-motion, quasi-static metric limit; (Bridge B.e) linear-response
+(Kubo) averaging; (Bridge C) spatial lumping.
+
+Two qualifications are load-bearing, and the book's own apparatus exists to
+enforce them:
+
+1. **Not every step is a derivation.** Several links are *closures* or
+   *constitutive assumptions*, not consequences: the Drude relaxation time
+   (§13.4.2), the Wiedemann–Franz ratio, Einstein's diffusion–mobility
+   relation, engineering correlations, and the lumping criteria. These are
+   labelled `[PHENOMENOLOGICAL]` or `[APPROXIMATION]` wherever they appear,
+   because the distinction between "derived" and "assumed with a stated
+   criterion" is the whole epistemic content of the book.
+2. **Not every equation in engineering arrives this way.** The claim is
+   *connectability*, not universal coverage. Many engineering relations are
+   empirical correlations that no current theory derives; the book marks those
+   as such rather than claiming descent for them.
+
+The qualifier "the Standard Model action plus the Einstein–Hilbert term" is the
+honest version of the origin side. It acknowledges that $\mathcal{F}$ exists,
+that we do not know its content, and that its engineering consequences are
+unmeasurably small — but real. The framework is correct; it is simply
+incomplete at the level of the action itself.
 
 ---
 
