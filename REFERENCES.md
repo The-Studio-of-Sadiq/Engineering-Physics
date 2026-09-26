@@ -27,6 +27,7 @@ here is typed, and the typing carries information.
 | **[DERIVED / TEXTBOOK]** | Standard, uncontested physics, not tied to a single paper — the kind of thing that appears identically in every graduate textbook on the subject | Cited to a standard textbook (`T#` below), because that is the honest citation. No single paper "discovered" the textbook derivation of the Wiedemann–Franz ratio, even though von Klitzing's *measurement* of it is a paper |
 | **[THEORY]** | An original theoretical result, prediction, or no-go theorem — traceable to one or a small number of primary papers, but not itself an observation | Full citation with DOI to the primary theory paper(s). Kept distinct from [DERIVED / TEXTBOOK]: a *named original result* (BCS, ABJ anomaly, Nielsen–Ninomiya, Higgs mechanism, Abrikosov vortices) is credited to its authors' paper, not to a textbook, and distinct from [MEASURED]: a theoretical prediction is not a measurement even when it is later confirmed |
 | **[SYNTHESIS]** | The book's own argument or pedagogical framing, not a fact borrowed from the literature | Flagged explicitly rather than given a decorative citation. This is the tier that matters most: the book's central claims live here, and marking them is the point |
+| **[TARGET]** | A forward-looking engineering target, design goal, or institutional projection — documented by the responsible body but *not* an observed result and not yet achieved | Cited to the project's own documentation. Kept distinct from [MEASURED]: a goal is not data, and must never be quoted as though the specification had been met |
 
 ### Numbered citation key
 
@@ -109,8 +110,8 @@ Link: https://pdg.lbl.gov/
 **[MEASURED] [R2] W and Z boson masses ($m_W \approx 80.4$ GeV, $m_Z \approx 91.2$ GeV)**
 Source: Particle Data Group, *Review of Particle Physics*, Gauge and Higgs Boson Summary Table.
 
-**[MEASURED] [R2] Higgs vacuum expectation value $v \approx 246$ GeV**
-Derived from the measured Fermi constant $G_F$ via $v = (\sqrt{2}G_F)^{-1/2}$; this is a standard electroweak-fit result, not an independent measurement.
+**[DERIVED / TEXTBOOK] [R2] Higgs vacuum expectation value $v \approx 246$ GeV**
+Derived from the measured Fermi constant $G_F$ via $v = (\sqrt{2}G_F)^{-1/2}$; this is a standard electroweak-fit result, not an independent measurement. Tiered [DERIVED / TEXTBOOK] accordingly — the input $G_F$ is [MEASURED] (see R1/R2), the VEV quoted here is a fit-derived quantity.
 
 **[MEASURED] [R3] Higgs boson discovery and mass ($m_h = 125.09$ GeV)**
 Source: ATLAS Collaboration, "Observation of a new particle in the search for the Standard Model Higgs boson with the ATLAS detector at the LHC," *Phys. Lett. B* 716, 1–29 (2012). DOI: 10.1016/j.physletb.2012.08.020
@@ -152,8 +153,9 @@ An index, not a source of new claims. Every phenomenon listed is sourced under t
 
 ## Chapter 3 — Bridge A: Dirac → Schrödinger
 
-**[MEASURED] [R7] Anomalous magnetic moment $g_e = 2$ as a pre-1928 mystery, resolved by the Dirac equation**
+**[THEORY] [R7] Anomalous magnetic moment $g_e = 2$ as a pre-1928 mystery, resolved by the Dirac equation**
 Historical mystery: no single citable "discovery" — $g=2$ emerged from spectroscopic anomalies (anomalous Zeeman effect) through the 1920s. The resolution is the theory paper: Dirac, P.A.M., "The Quantum Theory of the Electron," *Proc. R. Soc. Lond. A* 117, 610–624 (1928). DOI: 10.1098/rspa.1928.0023
+Tier note: tiered [THEORY] because the cited source is Dirac's theoretical prediction of $g=2$; the 1920s spectroscopic anomaly that motivated it is the empirical observation, the resolution is not.
 
 **[MEASURED] [R8] Discovery of the positron (Anderson, 1932/1933)**
 Anderson, C.D., "The Positive Electron," *Phys. Rev.* 43, 491–494 (1933). DOI: 10.1103/PhysRev.43.491
@@ -182,9 +184,10 @@ Gerlach, W. & Stern, O., "Der experimentelle Nachweis der Richtungsquantelung im
 Lamb, W.E. & Retherford, R.C., "Fine Structure of the Hydrogen Atom by a Microwave Method," *Phys. Rev.* 72, 241–243 (1947). DOI: 10.1103/PhysRev.72.241
 The modern precision value of ~1057.8 MHz splitting comes from later refinements; the 1947 paper is the original discovery.
 
-**[MEASURED] [R13] Cesium atomic clock definition of the SI second (9,192,631,770 Hz hyperfine transition)**
+**[DERIVED / TEXTBOOK] [R13] Cesium atomic clock definition of the SI second (9,192,631,770 Hz hyperfine transition)**
 Source: BIPM, *The International System of Units (SI Brochure)*, 9th edition, definition of the second.
 Link: https://www.bipm.org/en/publications/si-brochure
+Tier note: the second is a DEFINITION (SI Brochure), fixed exactly, not a measured frequency — same class as the 2019 redefinition (R43). Tiered with the standards, not with measurements.
 
 **[MEASURED] [R1] Bohr magneton, $\mu_B = 9.274\times 10^{-24}$ J/T**
 Source: CODATA recommended values (NIST).
@@ -207,15 +210,17 @@ Binding-energy-per-nucleon data (peak at $^{56}$Fe, 8.79 MeV): NNDC Atomic Mass 
 Geiger, H. & Nuttall, J.M., "The ranges of the α particles from various radioactive substances," *Phil. Mag.* 22, 613–621 (1911); follow-up, *Phil. Mag.* 23, 439 (1912).
 Modern half-life data spanning $^{212}$Po to $^{232}$Th: NNDC.
 
-**[MEASURED] [R17] ITER fusion energy gain target, $Q \geq 10$**
+**[TARGET] [R17] ITER fusion energy gain target, $Q \geq 10$**
 Source: ITER Organization, official project documentation. Link: https://www.iter.org/sci/Goals
+Tier note: this is a design TARGET, not an achieved or measured value - $Q\ge10$ is a forward-looking engineering goal, and the achieved gain to date is well below unity. Flagged so the projection is never cited as a measurement.
 
 ---
 
 ## Chapter 7 — Topology, Quantum Hall Effect, Superconductivity
 
-**[MEASURED] [R18] Berry phase**
+**[THEORY] [R18] Berry phase**
 Berry, M.V., "Quantal Phase Factors Accompanying Adiabatic Changes," *Proc. R. Soc. Lond. A* 392, 45–57 (1984). DOI: 10.1098/rspa.1984.0023
+Tier note: tiered [THEORY] - Berry's 1984 adiabatic-phase paper is a theoretical result; experimental realisations (e.g. polarisation as a spin-1 Berry phase) are demonstrations, not the cited source.
 
 **[MEASURED] [R19] Von Klitzing's discovery of the (integer) quantum Hall effect (1980)**
 Klitzing, K. von, Dorda, G., Pepper, M., "New Method for High-Accuracy Determination of the Fine-Structure Constant Based on Quantized Hall Resistance," *Phys. Rev. Lett.* 45, 494–497 (1980). DOI: 10.1103/PhysRevLett.45.494
@@ -270,6 +275,7 @@ Abbott, B.P. et al. (LIGO Scientific and Virgo Collaborations), "Observation of 
 **[MEASURED] [R31] Mercury's anomalous perihelion precession (43″/century) explained by GR**
 Original resolution: Einstein, A., "Erklärung der Perihelbewegung des Merkur aus der allgemeinen Relativitätstheorie," *Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften*, 831–839 (1915).
 The anomaly was identified observationally by Le Verrier (1859) and refined by Newcomb; modern confirmation via radar ranging and ephemerides is [DERIVED / TEXTBOOK] — see T6, Ch. 40, or Will, C.M., "The Confrontation between General Relativity and Experiment," *Living Reviews in Relativity* 17, 4 (2014). DOI: 10.12942/lrr-2014-4
+Tier note: mixed provenance, tiered [MEASURED] for the observed quantity. The perihelion anomaly (43"/century) is an empirical astronomical measurement (Le Verrier, Newcomb); Einstein's 1915 explanation is [THEORY]. The header tracks the measurement because that is the claim the book leans on, and the theoretical resolution is cited in the same entry.
 
 **[MEASURED] [R32] Light deflection by the Sun (1.75″) — Eddington 1919, modern VLBI confirmation**
 Dyson, F.W., Eddington, A.S., Davidson, C., "A Determination of the Deflection of Light by the Sun's Gravitational Field, from Observations Made at the Total Eclipse of May 29, 1919," *Phil. Trans. R. Soc. A* 220, 291–333 (1920). DOI: 10.1098/rsta.1920.0009
@@ -319,12 +325,22 @@ Standard, uncontested optics — distributed Bragg reflectors, Fabry–Perot lin
 
 ## Chapter 13 — Kubo Formula → Generalized Transport Law
 
-**[MEASURED] [R38] Kubo's linear-response theory (1957)**
+**[THEORY] [R38] Kubo's linear-response theory (1957)**
 Kubo, R., "Statistical-Mechanical Theory of Irreversible Processes. I," *J. Phys. Soc. Jpn.* 12, 570–586 (1957). DOI: 10.1143/JPSJ.12.570
+Tier note: this is a theoretical framework — a general linear-response construction
+that *yields* correlation functions and fluctuation–dissipation relations — not a
+measurement. The experimentally measured quantities built on top of it (thermal
+conductivity, diffusion coefficients) are cited separately as [MEASURED].
 
-**[MEASURED] [R39] Wiedemann–Franz law and the Lorenz number, $L_0 = 2.44\times 10^{-8}\,\text{W}\cdot\Omega\cdot\text{K}^{-2}$**
+**[DERIVED / TEXTBOOK] [R39] Wiedemann–Franz law and the Lorenz number, $L_0 = 2.44\times 10^{-8}\,\text{W}\cdot\Omega\cdot\text{K}^{-2}$**
 Original empirical law: Wiedemann, G. & Franz, R., "Ueber die Wärme-Leitungsfähigkeit der Metalle," *Annalen der Physik* 165, 497–531 (1853). DOI: 10.1002/andp.18531650802
-The theoretical Lorenz-number value ($L_0 = \pi^2 k_B^2/3e^2$) is exact only in the free-electron/Sommerfeld model: [DERIVED / TEXTBOOK] — see T2, Ch. 13. See the Ch. 13 Model Ledger for the scattering assumptions this universality depends on.
+Tier note: this entry carries two different provenances and is tiered by the number it
+headlines. The 1853 Wiedemann–Franz relation is *empirical* — a regularities-in-data
+observation with no microscopic basis at the time. The Lorenz number
+$L_0 = \pi^2 k_B^2/3e^2 = 2.44\times 10^{-8}\,\text{W}\cdot\Omega\,\text{K}^{-2}$
+quoted in the title is a *derivation*, exact only in the free-electron/Sommerfeld model
+— see T2, Ch. 13, and the Ch. 13 Model Ledger for the scattering assumptions this
+universality depends on.
 
 **[DERIVED / TEXTBOOK] [R40] Mott formula for thermopower**
 Mott, N.F. & Jones, H., *The Theory of the Properties of Metals and Alloys*, Oxford (1936), Ch. 7. Standard modern reference: T2, Ch. 13, eq. 13.62.
@@ -343,9 +359,15 @@ Hall, E.H., "On a New Action of the Magnet on Electric Currents," *American Jour
 Richardson, O.W., "The Emission of Electricity from Hot Bodies," Longmans, Green & Co. (1921/1924 editions summarize his 1901–1911 work).
 Dushman, S., "Electron Emission from Metals as a Function of Temperature," *Phys. Rev.* 21, 623–636 (1923). DOI: 10.1103/PhysRev.21.623
 
-**[MEASURED] [R43] SI redefinition of the second/kilogram/ampere via exact $h$, $e$ (2019)**
+**[DERIVED / TEXTBOOK] [R43] SI redefinition of the second/kilogram/ampere via exact $h$, $e$ (2019)**
 Source: BIPM, Resolution 1 of the 26th CGPM (2018), "On the revision of the International System of Units (SI)," effective 20 May 2019.
 Link: https://www.bipm.org/en/measurement-units/rev-si/
+Tier note: this is an authoritative *definitional standard*, not an experimental
+measurement paper — a metrological act of definition, not a result. The constants it
+fixes ($h$, $e$) are **exact by definition** after the redefinition, not fitted or
+measured values; tied to it, CODATA-derived uncertainties on formerly-measured
+constants became exact. Cited because the book's reported values must be pinned to a
+specific SI edition, not because a number was observed.
 
 **[DERIVED / TEXTBOOK] [R44] IEC 60751 Pt100 RTD coefficients ($A$, $B$, $C$)**
 Source: IEC 60751:2008, "Industrial platinum resistance thermometers and platinum temperature sensors."
@@ -393,9 +415,10 @@ Payne, H.T., "Analysis and Design of Elastic Systems," Academic Press; and the s
 
 ## Chapter 18 — Circuit Theory / Signal Processing Cross-Threads
 
-**[MEASURED] [R49] Cooley–Tukey FFT algorithm (1965)**
+**[DERIVED / TEXTBOOK] [R49] Cooley–Tukey FFT algorithm (1965)**
 Cooley, J.W. & Tukey, J.W., "An algorithm for the machine calculation of complex Fourier series," *Mathematics of Computation* 19, 297–301 (1965). DOI: 10.1090/S0025-5718-1965-0178586-1
 The book's operation-count comparison ($10^{12}$ vs. $2\times 10^7$ for $N=10^6$) follows directly from the $O(N\log N)$ complexity established in this paper.
+Tier note: tiered [DERIVED / TEXTBOOK] - the FFT is an algorithm (a mathematical/computational method with a complexity result), not a measured quantity; cited because the book's operation-count comparison rests on its $O(N\log N)$ analysis.
 
 ---
 

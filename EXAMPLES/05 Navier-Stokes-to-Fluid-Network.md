@@ -21,10 +21,13 @@ $$\rho\left(\frac{\partial\mathbf{v}}{\partial t} + \mathbf{v}\cdot\nabla\mathbf
 
 $$\frac{\partial\rho}{\partial t} + \nabla\cdot(\rho\mathbf{v}) = 0, \qquad \nabla\cdot\mathbf{v} = 0$$
 
-The second equation is *not* independent of the first — it is what the first becomes
-when $\rho$ is uniform. Keeping both visible keeps the distinction honest, and it
-also flags the status of the constitutive and kinematic choices, because they are
-**not** the same kind of claim:
+The second line is a *separate* conservation law — mass continuity — and is **not** a
+consequence of the momentum balance above. What *is* an approximation is the reduction
+to $\nabla\cdot\mathbf{v} = 0$, which requires continuity **together with** the
+assumption that $\rho$ is constant: it is mass conservation *plus* an isochoric
+assumption, not momentum balance alone. Keeping all three statements visible keeps the
+distinctions honest, and it also flags the status of the constitutive and kinematic
+choices, because they are **not** the same kind of claim:
 
 - **Newtonian viscosity** ($\tau = \mu\,d\mathbf{v}/dy$) — a **constitutive law**,
   valid `[PHENOMENOLOGICAL]`-to-`[DERIVATION]`: linear in the rate of strain over a
@@ -240,13 +243,22 @@ $f \propto Re^{-0.2}$ in turbulent flow, the head loss goes as $Q^{1.8}$, not
 $Q^2$. A pump curve intersecting a system curve needs a numerical solution, not
 algebra, and treating $f$ as constant is a common source of wrong answers.
 
-**What this example demonstrates.** Ohm's law for pipes is genuinely the same
-algebra, and it comes from the same conservation laws. The inertia is linear and
-maps cleanly onto an inductor; the nonlinearity enters through *friction*, and
-the one coefficient that governs it ($f$) is empirical. So a pipe network is
-circuit theory with a curve-fit in the resistive branch — closer to RLC than the
-usual "pipes are not circuits" refrain suggests, but different enough that the
-$f$ dependence must be respected rather than assumed away.
+**What this example demonstrates.** Ohm's law and the Darcy pressure–flow
+relation have the same *network form* — an effort drop proportional to a flow
+variable in the linear regime — and that shared shape is not a coincidence of
+notation: both networks acquire it the same way, by combining conservation laws
+with constitutive relations and then lumping. The *laws*, however, are not the
+same. Electrical KCL is charge conservation while its pipe counterpart is mass
+conservation; electrical KVL descends from Faraday's law while the hydraulic loop
+relation is a mechanical energy balance; $V = IR$ is an electrical constitutive
+law while $\Delta p = R_h Q$ is a hydraulic correlation fitted to real pipe
+behaviour. The defensible claim is therefore **structural equivalence without
+physical identity** — the network algebra transfers, the physics underneath it does
+not. The inertia is linear and maps cleanly onto an inductor; the nonlinearity enters
+through *friction*, and the one coefficient that governs it ($f$) is empirical. So a
+pipe network is circuit theory with a curve-fit in the resistive branch — closer to
+RLC than the usual "pipes are not circuits" refrain suggests, but different enough
+that the $f$ dependence must be respected rather than assumed away.
 
 ---
 
