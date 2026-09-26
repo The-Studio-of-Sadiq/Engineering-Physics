@@ -19,16 +19,29 @@ The incompressible Navier–Stokes equations, with a Newtonian stress tensor:
 
 $$\rho\left(\frac{\partial\mathbf{v}}{\partial t} + \mathbf{v}\cdot\nabla\mathbf{v}\right) = -\nabla p + \mu\nabla^2\mathbf{v} + \rho\mathbf{g}$$
 
-$$\nabla\cdot\mathbf{v} = 0$$
+$$\frac{\partial\rho}{\partial t} + \nabla\cdot(\rho\mathbf{v}) = 0, \qquad \nabla\cdot\mathbf{v} = 0$$
 
-Two constitutive choices are embedded here and both are `[DERIVATION]`-level
-results of Ch. 13, not postulates:
+The second equation is *not* independent of the first — it is what the first becomes
+when $\rho$ is uniform. Keeping both visible keeps the distinction honest, and it
+also flags the status of the constitutive and kinematic choices, because they are
+**not** the same kind of claim:
 
-- **Newtonian viscosity** ($\tau = \mu\,d\mathbf{v}/dy$) — linear stress–rate
-  relation, derived from the Kubo formula for momentum transport. Water, air,
-  and most liquids and gases satisfy it; blood, toothpaste, and polymer melts
-  do not.
-- **Incompressibility** ($\nabla\cdot\mathbf{v}=0$) — constant $\rho$.
+- **Newtonian viscosity** ($\tau = \mu\,d\mathbf{v}/dy$) — a **constitutive law**,
+  valid `[PHENOMENOLOGICAL]`-to-`[DERIVATION]`: linear in the rate of strain over a
+  range of shear rates, and for a Newtonian fluid the coefficient $\mu$ can indeed be
+  obtained from the Kubo expression of Ch. 13. But what Kubo yields is a
+  *microscopic expression for the coefficient*, not a derivation of the whole linear
+  stress–rate law for arbitrary engineering fluids. That law still has to be
+  postulated as constitutive. Water, air, and most liquids and gases satisfy it;
+  blood, toothpaste, and polymer melts do not — and no coefficient fixes that.
+- **Incompressibility** ($\nabla\cdot\mathbf{v} = 0$) — an **`[APPROXIMATION]` /
+  model assumption**, a limit rather than a derivation. Constant density *along
+  material trajectories* gives $D\rho/Dt = 0$, and it is mass conservation
+  (above) that turns this into $\nabla\cdot\mathbf{v} = 0$. So the logic runs
+  "assume the flow is nearly isochoric," not "the density is constant, therefore the
+  continuity equation has been derived." It is a good approximation for liquids and
+  low-Mach gases, and a poor one for cavitation, compressible transients, and
+  detonations.
 
 ---
 
@@ -123,8 +136,29 @@ networks nonlinear.
 
 **Node and loop rules are exact.**
 
-- **QCL** (flow sums to zero at a junction) is mass conservation: $\partial(\rho)/\partial t = 0$.
-- **Loop rule** (head sums to zero around a loop) is Bernoulli along a streamline, valid under the same assumptions as §2.
+- **QCL** (flow sums to zero at a junction) is **mass conservation**,
+  $\sum_k \dot m_k = 0$, which is the local continuity equation
+  $\partial_t\rho + \nabla\cdot(\rho\mathbf{v}) = 0$ integrated over a control
+  volume enclosing the junction. For constant density this reduces to
+  $\boxed{\sum_k Q_k = 0}$, the form actually used in network analysis. (Note that
+  $\partial_t\rho = 0$ on its own is *not* mass conservation — it is only the
+  steady-density piece of it, and it drops the flux term that does the real work.
+  Stated that way it loses exactly the claim being made.)
+- **Loop rule** (head sums to zero around a loop) is a **hydraulic energy balance**,
+  not Bernoulli. Bernoulli's ideal form
+  $\frac{p}{\rho g} + \frac{v^2}{2g} + z = \text{const}$ requires a steady, inviscid
+  flow along a single streamline with no losses and no machinery — and every one of
+  those fails in the network above, which has friction, fittings, a pump, and
+  turbulent sections. The working statement collects head gains and losses around
+  the closed loop,
+
+  $$\sum h_{\rm pump} - \sum h_{\rm loss} = 0, \qquad h_f = f\frac{L}{D}\frac{v^2}{2g}$$
+
+  with $h_f$ the distributed friction loss plus minor losses from fittings, valves
+  and entrances. **Bernoulli is the frictionless, lossless, no-machinery limit of
+  this energy equation** — a useful check, not the working rule. It is the *energy*
+  bookkeeping that KVL tracks, and that is what supplies the analogy; streamline
+  mechanics is a different and much narrower statement.
 
 Both are identities given the assumptions; neither is an electrical coincidence.
 

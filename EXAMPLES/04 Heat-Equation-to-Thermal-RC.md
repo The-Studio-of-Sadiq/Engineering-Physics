@@ -19,8 +19,13 @@ flux $\mathbf{q}$:
 
 $$\rho c_p\frac{\partial T}{\partial t} = -\nabla\cdot\mathbf{q}$$
 
-This is a definition, not a law of physics: it says heat is conserved. All the
-physics is in the constitutive relation for $\mathbf{q}$.
+**Energy** is the conserved quantity, not heat. Heat is not a substance that
+accumulates — it is energy *in transit*, and it has no independent conserved
+density, which is why the balance above is written in terms of internal energy $u$
+and flux $\mathbf{q}$ rather than some "heat content." This step is the **first law
+of thermodynamics applied locally** — a law of physics, not a definition. What it
+does *not* determine is $\mathbf{q}$, and closing that gap is the entire job of the
+next line.
 
 For a continuum, the flux follows from irreversible thermodynamics — the
 Onsager form of Fourier's law (Ch. 13 §13.5.2):
@@ -31,8 +36,20 @@ Substituting gives the heat equation:
 
 $$\boxed{\rho c_p\frac{\partial T}{\partial t} = k\nabla^2 T \qquad\Longleftrightarrow\qquad \frac{\partial T}{\partial t} = \alpha\nabla^2 T,\quad \alpha = \frac{k}{\rho c_p}}$$
 
-**[DERIVATION].** Both steps are exact within their assumptions. $\alpha$ is a
-genuine material property with units m²/s — a diffusivity.
+**The epistemic status here is mixed, and the ledger depends on not blurring it.**
+Energy conservation is a law. Fourier's law is a **constitutive law** —
+`[PHENOMENOLOGICAL]` in its macroscopic form. It can be *justified* as a
+linear-response limit near equilibrium (the Onsager route of Ch. 13), which is what
+earns it more than a bare empirical fit, but it is not an identity and it does not
+follow from conservation. The heat equation is therefore a **composition**:
+
+$$\underbrace{\text{energy conservation}}_{\text{law}} + \underbrace{\text{Fourier constitutive law}}_{\text{constitutive}} \;\longrightarrow\; \text{heat equation}$$
+
+not a pure derivation from conservation alone. $\alpha$ is a genuine material
+property with units m²/s — a diffusivity — and the linear-response reading also
+gets its scaling right, but the constitutive step is where the physics is
+*supplied*, and it is the step that fails when $k$ is anisotropic or strongly
+temperature-dependent, or when the linear-gradient ansatz breaks down.
 
 ---
 

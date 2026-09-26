@@ -45,13 +45,25 @@ Kirchhoff's laws.
 
 ## Step 3 — Mathematical reduction
 
-**Step 3a — the transmission line (exact, before lumping).** For a line of
-characteristic impedance $Z_0$ and phase velocity $v$:
+**Step 3a — the transmission line: an already-reduced distributed model.** For a
+line with distributed (per-unit-length) parameters $R'$, $L'$, $G'$, $C'$:
 
-$$\frac{\partial V}{\partial x} = -L'\frac{\partial I}{\partial t}\qquad \frac{\partial I}{\partial x} = -C'\frac{\partial V}{\partial t}$$
+$$\frac{\partial V}{\partial x} = -R'I - L'\frac{\partial I}{\partial t}\qquad \frac{\partial I}{\partial x} = -G'V - C'\frac{\partial V}{\partial t}$$
 
-with $Z_0 = \sqrt{L'/C'}$ and $v = 1/\sqrt{L'C'}$. These are Maxwell's equations
-with the transverse dimensions integrated out — **no approximation yet.**
+In the **lossless** case ($R' = G' = 0$), which is the form usually quoted:
+
+$$\frac{\partial V}{\partial x} = -L'\frac{\partial I}{\partial t}\qquad \frac{\partial I}{\partial x} = -C'\frac{\partial V}{\partial t}, \qquad Z_0 = \sqrt{L'/C'},\qquad v = \frac{1}{\sqrt{L'C'}}$$
+
+**Be precise about the epistemic status here, because "before lumping" is not the
+same as "exact."** These are *not* Maxwell's equations verbatim with the transverse
+dimensions integrated out. Getting here has already cost something: the transverse
+field structure has been replaced by a single voltage and a single current (a
+single-mode, quasi-TEM idealisation), $R'$, $L'$, $G'$, $C'$ are being treated as
+constants lumped per unit length, and the conductor geometry is assumed benign
+enough that the line can be described by distributed scalars at all. Each of those
+is a modelling choice. What is exact is the *reduction* — once the line model is
+granted, the relations below are consequences of it, which is why the $R$ and $G$
+terms already present here reappear in step 3c without any new assumption.
 
 **Step 3b — integrate over a segment of length $\ell$.** Exact, by the
 divergence theorem:
@@ -80,16 +92,40 @@ Three constitutive laws, one per element type:
 | Capacitor | $I = C\dot V$ | stored, $\tfrac12 CV^2$ | field energy, polarisation |
 | Inductor | $V = L\dot I$ | stored, $\tfrac12 LI^2$ | magnetic field, inertia |
 
-KCL and KVL follow, and they are *not* extra postulates — they are
-conservation:
+KCL and KVL follow, and they are *not* extra postulates — they are conservation,
+but each statement needs its own correct justification, and KVL's is the one that is
+usually got wrong:
 
-$$\sum I_k = 0 \quad\left(\nabla\cdot\mathbf{J} = -\partial_t\rho \text{ integrated}\right)$$
-$$\oint \mathbf{E}\cdot d\mathbf{l} = 0 \quad\left(\nabla\times\mathbf{E} = -\partial_t\mathbf{B} = 0 \text{ since quasi-static}\right)$$
+$$\sum_k I_k = 0 \qquad\text{(charge conservation: }\nabla\cdot\mathbf{J} = -\partial_t\rho\text{ integrated over a node)}$$
 
-**KVL is the electromagnetic loop law with the time derivative dropped.** That
-is the whole cost of quasi-statics: Faraday's law is not violated, it is
-suspended, and it reappears as the inductive term $L\dot I$ that the lumping
-process put in by hand.
+$$\sum_k V_k = 0 \qquad\text{(energy conservation, equivalently Faraday's law applied around the loop)}$$
+
+**The correct chain is Faraday → flux linkage → induced EMF → KVL.** Start from
+
+$$\oint\mathbf{E}\cdot d\mathbf{l} = -\frac{d\Phi_B}{dt}$$
+
+In a lumped inductor, $\Phi_B$ is *proportional to the current* by construction — that
+proportionality is the definition of the inductance, $L = N\Phi_B/I$. Differentiating
+gives the terminal voltage of the inductor itself:
+
+$$V_L = -\frac{d\Phi_B}{dt} = L\frac{dI}{dt}$$
+
+(or $N\,d\Phi/dt$ for an $N$-turn coil). So the induced EMF **is** the inductor's
+contribution to the loop sum, and Kirchhoff's voltage law is simply what that loop
+integral becomes once every branch has been given a terminal voltage:
+
+$$\oint\mathbf{E}\cdot d\mathbf{l} = \sum_k V_k \;\Longrightarrow\; \sum_k V_k = 0$$
+
+**The thing to unlearn is the tempting shortcut** — "KVL is the loop law with the
+time derivative dropped," i.e. $\nabla\times\mathbf{E} = -\partial_t\mathbf{B} = 0$.
+That is wrong, and wrong in a self-defeating way: setting $\partial_t\mathbf{B} = 0$
+is precisely the condition that makes $V_L = L\dot I = 0$. You would be deleting the
+inductor in the act of deriving the law that has to accommodate it. The
+quasi-static approximation in circuit theory does **not** mean the magnetic field
+stops changing; it means the *radiation* and *displacement* effects can be neglected
+so that $\mathbf{B}$ is slaved to $\mathbf{I}$ by the constitutive relation rather
+than solved independently. The changing flux is not dropped — it is *accounted for*,
+in the inductor term.
 
 ---
 
@@ -122,7 +158,7 @@ about the circuit, it is a statement about the circuit *and its surroundings*.
 | Assumption | Fails when | Use instead |
 |---|---|---|
 | $L/\lambda \ll 1$ | Trace or interconnect length $\gtrsim \lambda/10$ | Transmission-line theory; scattering parameters |
-| Quasi-static ($\dot B = 0$ in KVL) | Fast edges, high $dI/dt$ | Inductance must be retained explicitly; never "ideal" it away |
+| Quasi-static ($V_L = L\dot I$ treated as lumped) | Fast edges, high $dI/dt$ | Retain distributed L explicitly; transmission-line or full-wave treatment |
 | Lumped geometry | Distributed sources, radiation, slots | Full-wave FEM (Ch. 16 §16.11) |
 | Constant $\epsilon$, $\mu$ | Non-linear dielectrics, ferroelectrics | Non-linear capacitance; hysteresis |
 | $R \gg 0$ | Superconductors, ideal conductors | $R=0$ gives a genuinely different topology (flux quantisation, Ch. 7 §7.8) |

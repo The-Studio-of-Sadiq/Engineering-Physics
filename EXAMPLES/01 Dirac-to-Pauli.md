@@ -50,29 +50,60 @@ because the usual shorthand attaches the eigenvalues to the wrong operator.
 
 The Dirac Hamiltonian splits by parity:
 
-$$H = \underbrace{\beta m_ec^2 + \mathcal{E}}_{\text{even}} + \underbrace{\mathcal{O}}_{\text{odd}}, \qquad \mathcal{O} = c\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}} - e\boldsymbol{\sigma}\cdot\mathbf{E}$$
+$$H = \underbrace{\beta m_ec^2 + \mathcal{E}}_{\text{even}} + \underbrace{\mathcal{O}}_{\text{odd}}, \qquad \mathcal{E} = \beta m_ec^2 + eV, \qquad \mathcal{O} = c\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}}$$
 
-The Foldy–Wouthuysen transformation is an **exact** unitary change of basis,
-$U^\dagger\mathcal{O}U = 0$. Note what it does *not* do: it does not diagonalise
+**Note carefully what is *not* in the odd operator.** There is no
+$-e\boldsymbol{\sigma}\cdot\mathbf{E}$ term, and it is worth resisting the temptation
+to add one. The coupling to the field arrives entirely through
+$\hat{\boldsymbol{\pi}}$; the electric field never enters as an independent
+$\boldsymbol{\sigma}\cdot\mathbf{E}$ piece, because that combination is not gauge
+invariant on its own. The familiar magnetic coupling is likewise not an *input* — it
+is **generated**, out of the $\mathbf{A}$ already sitting inside
+$\hat{\boldsymbol{\pi}}$, when that piece is iterated against the even Hamiltonian.
+That generation is the subject of step 4, and it is the reason $g=2$ comes out as a
+result rather than going in as an assumption.
+
+The Foldy–Wouthuysen transformation removes the odd part, $U^\dagger\mathcal{O}U = 0$,
+by exponentiating an odd generator, $U = \exp(-iS/\hbar)$, with $S$ fixed order-by-order
+to cancel the odd terms. The first two orders of the resulting formal series are
+
+$$H_{FW} = \beta m_ec^2 + \mathcal{E} + \frac{\beta\mathcal{O}^2}{2m_ec^2} - \frac{1}{8m_e^2c^4}\big[\mathcal{O},[\mathcal{O},\mathcal{E}]\big] + \cdots$$
+
+**This is exactly where the exact/approximate distinction has to be drawn, because
+it is the whole point of this book.** The transformation is **unitary at every
+order** — the exponential of a Hermitian generator is unitary, with no approximation
+anywhere. What is *not* exact is the **truncation**. The generator $S$ is determined
+by an asymptotic expansion in $1/m_e$, each order fixed by cancelling the odd terms
+at that order; for a general external electromagnetic field there is no closed-form
+$S$, and hence no closed-form $U$ that removes $\mathcal{O}$ in a single stroke.
+So $H_{FW}$ above is a **truncated expansion**, valid through the order displayed, and
+the Hamiltonian in step 3 is truncated *again* on top of it. Unitarity is a statement
+about $U$ and it is available; exactness would be a statement about $H_{FW}$ and it is
+not.
+
+Note also what the transformation does *not* do: it does not diagonalise
 $\mathcal{O}$. It annihilates it. That is the entire content of the trick — once
 the odd operator is gone, what remains is even, and an even operator is block
 diagonal in $\beta$.
 
 **The $\pm m_ec^2$ eigenvalues belong to the mass term $\beta m_ec^2$, not to
 $\mathcal{O}$.** The odd operator has no such spectrum at all: $\mathcal{O}^2$ is
-assembled from $\hat\pi^2$ and the spin–electric terms, and is suppressed by
-$\alpha^2$ relative to $m_e^2c^2$. Carrying the positive/negative energy
-separation is the job of $\beta m_ec^2$, and the selection rule that follows is a
-projection onto a $\beta$ block.
+assembled from $\hat\pi^2$ and the $\mathbf{A}$-piece, and since $\mathcal{O}\sim m_ec\,\alpha$
+it is suppressed by $\alpha^2$ relative to $m_e^2c^2$. Carrying the positive/negative
+energy separation is the job of $\beta m_ec^2$, and the selection rule that follows is
+a projection onto a $\beta$ block.
 
-Projecting onto $\beta = +1$ and iterating once on the transformed correction
-produces the order-$(v/c)^2$ effective Hamiltonian of step 3.
+Projecting onto $\beta = +1$ and retaining the $1/m_e$ and $1/m_e^2$ terms of the
+series above produces the order-$\alpha^2$ effective Hamiltonian of step 3. Keeping
+exactly those orders and discarding the rest is itself a truncation — the second one
+in this example, after the truncation already built into $H_{FW}$.
 
 ---
 
 ## Step 3 — Mathematical reduction
 
-With the odd terms squared once and dropped:
+Truncating the $H_{FW}$ series above to the $1/m_e$ and $1/m_e^2$ terms — order $\alpha^2$
+and $\alpha^4$ relative to $m_ec^2$ — gives the standard effective Hamiltonian:
 
 $$\boxed{\hat H_{FW} = m_ec^2 + \frac{\hat\pi^2}{2m_e} + eV \underbrace{-\frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B}}_{\text{Zeeman}} \underbrace{-\frac{\hat\pi^4}{8m_e^3c^2}}_{\text{relativistic mass}} \underbrace{-\frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}})}_{\text{spin-orbit}} \underbrace{+\frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}}_{\text{Darwin}}}$$
 

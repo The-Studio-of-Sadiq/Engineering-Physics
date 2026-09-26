@@ -234,7 +234,7 @@ In the non-relativistic limit, the odd part $\mathcal{O}$ is small compared to t
 
 ### 3.5.2 — First Transformation: Eliminating $\mathcal{O}$ at Leading Order
 
-Choose the generator: $$S = -\frac{i\beta\mathcal{O}}{2m_ec^2} = -\frac{i\beta,c\boldsymbol{\alpha}\cdot\hat{\mathbf{\pi}}}{2m_ec^2}$$
+Choose the generator: $$S = -\frac{i\beta\mathcal{O}}{2m_ec^2} = -\frac{i\beta\,c\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}}}{2m_ec^2}$$
 
 The transformed Hamiltonian (to order $1/m_ec^2$):
 
@@ -262,14 +262,19 @@ Each term has a name and a physics:
 The last three terms together account for the fine structure of hydrogen — matching the exact Dirac result to order $\alpha^4$.
 
 `[APPROXIMATION]` — **two reductions happen here, and they are different in kind.**
-The Foldy-Wouthuysen transformation is `[DERIVATION]`: an exact canonical
-(unitary) change of basis, introducing an odd operator $\mathcal{O}$ and then
-diagonalising it, which removes the $\boldsymbol{\sigma}\cdot\mathbf{p}$ mixing
-between the large and small components. Nothing is lost. The *truncation* at
-order $(v/c)^2$ is `[APPROXIMATION]`: the odd terms are squared once and
-dropped. So the boxed Hamiltonian is exact only for the $4\times4$ spinor; as a
-$2\times2$ operator on $\phi$ it is the expansion, accurate to
-$\mathcal{O}(\alpha^4)$ corrections, and it stops being adequate once
+The Foldy-Wouthuysen transformation is a **unitary change of basis constructed
+perturbatively, order by order** — a sequence $\psi \to e^{iS}\psi$ with $S$ fixed at
+each order to cancel the odd terms then present (§3.5.1–3.5.2). It does not
+*diagonalise* $\mathcal{O}$; it **annihilates** it, removing the
+$\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}}$ mixing between the large and small
+components. Unitarity is exact at every order, since the exponential of a Hermitian
+generator is unitary. But there is no closed-form generator for a general external
+field: $S$ is an asymptotic series in $1/m_e$, so the *truncation* of that series at
+order $(v/c)^2$ is `[APPROXIMATION]`, the odd terms being squared once and dropped.
+The boxed Hamiltonian is therefore a **truncated expansion, valid through the order
+displayed** — not an exact closed-form result. It acts on the $4\times4$ spinor at the
+accuracy retained, and as a $2\times2$ operator on $\phi$ it is the expansion,
+accurate to $\mathcal{O}(\alpha^4)$ corrections, and it stops being adequate once
 $\alpha^4$ terms compete with the structure being resolved.
 
 **Model Ledger — Dirac Hamiltonian to Foldy-Wouthuysen Hamiltonian**
@@ -542,7 +547,7 @@ A standard result from Fourier analysis then gives: $$\Delta x\,\Delta k \geq \f
 |---|---|---|---|
 |§3.1|Isolate U(1)-coupled electron sector; treat $A_\mu$ as classical|Electron QED Lagrangian|`[APPROXIMATION]` — sector isolation, mean field|
 |§3.2|Apply Euler-Lagrange|**Dirac equation** (bridge zone)|`[DERIVATION]` — exact within the Lagrangian|
-|§3.5–3.6|Foldy-Wouthuysen to order $(v/c)^2$|**Pauli equation** (with spin)|`[APPROXIMATION]` — exact transform, truncated series|
+|§3.5–3.6|Foldy-Wouthuysen to order $(v/c)^2$|**Pauli equation** (with spin)|`[APPROXIMATION]` — unitary at each order, series truncated at $(v/c)^2$|
 |§3.7|Drop spin terms, $B\to0$|**Schrödinger equation**|`[APPROXIMATION]` — discards a degree of freedom|
 
 The transformation in §3.5 is a derivation; the truncation that follows it is

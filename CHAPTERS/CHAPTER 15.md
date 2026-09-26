@@ -339,7 +339,30 @@ $$\mathbf{F}_{drag} = -6\pi\mu a\mathbf{U}$$
 
 **Applications:** Sedimentation of small particles; blood cell motion; swimming of microorganisms; MEMS fluid channels; aerosol particle dynamics.
 
-The Stokes drag formula is also the basis for the Einstein relation (Ch. 13 §13.6.2): combining $F_{drag} = 6\pi\mu a v$ with $F_{drift} = D\nabla c / c$: $D = k_BT/(6\pi\mu a)$ (Stokes-Einstein equation).
+The Stokes drag formula is also the basis for the Einstein relation
+(Ch. 13 §13.6.2). The derivation has to get the *driving force* right, because that
+is where the usual shortcut slips. The thermodynamic force on a dilute solute comes
+from the chemical potential, and in the ideal dilute limit
+
+$$\mathbf{F}_{th} = -k_BT\nabla\ln c = -k_BT\frac{\nabla c}{c}$$
+
+This has units of energy per length — a force ✓. (The tempting shorthand
+$\mathbf{F} = D\nabla c/c$ is dimensionally wrong: $D$ is m²/s and $\nabla c/c$ is
+1/m, so the product is m/s, a **velocity**, not a force. It is easy to write
+because it *looks* like it will cancel into something sensible, but it silently
+mixes the transport coefficient into the driving term.)
+
+With the force correct, the two routes agree. Balancing drift against drag and
+converting to a flux, $k_BT|\nabla c|/c = 6\pi\mu a\,\mathbf{U}$ together with
+$\mathbf{J} = -c\mathbf{U} = -D\nabla c$, gives
+
+$$D = \frac{k_BT}{6\pi\mu a}$$
+
+Equivalently, and more transparently as a statement about *mobility*: Stokes drag
+fixes the hydrodynamic mobility of the sphere, $\mu_{mech} = 1/(6\pi\mu a)$, and
+Einstein's relation is $D = \mu_{mech}k_BT$ — same answer, but now the force, the
+mobility, and the diffusion coefficient each have their own dimension and the
+balance is visible rather than assumed. (Stokes–Einstein).
 
 ---
 
