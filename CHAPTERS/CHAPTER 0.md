@@ -111,8 +111,13 @@ This is the **Einstein–Hilbert action**, the simplest possible action for grav
 **$R$** — the **Ricci scalar**. Built from the metric and its derivatives: $$R = g^{\mu\nu} R_{\mu\nu}$$ where $R_{\mu\nu}$ is the Ricci tensor: $$R_{\mu\nu} = \partial_\rho \Gamma^\rho_{\mu\nu} - \partial_\nu \Gamma^\rho_{\mu\rho} + \Gamma^\rho_{\rho\lambda}\Gamma^\lambda_{\mu\nu} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\rho}$$ and $\Gamma^\rho_{\mu\nu}$ are the **Christoffel symbols** — functions of $g_{\mu\nu}$ and its first derivatives that encode how the geometry curves. $R$ at a point is a single number that summarizes "how much spacetime is curved here." But it is only **one scalar contraction** of the full Riemann tensor, so its sign and value must not be read off as a verdict on curvature:
 
 - $R = 0$ does **not** by itself mean flat spacetime
-- $R > 0$: net positive scalar curvature (as near an isolated mass)
-- $R < 0$: net negative scalar curvature (anti-de Sitter-type geometry)
+- $R > 0$: net positive scalar curvature
+- $R < 0$: net negative scalar curvature
+
+> [!warning] The sign of $R$ does not identify a spacetime
+> Two cautions on the bullet list above. First, the sign of the Ricci scalar is **not** a signature of the geometry taken as a whole. A Schwarzschild black hole — the most striking example of curved spacetime — has $R_{\mu\nu} = 0$ and hence $R = 0$ *everywhere outside the horizon*, despite carrying nonzero **Weyl** curvature. So "near a mass" is not associated with $R>0$; in vacuum, mass sources Weyl curvature, not Ricci curvature. Positive $R$ arises in genuinely matter- or vacuum-energy-dominated regions, such as the positive-curvature interior solution in the Newtonian/stellar regime, not from the mere presence of a gravitating source.
+>
+> Second, "$R<0$ is anti-de Sitter" names a common *example*, not an identification. Anti-de Sitter space is a maximally symmetric vacuum solution with constant negative $R$, but negative $R$ also occurs in a great many other spacetimes — matter-dominated cosmological solutions, gravitational-wave regions, generic inhomogeneous curvature. The sign alone never selects AdS.
 
 > [!warning] $R = 0$ does not imply flat spacetime
 > This is one of the most common misconceptions in the subject, and it is worth
@@ -379,8 +384,8 @@ $$V(H) = -\mu^2|H|^2 + \lambda|H|^4$$
 
 |Region|Shape|Meaning|
 |---|---|---|
-|$|H|= 0$|
-|$|H|= v/\sqrt{2}$|
+|$\lvert H\rvert = 0$|Origin of the potential — a local maximum|Symmetry unbroken; the field sits at the centre|
+|$\lvert H\rvert = v/\sqrt{2}$|Circle of degenerate minima (the "Mexican hat")|Spontaneous symmetry breaking; the vacuum picks one point on the circle|
 
 The minimum occurs at: $$|H|_{\min} = \frac{v}{\sqrt{2}}, \quad v = \sqrt{\frac{\mu^2}{\lambda}} \approx 246\,\text{GeV}$$
 

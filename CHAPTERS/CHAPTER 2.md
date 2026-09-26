@@ -126,7 +126,7 @@ This chapter is a **reference map**, not a reading chapter. Every named physical
 
 ---
 
-**Bloch's Theorem** Electron wavefunctions in a periodic crystal take the form ψ_nk(r) = e^(ik·r) u_nk(r), a plane wave modulated by a lattice-periodic function. **Layer:** L1 | **Revealed by:** Ch. 1 Noether + Ch. 3: discrete translation symmetry conserves crystal momentum ħk | **Branch:** EEE/ME/CE (foundation of all band-structure-based materials analysis) | **→ Ch. 6**
+**Bloch's Theorem** Electron wavefunctions in a periodic crystal take the form ψ_nk(r) = e^(ik·r) u_nk(r), a plane wave modulated by a lattice-periodic function. **Layer:** L1 | **Revealed by:** Ch. 6: commuting with the *discrete* lattice translations gives joint eigenstates labelled by the irreducible representations of that discrete group (crystal momentum ħk). *Not* Noether — that theorem needs a continuous symmetry; see Ch. 6 §6.1.2 | **Branch:** EEE/ME/CE (foundation of all band-structure-based materials analysis) | **→ Ch. 6**
 
 ---
 
@@ -142,7 +142,7 @@ This chapter is a **reference map**, not a reading chapter. Every named physical
 
 ---
 
-**Fractional Quantum Hall Effect** Hall conductance at σ_xy = (p/q)e²/h for fractional p/q; quasiparticles carry fractional charge e/q; non-Abelian anyons emerge. **Layer:** L0→L1 | **Revealed by:** Beyond single-particle theory; many-body Laughlin wavefunction; topological order; relevant to f(φ) discussion in Ch. 0 | **Branch:** EEE (topological quantum computing platform) | **→ Epilogue**
+**Fractional Quantum Hall Effect** Hall conductance at σ_xy = (p/q)e²/h for fractional p/q; quasiparticles carry fractional charge e/q; non-Abelian anyons emerge. **Layer:** L0→L1 | **Revealed by:** Beyond single-particle theory; many-body Laughlin wavefunction; topological order; relevant to the unknown-sector discussion in Ch. 0 | **Branch:** EEE (topological quantum computing platform) | **→ Epilogue**
 
 ---
 
@@ -442,7 +442,7 @@ This chapter is a **reference map**, not a reading chapter. Every named physical
 
 ---
 
-**Neutrino Oscillations** Neutrinos produced in flavor eigenstates (νₑ, νμ, ντ) propagate as mass eigenstate superpositions; flavor oscillates with distance L_osc ∝ E/Δm². **Layer:** L0 | **Revealed by:** Ch. 0 §0.8 (PMNS matrix); requires neutrino masses → extension of L_SM → in f(φ) placeholder; direct evidence the action in Ch. 0 is incomplete | **Branch:** Metrology (reactor neutrino monitoring); physics frontier | **→ Epilogue**
+**Neutrino Oscillations** Neutrinos produced in flavor eigenstates (νₑ, νμ, ντ) propagate as mass eigenstate superpositions; flavor oscillates with distance L_osc ∝ E/Δm². **Layer:** L0 | **Revealed by:** Ch. 0 §0.8 (PMNS matrix); requires neutrino masses → extension of L_SM → in the $\mathcal{F}[\ldots]$ unknown sector; direct evidence the action in Ch. 0 is incomplete | **Branch:** Metrology (reactor neutrino monitoring); physics frontier | **→ Epilogue**
 
 ---
 

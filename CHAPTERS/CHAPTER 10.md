@@ -1,6 +1,6 @@
 # CHAPTER 10
 # Bridge B.b — Statistical Mechanics and Thermodynamics
-### The $N \to \infty$ Descent: How the Four Laws Emerge from Counting
+### The Thermodynamic Limit and the Statistical Description: What Counting Can and Cannot Derive
 
 ---
 
@@ -27,10 +27,20 @@ and averaging over microscopic degrees of freedom.
 | Bridge | Operation | Produces | Chapter |
 |---|---|---|---|
 | B.a | $\hbar\to 0$ | Classical mechanics | 9 |
-| **B.b** | $N\to\infty$, ensemble average | **Statistical mechanics + thermodynamics** | **10 (this)** |
+| **B.b** | Thermodynamic limit ($N,V\to\infty$ at fixed density) + statistical/ensemble description | **Statistical mechanics + thermodynamics** | **10 (this)** |
 | B.c | Classical U(1) field limit | Maxwell's equations | 11 |
 | B.d | Weak-field metric | Newtonian gravity | 8 |
 | B.e | Kubo + quantum scattering | Generalized transport law | 13 |
+
+> [!warning] "Bridge B.b" bundles two logically separate steps — do not conflate them
+> The shorthand "$N\to\infty$" that appears throughout this book as the label for Bridge B.b compresses two distinct operations, and precision is worth the extra words:
+>
+> 1. **The thermodynamic limit** is a genuine limiting procedure: $N,V\to\infty$ with $N/V = n$ held fixed, and with intensive quantities (density $n$, temperature $T$, pressure $p$, energy per particle $u$) held at their limiting values. What it buys you is that fluctuations become negligible relative to mean values, so that averages $\langle X\rangle$ are sharply peaked and extensive quantities scale linearly. Legitimately: $N,V\to\infty$ at fixed density.
+> 2. **The statistical / ensemble description** is a *logical and probabilistic* step, not a limit at all. It says a system of $N$ particles should be described by a probability distribution over microstates rather than a point in phase space. Nothing about this requires $N$ to be large — for $N=1$ the microcanonical ensemble is perfectly well defined, and for a few particles one still needs the ensemble. It is what licenses Gibbs's $1/N!$ and replaces an intractable $10^{23}$-dimensional phase space by a tractable distribution over energy levels.
+>
+> Conversely, averaging over an ensemble does **not** substitute for the thermodynamic limit: ensemble averaging without $N\to\infty$ leaves you with large fluctuations, and the "thermodynamic" description of a small system is legitimately different (fluctuation theorems, negative-entropy microstates). Both steps are needed for ordinary thermodynamics, and they do different work. The old label "$N\to\infty$ → thermodynamics" suggests one magical limit; the accurate label is *thermodynamic limit **+** statistical description*.
+>
+> The same caveat applies to the continuum hypothesis and other uses of the symbol elsewhere in the book: a limit in which $N$ grows while a length scale is simultaneously introduced is a *coarse-graining*, and should be read as such.
 
 The deep point: **you can take these limits in any order.** Classical statistical
 mechanics applies Bridge B.a first (to get classical trajectories), then Bridge B.b
@@ -235,7 +245,19 @@ the energy fluctuates around its mean. Larger fluctuations → larger heat capac
 
 ---
 
-## 10.5 — The Four Laws of Thermodynamics: Derived
+## 10.5 — The Four Laws: Statistical Foundations and Their Limits
+
+> [!warning] What "deriving the four laws" does and does not mean
+> Statistical mechanics provides genuine microscopic foundations for thermodynamics, and for one of the four laws it provides something remarkable: a *statistical explanation of why the law holds at all*, rather than a restatement of it. But the four laws are not equivalent in this respect, and presenting them as uniformly "derived from counting" overstates the case.
+>
+> | Law | What statistical mechanics contributes |
+> |---|---|
+> | **Zeroth** | Explains thermal equilibrium and the *transitivity* of temperature via the equality of $\beta = 1/k_BT$ across equilibrium systems. A structural account, not a counting result. |
+> | **First** | Essentially **energy conservation** — Noether's theorem for time-translation symmetry, a dynamical symmetry, not a statistical one. Statistical mechanics shows *how* energy divides into work and heat (the $\text{Tr}(d\hat\rho\,\hat H)$ / $\text{Tr}(\hat\rho\,d\hat H)$ split below). It does not derive energy conservation. |
+> | **Second** | The one law that receives a true *statistical* explanation: entropy increase is overwhelmingly probable because disordered macrostates have exponentially more microstates. This is the characteristic success of the approach, and the reason the second law is usually singled out. |
+> | **Third** | Requires assumptions *beyond* counting: non-degenerate ground states, bounded or well-behaved low-temperature spectra, and a gap or finite ground-state degeneracy. $S/N \to 0$ is a statement about the low-energy density of states, which pure counting of accessible states does not by itself deliver. |
+>
+> The defensible summary: **statistical mechanics provides microscopic foundations for the thermodynamic laws, with the second law acquiring its characteristic statistical interpretation.** The others are clarified, structured, or given a mechanism — but they are not all derived from counting, and a derivation that claims otherwise is usually smuggling in an extra assumption.
 
 ### Law 0 — Thermal Equilibrium (The Zeroth Law)
 
@@ -532,8 +554,8 @@ with $a(T) = a_0(T - T_c)$ changing sign at the transition.
 | System | $\phi$ | Symmetry broken | $T_c$ | Chapter |
 |---|---|---|---|---|
 | Higgs field | Complex scalar $H$ | SU(2)×U(1) → U(1) | 246 GeV | 0, §0.7 |
-| BCS superconductor | Gap $\Delta = |\Delta|e^{i\theta}$ | U(1) | $\sim$ meV | 7, §7.6 |
-| BEC | Condensate $\Psi = |\Psi|e^{i\theta}$ | U(1) | $\sim$ μeV | 7, 10 |
+| BCS superconductor | Gap $\Delta = \lvert\Delta\rvert e^{i\theta}$ | U(1) | $\sim$ meV | 7, §7.6 |
+| BEC | Condensate $\Psi = \lvert\Psi\rvert e^{i\theta}$ | U(1) | $\sim$ μeV | 7, 10 |
 | Ferromagnet | Magnetization **M** | SO(3) | Curie T | 10 |
 | Ferroelectric | Polarization **P** | Inversion | Curie T | 10 |
 | Liquid-gas | Density ρ-ρ_c | Z₂ | Critical T | 10 |
@@ -652,7 +674,7 @@ Bridge B.b is complete. The descent from quantum mechanics to thermodynamics:
 
 | Step | Operation | Result |
 |---|---|---|
-| Density matrix | $\hat\rho = \Sigma p_n|n\rangle\langle n|$ | Encodes statistical ignorance |
+| Density matrix | $\hat\rho = \Sigma p_n\lvert n\rangle\langle n\rvert$ | Encodes statistical ignorance |
 | Trace environment | $\hat\rho_S = \text{Tr}_E(\hat\rho_{SE})$ | Irreversibility from many DOF |
 | Von Neumann entropy | $S = -k_B\text{Tr}(\hat\rho\ln\hat\rho)$ | Quantifies ignorance |
 | Max entropy, fixed $\langle\hat H\rangle$ | Lagrange multiplier $\beta$ | Boltzmann distribution; temperature |

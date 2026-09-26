@@ -72,7 +72,13 @@ where $\eta_{\mu\nu} = \text{diag}(-1,+1,+1,+1)$ is the flat Minkowski metric an
 
 **Quantitative justification:**
 
-| Environment | $|h_{00}| = 2|\Phi|/c^2$ | Where | |---|---|---| | Earth's surface | $1.4\times 10^{-9}$ | Engineering on Earth | | GPS satellite orbit | $3.3\times 10^{-10}$ | GPS receivers | | Solar surface | $4.2\times 10^{-6}$ | Solar physics | | Neutron star surface | $\sim 0.3$ | Not weak! GR required exactly | | Black hole horizon | $\sim 1$ | Full GR, no perturbation theory |
+| Environment | $\lvert h_{00}\rvert = 2\lvert\Phi\rvert/c^2$ | Where |
+|---|---|---|
+| Earth's surface | $1.4\times 10^{-9}$ | Engineering on Earth |
+| GPS satellite orbit | $3.3\times 10^{-10}$ | GPS receivers |
+| Solar surface | $4.2\times 10^{-6}$ | Solar physics |
+| Neutron star surface | $\sim 0.3$ | Not weak! GR required exactly |
+| Black hole horizon | $\sim 1$ | Full GR, no perturbation theory |
 
 The perturbative treatment is valid for everything from a laboratory balance to the GPS network to gravitational wave emission from neutron star binaries in their inspiral phase.
 

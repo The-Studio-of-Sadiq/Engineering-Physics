@@ -239,7 +239,7 @@ $$S_I = 2eI \qquad\text{(full shot noise)}$$
 
 The **Fano factor** $F = S_I/2eI$ measures the deviation from Poissonian statistics. $F = 1$: independent tunnel events. $F < 1$: sub-Poissonian (fermion antibunching; Pauli exclusion supresses fluctuations). $F > 1$: super-Poissonian (bunching; correlated transport).
 
-**Engineering:** Shot noise limits the SNR of photodetectors and PIN diodes. The Fano factor is used to characterize quantum transport regimes — a direct measurement of whether transport is diffusive ($F = 1/3$ for 1D diffusive wire), ballistic ($F = 0$), or correlated.
+**Engineering:** Shot noise limits the SNR of photodetectors and PIN diodes. The Fano factor is used to characterize quantum transport regimes — a direct measurement of whether transport is diffusive, ballistic ($F = 0$), or correlated. The famous **$F = 1/3$** suppression is the standard result for **coherent, elastic, single-particle diffusive transport in a many-channel quasi-one-dimensional conductor at zero temperature**; it is not a generic property of anything informally called "a 1D diffusive wire." It requires dephasing to be negligible over the wire, contacts to be fully equilibrating, spin degeneracy to be present, and the channel number large enough for the average to be self-averaging. Depart from those conditions and the number moves: finite temperature, spin-active or strongly correlated channels, long-range disorder, or a short wire with few channels all shift $F$ away from $1/3$. Read $F$ as a diagnostic whose value depends on the regime, not as a label attached to "diffusive."
 
 ---
 
@@ -448,7 +448,14 @@ $$\rho = \frac{1}{\sigma} = \frac{m_e}{n_e e^2\tau} = \frac{m_e v_F}{n_e e^2\ell
 
 $$\sigma(\omega) = \frac{n_e e^2\tau}{m_e}\cdot\frac{1}{1 - i\omega\tau}, \qquad \sigma_0 = \frac{n_e e^2\tau}{m_e}$$
 
-At $\omega\tau \ll 1$: purely real, Ohmic. At $\omega\tau \gg 1$: purely imaginary, reactive. The crossover at $\omega = 1/\tau \sim 10^{13}$–$10^{14}$ Hz (infrared) marks where metals transition from good reflectors to transparent.
+At $\omega\tau \ll 1$: purely real, Ohmic. At $\omega\tau \gg 1$: purely imaginary, reactive. The crossover at $\omega \sim 1/\tau$ therefore marks where the Drude response stops being predominantly **dissipative** and becomes predominantly **reactive**. For typical metals $\tau \sim 10^{-14}$ s, so this sits in the far infrared.
+
+> [!warning] $1/\tau$ is *not* the optical transparency frequency
+> It is tempting to read the Drude crossover as the frequency at which a metal stops reflecting and becomes transparent. That is wrong, and conflating the two is a common error. Reflectivity and transparency are governed principally by the **plasma frequency**
+> $$\omega_p = \sqrt{\frac{n_e e^2}{\varepsilon_0 m_e^*}}$$
+> together with **interband** transitions. For typical metals $\omega_p \sim 10^{15}$–$10^{16}$ Hz (visible to UV), roughly one to two orders of magnitude *above* $1/\tau$.
+> Below $\omega_p$ the free-electron gas cannot respond fast enough to screen the field, so metals are strongly reflective — which is why metals look shiny well past the infrared Drude crossover. Metals only become transparent in the thin-film or narrow-gap sense when the film is thinner than the skin depth, or when interband absorption closes the gap.
+> **The correct statement:** $\omega\tau\sim1$ marks the crossover from predominantly dissipative to predominantly reactive Drude response. Optical reflectivity and transparency additionally depend on $\omega_p$ and on interband contributions.
 
 #### The classical Drude model, and why it agrees
 
@@ -761,7 +768,7 @@ $$\boxed{\mathbf{J}_X = -L_{XX}\nabla\phi_X}$$
 |Soret (thermodiffusion)|$\langle\hat J^N(0)\hat J^Q(t)\rangle$|$S_T$|ChE|
 |Dufour (diffusion-thermo)|(Onsager)|$D^Q$|ChE|
 
-**This table is the architectural backbone of Layer 2 engineering science.** Every constitutive relation used in electrical engineering, mechanical engineering, civil engineering, and chemical engineering is one row in this table. Every coefficient in the table is a Green-Kubo integral of an equilibrium quantum mechanical correlation function.
+**This table is the architectural backbone of Layer 2 engineering science.** It collects the constitutive relations used across electrical, mechanical, civil, and chemical engineering — though not every engineering constitutive relation is a row here, and the table is organised by the *shared linear-response structure* rather than by exhaustiveness. On the coefficients themselves, precision matters: **many** of the transport coefficients above are Green–Kubo integrals of an equilibrium correlation function, but **not all of them are**, and the exceptions are not oversights. Chemical reaction rate constants are kinetic parameters set by reaction energetics and collision theory, not by a current-response correlator; elastic moduli are static elastic constants — second derivatives of the strain energy — fixed by the full interatomic potential and entering a linear-response framework only in the trivial static limit. Each needs its own microscopic or phenomenological framework, and labelling them uniformly `[DERIVATION]` would be wrong.
 
 ---
 

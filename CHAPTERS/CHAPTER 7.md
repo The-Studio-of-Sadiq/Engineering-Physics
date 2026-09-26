@@ -20,7 +20,7 @@ This chapter develops the topological perspective on bands and shows that:
 
 1. The integer quantum Hall conductance is quantized because it equals a topological integer (the Chern number) — immune to any disorder or imperfection
 2. Topological insulators have surface states protected by symmetry — they cannot be removed without breaking that symmetry or closing the bulk gap
-3. Weyl semimetals host quasiparticles that behave exactly as the Weyl fermions in the Standard Model Lagrangian (Ch. 0) — topology has brought particle physics into a material you can hold in your hand
+3. Weyl semimetals host low-energy quasiparticles described by an effective Weyl Hamiltonian - the same *mathematical form* as the Weyl fermion fields of the Standard Model Lagrangian (Ch. 0). These are emergent quasiparticles of a condensed-matter band structure, not the fundamental SM fields, so this is a `[STRUCTURAL CONNECTION]` rather than an identification: topology has brought particle-physics form language into a material you can hold in your hand
 4. Superconductivity is broken U(1) symmetry — the same mathematical template as the Higgs mechanism (Ch. 0 §0.7), now at millielectronvolt energies
 
 The topology thread promised in Ch. 0 §0.9 is collected here.
@@ -193,7 +193,17 @@ Result: **helical edge states** with **spin-momentum locking**:
 
 $$\langle\downarrow\text{left}|\hat V|\uparrow\text{right}\rangle = -\langle\downarrow\text{left}|\hat V|\uparrow\text{right}\rangle = 0$$
 
-**Any time-reversal invariant impurity produces exactly zero backscattering.** A magnetic impurity (which breaks $\mathcal{T}$) can gap the edge states — a feature used in quantum anomalous Hall devices.
+**A time-reversal invariant, non-magnetic impurity cannot cause elastic single-particle backscattering between Kramers partners on an isolated helical edge.** A magnetic impurity (which breaks $\mathcal{T}$) can gap the edge states — a feature used in quantum anomalous Hall devices.
+
+> [!warning] The protected-channel statement has a domain of validity
+> "Zero backscattering" is a statement about a *specific idealisation*, and it is easy to over-apply. Precisely what the cancellation above rules out is **elastic, single-particle backscattering between the Kramers pair, by a perturbation that respects $\hat{\mathcal{T}}$, with no other mechanism available**. Outside that, protection fails:
+> - **Interactions.** Electron–electron interactions can redistribute momentum between edge modes; while strict single-particle backscattering remains forbidden, the current is no longer carried by independent quasiparticles and the ideal conductance picture needs modification.
+> - **Inelastic processes.** Phonon absorption/emission introduces energy dissipation and a non-elastic path; the $\mathcal{T}$-selection argument applies to elastic scattering only.
+> - **Multiple-particle / higher-order processes.** Sequential two-impurity events involving an intermediate bulk or virtual state can in effect reverse the propagation direction.
+> - **Magnetic or otherwise symmetry-breaking perturbations.** These open a backscattering channel directly.
+> - **Coupling to bulk states.** Once the edge is coupled to bulk conduction or additional edge channels, a reverse-propagating state exists and backscattering is possible.
+>
+> So the defensible statement is the narrow one above; "any time-reversal invariant impurity produces exactly zero backscattering" is too strong as written.
 
 ### 7.4.3 — 3D Topological Insulators
 
@@ -221,9 +231,9 @@ $$S_\theta = \frac{\theta e^2}{2\pi h}\int d^3r\,dt\,\mathbf{E}\cdot\mathbf{B}$$
 
 For a trivial insulator: $\theta = 0$. For a strong TI: $\theta = \pi$.
 
-This is **exactly the form of the QCD θ-term** from Ch. 0 §0.9: $\theta\frac{g^2}{32\pi^2}G_{\mu\nu}\tilde G^{\mu\nu}$, with EM fields replacing gluon fields. The parameter $\theta$ that was a mystery in QCD (why is $|\theta_{QCD}| < 10^{-10}$?) appears in condensed matter with $\theta = \pi$ — a different value, but the same physics.
+The **mathematical structure is the same class of object** as the QCD θ-term from Ch. 0 §0.9: $\theta\frac{g^2}{32\pi^2}G_{\mu\nu}\tilde G^{\mu\nu}$, with EM fields in place of gluon fields — a total-derivative term $\theta\,F\tilde F$ whose coefficient is integer-valued and therefore topologically protected. This is a `[STRUCTURAL CONNECTION]`, and the structural language is deliberate: the systems, the effective theories, and the physics are **not** the same. In QCD, $\theta$ is a single number whose smallness ($\lesssim10^{-10}$) is the strong-CP problem, measured in a fundamental theory of the Standard Model. In a topological insulator, $\theta = \pi$ is a *response coefficient* of an effective band theory, fixed by the bulk band structure. The $\pi$ here is a quantized, measurable, and entirely mundane topological invariant; the QCD $\theta$ is a free parameter of a fundamental theory. Sharing a mathematical form is not sharing an explanation, and the analogy earns its keep by illuminating the *form* of the strong-CP problem, not by equating the two $\theta$'s.
 
-The Peccei-Quinn mechanism (Ch. 0) promotes $\theta$ to a dynamical field — the **axion**. Proposed axion dark matter could be detected by its coupling $\mathbf{E}\cdot\mathbf{B}$ — using topological insulator heterostructures as detectors. **This is a direct link from the f(φ) placeholder of Ch. 0 to a table-top condensed matter experiment.**
+The Peccei-Quinn mechanism (Ch. 0) promotes $\theta$ to a dynamical field — the **axion**. Proposed axion dark matter could be detected by its coupling $\mathbf{E}\cdot\mathbf{B}$ — using topological insulator heterostructures as detectors. **This is a direct link from the unknown sector $\mathcal{F}[\ldots]$ of Ch. 0 to a table-top condensed matter experiment.**
 
 ---
 

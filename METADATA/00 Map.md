@@ -357,12 +357,19 @@ $$\mathcal{L}_{SM} = \underbrace{-\frac{1}{4}F^a_{\mu\nu}F^{a\mu\nu}}_{\text{gau
 |Time translation|Energy|First law of thermodynamics; energy balance|
 |Space translation|Linear momentum|Newton's 2nd law; force balance|
 |Rotation|Angular momentum|Torque balance; shaft power|
-|U(1) gauge (EM)|Electric charge|Kirchhoff's current law|
+|Global phase symmetry of charged matter| Electric charge|Kirchhoff's current law|
 |SU(3) gauge|Color charge|(Confined inside nuclei; never reaches Layer 3)|
 
 **KCL is not one step from Noether's theorem — it is the endpoint of a six-link chain, each link a separate, named operation:**
 
-> **[DERIVATION]** U(1) gauge invariance of the action ⟹ (Noether's theorem) ⟹ a conserved current $j^\mu$ exists.
+> **[DERIVATION]** Within a theory possessing local $U(1)$ gauge structure, the matter fields carry a conserved charge. The charge is associated with the **global** phase symmetry $\psi \to e^{i\alpha}\psi$ (a continuous one-parameter group), so Noether's *first* theorem applies and yields a conserved current $j^\mu$ with $\partial_\mu j^\mu = 0$.
+
+> [!warning] Precise attribution: which symmetry, and which Noether
+> It is worth being exact, because the Noether → KCL thread is load-bearing for this book. Two distinct things are easily conflated:
+> - The **global** phase symmetry of charged matter is a continuous one-parameter symmetry group. *This* is what Noether's first theorem acts on, and it is what produces the conserved charge and the current $j^\mu$.
+> - **Local** gauge invariance — invariance of the action under $\psi \to e^{ig\alpha(x)}\psi$, $A_\mu \to A_\mu + \partial_\mu\alpha$ with $\alpha$ an arbitrary *function of spacetime* — is not a symmetry in the Noether-first-theorem sense at all. Because the parameter is a function rather than a number, the usual charge-conserving variation does not follow. Local gauge structure is instead associated with Noether's **second** theorem: constraints among the equations of motion, with the "charges" being the identity among those EOMs (the Noether identities $D_\mu J^\mu \equiv 0$).
+>
+> So the honest statement of link 1 is: *gauge structure is what makes the electromagnetic field a connection $A_\mu$ at all*, and the *global* residual phase symmetry of charged matter carries the Noether charge. Writing "U(1) gauge symmetry ⟹ Noether ⟹ conserved current" is a compressed shorthand for this, and it is used as shorthand in a few places below — but the distinction matters, because the gauge redundancy is a redundancy (a description choice) whereas the global symmetry is a physical symmetry.
 
 > **[DERIVATION]** That conservation law is exactly the continuity equation $\partial_\mu j^\mu = 0$ — worked out explicitly in Bridge B.c below.
 
@@ -565,7 +572,7 @@ Linear Combination of Atomic Orbitals (LCAO) and Molecular Orbital (MO) theory:
 
 Take many atoms. Arrange them periodically. Apply the Schrödinger equation with a periodic potential $V(\mathbf{r}) = V(\mathbf{r}+\mathbf{a})$.
 
-**Bloch's theorem** falls out of the discrete translational symmetry (Noether again: the conserved quantity is crystal momentum $\hbar\mathbf{k}$):
+**Bloch's theorem** follows from the *discrete* lattice translation symmetry — not from Noether's theorem, which requires a continuous one-parameter group. Since $\hat H$ commutes with every lattice translation, the states may be chosen as joint eigenstates, and the one-dimensional irreducible representations of a discrete translation group are labelled by a phase $e^{i\mathbf{k}\cdot\mathbf{a}}$:
 
 $$\Psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}} u_{n\mathbf{k}}(\mathbf{r})$$
 
@@ -643,7 +650,7 @@ This is Newton's second law for the expectation value of momentum.
 
 ---
 
-### Bridge B.b — N → ∞, Ensemble Averaging: QM to Thermodynamics
+### Bridge B.b — Thermodynamic Limit + Statistical Description: QM to Thermodynamics
 
 **What you are assuming:** that you cannot track all $N \sim 10^{23}$ microstates — only macroscopic averages matter.
 
@@ -655,7 +662,7 @@ In the $N \to \infty$ limit with maximum entropy (least-biased) reasoning:
 
 - Canonical ensemble → Boltzmann distribution $P_i \propto e^{-E_i/k_BT}$
 - Partition function $Z = \text{Tr}(e^{-\hat H/k_BT})$ encodes all thermodynamics
-- All four laws of thermodynamics emerge as statistical statements, not axioms
+- Statistical mechanics provides microscopic foundations for the thermodynamic laws, with the **second** law acquiring its characteristic statistical interpretation. The four are not equivalent in this respect: the first law is essentially energy conservation (a dynamical symmetry, not a statistical one), the zeroth is explained via transitivity of $\beta = 1/k_BT$, and the third needs extra assumptions about low-temperature spectra. Ch. 10 §10.5 gives the per-law accounting. Note also that Bridge B.b bundles *two* separate steps — the thermodynamic limit ($N,V\to\infty$ at fixed density) and the statistical/ensemble description — and ensemble averaging is not itself a limit.
 
 **Phase transitions via Landau theory:** Near a phase transition, write the free energy as a power series in an order parameter $\phi$:
 
@@ -687,7 +694,7 @@ In 3+1 notation, this is exactly $\nabla\cdot\mathbf{E} = \rho/\epsilon_0$ and $
 
 **Four Maxwell equations = one covariant equation + one algebraic identity. Both fall directly out of the Layer-0 action.**
 
-**The KCL thread, link 2 of 6 (see §0.2):** [DERIVATION] U(1) gauge invariance → charge conservation survives here as the continuity equation
+**The KCL thread, link 2 of 6 (see §0.2):** [DERIVATION] Charge conservation — carried by the **global** phase symmetry of charged matter, via Noether's first theorem — survives the classical limit as the continuity equation
 
 $$\partial_\mu j^\mu = 0$$
 
@@ -767,7 +774,7 @@ These are not separate postulates. They are Noether's theorem, living here.
 
 ### 2.2 — Hamiltonian Mechanics and Phase Space
 
-The Hamiltonian $H(q,p) = T + V$ reformulates mechanics in phase space. Its value is: classical mechanics is the grammar of Layer-3 dynamics — every differential equation a working engineer writes for a dynamic system is either a Lagrangian or a Hamiltonian equation in disguise.
+The Hamiltonian $H(q,p) = T + V$ reformulates mechanics in phase space. Its value: classical mechanics is the *grammar* of much of Layer-3 dynamics — many engineering dynamical models admit a variational, Hamiltonian, port-Hamiltonian, or contact/DAE formulation. But this is a strong tendency, not a universal theorem, and the exceptions are not edge cases. Plenty of standard engineering models are **dissipative** (ordinary differential equations with friction, drag, and irreversibility), **stochastic** (random walks, Markov chains, stochastic differential equations in state-space or Fokker–Planck form), **empirical** (curve fits and lookup tables), **constrained** (describing functions, complementarity), **hybrid** (mode switching with logic), **non-variational**, or **reduced-order closures** standing in for unresolved microstructure. Dissipative and stochastic models in particular need extra structure — a friction/metric term, a noise intensity, a dissipative potential — before any variational principle is available. So the honest formulation is: *variational structure is a powerful and widely applicable way to organise dynamics, not a property that every engineering differential equation possesses.*
 
 Canonical transformations and action-angle variables: worth introducing here because they explain why rotating machinery, vibrating structures, and oscillating circuits all share mathematical form (they're all harmonic oscillators in appropriate coordinates).
 
@@ -775,7 +782,7 @@ Canonical transformations and action-angle variables: worth introducing here bec
 
 ### 2.3 — Thermodynamics and Statistical Mechanics
 
-The four laws, now derived not postulated (Bridge B.b):
+The four laws, given microscopic foundations rather than postulated (Bridge B.b) — with the per-law qualifications in Ch. 10 §10.5:
 
 - Zeroth: equilibrium is the maximum-entropy state
 - First: energy conservation (Noether: time-translation symmetry survives Bridge B.b)
@@ -914,7 +921,7 @@ $$\underbrace{\text{Flux}}_{\text{what flows}} = -\underbrace{L}_{\text{material
 |Structural|Stress σ|E (modulus)|Strain ε|Hooke|CE, ME|
 |Chemical|Reaction rate r|k (rate const.)|Concentration c|Arrhenius (modified) [PHENOMENOLOGICAL]|ChE|
 
-Every coefficient L is traceable to a Layer-1 Kubo calculation. When these coefficients break down (high field, quantum regime, exotic material), the student knows exactly where to go: back to Layer 1, sometimes Layer 0.
+Many of the linear-response transport coefficients in this table can be represented through Kubo/Green–Kubo relations, and for those the Layer-1 route is the one to remember. But **not every row is a Kubo coefficient**, and the distinction is worth keeping: Arrhenius rate constants are chemical-kinetic parameters fixed by reaction energetics and collision theory, not by a current-response correlator; elastic moduli are static elastic constants (strain energy second derivatives), which enter linear response only in the trivial static limit and are set by the full interatomic potential, not by a dissipative transport correlator. Each needs its own microscopic or phenomenological framework. When any of these coefficients breaks down (high field, quantum regime, exotic material), the student knows exactly where to go: back to Layer 1, sometimes Layer 0.
 
 ---
 
@@ -955,16 +962,19 @@ When you lump any continuous domain, two types of variable emerge:
 - **Effort variable (e):** the "potential," the thing that drives flow (does work _per unit_ of flow)
 - **Flow variable (f):** the "current," the thing that flows
 
-**Power** in every domain is simply $P = e \cdot f$.
+**Power** in every domain is simply $P = e \cdot f$ — provided the flow is the true conjugate of the effort.
 
 |Domain|Effort e|Flow f|Power e·f|
 |---|---|---|---|
 |Electrical|Voltage V [V]|Current I [A]|Watts [W]|
 |Translational mechanical|Force F [N]|Velocity v [m/s]|Watts [W]|
 |Rotational mechanical|Torque τ [Nm]|Angular vel. ω [rad/s]|Watts [W]|
-|Thermal|Temperature T [K]|Heat flow rate q̇ [W]|Watts* [W]|
+|Thermal|Temperature T [K]|Entropy flow Ṡ = Q̇/T [W/K]|Watts: T·Ṡ = Q̇ [W]|
 |Hydraulic/pneumatic|Pressure P [Pa]|Volume flow Q [m³/s]|Watts [W]|
 |Chemical|Chem. potential μ [J/mol]|Molar flow ṅ [mol/s]|Watts [W]|
+
+> [!warning] The thermal row needs the entropy flow, not the heat flow
+> $T\dot Q$ has units K·W and is **not** power. Temperature is power-conjugate to the **entropy rate** $\dot S = \dot Q/T$ [W/K], so that $T\dot S = \dot Q$ [W]. Engineering texts instead quote $R_{th} = \Delta T/\dot Q$ [K/W] (Ch. 14, 17, 19); that is the same physics with $T$ absorbed into the coefficient, and the two conventions must not be mixed. Full treatment and the caveat on the "conserved quantity" column: Ch. 17 §17.2.
 
 ---
 
@@ -1026,7 +1036,7 @@ The conservation laws from Layer 0 (Noether's theorem) survive all the way here.
 |Momentum conservation|$\sum F_{node} = 0$|Equilibrium (structural)|
 |Momentum conservation|$\sum F = m\ddot{x}$|Newton's 2nd (dynamic)|
 
-**The student should feel the weight of this:** KCL has a full derivation chain, not a one-line pedigree — U(1) gauge symmetry (§0.2) → conserved current (Noether) → continuity equation $\partial_\mu j^\mu = 0$ (Bridge B.c) → integral charge balance → lumped-node approximation (Bridge C) → $\sum I = 0$. At Layer 3, it's written in two seconds. Both are true. The short form is what you use every day. The long form is what you reach for when the short form stops working — at nanoscale, at high frequency, in a quantum device.
+**The student should feel the weight of this:** KCL has a full derivation chain, not a one-line pedigree — global phase symmetry of charged matter (§0.2) → conserved current (Noether's first theorem) → continuity equation $\partial_\mu j^\mu = 0$ (Bridge B.c) → integral charge balance → lumped-node approximation (Bridge C) → $\sum I = 0$. At Layer 3, it's written in two seconds. Both are true. The short form is what you use every day. The long form is what you reach for when the short form stops working — at nanoscale, at high frequency, in a quantum device. (The common shorthand "U(1) gauge symmetry ⟹ Noether ⟹ conserved current" compresses link 1; §0.2 gives the precise version and explains why the global symmetry, not the gauge redundancy, carries the Noether charge.)
 
 KVL follows a parallel but distinct chain (§2.4): Faraday's law → quasi-static approximation → Bridge C lumping → $\sum V = 0$. It is not the same chain as KCL, and does not reduce to the same physics.
 

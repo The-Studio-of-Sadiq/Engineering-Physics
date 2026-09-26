@@ -248,7 +248,7 @@ $ZT = S^2\sigma T/\kappa$: maximize power factor $S^2\sigma$, minimize $\kappa$.
 
 |Strategy|Mechanism|Example|
 |---|---|---|
-|Resonant levels|Sharp feature in DOS near $E_F$ → large $|dS/dE|$|HgTe quantum wells|
+|Resonant levels|Sharp feature in DOS near $E_F$ → large $\lvert dS/dE\rvert$|HgTe quantum wells|
 |Band convergence|Multiple valleys contributing to transport → high $S$ with high $\sigma$|PbTe (high-T), SnSe|
 |Nanostructuring|Phonon scattering at grain boundaries without electron scattering|BiSbTe nanocomposite|
 |Lattice softening|Rattler atoms in cages scatter phonons (PGEC)|Skutterudites, clathrates|

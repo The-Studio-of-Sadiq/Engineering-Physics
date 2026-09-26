@@ -716,7 +716,7 @@ That is a narrower claim than "all engineering reduces to transfer functions." I
 
 ### 21.11.2 — The Five Cross-Layer Threads, Completed
 
-**Thread 1: Noether's theorem** — from Ch. 0 U(1) gauge invariance to KCL at a circuit node, to mass balance at a process unit, to mole balance in a reactor. One mathematical idea, at every level. The full six-step chain, with each step named and tagged, is in `00 Map.md` §0.2 and §3.1 — it is not a one-line jump.
+**Thread 1: Noether's theorem** — from the global phase symmetry of charged matter (in a theory with local $U(1)$ gauge structure) to KCL at a circuit node, to mass balance at a process unit, to mole balance in a reactor. One mathematical idea, at every level. The full six-step chain, with each step named and tagged, is in `00 Map.md` §0.2 and §3.1 — it is not a one-line jump. (Link 1 is often compressed to "U(1) gauge symmetry ⟹ Noether"; the precise attribution — global symmetry carries the Noether charge, local gauge structure is associated with Noether's *second* theorem — is set out in `00 Map.md` §0.2.)
 
 **Thread 2: The Mexican Hat (Broken Symmetry)** — Ch. 0's Higgs mechanism ($\sim 246$ GeV), BCS superconductivity (Ch. 7, $\sim$ meV), and Landau phase transitions (Ch. 10) are independent physical instances of one mathematical template (an order parameter with a sign-changing coefficient), not a causal sequence running through the Higgs field. Engineering bistability and hysteresis (magnetic cores, structural snap-through, chemical multiplicity) are a further, separate instance of the same template. See `00 Map.md` §0.3 for the branching structure and the tagged connections.
 

@@ -491,7 +491,7 @@ Together they give a complete, exact description of the hydrogen atom that agree
 |Harmonic oscillator: energies|$E_n = \hbar\omega(n+\frac{1}{2})$|Ladder operators|
 |Tunneling transmission|$T \approx e^{-2\kappa d}$|Exponential decay in barrier|
 |Hydrogen energies|$E_n = -13.6\,\text{eV}/n^2$|Radial equation + normalizability|
-|Quantum numbers|$n \geq 1$; $\ell \leq n-1$; $|m| \leq \ell$|Three quantum numbers label a state|
+|Quantum numbers|$n \geq 1$; $\ell \leq n-1$; $\lvert m\rvert \leq \ell$|Three quantum numbers label a state|
 |Rydberg formula|$1/\lambda = R_\infty(1/n_f^2 - 1/n_i^2)$|Energy conservation for photon emission|
 |Shell capacity (with spin)|$2n^2$ electrons per shell|Degeneracy × 2 for spin|
 

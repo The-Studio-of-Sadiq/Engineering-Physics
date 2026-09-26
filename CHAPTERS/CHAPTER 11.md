@@ -259,7 +259,7 @@ follows from $F = \partial\wedge A$, which follows from U(1) gauge invariance.
 4. Quasi-static limit (§11.9): $\partial_t\rho \to 0$ → $\nabla\cdot\mathbf{J} = 0$ → $\sum I_{node} = 0$
 5. Ch. 18 (Layer 3): Kirchhoff's Current Law
 
-KCL is Noether's theorem for U(1) gauge symmetry, seen from the other end
+KCL is Noether's theorem for the **global** phase symmetry of charged matter, seen from the other end
 of a five-step descent.
 
 ---

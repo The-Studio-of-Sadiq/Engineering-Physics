@@ -154,11 +154,21 @@ From the lumped control volume, every physical domain has exactly two conjugate 
 |Electrical|Voltage $V$ [V]|Current $I$ [A]|Watts [W]|Charge $Q$|
 |Translational mech.|Force $F$ [N]|Velocity $v$ [m/s]|Watts [W]|Momentum $p$|
 |Rotational mech.|Torque $\tau$ [N·m]|Angular velocity $\omega$ [rad/s]|Watts [W]|Angular momentum $L$|
-|Thermal|Temperature $T$ [K]|Heat flow rate $\dot Q$ [W]|Watts (trivially)|Energy $U$|
+|Thermal|Temperature $T$ [K]|Entropy flow $\dot S=\dot Q/T$ [W/K]|Watts: $T\dot S=\dot Q$ [W]|Energy $U$ (transferred; entropy *generated*)|
 |Hydraulic|Pressure $P$ [Pa]|Volume flow $Q$ [m³/s]|Watts [W]|Volume/mass|
 |Pneumatic|Pressure $P$ [Pa]|Mass flow $\dot m$ [kg/s]|Watts [W]|Mass|
 |Chemical|Chem. potential $\mu$ [J/mol]|Molar flow $\dot n$ [mol/s]|Watts [W]|Moles|
-|Magnetic|Magnetomotive force $\mathcal{F}$ [A]|Magnetic flux rate $\dot\Phi$ [V]|Watts [W]|Flux $\Phi$|
+|Magnetic|Magnetomotive force $\mathcal{F}$ [A]|Flux rate $\dot\Phi$ [Wb/s = V]|Watts [W]|Flux linkage $\Phi$ (inductive state variable, *not* a Noether charge)|
+
+> [!warning] The thermal row is a genuine special case — the units are not optional
+> Temperature is **not** the power-conjugate of heat flow: $T\dot Q$ has units K·W, which is not power. That is why the naive row "Thermal: $T$ × $\dot Q$ = watts" is wrong. The thermodynamically conjugate flow is the **entropy rate** $\dot S = \dot Q/T$ [W/K], and only then is $e\cdot f = T\dot S = \dot Q$ [W] exact.
+>
+> **Which convention is this book using?** The engineering convention throughout Ch. 14, 17 and 19 is $R_{th} = \Delta T/\dot Q$ [K/W], because that is what appears in datasheets and heat-sink specifications. In the entropy-flow convention the same element obeys $\Delta T = R\cdot\dot S$ with $R = T\,R_{th}$ [K²/W]. These are the same physics with $T$ absorbed into the coefficient; the tables below quote K/W, and the two must never be mixed silently.
+
+> [!note] A caveat on the "conserved quantity" column
+> For the mechanical and electrical rows the flow really is the Noether current of a conserved charge, which is what makes force balance and KCL statements of conservation. Two rows are weaker, and the table should not pretend otherwise:
+> - **Thermal.** $\int\dot S\,dt$ is entropy **production**, not a conserved quantity. What is conserved is energy $U$; heat flow *moves* energy between bodies. The Noether framing applies to the energy transfer, not to the entropy current.
+> - **Magnetic.** Flux $\Phi$ is not a Noether charge of any ordinary continuous symmetry. It is the state variable of an inductive element; its *quantization* in superconductors comes from the winding of the condensate phase, not from Noether's theorem applied to a magnetic symmetry.
 
 **The generalized momentum** (integral of effort): $p_e = \int e\,dt$ (charge in electrical, momentum in mechanical, flux linkage in magnetic)
 
@@ -166,13 +176,13 @@ From the lumped control volume, every physical domain has exactly two conjugate 
 
 ### 17.2.3 — Why Exactly Two Variables?
 
-From the Noether perspective (Ch. 1 §1.7): every conserved quantity generates a pair of conjugate variables in its domain. The conserved charge becomes the flow variable; its conjugate potential (from the Hamiltonian formulation, Ch. 1 §1.6) becomes the effort variable.
+From the Noether perspective (Ch. 1 §1.7): every conserved quantity generates a pair of conjugate variables in its domain. The conserved charge becomes the flow variable; its conjugate potential (from the Hamiltonian formulation, Ch. 1 §1.6) becomes the effort variable. (Two rows of the table above are weaker than this picture — thermal and magnetic — and the caveats are recorded there.)
 
-The electrical case is the clearest: U(1) gauge symmetry → charge conservation (KCL, Ch. 11 §11.12) → current as flow; the gauge potential $\phi$ becomes the voltage as effort.
+**Power = effort × flow** in every domain because this product equals the rate of energy transfer, and energy is the Hamiltonian — the conserved quantity of time translation (Ch. 1 §1.7.3). The product is invariant across domains because energy is invariant across domains. (This holds for the thermal domain only once the flow is the entropy rate $\dot S$ rather than $\dot Q$ — see the warning above. Fixing the flow variable is what makes the slogan literally true instead of approximately true.)
 
-For mechanical domains: space translation symmetry → momentum conservation → velocity as flow; force (the conjugate momentum driver) as effort.
+The electrical case is the clearest. In a theory with local $U(1)$ gauge structure, the **global** phase symmetry of charged matter gives a Noether current $j^\mu$ with $\partial_\mu j^\mu = 0$; integrating over a volume yields $\dot Q = -\oint \mathbf{j}\cdot d\mathbf{A}$, which is KCL (Ch. 11 §11.12). The gauge potential becomes the voltage as effort. Note the distinction: the *global* symmetry is what Noether's first theorem acts on, while the *local* gauge redundancy is what makes the potential a gauge field and relates to Noether's second theorem — they are not the same statement.
 
-**Power = effort × flow** in every domain because this product equals the rate of energy transfer, and energy is the Hamiltonian — the conserved quantity of time translation (Ch. 1 §1.7.3). The product is invariant across domains because energy is invariant across domains.
+For mechanical domains the chain is a continuous symmetry, so Noether applies directly: space-translation symmetry → momentum conservation → momentum flux as the flow; force as effort.
 
 ---
 

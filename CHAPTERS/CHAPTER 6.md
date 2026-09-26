@@ -39,21 +39,29 @@ $$\left(-\frac{\hbar^2}{2m_e}\nabla^2 + V(\mathbf{r})\right)\psi = E\psi$$
 
 with $V(\mathbf{r})$ having the periodicity of the crystal lattice.
 
-### 6.1.2 — Bloch's Theorem from Noether's Theorem
+### 6.1.2 — Bloch's Theorem from the Discrete Translation Group
 
 A discrete translation by lattice vector $\mathbf{a}$ is a symmetry of the Hamiltonian: $[\hat H, \hat T_\mathbf{a}] = 0$ where $\hat T_\mathbf{a}$ is the translation operator.
 
-By the argument of Ch. 1 §1.7 (Noether's theorem applied to discrete translations): the eigenstates of $\hat H$ can be simultaneously chosen as eigenstates of $\hat T_\mathbf{a}$. The eigenvalue of $\hat T_\mathbf{a}$ must have unit modulus (since $|\hat T_\mathbf{a}\psi|^2 = |\psi|^2$ — translations don't change the normalization). So:
+Since $\hat H$ commutes with every lattice translation, its eigenstates can be simultaneously chosen as eigenstates of $\hat T_\mathbf{a}$.
 
-$$\hat T_\mathbf{a}\psi = e^{i\mathbf{k}\cdot\mathbf{a}}\psi$$
+> [!warning] This is representation theory of a *discrete* group, not Noether's theorem
+> Noether's first theorem requires a **continuous one-parameter** symmetry group: it manufactures a conserved charge by differentiating the action with respect to a continuous parameter. The set of lattice translations is a **discrete** group ($\mathbb{Z}^3$ in three dimensions) with no continuous parameter to differentiate, so Noether's theorem does not apply to it.
+>
+> What does the work here is that the one-dimensional **irreducible representations** of a discrete translation group are labelled by a phase. Because translations are unitary, the eigenvalue of $\hat T_\mathbf{a}$ must have unit modulus ($|\hat T_\mathbf{a}\psi|^2 = |\psi|^2$), so
+> $$\hat T_\mathbf{a}\psi = e^{i\mathbf{k}\cdot\mathbf{a}}\psi$$
+> for some wavevector $\mathbf{k}$ — fixed **only modulo reciprocal lattice vectors** (§6.1.3), precisely because it indexes a representation of a discrete group.
 
-for some wavevector $\mathbf{k}$. This immediately gives:
+Carrying the translation through gives the Bloch form
 
-$$\boxed{\psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}},u_{n\mathbf{k}}(\mathbf{r})}$$
+$$\boxed{\psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}}\,u_{n\mathbf{k}}(\mathbf{r})}$$
 
 where $u_{n\mathbf{k}}(\mathbf{r} + \mathbf{a}) = u_{n\mathbf{k}}(\mathbf{r})$ is a function with the same periodicity as the lattice. This is **Bloch's theorem**.
 
-The quantum number $\mathbf{k}$ is the **crystal momentum** — the conserved quantity corresponding to discrete translational symmetry, by Noether's theorem. The band index $n$ labels which periodic function $u_{n\mathbf{k}}$ the electron lives in.
+The quantum number $\mathbf{k}$ is the **crystal momentum**, conventionally quoted as $\hbar\mathbf{k}$: the label of the irreducible representation of the discrete translation group, equivalently fixed by the phase $e^{i\mathbf{k}\cdot\mathbf{a}}$ that is the eigenvalue of $\hat T_\mathbf{a}$. It is a *quasimomentum*, not a Noether charge — it is defined only modulo $\mathbf{G}$ and need not equal the mechanical momentum. The band index $n$ labels which periodic function $u_{n\mathbf{k}}$ the electron occupies.
+
+> [!note] Where Noether language *is* correct here
+> A free particle in featureless space enjoys a **continuous** translation symmetry, and Noether's theorem then gives conservation of ordinary momentum $\mathbf{p}$. A crystal lattice breaks that continuous symmetry down to a discrete subgroup, so mechanical momentum is *not* conserved — the lattice can absorb momentum — and the label that behaves conservatively is the quasimomentum instead. So: Noether for continuous translations and ordinary momentum; irreducible representations of a discrete group for Bloch's theorem and crystal momentum. Conflating the two is a common and consequential slip, because only the genuinely continuous symmetries come with a Noether charge in the usual sense.
 
 ### 6.1.3 — The Brillouin Zone
 
