@@ -49,7 +49,7 @@ The full Standard Model Lagrangian (Chapter 0) contains three gauge sectors: SU(
 
 - **SU(3)$_C$:** Acts only on quarks. Electrons carry no color charge. This sector is completely invisible to electrons. Discard it.
     
-- **SU(2)$_L$:** Acts on left-handed fermions and is mediated by $W^\pm$ and $Z^0$ bosons. The interaction strength at atomic energies is suppressed by $G_F E^2/(\hbar c)^3 \approx 10^{-11}$ relative to electromagnetism (where $G_F \approx 1.17\times10^{-5};\text{GeV}^{-2}$ is the Fermi constant and $E \sim 10;\text{eV}$ for an atomic electron). This ratio is $\sim 10^{-22}$ — experimentally undetectable. Discard it.
+- **SU(2)$_L$:** Acts on left-handed fermions and is mediated by $W^\pm$ and $Z^0$ bosons. The interaction strength at atomic energies is suppressed by $G_F E^2/(\hbar c)^3 \approx 10^{-11}$ relative to electromagnetism (where $G_F \approx 1.17\times10^{-5}\,\text{GeV}^{-2}$ is the Fermi constant and $E \sim 10\,\text{eV}$ for an atomic electron). This ratio is $\sim 10^{-22}$ — experimentally undetectable. Discard it.
     
 - **U(1)$_{EM}$:** Electromagnetism. After the Higgs mechanism (§0.7), the physical photon $A_\mu$ couples to electrons with charge $-e$. This is the only force relevant for atomic structure.
     
@@ -77,9 +77,9 @@ By treating $A_\mu$ as a classical, external field and working at low energies, 
 |Pair creation processes|$\gamma\gamma \to e^+e^-$, $e^-\to e^-\gamma$|Requires $E \geq 2m_ec^2 = 1.022$ MeV — far above atomic energies|
 |Quantization of the EM field|Spontaneous emission, Casimir effect|Included approximately via Einstein A coefficient; full treatment needs QFT|
 
-**The validity criterion for this entire chapter:** $$\boxed{E_{kinetic} \ll m_e c^2 = 0.511;\text{MeV}}$$
+**The validity criterion for this entire chapter:** $$\boxed{E_{kinetic} \ll m_e c^2 = 0.511\,\text{MeV}}$$
 
-For ground-state hydrogen: $E_1 = 13.6;\text{eV} \ll 511{,}000;\text{eV}$. The ratio is $\sim 10^{-5}$. The approximation is excellent.
+For ground-state hydrogen: $E_1 = 13.6\,\text{eV} \ll 511{,}000\,\text{eV}$. The ratio is $\sim 10^{-5}$. The approximation is excellent.
 
 ---
 
@@ -129,21 +129,21 @@ $${\gamma^\mu, \gamma^\nu} = \gamma^\mu\gamma^\nu + \gamma^\nu\gamma^\mu = 2g^{\
 
 In the **Dirac representation** (standard representation, most transparent for the non-relativistic limit):
 
-$$\gamma^0 = \beta = \begin{pmatrix}\mathbf{1} & 0 \ 0 & -\mathbf{1}\end{pmatrix}, \qquad \gamma^i = \begin{pmatrix}0 & \sigma^i \ -\sigma^i & 0\end{pmatrix}$$
+$$\gamma^0 = \beta = \begin{pmatrix}\mathbf{1} & 0 \\ 0 & -\mathbf{1}\end{pmatrix}, \qquad \gamma^i = \begin{pmatrix}0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix}$$
 
 where $\mathbf{1}$ is the $2\times 2$ identity matrix and $\sigma^i$ are the **Pauli matrices**:
 
-$$\sigma^1 = \begin{pmatrix}0&1\1&0\end{pmatrix}, \quad \sigma^2 = \begin{pmatrix}0&-i\i&0\end{pmatrix}, \quad \sigma^3 = \begin{pmatrix}1&0\0&-1\end{pmatrix}$$
+$$\sigma^1 = \begin{pmatrix}0&1\\1&0\end{pmatrix}, \quad \sigma^2 = \begin{pmatrix}0&-i\\i&0\end{pmatrix}, \quad \sigma^3 = \begin{pmatrix}1&0\\0&-1\end{pmatrix}$$
 
 The **alpha matrices** $\boldsymbol{\alpha}$ appearing in the Hamiltonian form are:
 
-$$\boldsymbol{\alpha} = \gamma^0\boldsymbol{\gamma} = \begin{pmatrix}0 & \boldsymbol{\sigma}\\boldsymbol{\sigma} & 0\end{pmatrix}$$
+$$\boldsymbol{\alpha} = \gamma^0\boldsymbol{\gamma} = \begin{pmatrix}0 & \boldsymbol{\sigma} \\ \boldsymbol{\sigma} & 0\end{pmatrix}$$
 
 ### 3.3.2 — The Four-Component Spinor
 
 The field $\psi$ is a **Dirac spinor** — a four-component complex column vector:
 
-$$\psi = \begin{pmatrix}\phi \ \chi\end{pmatrix}$$
+$$\psi = \begin{pmatrix}\phi \\ \chi\end{pmatrix}$$
 
 In the non-relativistic limit, it will be shown (§3.5) that:
 
@@ -154,18 +154,18 @@ The four components are not four spatial dimensions. They encode spin (up/down �
 
 ### 3.3.3 — The Dirac Hamiltonian
 
-Write the Dirac equation in the form $i\hbar,\partial_t\psi = \hat H_{Dirac}\psi$:
+Write the Dirac equation in the form $i\hbar\,\partial_t\psi = \hat H_{Dirac}\psi$:
 
-$$\hat H_{Dirac} = \begin{pmatrix} m_e c^2 + eV & c,\boldsymbol{\sigma}\cdot\hat{\mathbf{\pi}} \ c,\boldsymbol{\sigma}\cdot\hat{\mathbf{\pi}} & -m_e c^2 + eV \end{pmatrix}$$
+$$\hat H_{Dirac} = \begin{pmatrix} m_e c^2 + eV & c\,\boldsymbol{\sigma}\cdot\hat{\boldsymbol{\pi}} \\ c\,\boldsymbol{\sigma}\cdot\hat{\boldsymbol{\pi}} & -m_e c^2 + eV \end{pmatrix}$$
 
-where $\hat{\mathbf{\pi}} = \hat{\mathbf{p}} - \frac{e}{c}\mathbf{A}$ is the **kinetic momentum** (canonical momentum minus gauge contribution).
+where $\hat{\boldsymbol{\pi}} = \hat{\mathbf{p}} - \frac{e}{c}\mathbf{A}$ is the **kinetic momentum** (canonical momentum minus gauge contribution).
 
 The diagonal blocks:
 
 - Upper-left $m_ec^2 + eV$: rest mass energy plus potential — the electron block
 - Lower-right $-m_ec^2 + eV$: negative rest mass energy — the positron block
 
-The off-diagonal blocks $c,\boldsymbol{\sigma}\cdot\hat{\mathbf{\pi}}$ couple electrons and positrons. This coupling is what makes the Dirac equation an inherently relativistic, multi-particle object — and what must be systematically removed to reach the Schrödinger equation.
+The off-diagonal blocks $c\,\boldsymbol{\sigma}\cdot\hat{\boldsymbol{\pi}}$ couple electrons and positrons. This coupling is what makes the Dirac equation an inherently relativistic, multi-particle object — and what must be systematically removed to reach the Schrödinger equation.
 
 ---
 
@@ -177,7 +177,7 @@ Before we descend to the Schrödinger equation, it is worth pausing to appreciat
 
 The Dirac spinor automatically has two spin degrees of freedom per particle (the two components of $\phi$). The spin operator:
 
-$$\hat{\mathbf{S}} = \frac{\hbar}{2}\begin{pmatrix}\boldsymbol{\sigma}&0\0&\boldsymbol{\sigma}\end{pmatrix}$$
+$$\hat{\mathbf{S}} = \frac{\hbar}{2}\begin{pmatrix}\boldsymbol{\sigma} & 0 \\ 0 & \boldsymbol{\sigma}\end{pmatrix}$$
 
 falls directly from the spinor structure. It satisfies $\hat S^2 = \frac{3}{4}\hbar^2$, confirming spin-$\frac{1}{2}$.
 
@@ -207,7 +207,7 @@ Expanding in $\alpha^2$ (where $\alpha = e^2/\hbar c \approx 1/137$ is the fine 
 
 $$E_{nj} \approx -\frac{m_ec^2\alpha^2}{2n^2}\left(1 + \frac{\alpha^2}{n}\left(\frac{1}{j+\frac{1}{2}} - \frac{3}{4n}\right)\right)$$
 
-The first term is the Bohr energy $-13.6/n^2;\text{eV}$. The second term — the **fine structure correction** — splits energy levels with the same $n$ but different $j$ (total angular momentum). This splitting is observed in the hydrogen spectrum to exactly the precision the Dirac equation predicts.
+The first term is the Bohr energy $-13.6/n^2\,\text{eV}$. The second term — the **fine structure correction** — splits energy levels with the same $n$ but different $j$ (total angular momentum). This splitting is observed in the hydrogen spectrum to exactly the precision the Dirac equation predicts.
 
 No additional assumptions. No spin-orbit coupling inserted by hand. Just the Dirac equation and a Coulomb potential.
 
@@ -254,6 +254,36 @@ Each term has a name and a physics:
 
 The last three terms together account for the fine structure of hydrogen — matching the exact Dirac result to order $\alpha^4$.
 
+`[APPROXIMATION]` — **two reductions happen here, and they are different in kind.**
+The Foldy-Wouthuysen transformation is `[DERIVATION]`: an exact canonical
+(unitary) change of basis, introducing an odd operator $\mathcal{O}$ and then
+diagonalising it, which removes the $\boldsymbol{\sigma}\cdot\mathbf{p}$ mixing
+between the large and small components. Nothing is lost. The *truncation* at
+order $(v/c)^2$ is `[APPROXIMATION]`: the odd terms are squared once and
+dropped. So the boxed Hamiltonian is exact only for the $4\times4$ spinor; as a
+$2\times2$ operator on $\phi$ it is the expansion, accurate to
+$\mathcal{O}(\alpha^4)$ corrections, and it stops being adequate once
+$\alpha^4$ terms compete with the structure being resolved.
+
+**Model Ledger — Dirac Hamiltonian to Foldy-Wouthuysen Hamiltonian**
+
+| Field | Content |
+|---|---|
+| Parent theory | Relativistic quantum mechanics: $i\hbar\gamma^\mu D_\mu\psi - m_ec^2\psi = 0$ (Ch. 0, Ch. 3 §3.2) |
+| Reduction | Exact unitary transformation to the even/odd (FW) basis; square the odd operator once; truncate at $(v/c)^2$ |
+| Model | 2×2 operator on the large component: $\hat\pi^2/2m_e + eV - \frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B} - \frac{\hat\pi^4}{8m_e^3c^2} - \frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}}) + \frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}$ |
+| Assumptions | one-particle (no pair creation); external potential with $\mathbf{E},\mathbf{B}$ treated as given; expansion valid where $v/c \ll 1$; spin-½ |
+| Physics retained | kinetic energy, Zeeman splitting, relativistic mass correction, spin-orbit coupling, Darwin contact term |
+| Physics neglected | vacuum polarisation, pair creation, radiative self-energy ( Lamb shift), higher-order $\alpha^6$ terms, negative-energy states |
+| Validity | $E \ll m_ec^2$ — i.e. bound atomic states, not free-particle scattering at relativistic energy |
+| Fails when | $E \gtrsim m_ec^2$; a strong external field makes the expansion parameter non-uniform; radiation shifts exceed the retained terms |
+| Next model | full Klein-Gordon/Dirac with antiparticles; QED radiative corrections; two-particle Breit equation |
+
+The discarded terms are not small by accident. Each corresponds to something
+Chapter 0's $\mathcal{L}_{SM}$ contains and this equation does not, and the size
+table above is what justifies dropping them rather than declaring them
+irrelevant.
+
 ---
 
 ## 3.6 — First Stop: The Pauli Equation
@@ -265,6 +295,29 @@ $$\boxed{i\hbar\frac{\partial\phi}{\partial t} = \left[\frac{\left(\hat{\mathbf{
 where $\phi$ is now a **two-component Pauli spinor**: $$\phi = \begin{pmatrix}\phi_\uparrow\\phi_\downarrow\end{pmatrix}$$
 
 $\phi_\uparrow$ and $\phi_\downarrow$ are the spin-up and spin-down components.
+
+`[APPROXIMATION]` — **the Pauli equation is a truncation of the FW
+Hamiltonian, not an independent theory.** Three terms were removed (the
+relativistic mass correction, spin-orbit coupling, and the Darwin term) and
+three component degrees of freedom were discarded (the small component
+$\chi$). What is paid for that truncation is not only accuracy: it is the
+ability to reason at all. Spin now lives in a $2\times2$ matrix acting on two
+components, so spin-dependent phenomena become algebra instead of a
+$4\times4$ operator on a four-component field.
+
+**Model Ledger — FW Hamiltonian to the Pauli equation**
+
+| Field | Content |
+|---|---|
+| Parent theory | $\hat H_{FW}$ acting on the large component (§3.5.3) |
+| Reduction | drop the three $\alpha^4$ terms; drop the rest-mass constant; retain the Zeeman term |
+| Model | $i\hbar\,\partial_t\phi = \left[\frac{(\hat{\mathbf{p}}-e\mathbf{A}/c)^2}{2m_e} - \frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B} + eV\right]\phi$ |
+| Assumptions | $E \ll m_ec^2$; spin-½; $\hbar$-expanded in $\mathbf{A}$; no radiation; fields externally imposed |
+| Physics retained | orbital motion, magnetic coupling to spin, electromagnetic potential |
+| Physics neglected | relativistic dispersion, spin-orbit interaction, Darwin contact, Lamb shift, antiparticles |
+| Validity | atoms and solids in laboratory fields; magnetic fine structure is the leading neglected effect |
+| Fails when | fine structure must be resolved (then use the full Dirac or FW operator); strong fields; heavy nuclei where $v/c$ is not small |
+| Next model | Dirac (§3.3); spin-orbit-corrected Pauli; Bloch equation for solids (Ch. 18) |
 
 ### What the Pauli Equation Adds Over Schrödinger
 
@@ -299,9 +352,36 @@ where $\hat{\mathbf{L}} = \hat{\mathbf{r}}\times\hat{\mathbf{p}}$ is the orbital
 
 When the magnetic field is absent or spin is irrelevant (e.g., we are studying spatial wavefunctions for spinless situations), each component of $\phi$ satisfies the same equation independently. Setting $\mathbf{B} = 0$ and writing $\psi$ for a single spin component:
 
-$$\boxed{i\hbar\frac{\partial\psi}{\partial t} = \hat H\psi = \left(-\frac{\hbar^2}{2m_e}\nabla^2 + V(\mathbf{r})\right)\psi}$$
+$$\boxed{i\hbar\frac{\partial\psi}{\partial t} = \hat H\psi = \left(-\frac{\hbar^2}{2m_e}\nabla^2 + V(\mathbf{r})\right)\psi$$
 
 This is the **Schrödinger equation** — the foundation of all of Layer 1.
+
+`[APPROXIMATION]` — **this is the loosest step in the chapter, and the most
+productive.** Setting $\mathbf{B}=0$ and ignoring spin is a much larger
+simplification than the previous one: it discards an entire observable degree
+of freedom, not a correction term. Two-component spinor becomes
+one-component scalar; the $\boldsymbol{\sigma}$ operator disappears; the
+equation becomes the one that admits closed-form solutions.
+
+**Model Ledger — Pauli equation to the Schrödinger equation**
+
+| Field | Content |
+|---|---|
+| Parent theory | Pauli equation for the two-component spinor (§3.6) |
+| Reduction | set $\mathbf{B} = 0$; retain one spin component; replace $\hat{\mathbf{p}} \to -i\hbar\nabla$ for a scalar field |
+| Model | $i\hbar\,\partial_t\psi = \left(-\frac{\hbar^2}{2m_e}\nabla^2 + V\right)\psi$ |
+| Assumptions | $E \ll m_ec^2$; spin decoupled and irrelevant; scalar (single-valued) wavefunction; time-independent mass |
+| Physics retained | wave nature, quantised bound states, interference, tunnelling |
+| Physics neglected | spin, magnetic coupling, relativistic dispersion, particle creation, particle indistinguishability |
+| Validity | the entire non-relativistic single-particle regime — the working domain of Chapters 4–6 |
+| Fails when | spin is observable (Zeeman, spin-orbit); $v \gtrsim c$; exchange matters (then use the many-body Schrödinger equation, Ch. 6); fields are time-dependent and strong |
+| Next model | Pauli (spin back in); Dirac (relativity back in); many-body Schrödinger (exchange, Ch. 6) |
+
+The trade is worth stating plainly: what is discarded is exactly what makes the
+equation *solvable*. Scalar one-body Schrödinger admits analytic solutions for
+the hydrogen atom; the corresponding Pauli or Dirac problems do not, and are
+attacked numerically or perturbatively instead. Solvability is a property of
+the approximation, not a hint that the approximation is right.
 
 ### What This Derivation Reveals
 
@@ -321,7 +401,7 @@ Every introductory quantum mechanics course treats the Schrödinger equation as 
 |$\partial/\partial t$|Time translation; by Noether → energy; operator $\hat H = i\hbar\partial_t$|
 |$-\hbar^2\nabla^2/2m$|Non-relativistic kinetic energy; from $\hat p^2/2m$ with $\hat p = -i\hbar\nabla$|
 |$V(\mathbf{r})$|The electromagnetic potential $eA_0$; from the U(1) gauge coupling in $D_\mu$|
-|$\psi$|The large component of the Dirac spinor; $|
+|$\psi$|One component $\phi_\uparrow$ or $\phi_\downarrow$ of the large component of the Dirac spinor|
 
 ### The Time-Independent Schrödinger Equation
 
@@ -368,7 +448,7 @@ A complex-valued function of position and time. It is not a classical field you 
 
 From the Dirac Lagrangian, the U(1) symmetry $\psi \to e^{i\alpha}\psi$ gives, via Noether's theorem, a conserved current:
 
-$$j^\mu = -e\bar\psi\gamma^\mu\psi = \left(-e|\psi|^2,; -e\bar\psi\gamma^i\psi\right)$$
+$$j^\mu = -e\bar\psi\gamma^\mu\psi = \left(-e|\psi|^2\, -e\bar\psi\gamma^i\psi\right)$$
 
 The conservation law $\partial_\mu j^\mu = 0$ becomes, in 3+1 notation:
 
@@ -417,7 +497,7 @@ The Pauli matrices $\boldsymbol{\sigma}$ in the Pauli equation are the $2\times 
 
 Before moving on, one of the most famous results in quantum mechanics deserves to be placed in its proper context.
 
-The **Heisenberg uncertainty principle** $\Delta x,\Delta p \geq \hbar/2$ is often presented as a mysterious feature of quantum mechanics — a limit on measurement or a consequence of disturbing the system. Its actual origin is simpler and more structural.
+The **Heisenberg uncertainty principle** $\Delta x\,\Delta p \geq \hbar/2$ is often presented as a mysterious feature of quantum mechanics — a limit on measurement or a consequence of disturbing the system. Its actual origin is simpler and more structural.
 
 The momentum operator in the Schrödinger equation is $\hat p = -i\hbar\nabla$. The position operator is $\hat x = x$ (multiplication by $x$). Their commutator:
 
@@ -425,7 +505,7 @@ $$[\hat x, \hat p] = \hat x\hat p - \hat p\hat x = i\hbar$$
 
 This commutation relation is a **mathematical consequence of $\hat p = -i\hbar\nabla$** — which is itself a consequence of the field $\psi$ having the Fourier decomposition $\psi(\mathbf{r}) = \int \tilde\psi(\mathbf{k})e^{i\mathbf{k}\cdot\mathbf{r}}d^3k$ with $\hat p\psi = \hbar\mathbf{k}\psi$ for a definite-$k$ component.
 
-A standard result from Fourier analysis then gives: $$\Delta x,\Delta k \geq \frac{1}{2} \qquad\Longrightarrow\qquad \Delta x,\Delta p \geq \frac{\hbar}{2}$$
+A standard result from Fourier analysis then gives: $$\Delta x\,\Delta k \geq \frac{1}{2} \qquad\Longrightarrow\qquad \Delta x\,\Delta p \geq \frac{\hbar}{2}$$
 
 **The uncertainty principle is the Fourier bandwidth theorem, applied to the wavefunction.** It is structural — it would hold for any wave-like description, classical or quantum. What makes it quantum is that $p = \hbar k$ — that momentum is proportional to wavenumber, which is itself a consequence of $\hat p = -i\hbar\nabla$ in the Schrödinger equation, which traces back to the covariant derivative in $\mathcal{L}_{SM}$.
 
@@ -437,20 +517,28 @@ A standard result from Fourier analysis then gives: $$\Delta x,\Delta k \geq \fr
 
 **The three steps:**
 
-|Step|Operation|Result|
-|---|---|---|
-|§3.1|Isolate U(1)-coupled electron sector; treat $A_\mu$ as classical|Electron QED Lagrangian|
-|§3.2|Apply Euler-Lagrange|**Dirac equation** (bridge zone)|
-|§3.5–3.6|Foldy-Wouthuysen to order $(v/c)^2$|**Pauli equation** (with spin)|
-|§3.7|Drop spin terms, $B\to0$|**Schrödinger equation**|
+|Step|Operation|Result|Connection|
+|---|---|---|---|
+|§3.1|Isolate U(1)-coupled electron sector; treat $A_\mu$ as classical|Electron QED Lagrangian|`[APPROXIMATION]` — sector isolation, mean field|
+|§3.2|Apply Euler-Lagrange|**Dirac equation** (bridge zone)|`[DERIVATION]` — exact within the Lagrangian|
+|§3.5–3.6|Foldy-Wouthuysen to order $(v/c)^2$|**Pauli equation** (with spin)|`[APPROXIMATION]` — exact transform, truncated series|
+|§3.7|Drop spin terms, $B\to0$|**Schrödinger equation**|`[APPROXIMATION]` — discards a degree of freedom|
+
+The transformation in §3.5 is a derivation; the truncation that follows it is
+an approximation; the drop in §3.7 is an approximation that costs an entire
+observable. Only one row in this table is lossless, and the Model Ledgers in
+§3.5.3, §3.6, and §3.7 record exactly what each row pays.
 
 **What was preserved:** wavefunction, probability conservation (Noether/U(1)), superposition, minimal coupling, spin (in Pauli), uncertainty principle (Fourier structure)
 
 **What was discarded:** antiparticles, pair creation, QED loops, relativistic corrections (available on demand: add FW terms back for fine structure)
 
-**The validity criterion:** $$E_{kinetic} \ll m_ec^2 = 511;\text{keV} \qquad \Leftrightarrow \qquad v \ll c$$
+**The validity criterion:** $$E_{kinetic} \ll m_ec^2 = 511\,\text{keV} \qquad \Leftrightarrow \qquad v \ll c$$
 
-For hydrogen ground state: $v/c = \alpha \approx 1/137$; error is $\alpha^2 \approx 0.005%$
+For hydrogen ground state: $v/c = \alpha \approx 1/137$; the relative error in the
+kinetic energy is $v^2/c^2 = \alpha^2 \approx 5\times10^{-5}$, i.e. $0.005\%$.
+The criterion is not a matter of degree — it is the boundary at which pair
+creation becomes energetically available and the reduction loses its meaning.
 
 ---
 

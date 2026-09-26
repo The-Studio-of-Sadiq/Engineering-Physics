@@ -12,13 +12,80 @@
 
 Chapters 18–20 instantiated the Layer-3 template in four physical domains. In each, the governing equation took the same form, the same $\omega_0$ and $\zeta$ appeared, the same Bode plot methodology applied, and Thévenin/Norton equivalents transferred directly.
 
-This chapter goes one abstraction higher. **Control theory operates on the transfer function $H(s)$, not on the physics that produced it.** A PID controller does not know whether it is regulating temperature, angular velocity, chemical concentration, or electrical current. It sees only:
+This chapter goes one abstraction higher. **Control theory operates on the system model, not on the physics that produced it.** A PID controller does not know whether it is regulating temperature, angular velocity, chemical concentration, or electrical current. It sees only:
 
-$$e(s) = R(s) - Y(s) \quad\text{and}\quad U(s) = C(s),e(s)$$
+$$e(s) = R(s) - Y(s) \quad\text{and}\quad U(s) = C(s)\,e(s)$$
 
-The derivation of $C(s)$ — the controller design — is physics-independent. The verification that it works — stability analysis — depends only on the open-loop transfer function $L(s) = C(s)P(s)$.
+### 21.0.1 — What the capstone claim is, precisely
 
-**This is the final claim of the book:** every engineering system in every domain, once reduced to its transfer function by Bridge C, can be controlled by the same mathematical tools. The four engineering disciplines converge completely here.
+Here is the claim this chapter defends, stated at the strength it can actually carry:
+
+> **For systems that admit an appropriate linear time-invariant representation, the transfer function provides a branch-independent mathematical language for analysis and control.**
+
+Four qualifications are load-bearing, and each is developed below:
+
+1. **The transfer function is a representation of *linear time-invariant input–output* behaviour.** It is not a representation of physics, and it is not universal.
+2. **Not every engineering system admits one.** Nonlinear, time-varying, hybrid, distributed-parameter, stochastic, and constrained systems all need other formulations. §21.0.2 and §21.10 give the full list and the correct tool for each.
+3. **Linearisation is itself a Bridge C operation**, with its own validity regime — not a free simplification. It is tagged `[APPROXIMATION]` throughout this chapter, and its Ledger is in §21.0.3.
+4. **Where the transfer function does apply, the unification is exact and branch-independent.** This half of the claim is not weaker for the caveats above. A PID loop does genuinely not know what domain it is in.
+
+### 21.0.2 — The boundary of the transfer function
+
+A transfer function $P(s) = Y(s)/U(s)$ exists, in the ordinary sense, only when the system is **linear** (a fixed operator on the signals), **time-invariant** (that operator does not change with time), and has a **well-defined input–output map with no internal initial-condition dependence**. Each requirement has a real engineering meaning, and each has a price when violated.
+
+| System class | Why $H(s)$ fails | Correct formulation | Where |
+|---|---|---|---|
+| **Nonlinear** | Superposition fails; the "operator" depends on the operating point | Linearise about an operating point (local $H(s)$), or work with the nonlinear model directly | §21.0.3, §21.10 |
+| **Time-varying** | $P$ is a function of time; there is no single $P(s)$ | Time-domain simulation; linear time-varying (state-transition) matrices $\Phi(t,\tau)$ | §21.10 |
+| **Hybrid** | Continuous dynamics + discrete mode switches; no single operator | Hybrid automaton; switched systems; mode-dependent $A$, $B$ | §21.10 |
+| **Distributed parameter** | Infinitely many degrees of freedom; $H(s)$ is a boundary-value problem, not a rational function | Discretise (FEM/FDM) then control the finite model, or $H_\infty$/PDE control | §21.10, Ch. 17 |
+| **Stochastic** | The output is a random process; $Y(s)/U(s)$ is not a deterministic ratio | State-space with process/measurement noise; Kalman filter, LQG | §21.7.4, §21.10 |
+| **Constrained** | Feasible inputs are a subset of the domain; an unconstrained $H(s)$ has no meaning there | MPC, which optimises over the model subject to constraints | §21.9.3 |
+| **Non-minimum phase (RHP zeros)** | $H(s)$ exists, but the inverse does not | $H_\infty$ loop shaping, waterbed-aware design | §21.6, §21.10 |
+| **Pure time delay** | $e^{-\theta s}$ is not a rational function of $s$ | Padé approximation, Smith predictor, dead-time compensator | §21.8.2, §21.10 |
+| **Nonlinear / chaotic** | Sensitive dependence on initial conditions; no useful linearisation | Lyapunov methods, feedback linearisation, nonlinear observers, chaos control | §21.10 |
+
+**The correct statement of the capstone** is therefore not *"all engineering problems reduce to transfer functions."* It is:
+
+```text
+Layer 3 physical system
+        │
+        │  [APPROXIMATION] linearise about an operating point
+        │  [APPROXIMATION] lump / discretise (Bridge C)
+        ▼
+   LTI plant model P(s)   ◄── only if the system is in the class
+        │                      where this is defensible
+        ▼
+  transfer-function design: Bode, root locus, PID, margins
+```
+
+Everything in §§21.1–21.6 lives inside that box. Everything in §21.7 (state-space) is the formulation that *does* generalise to multi-input/multi-output, and §21.7.5 onward extends to stochastic and constrained cases. §21.10 is the honest accounting of what is left over.
+
+### 21.0.3 — The linearisation step, tagged
+
+Linearisation is the operation that makes the transfer function possible, and it is where most of the over-claiming in cross-domain control narratives happens. It belongs to Bridge C, and it is an approximation with a named regime:
+
+> **[APPROXIMATION]** Linearisation. If the plant is $\dot x = f(x,u)$ with $f$ smooth, then near an equilibrium $x_0, u_0$ with $f(x_0,u_0)=0$, write $x = x_0 + \delta x$, $u = u_0 + \delta u$, and discard all terms of second and higher order in $\delta x$, $\delta u$. The result is $\delta\dot x = A\,\delta x + B\,\delta u$ with $A = \partial f/\partial x|_{x_0}$, $B = \partial f/\partial u|_{x_0}$.
+>
+> **Small parameter:** the ratio of the excursion to the local linearisation radius. **Valid when:** the signal stays inside the region where the linear model tracks the nonlinear one — typically a few percent of full scale, and always domain-specific. **Fails when:** the excursion leaves that region, at which point $P(s)$ is no longer the plant and the loop gains you designed are no longer the loop you have.
+
+```text
+### Model Ledger — LTI plant transfer function
+
+| Property | Description |
+|---|---|
+| Parent theory | The nonlinear (and usually distributed) Layer-3 model, e.g. Navier–Stokes + energy balance, or the CSTR material and energy balances (Ch. 20 §20.8) |
+| Reduction | Bridge C: control-volume lumping, then linearisation about a nominal operating point |
+| Model | P(s) = Y(s)/U(s), or the equivalent ẋ = Ax + Bu, y = Cx + Du |
+| Assumptions | Dynamics linear over the signal range; coefficients time-invariant; initial conditions do not affect the input–output map; the operating point is an equilibrium and stays near it |
+| Retained | First-order sensitivity of output to input about the operating point; the modes that matter locally |
+| Neglected | All nonlinear coupling; drift of the operating point; unmodelled dynamics outside the linearisation region; measurement and process noise (unless added explicitly) |
+| Valid when | Small-signal operation about a stable equilibrium; bandwidth low enough that the neglected higher-order terms stay small |
+| Fails when | Large excursions, saturation, hysteresis, dead zones, sign changes, or a moving operating point |
+| Next model | Gain scheduling (one local model per operating point), feedback linearisation, or the nonlinear model itself with Lyapunov / MPC design |
+```
+
+**This is the single most important caveat in the chapter**, and it is the reason the chapter is not as aggressive as a first reading suggests. A transfer function is a *local* description of a system near a chosen point, obtained by two named approximations. The mathematics downstream of it is exact; the step that produced it is not.
 
 ---
 
@@ -337,7 +404,7 @@ Eigenvalues of $\mathbf{A}$ = poles of $P(s)$ = natural frequencies of the syste
 
 **Controllability:** Can any state $\mathbf{x}$ be driven to zero in finite time by choosing $u(t)$?
 
-$$\mathbf{W}_c = [\mathbf{B};;\mathbf{A}\mathbf{B};;\mathbf{A}^2\mathbf{B};;\cdots;;\mathbf{A}^{n-1}\mathbf{B}]$$
+$$\mathbf{W}_c = [\mathbf{B},\ \mathbf{A}\mathbf{B},\ \mathbf{A}^2\mathbf{B},\ \cdots,\ \mathbf{A}^{n-1}\mathbf{B}]$$
 
 System is controllable iff $\text{rank}(\mathbf{W}_c) = n$.
 
@@ -374,7 +441,7 @@ The observer gain $\mathbf{L}$ drives $\hat{\mathbf{x}} \to \mathbf{x}$ asymptot
 
 The **Linear-Quadratic Regulator (LQR)** chooses $\mathbf{K}$ to minimize:
 
-$$J = \int_0^\infty (\mathbf{x}^T\mathbf{Q}\mathbf{x} + u^T\mathbf{R}u),dt$$
+$$J = \int_0^\infty (\mathbf{x}^T\mathbf{Q}\mathbf{x} + u^T\mathbf{R}u)\,dt$$
 
 where $\mathbf{Q} \geq 0$ penalizes state deviation and $\mathbf{R} > 0$ penalizes control effort. Solution: $\mathbf{K} = \mathbf{R}^{-1}\mathbf{B}^T\mathbf{P}$ where $\mathbf{P}$ solves the algebraic Riccati equation:
 
@@ -386,15 +453,35 @@ The LQR automatically guarantees GM $\geq 6$ dB and PM $\geq 60°$ for single-in
 
 ## 21.8 — Cross-Branch Worked Examples
 
+Each example below follows the same six-step shape, and each records its validity limits:
+
+```text
+starting theory  →  approximation  →  mathematical reduction
+                 →  reduced model  →  engineering equation
+                 →  validity limits
+```
+
 ### 21.8.1 — Example 1: DC Motor Speed Control (EEE + ME)
 
-**Plant model:** DC motor with armature resistance $R_a$, inductance $L_a$, back-EMF constant $K_e$, torque constant $K_t$, load inertia $J$, friction $b$:
+**Starting theory.** A DC motor is a device that converts electrical energy to mechanical torque. From the electromagnetic side it is a two-port: voltage across the armature produces a current, and rotation produces a back-EMF. From the mechanical side it is a rotor inertia with viscous friction and a load.
+
+**Approximation.** (a) Linear magnetics — the torque constant $K_t$ and back-EMF constant $K_e$ are constant, valid away from magnetic saturation and brush contact changes. (b) Lumped armature — the armature winding is treated as a single $R_a$–$L_a$ branch, valid when the winding is electrically small compared with the EM wavelength it operates at. (c) Linearised mechanics — friction is taken as viscous, $T_f = b\,\omega$, valid for a fixed hydrodynamic/brush regime.
+
+**Mathematical reduction.** Kirchhoff's voltage law on the armature plus Newton's second law on the rotor:
+
+$$L_a\frac{di_a}{dt} = V_a - K_e\omega, \qquad J\frac{d\omega}{dt} = K_t i_a - b\omega$$
+
+**Reduced model.** Eliminating $i_a$ from the two equations gives a single second-order ODE in $\omega$, whose Laplace transform is:
 
 $$P(s) = \frac{\Omega(s)}{V_a(s)} = \frac{K_t/R_a J}{s^2\left(\tau_e\tau_m + 1\right) + s\left(\tau_e + \tau_m\right) + 1}\cdot\frac{1}{s}$$
 
-For $L_a$ small ($\tau_e = L_a/R_a \ll \tau_m = J/b$), simplified:
+with electrical time constant $\tau_e = L_a/R_a$ and mechanical time constant $\tau_m = J/b$.
+
+**Engineering equation.** Further, for $\tau_e \ll \tau_m$:
 
 $$P(s) \approx \frac{K_m}{s(\tau_m s + 1)}, \qquad K_m = \frac{K_t}{R_a b + K_t K_e}$$
+
+The integrator (the $1/s$) is the back-EMF: without it a constant voltage would accelerate the rotor without bound. This is why DC motors cannot be controlled open-loop on speed.
 
 **PID controller design:**
 
@@ -404,15 +491,37 @@ $$P(s) \approx \frac{K_m}{s(\tau_m s + 1)}, \qquad K_m = \frac{K_t}{R_a b + K_t 
 
 **With PID:** The integral term handles steady-state error (speed offset under load); derivative term improves transient response (reduces settling time).
 
-This motor drives (electrically) a gear + load: the mechanical Layer 3 (Ch. 19) and electrical Layer 3 (Ch. 18) are coupled through the motor — exactly a gyrator (GY element) in the bond graph (Ch. 17 §17.5).
+```text
+### Model Ledger — DC motor speed plant
+
+| Property | Description |
+|---|---|
+| Parent theory | Two-port electromechanical coupling (Ch. 18 §18.x machines + Ch. 19 §19.x rotational dynamics) |
+| Reduction | Lumped armature R_a–L_a; linear magnetics; linearised (viscous) friction; τ_e ≪ τ_m |
+| Model | P(s) = K_m / [s(τ_m s + 1)] |
+| Assumptions | K_t, K_e constant (no saturation); armature electrically small; friction ∝ ω; no cogging; rigid coupling to a load that can be lumped into J and b |
+| Retained | Back-EMF feedback (the integrator); rotor inertia; electrical and mechanical time constants; load torque as a disturbance |
+| Neglected | Magnetic saturation and hysteresis; brush contact dynamics and dead band; torque ripple from commutation; elastic shaft compliance; gearbox backlash; thermal derating of R_a |
+| Valid when | Continuous operation near a nominal speed and duty cycle; τ_e ≪ τ_m; currents below the saturation knee |
+| Fails when | Starting (large slip, $K_e\omega$ negligible, current-limited — the linear model is optimistic there); heavy load transients; high speed into field weakening; brushless/PMSM machines (different torque law, $T \propto i$ → $T \propto i_q$) |
+| Next model | Full nonlinear ẋ = f(x,u); field-weakening control; gearbox as a separate compliant stage; PMSM/BLDC torque–current–flux maps |
+```
+
+**Cross-branch coupling.** This motor drives a gear and load: the mechanical Layer 3 (Ch. 19) and electrical Layer 3 (Ch. 18) are coupled through the motor — exactly a gyrator (GY element) in the bond graph (Ch. 17 §17.5). The coupling is a `[STRUCTURAL CONNECTION]`: the motor is a power-converting element that maps a current-flow pair to a force-flow pair, and that mapping is the same object in Ch. 17's template regardless of the two domains involved.
 
 ### 21.8.2 — Example 2: Chemical Reactor Temperature Control (ChE)
 
-**Plant:** A CSTR (Ch. 20 §20.8.1) with exothermic reaction, cooled by a jacket. Energy balance gives the plant transfer function from coolant flow $u$ to reactor temperature $T$:
+**Starting theory.** A jacketed CSTR (Ch. 20 §20.8.1) with an exothermic reaction. Two coupled nonlinear ODEs: a material balance on the reacting species and an energy balance on the reactor and jacket.
+
+**Approximation.** (a) Perfect mixing in both vessels — the well-mixed assumption that defines an ideal reactor. (b) Constant density and heat capacity. (c) Linearisation about a nominal operating point (the step in §21.0.3). (d) A pure transport delay inserted for the sensor and coolant piping.
+
+**Mathematical reduction.** Linearising the two coupled balances and separating the dominant time constants yields a second-order-plus-delay plant:
 
 $$P(s) \approx \frac{K_{process}}{(\tau_1 s + 1)(\tau_2 s + 1)}e^{-\theta s}$$
 
-where the dead time $e^{-\theta s}$ represents transport delay in the temperature sensor or coolant piping — very common in chemical processes.
+where the dead time $e^{-\theta s}$ represents transport delay in the temperature sensor or coolant piping — very common in chemical processes, where the delay is physical (a fluid parcel takes time to travel) and not an artefact.
+
+**Engineering equation.** The controller-facing object is this $P(s)$; everything after it is domain-free.
 
 **Dead time and the Padé approximation:**
 
@@ -426,19 +535,74 @@ $$C(s) = \frac{1}{P(s)}\cdot\frac{1/\lambda}{s + 1/\lambda}$$
 
 where $\lambda$ is a tuning parameter (closed-loop time constant). Gives inherently good robustness and explicit trade-off between performance ($\lambda$ small) and robustness ($\lambda$ large).
 
+```text
+### Model Ledger — CSTR temperature plant
+
+| Property | Description |
+|---|---|
+| Parent theory | Coupled nonlinear material + energy balances for an exothermic reactor (Ch. 20 §20.8) |
+| Reduction | Perfect mixing; constant ρ, c_p; linearisation about a nominal steady state; transport delay lumped as e^{−θs} |
+| Model | P(s) = K / [(τ₁s+1)(τ₂s+1)] · e^{−θs} |
+| Assumptions | Both vessels well mixed; no spatial gradients; single reaction path; constant heat transfer coefficient; reactor is at steady state before the step; delay is pure, not a distributed-parameter diffusion |
+| Retained | Thermal capacitance of vessel and jacket; jacket heat-transfer resistance; the Arrhenius temperature dependence *linearised* into K; sensor and piping delay |
+| Neglected | Multiplicity and ignition/extinction (the true plant is nonlinear enough to have several steady states — linearising near the wrong one gives a stable-looking model of an unstable operation); reactant depletion; catalyst deactivation; jacket-side mixing; varying UA with flow |
+| Valid when | Small excursions about a chosen stable steady state; $\theta\omega \ll 1$ below the bandwidth; single stable operating point in the region of interest |
+| Fails when | Large setpoint steps that cross the ignition/extinction threshold; thermal runaway; batch operation; slow catalyst decay drifting the operating point |
+| Next model | Nonlinear MPC on the full balances — the standard industrial answer for exothermic reactors, precisely because the linear model is local; gain scheduling across multiple steady states |
+```
+
+This example is the clearest demonstration in the book that **the transfer function is a local object.** An exothermic CSTR can have three steady states. The linearisation is valid at each of them separately, with a different $P(s)$ at each, and one of them may be unstable. A single "the" transfer function for that reactor does not exist.
+
 ### 21.8.3 — Example 3: Active Vibration Control (ME/CE)
 
-**Plant:** A structural beam or floor with dominant mode at $\omega_n$ (from Ch. 19 §19.3):
+**Starting theory.** A distributed elastic structure. From Ch. 19 §19.3, the transverse displacement of a beam or floor plate obeys a PDE; the structure has an infinite set of modes, each with a natural frequency $\omega_n$ and a mode shape.
+
+**Approximation.** (a) Modal truncation — keep the lowest $n$ modes, discard the rest. (b) Lumped actuator and sensor (collocated pair). (c) For a single dominant mode, second-order approximation.
+
+**Mathematical reduction.** Projecting the PDE onto the retained modes via the modal transformation gives a diagonal second-order system; retaining one mode and applying a co-located sensor/actuator pair gives an inertial plant:
 
 $$P(s) = \frac{1/m}{s^2 + 2\zeta\omega_n s + \omega_n^2}$$
 
-**Sensor:** Accelerometer → measures $s^2 Y(s)$ (acceleration). **Actuator:** Piezoelectric patch or inertial mass shaker.
+**Reduced model.** One damped second-order oscillator. The other $n-1$ modes become the *unmodelled* dynamics — and in flexible structures those modes are the design constraint, not an afterthought.
 
-**Positive Position Feedback (PPF):** A control strategy specific to flexible structures — uses position feedback through a filter tuned to the target mode:
+**Engineering equation.** For collocated sensor–actuator pairs, the closed loop is unconditionally stable, and the controller adds damping to the targeted mode without exciting the others:
 
 $$C_{PPF}(s) = \frac{g\omega_f^2}{s^2 + 2\zeta_f\omega_f s + \omega_f^2}$$
 
-When $\omega_f \approx \omega_n$, the PPF controller adds damping to the structural mode. The Bode analysis shows that PPF is unconditionally stable for collocated sensor-actuator pairs — a major advantage over direct velocity feedback in flexible structures where spillover modes can cause instability.
+**Positive Position Feedback (PPF):** a control strategy specific to flexible structures — uses position feedback through a filter tuned to the target mode. When $\omega_f \approx \omega_n$, the PPF controller adds damping to the structural mode. The Bode analysis shows that PPF is unconditionally stable for collocated sensor-actuator pairs — a major advantage over direct velocity feedback in flexible structures where spillover modes can cause instability.
+
+```text
+### Model Ledger — single-mode structural plant
+
+| Property | Description |
+|---|---|
+| Parent theory | Euler–Bernoulli / plate PDE with ρA ∂²w/∂t² + EI ∂⁴w/∂x⁴ = q (Ch. 16 §16.7, Ch. 19 §19.3) |
+| Reduction | Modal projection; truncation to the dominant mode; collocated sensor/actuator; linearised (small vibration) |
+| Model | P(s) = (1/m) / (s² + 2ζω_n s + ω_n²) |
+| Assumptions | Linear elasticity; small deflections; viscous (Rayleigh) damping; rigid sensor/actuator attachment; actuator authority sufficient over the mode; no structural nonlinearity (no yielding, no gap, no buckling) |
+| Retained | The targeted mode's frequency, damping, and modal mass; the force-to-displacement path; the gain of the control path |
+| Neglected | All higher modes (**spillover**); actuator dynamics (if the collocated pair is not truly collocated at high frequency, stability is lost); measurement noise amplification; control-induced structural nonlinearity |
+| Valid when | Excitation is dominated by the targeted mode; the structure remains linear; the collocation assumption holds across the achieved bandwidth |
+| Fails when | Broadband or unpredicted excitation; approaching yield, buckling, or a frictional joint; non-collocated actuator/sensor geometry; higher modes entering the control bandwidth |
+| Next model | Multi-mode modal controller (LQG on the truncated modal model, with a stability check on the unmodelled modes); or collocation-aware $H_\infty$ design |
+```
+
+**The bridge-zone point.** This is Bridge C in its purest form: the structure is a *distributed* system (a PDE), and the control engineer has deliberately chosen a *lumped* model of it, discarding the rest of the spectrum. Ch. 19's failure-mode table and Ch. 16's Beam Ledger are the same content seen from two directions.
+
+### 21.8.4 — The common shape
+
+All three examples, plus the temperature oven and the distillation column in §21.13, have the identical skeleton:
+
+| Step | Motor speed | CSTR temperature | Structural mode |
+|---|---|---|---|
+| Parent theory | Electromechanical two-port | Nonlinear coupled balances | Elastic PDE |
+| Bridge C reduction | Lumped $R_a$–$L_a$; lumped $J$, $b$ | Perfect mixing; lumped thermal masses | Modal truncation |
+| Linearisation | Constant $K_t$, $K_e$; viscous friction | About a chosen steady state | Small vibration |
+| Reduced model | $K_m/[s(\tau_m s+1)]$ | $K/[(1+\tau_1s)(1+\tau_2s)]e^{-\theta s}$ | $(1/m)/(s^2+2\zeta\omega_n s+\omega_n^2)$ |
+| Engineering equation | PID / PI on speed | IMC / PID on temperature | PPF / $H_\infty$ on displacement |
+| Validity limit | Saturation, field weakening | Ignition/extinction, multiplicity | Spillover, nonlinearity |
+
+**The controller is identical across all three columns.** That is the capstone claim, and it holds — within the LTI box drawn in §21.0.2, and no wider.
 
 ---
 
@@ -485,16 +649,24 @@ Apply only the first control action; re-solve at the next time step (receding ho
 
 ## 21.10 — Where Control Theory Fails
 
+This section is the counterpart to §21.0.2. Read together, they bound the capstone claim: §§21.1–21.6 are exact mathematics *inside* the LTI box, and everything in this table is a reason the system is not in the box.
+
 |Failure mode|Cause|Alternative|
 |---|---|---|
-|Large nonlinearity|Operating point changes; linearization invalid|Gain scheduling; feedback linearization; Lyapunov methods|
+|Large nonlinearity|Operating point changes; linearization invalid|Gain scheduling; feedback linearization; Lyapunov methods; nonlinear MPC|
+|Time-varying coefficients|Aircraft in flight, turbine load ramps, drifting process conditions|Linear time-varying state-transition matrices $\Phi(t,\tau)$; gain scheduling; re-linearise and re-tune|
+|Hybrid / switching dynamics|Discrete mode changes (contact, saturation, clutch, phase change)|Hybrid automaton; mode-dependent $A$ and $B$ with mode estimators; switched-system stability (common Lyapunov function)|
 |Distributed parameter plant|PDE, not ODE; infinite-dimensional|Spatial discretization (FEM) + LQR; $H_\infty$ control for PDEs|
 |Pure time delay $\theta$|Bandwidth limited to $\sim 1/\theta$; Padé inaccurate|Smith predictor; dead-time compensator|
 |RHP zeros|Fundamental bandwidth limitation; non-minimum phase|$H_\infty$ optimization; waterbed constraint aware design|
 |RHP poles|Must be stabilized; robustness constraints|Requires careful loop shaping; stabilization bandwidth limits|
 |Quantum systems|Measurement collapses the state|Quantum optimal control; open quantum systems theory|
 |Stochastic systems with large noise|Deterministic control insufficient|Kalman filter + LQG; stochastic MPC|
+|Constrained inputs / states|Feasible set is a subset of the domain; unconstrained $H(s)$ is undefined there|MPC, which optimises over the model subject to constraints|
+|Chaotic systems|Sensitive dependence on initial conditions; linearisation radius collapses|Lyapunov methods; nonlinear observers; feedback linearisation; chaos control (where a controlled attractor exists)|
 |Bode sensitivity integral|Cannot improve at all frequencies|Shapes trade-off; waterbed unavoidable|
+
+**The point of this table is not defeat.** It is that the Layer-3 unification delivered by the transfer function is a *conditional* result, and the condition is worth stating precisely: the system must admit an LTI input–output description. Where it does, the unification is exact and branch-independent — a PID loop genuinely does not know what domain it is in. Where it does not, the Layer-3 template still holds at the level of conservation laws and balance equations, and the correct next step is a different *representation* (state-space, stochastic, constrained, nonlinear), not a different physics. Chapters 18–20 remain valid in every row of this table.
 
 **The sensitivity integral (repeated from §21.6.1)** is perhaps the most important theoretical limitation: for a stable system with no RHP open-loop poles:
 
@@ -533,6 +705,14 @@ LAYER 2: Classical continuum physics
 LAYER 3: Engineering systems
          R/C/L in every domain; H(s); PID; Bode; root locus (Ch. 17–21)
 ```
+
+**What this diagram does and does not claim.** Every arrow from L₀ to L₃ is a named reduction with a stated regime — that is the book's claim, and Chapters 3–17 defend it link by link. The final arrow, *L₃ system → transfer function*, is a Bridge C operation like the others, and it is the one most often left implicit. It carries three assumptions at once: **lumping** ($L_{element} \ll \lambda_{field}$), **linearity** (small excursions about an equilibrium), and **time-invariance** (fixed coefficients). Drop any one and the transfer function is the wrong object — which is why §21.0.2 and §21.10 exist.
+
+**The correct terminal statement of the capstone** is therefore:
+
+> For systems that admit an appropriate LTI representation, the transfer function provides a branch-independent mathematical language for analysis and control — and where it does not, the same Layer-3 template survives in conservation-law and state-space form, pointing at a different *representation* rather than a different physics.
+
+That is a narrower claim than "all engineering reduces to transfer functions." It is also the only version of the claim this book can actually defend, and the difference is not cosmetic: it is the difference between a framework and a slogan.
 
 ### 21.11.2 — The Five Cross-Layer Threads, Completed
 
@@ -613,17 +793,19 @@ The complete control toolbox, organized by method:
 
 The book opened with a single equation:
 
-$$S = \int d^4x,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}(\phi_{?},\ldots)\right]$$
+$$S = \int d^4x\,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}(\phi_{?},\ldots)\right]$$
 
 It closes with a PID controller:
 
-$$u(t) = K_p,e(t) + K_i\int e,dt + K_d\dot e$$
+$$u(t) = K_p\,e(t) + K_i\int e\,dt + K_d\,\dot e$$
 
 Between these two equations: six chapters of Layer-1 quantum mechanics, six chapters of Layer-2 classical physics, six chapters of Layer-3 engineering systems, and four explicit bridge operations that connect them.
 
 The PID controller — implemented in a microcontroller costing less than a dollar, installed in every industrial process, every climate system, every motor drive — is the action principle of Ch. 0 viewed from far away, through four layers of named approximation.
 
-Engineering is physics seen from far away. This book has shown you both ends of the telescope.
+**And that closing equation is honest only with its caveats attached.** The PID loop does not know what domain it is in, because the mathematics it operates on does not know either. But the transfer function that reaches it was obtained by lumping and linearising a physical system, and it describes that system only locally. The distance from the action to the controller is real; so are the four places where the approximation can be caught out. §21.0.2 and §21.10 say which.
+
+Engineering is physics seen from far away. This book has shown you both ends of the telescope — and the four lenses in between, each with its own stated limits.
 
 ---
 

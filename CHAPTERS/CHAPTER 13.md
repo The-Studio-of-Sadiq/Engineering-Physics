@@ -18,9 +18,53 @@ $$\text{flux} = -L \cdot \nabla\phi$$
 
 The claim was that Ohm's law, Fourier's law, Fick's law, Newton's law of viscosity, and Hooke's law are the same formula with different labels.
 
-**This chapter delivers the proof.** All five transport coefficients ($\sigma$, $\kappa$, $D$, $\eta$, $C$) are derived from one formula — the **Green-Kubo relation** — applied to five different current operators. The only thing that changes is which physical current you put in.
+**This chapter delivers the derivation.** All five response coefficients ($\sigma$, $\kappa$, $D$, $\eta$, $C$) follow from one formula — the **Green-Kubo relation** — applied to five different current operators. The only thing that changes is which physical current you put in.
+
+`[DERIVATION]` — with one boundary condition that has to be stated, because
+"delivers the proof" is doing more work than it should. Three assumptions carry
+the whole chapter:
+
+1. **Linear response.** The system is perturbed weakly, $\hat A = \hat A_0 + \delta\hat A$
+   with $|\delta\hat A| \ll |\hat A_0|$, and the response is taken to first order
+   in $\delta\hat A$. This is what produces the linear constitutive laws at all.
+   Finite-amplitude transport is not covered (§13.12).
+2. **Equilibrium initial condition.** The correlator $\langle\cdots\rangle_0$ is
+   an *equilibrium* average. This is what produces the time integral, and hence
+   the dissipative arrow of time described below.
+3. **Time-translation invariance of the unperturbed state.** Without it, the
+   $\langle J(t)J(0)\rangle_0$ in the Kubo formula is not a function of $t$ alone.
+
+Note also that the five results are not equally "the same". **Four** of them
+($\sigma$, $\kappa$, $D$, $\eta$) are dissipative transport coefficients,
+obtained from the same dissipative part of the correlator — but $\eta$ is built
+on a *transverse* current, the off-diagonal stress component $\hat\sigma_{xy}$,
+rather than on a conserved total current, which is why its Kubo formula is
+written with a factor of $1/V$ and a different relaxation time $\tau_v$. The
+fifth, $C$ in Hooke's law, is not a transport coefficient at all: it is a
+*zero-frequency, non-dissipative* static susceptibility, a second derivative of
+the free energy rather than an integral over a dissipative correlator. The
+unified template holds, but the members of the family differ in which part of
+the Kubo expression they use — a distinction that matters when the relaxation
+time goes to zero or the response becomes non-Markovian, and that is why
+"Hooke's law falls out of Kubo alongside Ohm's law" is a `[STRUCTURAL
+CONNECTION]` in the strict sense rather than a fifth instance of the same
+calculation.
 
 **Bridge B.e is also the bridge that injects irreversibility.** Chapters 9 and 11 (classical mechanics and Maxwell's equations) are time-reversible: run them backward and you get equally valid physics. Ohm's law is not time-reversible — current flows from high to low potential, not randomly. The irreversibility comes from this chapter: quantum scattering and decoherence, averaged over an equilibrium ensemble, produce a finite relaxation time and a finite, dissipative conductivity.
+
+**Model Ledger — microscopic Hamiltonian to linear transport coefficient**
+
+| Field | Content |
+|---|---|
+| Parent theory | Quantum many-body Hamiltonian $\hat H_0$ in thermal equilibrium (Ch. 5, Ch. 6) |
+| Reduction | Weak perturbation; first order in the field; equilibrium initial state; replace the bath with a relaxation time $\tau$ (Drude closure) |
+| Model | $L_{\alpha\beta} = \frac{1}{Vk_BT}\int_0^\infty \langle \hat J^\alpha(0)\hat J^\beta(t)\rangle_0\,e^{i\omega t}\,dt$; then $L = \frac{nq^2\tau}{m}$ |
+| Assumptions | linear response; equilibrium; ergodicity (so $\tau$ is a state variable, not history-dependent); elastic scattering only; $k_BT \ll E_F$ for metals |
+| Physics retained | dissipation, the arrow of time, the relation between charge/heat/momentum diffusion coefficients |
+| Physics neglected | inelastic and memory-dependent scattering, phonon drag, interactions (in the elastic limit), non-equilibrium distributions |
+| Validity | diffusive regime $\ell \ll L_{\text{device}}$; $\omega\tau \ll 1$; well-defined $\tau$ |
+| Fails when | $\ell \gtrsim L$ (ballistic/Landauer, §13.11), $\omega\tau \gtrsim 1$, strong correlations, or non-equilibrium driving |
+| Next model | memory kernel / non-Markovian response; Landauer (ballistic); hydrodynamic transport; BTE (Ch. 19 for phonons) |
 
 |Bridge|Path|Result|
 |---|---|---|
@@ -38,7 +82,7 @@ The claim was that Ohm's law, Fourier's law, Fick's law, Newton's law of viscosi
 
 Consider a system in equilibrium, described by density matrix $\hat\rho_0 = e^{-\beta\hat H_0}/Z$ (Ch. 10 §10.3). At $t = 0$, a weak time-dependent perturbation is switched on:
 
-$$\hat H(t) = \hat H_0 - \hat A,F(t)$$
+$$\hat H(t) = \hat H_0 - \hat A\,F(t)$$
 
 where $\hat A$ is a quantum observable (the operator that couples to the perturbation) and $F(t)$ is the classical driving force (an electric field, temperature gradient, pressure difference, etc.).
 
@@ -52,7 +96,7 @@ where $\hat A$ is a quantum observable (the operator that couples to the perturb
 
 To first order in $F$, the expectation value of a second observable $\hat B$:
 
-$$\langle\hat B(t)\rangle = \langle\hat B\rangle_0 + \int_{-\infty}^t \chi_{BA}(t-t'),F(t'),dt'$$
+$$\langle\hat B(t)\rangle = \langle\hat B\rangle_0 + \int_{-\infty}^t \chi_{BA}(t-t')\,F(t')\,dt'$$
 
 where $\chi_{BA}$ is the **retarded Green's function** (generalized susceptibility):
 
@@ -62,7 +106,7 @@ $\Theta$ is the Heaviside step function (enforcing **causality**: response canno
 
 In frequency space (Fourier transform):
 
-$$\langle\hat B(\omega)\rangle = \tilde\chi_{BA}(\omega),F(\omega)$$
+$$\langle\hat B(\omega)\rangle = \tilde\chi_{BA}(\omega)\,F(\omega)$$
 
 The response at frequency $\omega$ is proportional to the driving at the same frequency — this is linear response.
 
@@ -118,7 +162,7 @@ $$\boxed{\text{Im}[\tilde\chi_{AA}(\omega)] = \frac{\omega}{2k_BT}S_A(\omega)}$$
 
 where the **spectral density** (power spectrum of fluctuations):
 
-$$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(0)\hat A(t)\rangle_0,e^{i\omega t},dt$$
+$$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(0)\hat A(t)\rangle_0\,e^{i\omega t}\,dt$$
 
 **Physical interpretation:** The rate at which the system absorbs energy from an external drive at frequency $\omega$ is exactly determined by how strongly the system spontaneously fluctuates at the same frequency at equilibrium. Noise and dissipation are the same phenomenon.
 
@@ -126,11 +170,11 @@ $$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(0)\hat A(t)\rangle_0,e^{i\o
 
 Applied to a resistor $R$ at temperature $T$:
 
-$$S_V(\omega) = 4k_BT,\text{Re}[Z(\omega)] \xrightarrow{\omega\to 0} 4k_BTR$$
+$$S_V(\omega) = 4k_BT\,\text{Re}[Z(\omega)] \xrightarrow{\omega\to 0} 4k_BTR$$
 
 The **open-circuit voltage noise** of a resistor: $\langle V^2\rangle = 4k_BTR\Delta f$ in bandwidth $\Delta f$.
 
-For $R = 1,\text{M}\Omega$ at $T = 300$ K in $B = 10$ kHz: $V_{rms} = \sqrt{4k_BTR\Delta f} = \sqrt{4\times 1.38\times 10^{-23}\times 300\times 10^6\times 10^4} = 12.9;\mu$V
+For $R = 1\,\text{M}\Omega$ at $T = 300$ K in $B = 10$ kHz: $V_{rms} = \sqrt{4k_BTR\Delta f} = \sqrt{4\times 1.38\times 10^{-23}\times 300\times 10^6\times 10^4} = 12.9\,\mu$V
 
 This is the **floor on voltage measurement** — regardless of amplifier quality, the resistor itself generates this noise. It sets the sensitivity limit of every resistive sensor, every voltmeter, every impedance measurement.
 
@@ -152,23 +196,23 @@ The **Fano factor** $F = S_I/2eI$ measures the deviation from Poissonian statist
 
 The electrical conductivity tensor:
 
-$$\sigma_{\alpha\beta}(\omega) = \frac{1}{V}\int_0^\infty dt,e^{i\omega t}\int_0^\beta d\lambda,\langle\hat J_\alpha(-i\hbar\lambda)\hat J_\beta(t)\rangle_0$$
+$$\sigma_{\alpha\beta}(\omega) = \frac{1}{V}\int_0^\infty dt\,e^{i\omega t}\int_0^\beta d\lambda\,\langle\hat J_\alpha(-i\hbar\lambda)\hat J_\beta(t)\rangle_0$$
 
 where $\hat{\mathbf{J}}$ is the charge current density operator:
 
-$$\hat{\mathbf{J}} = \frac{e\hbar}{m}\sum_k\mathbf{k},\hat c_k^\dagger\hat c_k$$
+$$\hat{\mathbf{J}} = \frac{e\hbar}{m}\sum_k\mathbf{k}\,\hat c_k^\dagger\hat c_k$$
 
 summing over all occupied single-particle states.
 
 For an isotropic system in the DC limit ($\omega\to 0$):
 
-$$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty\langle\hat{\mathbf{J}}(0)\cdot\hat{\mathbf{J}}(t)\rangle_0,dt$$
+$$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty\langle\hat{\mathbf{J}}(0)\cdot\hat{\mathbf{J}}(t)\rangle_0\,dt$$
 
 ### 13.4.2 — The Drude Result from Kubo
 
 In a metal with an effective relaxation time $\tau$ (from electron-phonon or electron-impurity scattering, Ch. 6 §6.7.3), the current-current correlator decays exponentially:
 
-$$\langle\hat J_\alpha(0)\hat J_\beta(t)\rangle_0 = \frac{n_e^2k_BT}{m}\delta_{\alpha\beta},e^{-t/\tau}$$
+$$\langle\hat J_\alpha(0)\hat J_\beta(t)\rangle_0 = \frac{n_e^2k_BT}{m}\delta_{\alpha\beta}\,e^{-t/\tau}$$
 
 (The prefactor follows from the equipartition theorem for the current in a free electron gas, Ch. 10 §10.7.2.)
 
@@ -208,15 +252,32 @@ $$\hat{\mathbf{J}}_Q = \hat{\mathbf{J}}_E - \mu\hat{\mathbf{J}}_N = \frac{\hbar}
 
 The Kubo formula for thermal conductivity (at zero electric field):
 
-$$\kappa_{\alpha\beta} = \frac{1}{Vk_BT^2}\int_0^\infty\langle\hat J_Q^\alpha(0)\hat J_Q^\beta(t)\rangle_0,dt$$
+$$\kappa_{\alpha\beta} = \frac{1}{Vk_BT^2}\int_0^\infty\langle\hat J_Q^\alpha(0)\hat J_Q^\beta(t)\rangle_0\,dt$$
 
 ### 13.5.2 — The Result and the Wiedemann-Franz Law
 
 For metals (electronic heat conduction dominates), the same relaxation time $\tau$ governs both charge and heat transport. Taking the ratio:
 
-$$\frac{\kappa}{\sigma T} = \frac{\pi^2}{3}\left(\frac{k_B}{e}\right)^2 = L_0 = 2.44\times 10^{-8};\text{W}\cdot\Omega\cdot\text{K}^{-2}$$
+$$\frac{\kappa}{\sigma T} = \frac{\pi^2}{3}\left(\frac{k_B}{e}\right)^2 = L_0 = 2.44\times 10^{-8}\,\text{W}\cdot\Omega\cdot\text{K}^{-2}$$
 
-This is the **Wiedemann-Franz law** with the **Lorenz number** $L_0$ — a universal constant depending only on fundamental constants, independent of the material. It holds for all metals in the diffusive regime and is confirmed to $\sim 10%$ across metals from $-200°$C to $+600°$C.
+This is the **Wiedemann-Franz law** with the **Lorenz number** $L_0$ — a constant depending only on fundamental constants, independent of material. It holds for all metals in the diffusive regime and is confirmed to $\sim 10\%$ across metals from $-200°$C to $+600°$C.
+
+`[APPROXIMATION]` — **the universality of $L_0$ is a statement about a scattering
+model, not about metals.** The ratio is constant precisely because the *same*
+$\tau$ cancels from both $\sigma$ and $\kappa$. That requires elastic scattering
+only. When heat and charge relax by different mechanisms, the ratio drifts:
+
+| Regime | What happens to $\kappa/\sigma T$ |
+|---|---|
+| Elastic scattering, low $T$ | approaches $L_0$ |
+| Electron–phonon scattering, high $T$ | $\tau_Q \neq \tau_N$ — ratio below $L_0$ |
+| Transition metals, strong spin–orbit | $s$-wave scattering suppressed — ratio far above $L_0$ |
+| Strongly correlated (heavy fermions, cuprates) | quasiparticle picture fails — no constant ratio |
+
+So "universal constant, independent of material" is true to $\sim 10\%$ across
+ordinary metals and false in exactly the materials where the interesting physics
+is. Reading the deviations diagnostically is more useful than treating $L_0$ as
+a law.
 
 **Physical origin:** Both charge and heat are carried by electrons near the Fermi level. The energy $E_F$ per electron is the same whether you are measuring electrical or thermal transport. The factor $k_B^2/e^2$ converts energy² (thermal) to energy/charge (electrical) squared.
 
@@ -226,7 +287,7 @@ This is the **Wiedemann-Franz law** with the **Lorenz number** $L_0$ — a unive
 
 For insulators and semiconductors (no free electrons), heat is carried by phonons. The Green-Kubo formula:
 
-$$\kappa = \frac{1}{Vk_BT^2}\int_0^\infty\langle\hat{\mathbf{J}}_Q^{ph}(0)\cdot\hat{\mathbf{J}}_Q^{ph}(t)\rangle_0,dt$$
+$$\kappa = \frac{1}{Vk_BT^2}\int_0^\infty\langle\hat{\mathbf{J}}_Q^{ph}(0)\cdot\hat{\mathbf{J}}_Q^{ph}(t)\rangle_0\,dt$$
 
 In kinetic theory language (the result of integrating the correlator):
 
@@ -253,7 +314,7 @@ where $C_v$ is specific heat (per unit volume, Ch. 10 §10.7.3), $v_s$ is the ph
 
 The diffusivity of a species in a medium is given by the **Green-Kubo formula for diffusion** — the integral of the velocity autocorrelation function (VACF):
 
-$$D = \frac{1}{3}\int_0^\infty\langle\mathbf{v}(0)\cdot\mathbf{v}(t)\rangle_0,dt$$
+$$D = \frac{1}{3}\int_0^\infty\langle\mathbf{v}(0)\cdot\mathbf{v}(t)\rangle_0\,dt$$
 
 For a particle undergoing Brownian-like motion with momentum relaxation time $\tau$: $\langle v_\alpha(0)v_\alpha(t)\rangle = \frac{k_BT}{m}e^{-t/\tau}$
 
@@ -298,7 +359,7 @@ $$\frac{\partial c}{\partial t} + \nabla\cdot\mathbf{J}_N = 0 \quad\Longrightarr
 
 The viscosity of a fluid is given by the Green-Kubo formula applied to the off-diagonal stress tensor component $\hat\sigma_{xy}$ (the momentum flux in the $y$-direction from flow in the $x$-direction):
 
-$$\eta = \frac{V}{k_BT}\int_0^\infty\langle\hat\sigma_{xy}(0)\hat\sigma_{xy}(t)\rangle_0,dt$$
+$$\eta = \frac{V}{k_BT}\int_0^\infty\langle\hat\sigma_{xy}(0)\hat\sigma_{xy}(t)\rangle_0\,dt$$
 
 For a simple fluid with a single structural relaxation time $\tau_v$:
 
@@ -330,7 +391,7 @@ The elastic modulus tensor $C_{ijkl}$ can be derived from two routes:
 
 **Route 1: Green-Kubo** (isothermal modulus):
 
-$$C_{ijkl} = \frac{V}{k_BT}\int_0^\infty\langle\hat\sigma_{ij}(0)\hat\sigma_{kl}(t)\rangle_0,dt\bigg|_{t\to 0}$$
+$$C_{ijkl} = \frac{V}{k_BT}\int_0^\infty\langle\hat\sigma_{ij}(0)\hat\sigma_{kl}(t)\rangle_0\,dt\bigg|_{t\to 0}$$
 
 For an elastic solid (no viscous relaxation at short times), the correlator does not decay to zero at $t\to 0^+$ but retains its elastic value — giving a finite modulus.
 
@@ -356,7 +417,7 @@ $$E = \frac{\mu_L(3\lambda+2\mu_L)}{\lambda+\mu_L}, \qquad \nu = \frac{\lambda}{
 
 **The same Kubo framework shows that Hooke's law has a frequency-dependent generalization.** For a **viscoelastic** material:
 
-$$\tilde C(\omega) = \frac{V}{k_BT}\int_0^\infty\langle\hat\sigma_{xy}(0)\hat\sigma_{xy}(t)\rangle_0,e^{i\omega t},dt$$
+$$\tilde C(\omega) = \frac{V}{k_BT}\int_0^\infty\langle\hat\sigma_{xy}(0)\hat\sigma_{xy}(t)\rangle_0\,e^{i\omega t}\,dt$$
 
 At $\omega\to 0$: recovers the static elastic modulus (material responds slowly and fully). At $\omega\to\infty$: recovers the unrelaxed (glassy) modulus (material doesn't have time to rearrange). At intermediate $\omega$: complex modulus $C' + iC''$ — energy storage and loss.
 
@@ -372,7 +433,7 @@ $$\mathbf{X}_E = \mathbf{E} - \frac{\nabla\mu}{e}, \quad \mathbf{X}_Q = -\frac{\
 
 The Onsager transport equations:
 
-$$\begin{pmatrix}\mathbf{J}^e \ \mathbf{J}^Q\end{pmatrix} = \begin{pmatrix}L_{EE} & L_{EQ} \ L_{QE} & L_{QQ}\end{pmatrix}\begin{pmatrix}\mathbf{X}_E \ \mathbf{X}_Q\end{pmatrix}$$
+$$\begin{pmatrix}\mathbf{J}^e \\ \mathbf{J}^Q\end{pmatrix} = \begin{pmatrix}L_{EE} & L_{EQ} \\ L_{QE} & L_{QQ}\end{pmatrix}\begin{pmatrix}\mathbf{X}_E \\ \mathbf{X}_Q\end{pmatrix}$$
 
 **Diagonal elements** (from Kubo):
 
@@ -397,7 +458,7 @@ $$\boxed{L_{AB} = L_{BA}}$$
 
 $$S = \frac{L_{EQ}}{TL_{EE}} = \frac{\Delta V}{\Delta T}\bigg|_{J^e=0}$$
 
-For a free electron gas: $S = -\frac{\pi^2k_B^2T}{3eE_F}$ (Mott formula) At 300 K for copper ($E_F = 7$ eV): $S \approx -1.8;\mu$V/K (measured: $-1.8;\mu$V/K) ✓
+For a free electron gas: $S = -\frac{\pi^2k_B^2T}{3eE_F}$ (Mott formula) At 300 K for copper ($E_F = 7$ eV): $S \approx -1.8\,\mu$V/K (measured: $-1.8\,\mu$V/K) ✓
 
 **Peltier coefficient** $\Pi$ — heat current per unit charge current:
 
@@ -460,7 +521,7 @@ $$\boxed{G = \frac{2e^2}{h}\sum_n T_n}$$
 
 This is the **Landauer formula** (1957). For a perfect conductor ($T_n = 1$) with $N$ modes: $G = 2Ne^2/h$.
 
-**The quantum of conductance** $G_0 = 2e^2/h \approx 7.75\times 10^{-5}$ S $= 1/(12.9;\text{k}\Omega)$: the conductance of a single perfectly transmitting channel. First measured directly in quantum point contacts (1988).
+**The quantum of conductance** $G_0 = 2e^2/h \approx 7.75\times 10^{-5}$ S $= 1/(12.9\,\text{k}\Omega)$: the conductance of a single perfectly transmitting channel. First measured directly in quantum point contacts (1988).
 
 **The hierarchy of transport theories:**
 
@@ -482,7 +543,7 @@ $$G_{Hall} = \frac{\nu e^2}{h}$$
 
 This is the Landauer formula with perfect transmission — but the reason for $T_n = 1$ is topological (Chern number), not accidental. The Kubo formula gives the same result when applied to the full 2D system:
 
-$$\sigma_{xy} = \frac{e^2}{h}\sum_{n\in\text{filled}}\frac{1}{2\pi}\iint_{\text{BZ}}\Omega_n(\mathbf{k}),d^2k = \nu\frac{e^2}{h}$$
+$$\sigma_{xy} = \frac{e^2}{h}\sum_{n\in\text{filled}}\frac{1}{2\pi}\iint_{\text{BZ}}\Omega_n(\mathbf{k})\,d^2k = \nu\frac{e^2}{h}$$
 
 **The Kubo formula and topology connect at the integer QHE** — the Kubo integral over the Brillouin zone counts the Chern number. This is the TKNN result (Ch. 7 §7.2.1), now seen from the transport theory perspective.
 

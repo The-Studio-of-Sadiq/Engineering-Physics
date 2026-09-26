@@ -281,7 +281,7 @@ $\mathcal{F}$ is not the only open question. Each layer has its own frontier:
 
 **Layer 2 — Classical continuum:**
 - **Turbulence:** The existence and smoothness of solutions to the Navier-Stokes
-  equations is one of the seven Millennium Prize Problems ($1M prize unclaimed
+  equations is one of the seven Millennium Prize Problems (\$1M prize unclaimed
   since 2000). We cannot prove that smooth initial conditions remain smooth — or that
   they do not. Turbulence itself remains phenomenologically described, not derived
 - **The glass transition:** Why do liquids become amorphous solids (glasses) when

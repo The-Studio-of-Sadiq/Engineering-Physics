@@ -12,7 +12,7 @@
 
 In Chapter 0 you saw the equation:
 
-$$S = \int d^4x,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\right]$$
+$$S = \int d^4x\,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\right]$$
 
 and you were told: _vary this, set $\delta S = 0$, and you get all of physics._
 
@@ -68,8 +68,8 @@ The first step is to count how many numbers you actually need to completely spec
 |---|---|---|---|
 |Point particle in 3D|$x, y, z$|None|3|
 |Pendulum (2D)|$x, y$|$x^2 + y^2 = L^2$|1|
-|Double pendulum|$x_1,y_1,x_2,y_2$|Two length constraints|2|
-|Rigid body|$x,y,z,\theta,\phi,\psi$|None (rigid body has 6 DOF)|6|
+|Double pendulum|$x_1\,y_1\,x_2\,y_2$|Two length constraints|2|
+|Rigid body|$x\,y\,z\,\theta\,\phi\,\psi$|None (rigid body has 6 DOF)|6|
 |$N$ particles|$3N$ Cartesian|$k$ constraints|$3N - k$|
 
 The number of true degrees of freedom is $n = 3N - k$. These are the **generalized coordinates** $q_1, q_2, \ldots, q_n$ — any $n$ independent parameters that completely describe the configuration of the system.
@@ -122,7 +122,7 @@ The gauge potential $\mathbf{A}$ enters the Lagrangian directly — and the resu
 
 Given a curve $\gamma$ in configuration space parameterized by time, the **action** is the real number:
 
-$$S[\gamma] = \int_{t_1}^{t_2} L(q_i(t), \dot q_i(t), t),dt$$
+$$S[\gamma] = \int_{t_1}^{t_2} L(q_i(t), \dot q_i(t), t)\,dt$$
 
 The action is a **functional** — it assigns a number to each possible path, not to a point. The notation $S[\gamma]$ (square brackets) indicates this: $\gamma$ is a function, and $S$ is a function of that function.
 
@@ -144,7 +144,7 @@ This is the deep question. Several answers exist:
 
 **The Feynman path integral answer (deepest):** In quantum mechanics, a particle does not take one path — it takes _all_ paths simultaneously. The probability amplitude for going from $A$ to $B$ is:
 
-$$\langle B|e^{-i\hat H t/\hbar}|A\rangle = \int_{\text{all paths}} e^{iS[\gamma]/\hbar},\mathcal{D}\gamma$$
+$$\langle B|e^{-i\hat H t/\hbar}|A\rangle = \int_{\text{all paths}} e^{iS[\gamma]/\hbar}\,\mathcal{D}\gamma$$
 
 Each path contributes with equal magnitude but a phase $e^{iS/\hbar}$. In the limit $\hbar \to 0$, paths with rapidly oscillating phases cancel each other out — _except_ near the path where $S$ is stationary, where neighboring paths have nearly the same phase and add constructively.
 
@@ -162,7 +162,7 @@ Classical mechanics is not wrong — it is the $\hbar \to 0$ limit of quantum me
 
 We derive the condition $\delta S = 0$ explicitly. Consider a single generalized coordinate $q(t)$ (the multi-coordinate case is the same, applied independently to each $q_i$). The physical path is $q(t)$; a nearby perturbed path is:
 
-$$q_\epsilon(t) = q(t) + \epsilon,\eta(t)$$
+$$q_\epsilon(t) = q(t) + \epsilon\,\eta(t)$$
 
 where $\eta(t)$ is an arbitrary smooth function and $\epsilon$ is a small number. The boundary conditions require:
 
@@ -172,7 +172,7 @@ $$\eta(t_1) = \eta(t_2) = 0$$
 
 The action of the perturbed path:
 
-$$S[q_\epsilon] = \int_{t_1}^{t_2} L(q+\epsilon\eta,;\dot q + \epsilon\dot\eta,; t),dt$$
+$$S[q_\epsilon] = \int_{t_1}^{t_2} L(q+\epsilon\eta\,\dot q + \epsilon\dot\eta\, t)\,dt$$
 
 Expand to first order in $\epsilon$ using the Taylor expansion of $L$:
 
@@ -182,13 +182,13 @@ For stationarity, $dS[q_\epsilon]/d\epsilon\big|_{\epsilon=0} = 0$:
 
 $$\delta S \equiv \int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q},\eta + \frac{\partial L}{\partial\dot q},\dot\eta\right)dt = 0$$
 
-Integrate the second term by parts, using $\int u,dv = uv - \int v,du$ with $u = \partial L/\partial\dot q$ and $dv = \dot\eta,dt$:
+Integrate the second term by parts, using $\int u\,dv = uv - \int v\,du$ with $u = \partial L/\partial\dot q$ and $dv = \dot\eta\,dt$:
 
-$$\int_{t_1}^{t_2}\frac{\partial L}{\partial\dot q},\dot\eta,dt = \underbrace{\left[\frac{\partial L}{\partial\dot q},\eta\right]_{t_1}^{t_2}}_{=;0;\text{(endpoints fixed)}} - \int_{t_1}^{t_2}\frac{d}{dt}\frac{\partial L}{\partial\dot q},\eta,dt$$
+$$\int_{t_1}^{t_2}\frac{\partial L}{\partial\dot q}\,\dot\eta\,dt = \underbrace{\left[\frac{\partial L}{\partial\dot q},\eta\right]_{t_1}^{t_2}}_{=\,0\,\text{(endpoints fixed)}} - \int_{t_1}^{t_2}\frac{d}{dt}\frac{\partial L}{\partial\dot q}\,\eta\,dt$$
 
 Substituting back:
 
-$$\delta S = \int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial\dot q}\right)\eta,dt = 0$$
+$$\delta S = \int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial\dot q}\right)\eta\,dt = 0$$
 
 Since this must hold for **all** smooth $\eta$ vanishing at the endpoints, the integrand itself must be identically zero (by the fundamental lemma of variational calculus):
 
@@ -284,7 +284,7 @@ A **continuous symmetry** is a transformation $q_i \to q_i + \epsilon K_i(q, \do
 
 Suppose the action is unchanged under $q_i \to q_i + \epsilon K_i$. Then $\delta S = 0$, which means (by the same integration-by-parts calculation as §1.5.1, but now with $\eta_i = K_i$):
 
-$$\delta S = \int_{t_1}^{t_2}\sum_i\left(\frac{\partial L}{\partial q_i} - \frac{d}{dt}\frac{\partial L}{\partial\dot q_i}\right)K_i,dt + \left[\sum_i\frac{\partial L}{\partial\dot q_i}K_i\right]_{t_1}^{t_2} = 0$$
+$$\delta S = \int_{t_1}^{t_2}\sum_i\left(\frac{\partial L}{\partial q_i} - \frac{d}{dt}\frac{\partial L}{\partial\dot q_i}\right)K_i\,dt + \left[\sum_i\frac{\partial L}{\partial\dot q_i}K_i\right]_{t_1}^{t_2} = 0$$
 
 The first integral is zero by the Euler-Lagrange equations (the system is on-shell, i.e., following its actual trajectory). Therefore:
 
@@ -338,7 +338,7 @@ For the electron field $\psi$, consider $\psi \to e^{i\epsilon}\psi$ (a global p
 
 $$j^\mu = \frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi)}\cdot(i\psi) = -e\bar\psi\gamma^\mu\psi$$
 
-and the conserved charge $Q = \int j^0,d^3r = -e\int|\psi|^2,d^3r = -e$ (for one electron). **Electric charge is conserved because the action is invariant under phase rotations of the electron field.**
+and the conserved charge $Q = \int j^0\,d^3r = -e\int|\psi|^2\,d^3r = -e$ (for one electron). **Electric charge is conserved because the action is invariant under phase rotations of the electron field.**
 
 ---
 
@@ -371,7 +371,7 @@ $$p_i = \frac{\partial S}{\partial q_i}, \qquad Q_i = \frac{\partial S}{\partial
 
 Setting $K = 0$:
 
-$$\boxed{H!\left(q_i,;\frac{\partial S}{\partial q_i},;t\right) + \frac{\partial S}{\partial t} = 0}$$
+$$\boxed{H!\left(q_i\,\frac{\partial S}{\partial q_i}\,t\right) + \frac{\partial S}{\partial t} = 0}$$
 
 This is the **Hamilton-Jacobi (HJ) equation** — a single first-order PDE for the function $S(q_i, t)$.
 
@@ -381,7 +381,7 @@ For a time-independent Hamiltonian, write: $$S(q_i, t) = W(q_i) - Et$$
 
 where $E$ is the (conserved) total energy. Substituting:
 
-$$\boxed{H!\left(q_i,;\frac{\partial W}{\partial q_i}\right) = E}$$
+$$\boxed{H!\left(q_i\,\frac{\partial W}{\partial q_i}\right) = E}$$
 
 This is the **time-independent Hamilton-Jacobi equation**. $W(q_i)$ is called **Hamilton's characteristic function**.
 
@@ -393,11 +393,11 @@ The constant-$S$ surfaces are the **wavefronts** of a wave with wavenumber $k = 
 
 This is the most important result in classical mechanics. It directly shows why quantum mechanics takes the form it does.
 
-Write the wavefunction as: $$\psi(\mathbf{r}, t) = A(\mathbf{r}, t),e^{iS(\mathbf{r},t)/\hbar}$$
+Write the wavefunction as: $$\psi(\mathbf{r}, t) = A(\mathbf{r}, t)\,e^{iS(\mathbf{r},t)/\hbar}$$
 
-where $A$ is a real amplitude and $S$ is Hamilton's principal function. Substitute into the Schrödinger equation $i\hbar,\partial_t\psi = \left(-\frac{\hbar^2}{2m}\nabla^2 + V\right)\psi$:
+where $A$ is a real amplitude and $S$ is Hamilton's principal function. Substitute into the Schrödinger equation $i\hbar\,\partial_t\psi = \left(-\frac{\hbar^2}{2m}\nabla^2 + V\right)\psi$:
 
-**Left side:** $$i\hbar,\partial_t\psi = i\hbar\left(\dot A + \frac{iA\dot S}{\hbar}\right)e^{iS/\hbar} = \left(i\hbar\dot A - A\dot S\right)e^{iS/\hbar}$$
+**Left side:** $$i\hbar\,\partial_t\psi = i\hbar\left(\dot A + \frac{iA\dot S}{\hbar}\right)e^{iS/\hbar} = \left(i\hbar\dot A - A\dot S\right)e^{iS/\hbar}$$
 
 **Right side:** (using $\nabla\psi = (\nabla A + \frac{iA}{\hbar}\nabla S)e^{iS/\hbar}$) $$\nabla^2\psi = \left(\nabla^2 A + \frac{2i}{\hbar}\nabla A\cdot\nabla S + \frac{iA}{\hbar}\nabla^2 S - \frac{A}{\hbar^2}|\nabla S|^2\right)e^{iS/\hbar}$$
 
@@ -421,7 +421,7 @@ $$\text{Quantum potential: } Q = -\frac{\hbar^2}{2m}\frac{\nabla^2 A}{A}$$
 
 This is the purely quantum term that has no classical analog. It is responsible for tunneling, zero-point energy, and interference effects.
 
-**The hierarchy:** $$\text{Full quantum: } \psi = Ae^{iS/\hbar}$$ $$\downarrow; \hbar\to 0$$ $$\text{HJ equation (classical mechanics): } H + \partial_t S = 0$$ $$\downarrow; \text{simple geometry}$$ $$\text{Newton's 2nd law: } m\ddot{\mathbf{r}} = -\nabla V$$
+**The hierarchy:** $$\text{Full quantum: } \psi = Ae^{iS/\hbar}$$ $$\downarrow\quad\hbar\to 0$$ $$\text{HJ equation (classical mechanics): } H + \partial_t S = 0$$ $$\downarrow\quad\text{simple geometry}$$ $$\text{Newton's 2nd law: } m\ddot{\mathbf{r}} = -\nabla V$$
 
 Classical mechanics is quantum mechanics with quantum corrections suppressed by $\hbar$. The Hamilton-Jacobi equation is the hinge between them.
 
@@ -434,7 +434,7 @@ $$\psi(x) \approx \frac{C}{\sqrt{p(x)}}\exp!\left(\pm\frac{i}{\hbar}\int p(x),dx
 This is valid when the potential varies slowly over a de Broglie wavelength ($|dp/dx| \ll p^2/\hbar$). It describes:
 
 - Quantum tunneling through a barrier ($p$ becomes imaginary inside the barrier)
-- Semiclassical quantization: $\oint p,dq = (n+\frac{1}{2})h$ (Bohr-Sommerfeld)
+- Semiclassical quantization: $\oint p\,dq = (n+\frac{1}{2})h$ (Bohr-Sommerfeld)
 - Geometric optics as the WKB limit of wave optics
 
 WKB sits in the bridge zone between classical mechanics (Layer 2) and quantum mechanics (Layer 1). It is the correct equation to use when $\hbar$ is small but cannot be set to zero.
@@ -443,7 +443,7 @@ WKB sits in the bridge zone between classical mechanics (Layer 2) and quantum me
 
 ## 1.9 — From Particles to Fields: The Extension to $\mathcal{L}_{SM}$
 
-Everything in §§1.2–1.8 was for a finite number of degrees of freedom $q_1,\ldots,q_n$. The Standard Model Lagrangian involves **fields** — quantities defined at every point in spacetime. This is an infinite number of degrees of freedom.
+Everything in §§1.2–1.8 was for a finite number of degrees of freedom $q_1\,\ldots\,q_n$. The Standard Model Lagrangian involves **fields** — quantities defined at every point in spacetime. This is an infinite number of degrees of freedom.
 
 The extension is straightforward and the structure is identical.
 
@@ -457,11 +457,11 @@ Replace:
 |Index $i$ labeling DOF|Continuous label $(\mathbf{r}, a)$|
 |Velocity $\dot q_i(t)$|Gradient $\partial_\mu\phi_a$ (space-time derivative)|
 |Lagrangian $L(q_i, \dot q_i, t)$|Lagrangian density $\mathcal{L}(\phi_a, \partial_\mu\phi_a)$|
-|Action $S = \int L,dt$|Action $S = \int d^4x,\mathcal{L}$|
+|Action $S = \int L\,dt$|Action $S = \int d^4x\,\mathcal{L}$|
 
 ### 1.9.2 — Field Euler-Lagrange Equations
 
-Varying $S[\phi_a] = \int d^4x,\mathcal{L}(\phi_a, \partial_\mu\phi_a)$ with respect to $\phi_a$ (same integration-by-parts procedure as §1.5.1, now over 4D spacetime):
+Varying $S[\phi_a] = \int d^4x\,\mathcal{L}(\phi_a, \partial_\mu\phi_a)$ with respect to $\phi_a$ (same integration-by-parts procedure as §1.5.1, now over 4D spacetime):
 
 $$\boxed{\frac{\partial\mathcal{L}}{\partial\phi_a} - \partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi_a)} = 0}$$
 
@@ -475,13 +475,13 @@ The field equation: $\partial_\mu F^{\mu\nu} = 0$ — Maxwell's equations in vac
 
 ### 1.9.3 — Noether's Theorem for Fields
 
-For a field transformation $\phi_a \to \phi_a + \epsilon,\delta\phi_a$ that leaves $\mathcal{L}$ invariant, the conserved current is:
+For a field transformation $\phi_a \to \phi_a + \epsilon\,\delta\phi_a$ that leaves $\mathcal{L}$ invariant, the conserved current is:
 
 $$j^\mu = \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi_a)}\delta\phi_a$$
 
 satisfying $\partial_\mu j^\mu = 0$ (a continuity equation in 4D).
 
-The conserved charge: $$Q = \int j^0,d^3x = \text{const}$$
+The conserved charge: $$Q = \int j^0\,d^3x = \text{const}$$
 
 **The energy-momentum tensor** comes from invariance under spacetime translations $x^\mu \to x^\mu + \epsilon^\mu$:
 
@@ -499,11 +499,11 @@ This is Noether's theorem applied to the fields of Chapter 0. The $T_{\mu\nu}$ t
 
 We can now answer the question from §1.0.
 
-**Coordinate independence:** The action $S = \int \mathcal{L},d^4x$ is a single number — it does not depend on coordinates. The field equations derived from it are automatically covariant (they transform correctly under any coordinate change). This is why the same framework works in Cartesian, polar, spherical, and curved coordinates without modification.
+**Coordinate independence:** The action $S = \int \mathcal{L}\,d^4x$ is a single number — it does not depend on coordinates. The field equations derived from it are automatically covariant (they transform correctly under any coordinate change). This is why the same framework works in Cartesian, polar, spherical, and curved coordinates without modification.
 
 **Symmetry is primary:** By writing physics as an action, symmetries are directly visible as transformations that leave $S$ unchanged. Noether's theorem then guarantees conserved quantities without calculation. In Newton's framework, discovering a conservation law requires solving the equations first and observing the pattern. In the action framework, symmetry $\Rightarrow$ conservation _by construction_.
 
-**Unique generalization:** There is essentially one consistent way to write a Lorentz-invariant, gauge-invariant, renormalizable quantum field theory in 3+1 dimensions — an action of the form $\int d^4x,\mathcal{L}$ with a Lagrangian density satisfying certain symmetry and power-counting conditions. The Standard Model is (essentially) the unique theory of this type consistent with the observed particle content and symmetry group. The framework almost forces the answer.
+**Unique generalization:** There is essentially one consistent way to write a Lorentz-invariant, gauge-invariant, renormalizable quantum field theory in 3+1 dimensions — an action of the form $\int d^4x\,\mathcal{L}$ with a Lagrangian density satisfying certain symmetry and power-counting conditions. The Standard Model is (essentially) the unique theory of this type consistent with the observed particle content and symmetry group. The framework almost forces the answer.
 
 **Classical-quantum bridge:** As shown in §1.8.3, classical mechanics is the $\hbar \to 0$ limit of quantum mechanics, and this limit is made precise by the HJ equation. The action $S$ is literally the phase of the quantum wavefunction. Writing physics as an action is writing it in the language that is maximally transparent about this relationship.
 

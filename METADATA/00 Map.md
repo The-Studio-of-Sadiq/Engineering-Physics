@@ -2,7 +2,25 @@
 
 ## A Detailed Layer Map with Smooth Transitions
 
-_v4 — four layers, three bridges, one honest caveat, corrections per external review_
+_v5 — four layers, three bridges, master dependency graph, tagged connections, Model Ledger convention_
+
+This document is the **conceptual argument** of the repository: how the whole system works, layer by layer, arrow by arrow. The `README.md` answers *what this repository is*; this file answers *how the intellectual system it describes actually operates*. Read this before the chapters in sequence.
+
+---
+
+## Contents
+
+- [§M — The Master Dependency Graph](#m--the-master-dependency-graph) — the full branch-and-reconvergence map, with every arrow tagged
+- [§0 — The Framework Scale](#layer-0--the-framework-scale) — the action, Noether's theorem, symmetry breaking, topology
+- [Bridge A](#bridge-a--descent-from-layer-0-to-layer-1) — Layer 0 → Layer 1
+- [Layer 1](#layer-1--the-quantum--atomic-scale) — quantum / atomic
+- [Bridge B](#bridge-b--descent-from-layer-1-to-layer-2) — Layer 1 → Layer 2
+- [Layer 2](#layer-2--the-classical-continuum--statistical-scale) — classical continuum & statistical
+- [Bridge C](#bridge-c--descent-from-layer-2-to-layer-3) — Layer 2 → Layer 3
+- [Layer 3](#layer-3--the-engineering-systems-scale) — engineering systems
+- [Notation](#notation-how-to-read-every-connection) · [Model Ledger](#model-ledger-the-convention) · [Cross-Layer Threads](#cross-layer-threads)
+
+**Companion files.** [`README.md`](../README.md) — what the repository is. [`REFERENCES.md`](../REFERENCES.md) — sources for load-bearing claims. [`EXAMPLES/`](../EXAMPLES/) — single descents worked end to end, each with its validity limits. [`AUTHORING.md`](../AUTHORING.md) — the rules for extending any of this.
 
 ---
 
@@ -10,7 +28,7 @@ _v4 — four layers, three bridges, one honest caveat, corrections per external 
 
 Every successful physical theory we have admits an action description. This is not proven necessary — it is an extraordinarily good empirical pattern. The amplitudes program and AdS/CFT both hint that the Lagrangian may be a convenient organizing language rather than the only possible one. Nevertheless: **if a Theory of Everything exists, we have overwhelming reason to expect it will appear in this form:**
 
-$$\boxed{S = \int d^4x, \sqrt{-g} \left[ \frac{R}{16\pi G} + \mathcal{L}_{SM} + f(\phi_?, g_{\mu\nu}, \partial_\mu, \text{topology}) \right]}$$
+$$\boxed{S = \int d^4x\,\sqrt{-g} \left[ \frac{R}{16\pi G} + \mathcal{L}_{SM} + f(\phi_?, g_{\mu\nu}, \partial_\mu, \text{topology}) \right]}$$
 
 |Term|What it captures|Status|
 |---|---|---|
@@ -46,6 +64,218 @@ Dense chains of the form A → B → C → D appear throughout this book. Each a
 > **[PHENOMENOLOGICAL]** A model whose parameters or functional form come from experiment or an effective theory, not from a controlled derivation.
 
 Where a chain in this map does not carry a tag, treat it as informal narrative connective tissue, not a claim of derivation.
+
+---
+
+## Model Ledger: the Convention
+
+Tags classify a *connection*. The **Model Ledger** classifies a *model*. Wherever a chapter performs a major model transition — a PDE becoming an ODE, a field equation becoming a lumped circuit, a full model becoming a linearisation — it records the transition in a fixed nine-row table. The Ledger is the operational form of the book's central rule: **every useful engineering model has a domain of validity.**
+
+```text
+### Model Ledger — <name of the reduced model>
+
+| Property | Description |
+|---|---|
+| Parent theory | The deeper model this was obtained from |
+| Reduction | The named operation or limit applied |
+| Model | The reduced model itself |
+| Assumptions | What must hold for the reduction to be legal |
+| Retained | The physics that survives the reduction |
+| Neglected | The physics that was discarded |
+| Valid when | The regime in which the model is trustworthy |
+| Fails when | The regime in which it must be abandoned |
+| Next model | What to reach for when it fails |
+```
+
+**Worked instance** — the Euler–Bernoulli beam, which is the reference example for the whole Layer 2 → Layer 3 transition:
+
+```text
+### Model Ledger — Euler–Bernoulli beam
+
+| Property | Description |
+|---|---|
+| Parent theory | 3D linear elastodynamics, Navier's equation (Ch. 15, 16) |
+| Reduction | Slender-beam assumption, L / r ≫ 1 |
+| Model | EI ∂⁴w/∂x⁴ = q(x,t)  (Ch. 16 §16.7.2, Ch. 20 §20.2) |
+| Assumptions | Slender beam, small deflection, linear elasticity, Euler–Bernoulli kinematics (cross-sections stay normal) |
+| Retained | Bending deformation; axial force; distributed inertia |
+| Neglected | Transverse shear deformation, rotary inertia, warping torsion |
+| Valid when | L/r ≳ 10, excitation wavelengths ≫ L, small deflection |
+| Fails when | Thick beams (shear-dominated), high-frequency excitation, large deflection (geometric nonlinearity) |
+| Next model | Timošenko beam (adds shear + rotary inertia); shell theory for wide/thin members |
+
+Second instance — the lumped thermal RC node, which is the reference example for Bridge C:
+
+### Model Ledger — Lumped thermal RC node
+
+| Property | Description |
+|---|---|
+| Parent theory | Heat equation, ρc ∂T/∂t = ∇·(k∇T) (Ch. 16) |
+| Reduction | Control-volume integration + lumped-capacitance assumption |
+| Model | C dT/dt = (T_source − T)/R_th  (Ch. 17, 19) |
+| Assumptions | Bi ≪ 1 (lumped capacitance); short conduction path (small k/ρ thermal resistance); single dominant storage mode; boundaries at fixed T_source |
+| Retained | Total energy stored; net heat flow into the node |
+| Neglected | Internal temperature gradients; conduction delays; 3D spreading resistance; radiation (unless added as a parallel R) |
+| Valid when | Characteristic diffusion time across the body ≪ process timescale — typically true for compact bodies (Biot number ≪ 0.1) |
+| Fails when | Large or slow-heated bodies, phase change, or a genuinely distributed thermal mass; then the internal gradient *is* the answer, and the heat equation is required |
+| Next model | Rod/slab/fin models; distributed-parameter model (Ch. 19 §19.6) |
+```
+
+**Placement rule.** One Ledger per major model transition — not one per equation, and not one per chapter. Most chapters contain several distinct models, and a chapter with no transition (for example Ch. 2, the phenomena catalogue) carries none. Chapters carrying Ledgers in this edition: **3, 7, 13, 16, 17, 19, 20, 21**.
+
+**Why these chapters.** Each performs a transition a reader could otherwise
+mistake for a definition rather than a reduction, and each is a place where the
+book's central claim is under most pressure:
+
+| Ch. | Transition recorded | Claim at risk |
+|---|---|---|
+| 3 | Dirac → Foldy–Wouthuysen → Pauli → Schrödinger | that each is a theorem rather than a truncation |
+| 7 | Topological invariant → quantised transport coefficient | that topology "proves" a measurement |
+| 13 | Quantum Hamiltonian → linear response coefficient | that Ohm's law is fundamental |
+| 16 | Distributed PDE → lumped ODE | that the cross-branch result is an identity |
+| 17 | Control-volume integral → R/C element | the same, from the engineering side |
+| 19 | Thermofluid bond graph → linear loop gain | that bond graphs remove the need for models |
+| 20 | Physics → CE/ChE design law | that "same mathematics" means "same equation" |
+| 21 | Nonlinear plant → LTI transfer function → PID | that a transfer function describes every plant |
+
+The remaining chapters carry none, and that is a deliberate statement: a Ledger
+records a *reduction*, and a chapter that establishes, catalogues, or surveys has
+not reduced anything yet. Adding Ledgers elsewhere to make the count look uniform
+would dilute the convention.
+
+---
+
+## §M — The Master Dependency Graph
+
+This is the whole book in one diagram, with **every arrow tagged**. It is the same picture as the README's core architecture, at full resolution. Read it top to bottom as a descent; read it bottom to top as a reverse derivation from an engineering equation back to the action.
+
+```text
+                    FUNDAMENTAL PHYSICS
+                L₀   fields · symmetries · action
+                              │
+        ┌─────────────────────┴─────────────────────┐
+        ↓                                           ↓
+  QUANTUM FIELD THEORY                       GENERAL RELATIVITY
+  gauge · matter · θ-term                     metric · curvature
+  (Ch. 0)                                     (Ch. 0, Ch. 8)
+        │                                           │
+        │  [APPROXIMATION] isolate matter          │  [APPROXIMATION]
+        │  sector, E ≪ mc², v ≪ c                 │  weak field, h_μν ≪ 1
+        │  discards: pair creation,               │  discards: h², h³ terms
+        │  QED loops O(α/π ≈ 0.002),             │  keeps: perihelion precession,
+        │  gravitational effects                   │  lensing, frame dragging
+        │                                           │
+        └─────────────────────┬─────────────────────┘
+                              ↓
+                    QUANTUM PHYSICS
+                L₁   ψ(x,t) · spin · bands · nuclei
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        ↓                     ↓                     ↓
+     MATTER               SCATTERING               FIELDS
+   orbitals (Ch. 4–5)    S-matrix (Ch. 6)       Berry phase,
+   bonds, bands          phonons                 Chern numbers
+   (Ch. 6), nuclei       impurities              topological bands
+        │                electrons               (Ch. 7)
+        │                     │
+        │                     │  [DERIVATION] 1/τ  (scattering rate)
+        │                     │  [DERIVATION] ensemble average → Kubo
+        │                     │             correlator (Ch. 13)
+        └─────────────────────┼─────────────────────┘
+                              ↓
+                    ── BRIDGE B ──
+    four simultaneous descents. They are NOT one limit.
+    B.a  ħ → 0                      (Ch. 9)   → Newton, Lagrangian
+    B.b  N → ∞, ensemble averaging   (Ch. 10)  → stat. mech, thermo
+    B.c  classical U(1) coherent     (Ch. 11)  → Maxwell
+    B.d  weak-field metric           (Ch. 8)   → Newtonian gravity
+    B.e  Kubo linear response        (Ch. 13)  → the five transport laws
+    Each discards something. Each names what.
+                              ↓
+              STATISTICAL / CLASSICAL PHYSICS
+              L₂   mechanics · EM · thermo · continuum
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        ↓                     ↓                     ↓
+    MECHANICS                 EM                THERMODYNAMICS
+   Newton, Lagrangian,    Maxwell, waves,     four laws, ensembles,
+   Hamiltonian (Ch. 9)     optics (Ch. 11–12) Landau transitions
+        │                     │                (Ch. 10), phase
+   elasticity, fluids      constitutive         │
+   (Ch. 15–16)            D=εE, B=μH,        B.e lands here too:
+        │                  J=σE — Layer-1      the Generalized
+        │                  band structure      Transport Law
+        │                  packaged as         flux = −L·∇φ
+        │                  three numbers             │
+        └─────────────────────┼─────────────────────┘
+                              ↓
+                    CONTINUUM PHYSICS
+              Navier–Stokes · Navier elasticity
+              wave equation · diffusion equation · Maxwell
+                              │
+                    ── BRIDGE C ──
+    control-volume integration · spatial discretisation
+    lumping · linearisation
+    criterion:  L_element ≪ λ_field
+    bridge zone: transmission line, Euler–Bernoulli beam
+                              ↓
+        ┌─────────────────────┼─────────────────────┐
+        ↓                     ↓                     ↓
+       PDE              FEM / DISCRETISED         NETWORK
+   kept as a PDE      stiffness, FD, FEM      effort/flow pairs,
+   (distributed       (Ch. 16, Ch. 20)        R/C/L template
+    parameter)              │                (Ch. 17–19)
+        │                    │                     │
+        └─────────────────────┼─────────────────────┘
+                              ↓
+                   ENGINEERING SYSTEMS
+                L₃   circuits · machines · structures · reactors
+                              │
+        ┌──────────┬──────────┼──────────┬──────────┐
+        ↓          ↓          ↓          ↓          ↓
+    Electrical  Mechanical  Civil     Chemical    CONTROL
+      Ch. 18      Ch. 19    Ch. 20     Ch. 20     Ch. 21
+    R, C, L     m, c, b    k, R, C    R, C, k    H(s), C(s)
+        │          │          │          │          │
+        └──────────┴──────────┴──────────┴──────────┘
+                              ↓
+              EFFORT/FLOW UNIFICATION  ──  P = e · f
+              and the R/C/L template:  L ẍ + R ẋ + x/C = e
+                              ↓
+                     CONTROL  (Ch. 21)
+              PID, state-space, observers, MPC
+              — a branch-independent language for the
+                systems that admit an LTI representation
+```
+
+### The three things this graph is claiming
+
+**1. The reconvergence at Layer 2 is the book's central technical result.** Five apparently independent L₀/L₁ threads — gauge structure, gravity, quantum statistics, scattering, field topology — discharge into one small set of classical continuum equations. The sharpest statement is the Generalized Transport Law (Bridge B.e / Ch. 13):
+
+| $\hat A$, $\hat B$ | $L_{AB}$ | Law | Domain |
+|---|---|---|---|
+| $\hat J$, $\hat J$ | $\sigma$ | Ohm | Electrical |
+| $\hat J_Q$, $\hat J_Q$ | $\kappa$ | Fourier | Thermal |
+| $\hat J_N$, $\hat J_N$ | $D$ | Fick | Mass / species |
+| $\hat\Pi$, $\hat\Pi$ | $\eta$ | Newton viscosity | Fluid momentum |
+| $\hat\sigma$, $\hat\sigma$ | $C$ | Hooke | Structural |
+
+One linear-response calculation, five operators. This is the chapter that makes the rest of the book possible, and it is a `[DERIVATION]` within each domain — *not* a claim that the five domains are physically the same thing.
+
+**2. The reconvergence at Layer 3 is a statement about representations, not about physics.** EEE, ME, CE and ChE do not share physics; they share an effort/flow pair and an R/C/L template. `P = e · f` in every domain because work is work. The unification is in the *mathematics of the lumped model*, and it is exactly as strong as — and exactly as weak as — the lumping assumption that produced it.
+
+**3. The break points map backwards, and that is the point.** Every Layer-3 model has a documented failure regime and a documented destination:
+
+| L₃ failure mode | Physical cause | Go back to |
+|---|---|---|
+| Transistor gate tunnelling | Oxide ≲ few nm | L₁ — band structure, WKB tunnelling (Ch. 4 §4.4) |
+| Quantum Hall, topological insulators | Non-trivial band topology | L₁ — Chern number, edge states (Ch. 7) |
+| Fracture, fatigue | Bond-level failure mechanics | L₁ — molecular dynamics, fracture mechanics |
+| EM behaviour above ~GHz | Lumping criterion $L \ll \lambda$ violated | L₂ — transmission line, full Maxwell (Ch. 17) |
+| Turbulence | Navier–Stokes → chaos | Stays in L₂; there is no closed L₃ model. This is an honest dead end. |
+| Irradiation, plasma, high-$T$ materials | Damage physics beyond equilibrium transport | L₁ or L₀ |
+
+The last column is the argument for building the map bottom-up in the first place: a working engineer who knows where their model's failure regime lives knows *which* deeper theory to go and learn.
 
 ---
 
@@ -146,9 +376,47 @@ The Higgs potential $V(H) = -\mu^2|H|^2 + \lambda|H|^4$ has a "Mexican hat" shap
 
 **Mark this mechanism, not this instance.** [STRUCTURAL CONNECTION] The Higgs mechanism is _one example_ of spontaneous symmetry breaking in field theory — it is not the physical ancestor of ferromagnetism or superconductivity. Landau theory (Layer 2, §2.3) is the general mathematical template underneath all of them: a free energy expanded in an order parameter, with a coefficient that changes sign at a critical point.
 
-$$ \begin{aligned} &\text{Spontaneous / effective symmetry breaking (the Mexican-hat template)} \ &\quad\longrightarrow \text{Higgs mechanism} && [\text{DERIVATION, within the Standard Model}],\ \sim 246\ \text{GeV} \ &\quad\longrightarrow \text{Landau theory} && [\text{STRUCTURAL CONNECTION — same template, independently applied}] \ &\qquad\quad\longrightarrow \text{Ferromagnetism} && [\text{APPROXIMATION, Landau applied to spin order}] \ &\qquad\quad\longrightarrow \text{Superconductivity (Ginzburg-Landau)} && [\text{APPROXIMATION, Landau applied to Cooper-pair order}] \ &\qquad\qquad\quad\longrightarrow \text{Engineering hysteresis / bistability} && [\text{ANALOGY}] \end{aligned} $$
+The relationship is a **fan out from one template into independent instances**, not a chain. Nothing below the template is upstream of anything else in the fan:
 
-Higgs and Landau theory both instantiate the same mathematical template — the dictionary between them is $\mu^2 \leftrightarrow \mu^2(T_c - T)$ — but Higgs is not upstream of ferromagnetism in any causal sense. Both are independent downstream instances of the same free-energy structure, at wildly different energy scales ($\sim 246$ GeV versus $\sim$ meV). The student should see symmetry breaking as a scale-independent _mathematical_ phenomenon with multiple independent physical realizations, not as a single lineage running through the Higgs field.
+```text
+                        SYMMETRY BREAKING
+              (one template: order parameter + a
+           coefficient that changes sign at a critical point)
+                               │
+        ┌──────────────────────┼──────────────────────┐
+        ↓                      ↓                      ↓
+   HIGGS                  LANDBY               CONDENSED
+ MECHANISM               THEORY                MATTER
+ (Ch. 0, ~246 GeV)       (Ch. 10)             (Ch. 7, ~meV)
+        │                      │                      │
+        │                      │        ┌─────────────┴─────────────┐
+        │                      │        ↓                           ↓
+        │                      │  Ferromagnetism            Superconductivity
+        │                      │  (spin order)              (Ginzburg–Landau,
+        │                      │                            Cooper-pair order)
+        │                      │        │                           │
+        │                      └────────┼───────────────────────────┘
+        │                               ↓
+        │              ENGINEERING HYSTERESIS / BISTABILITY
+        │              magnetic cores · structural snap-through ·
+        │                  bistable circuits · reaction multiplicity
+        └──────────────► (no arrow; a sibling instance at a different scale)
+```
+
+**Per-arrow classification.** The tree shape above is the whole point; the tags say exactly how much each edge carries.
+
+| Edge | Tag | What it actually means |
+|---|---|---|
+| Higgs mechanism → | `[DERIVATION]` | The Higgs potential is obtained within the Standard Model, not imported. SU(2)×U(1) → U(1) at $v \approx 246$ GeV. |
+| Landau theory → | `[DERIVATION]` | Landau's expansion follows from analyticity of the free energy near a critical point, plus symmetry constraints on the allowed terms. |
+| Landau → ferromagnetism | `[APPROXIMATION]` | Landau's *mean-field* theory applied to a spin order parameter, with a coefficient $a(T)$ that crosses zero at $T_c$. Valid near $T_c$ and above $T_c$; quantitatively wrong far below it because it neglects critical fluctuations. |
+| Landau → superconductivity | `[APPROXIMATION]` | Ginzburg–Landau, with the order parameter being the Cooper-pair condensate and $a(T) = a_0(T - T_c)$. Valid near $T_c$; the microscopic mechanism (BCS pairing) is *added*, not derived, from the L₁ side. |
+| Any of the above → engineering hysteresis | `[ANALOGY]` | Hysteresis needs a bistable free-energy landscape with a barrier. That is a structural feature, not a derivation. A Schmitt trigger is not a superconductor. |
+| Higgs ↔ Landau | `[STRUCTURAL CONNECTION]` | Same template, independently applied: $\mu^2 \leftrightarrow \mu^2(T_c - T)$. The dictionary is exact; the physics is not connected. |
+
+The scales differ by roughly **twelve orders of magnitude** ($\sim 10^{11}$ eV versus $\sim 10^{-3}$ eV), which is the cleanest available demonstration that energy scale is irrelevant to the template's validity and everything to the instantiation.
+
+What a student should take away: **symmetry breaking is a scale-independent mathematical phenomenon with multiple independent physical realizations** — not a single lineage running outward from the Higgs field. Reading the tree above as a genealogy is the specific error this section exists to prevent.
 
 ---
 
@@ -158,7 +426,21 @@ The θ-term is a topological term — it integrates to a topological invariant (
 
 Why tell engineering students this? Because **topology has already reached semiconductor labs.** The quantum Hall effect, topological insulators, and Weyl semimetals all derive their exotic properties from topological terms in their effective Layer-1 Hamiltonians — which are shadows of Layer-0 topology. The f(φ) placeholder is where a more complete understanding of this topology will eventually sit.
 
-[STRUCTURAL CONNECTION] Note in advance: the θ-term, the Chern numbers of Layer 1, and any topological invariant appearing later in this book (including in control theory, Ch. 21) share a common branch of mathematics — the classification of maps by winding number or degree — without one being derived from another. This point is made explicit where the chain is completed, in Ch. 21 §21.11.2.
+[STRUCTURAL CONNECTION] Note in advance, because this is the thread most often over-read: the θ-term, the Chern numbers of Layer 1, and the encirclement count that appears in Layer-3 control theory (Ch. 21) share a common branch of mathematics — the classification of maps by winding number or degree — **without one being derived from another.** This is a *shared mathematical thread*, not a physical descent.
+
+The interesting claim is not that Nyquist control came from QCD. It is this:
+
+> **Topological invariants, winding numbers, phase, and counting arguments appear independently in physically unrelated areas — particle physics, condensed matter, and control engineering — because classifying maps by degree is a general mathematical tool that any field theory, any band structure, and any complex transfer function can end up needing.**
+
+Three settings, three genuinely different physical questions, one shared skeleton:
+
+| Setting | The invariant | What it counts | Physical question it answers |
+|---|---|---|---|
+| Ch. 0 — QCD θ-term | Pontryagin number $\in\mathbb{Z}$ | Windings of the gauge field on a closed 4-manifold | Why is $\theta_{QCD} < 10^{-10}$? (strong CP) |
+| Ch. 7 — band structure | Chern number / $\mathbb{Z}_2$ invariant | Winding of the Bloch states over the Brillouin torus | Why is the Hall conductance quantised? Why do edge states exist? |
+| Ch. 21 — Nyquist criterion | Encirclement number of $(-1,0)$ | Windings of $L(j\omega)$ in the complex plane | How many closed-loop poles are unstable? |
+
+The structures are analogous in the strong sense — integer-valued, invariant under smooth deformation, changing only across a genuine qualitative transition. The *physics* is not analogous at all: a Pontryagin number constrains the vacuum structure of a gauge field; a Chern number produces a measurable Hall conductance; an encirclement count is a stability test applied to an engineering transfer function. Where the chain is completed, in Ch. 21 §21.11.2, this is stated explicitly and the analogy is explicitly declined.
 
 ---
 
@@ -519,13 +801,41 @@ $$\oint\mathbf{E}\cdot d\mathbf{l} = -\frac{d\Phi_B}{dt}, \qquad \oint\mathbf{H}
 
 Neither integral form maps onto a Kirchhoff law by itself. **KCL and KVL come from two different parts of the Maxwell/continuity structure, taken through two different limits — they are not mirror images of each other via Faraday and Ampère.**
 
-$$ \begin{aligned} &\text{Maxwell's equations} \ &\quad\text{Faraday: } \oint\mathbf{E}\cdot d\mathbf{l} = -\dfrac{d\Phi_B}{dt} && [\text{STRUCTURAL CONNECTION}] \longrightarrow \text{circuit voltage relations} \ &\quad\text{Ampère–Maxwell: } \oint\mathbf{H}\cdot d\mathbf{l} = I_{enc} + \dfrac{d\Phi_D}{dt} && [\text{STRUCTURAL CONNECTION}] \longrightarrow \text{field/current relations} \ &\quad\text{Charge continuity: } \partial_\mu j^\mu = 0 && [\text{DERIVATION, Bridge B.c}] \longrightarrow \text{KCL} \end{aligned} $$
+```text
+MAXWELL'S EQUATIONS
+     │
+     ├── Faraday:  ∮E·dl = −dΦ_B/dt
+     │      [STRUCTURAL CONNECTION] ──► circuit voltage relations
+     │      (supplies the element relation V = L di/dt + Ri
+     │       once the loop is small enough to neglect the flux term)
+     │
+     ├── Ampère–Maxwell:  ∮H·dl = I_enc + dΦ_D/dt
+     │      [STRUCTURAL CONNECTION] ──► field/current relations
+     │      (this is where current *sources*; it is not a conservation law)
+     │
+     └── Charge continuity:  ∂_μ j^μ = 0
+            [DERIVATION, Bridge B.c] ──► KCL
+            (the actual conservation statement, after Bridge C lumping)
+```
 
 **KCL** comes from the charge-continuity branch above — already derived in Bridge B.c and carried through Bridge C's lumped-node approximation (§0.2, §3.1). It is not read directly off Ampère's law; Ampère's law is where the _field_ equation that current sources into lives, but the _conservation statement_ that becomes KCL is continuity, a separate (Bianchi-adjacent) piece of structure.
 
 **KVL** requires a second, independent step — the quasi-static / lumped approximation that defines Bridge C:
 
-$$ \begin{aligned} \text{Maxwell (full)}\ &\overset{[\text{APPROXIMATION: quasi-static}, \ \partial\Phi_B/\partial t \text{ negligible over the loop}]}{\longrightarrow}\ \text{lumped circuit theory} \ &\overset{[\text{DERIVATION, Bridge C lumping}]}{\longrightarrow}\ \text{KCL} + \text{KVL} \end{aligned} $$
+```text
+Maxwell (full, with flux terms)
+      │
+      │  [APPROXIMATION — quasi-static:
+      │     dΦ_B/dt negligible over the loop,
+      │     equivalently L_loop ≪ λ_EM]
+      ↓
+lumped circuit theory
+      │
+      │  [DERIVATION — Bridge C control-volume
+      │     integration of Faraday around a closed loop]
+      ↓
+KCL + KVL
+```
 
 Under the quasi-static assumption, Faraday's law integrated around a lumped loop reduces to $\sum V_{loop} = 0$ — KVL. Away from that assumption (high frequency, electrically large loops), the induced-EMF term does not vanish, KVL stops being exact, and the full Faraday integral must be used instead — which is exactly why transmission-line theory (Bridge C.3) exists as a separate model.
 
@@ -749,7 +1059,7 @@ Built from R/C/L in chemical and thermal domains:
 
 A PID controller is:
 
-$$u(t) = K_p e(t) + K_i\int e,dt + K_d\frac{de}{dt}$$
+$$u(t) = K_p e(t) + K_i\int e\,dt + K_d\frac{de}{dt}$$
 
 It doesn't know what domain it's in. It doesn't know if e is a voltage error, a temperature error, a position error, or a flow error. It doesn't know if u is a current, a valve opening, or a throttle position.
 
@@ -807,16 +1117,19 @@ Thread 4: THE WAVE / DIFFUSION DICHOTOMY
   Layer 2: Wave equation (EM, acoustic, elastic); diffusion equation (heat, mass)
   Layer 3: Filter design; thermal transient; signal propagation
 
-Thread 5: TOPOLOGY
+Thread 5: TOPOLOGY  (shared mathematical thread — NOT a physical descent)
   Layer 0: θ-term in QCD; anomaly cancellation constrains particle charges
+           → Pontryagin number (integer classifying a map)
   Layer 1: Chern number, Berry phase → quantum Hall, topological insulators
-  Layer 2: Topological defects in ordered media (vortices, domain walls)
+           → integer classifying a map over the Brillouin torus
+  Layer 2: topological defects in ordered media (vortices, domain walls)
   Layer 3: (Mostly invisible at the engineering level — until it breaks
-           something at Layer 1, which is why the f(φ) placeholder matters.
-           Note: any topological invariant appearing in Layer-3 control
-           theory, such as the Nyquist encirclement count, shares only the
-           underlying mathematics with this thread — see Ch. 21 §21.11.2 —
-           not a physical lineage.)
+           something at Layer 1, which is why the f(φ) placeholder
+           matters. Where it does appear explicitly — the Nyquist
+           encirclement count, Ch. 21 §21.3.4 and §21.11.2 — it shares
+           only the *mathematics* of integer invariants under smooth
+           deformation, on a completely different space. Not a
+           physical lineage, and explicitly not derived from Ch. 0.)
 ```
 
 ---

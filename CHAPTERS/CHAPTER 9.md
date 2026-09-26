@@ -46,9 +46,9 @@ A critical point: the classical mechanics recovered here is not a separate subje
 
 For any quantum observable $\hat A$ (not explicitly time-dependent):
 
-$$\frac{d\langle\hat A\rangle}{dt} = \frac{d}{dt}\int\psi^*\hat A\psi,d^3r$$
+$$\frac{d\langle\hat A\rangle}{dt} = \frac{d}{dt}\int\psi^*\hat A\psi\,d^3r$$
 
-Using the Schrödinger equation $i\hbar,\partial_t\psi = \hat H\psi$ and its conjugate:
+Using the Schrödinger equation $i\hbar\,\partial_t\psi = \hat H\psi$ and its conjugate:
 
 $$\boxed{\frac{d\langle\hat A\rangle}{dt} = \frac{i}{\hbar}\langle[\hat H, \hat A]\rangle + \left\langle\frac{\partial\hat A}{\partial t}\right\rangle}$$
 
@@ -88,7 +88,7 @@ $$\boxed{\Delta x \ll L_V}$$
 
 This is Newton's second law — the expectation values of position and momentum of a narrow quantum wavepacket obey classical equations of motion.
 
-**What controls the wavepacket width?** The uncertainty principle (Ch. 3 §3.11) requires $\Delta x,\Delta p \geq \hbar/2$. As $\hbar\to 0$, the minimum wavepacket width goes to zero — a perfectly sharp classical trajectory. For macroscopic objects, $\hbar/S_{action} \sim 10^{-34}$ J·s / (1 kg × 1 m/s × 1 m) $= 10^{-34}$ — the wavepacket is effectively a point.
+**What controls the wavepacket width?** The uncertainty principle (Ch. 3 §3.11) requires $\Delta x\,\Delta p \geq \hbar/2$. As $\hbar\to 0$, the minimum wavepacket width goes to zero — a perfectly sharp classical trajectory. For macroscopic objects, $\hbar/S_{action} \sim 10^{-34}$ J·s / (1 kg × 1 m/s × 1 m) $= 10^{-34}$ — the wavepacket is effectively a point.
 
 ---
 
@@ -98,9 +98,9 @@ This is Newton's second law — the expectation values of position and momentum 
 
 From quantum mechanics (the rigorous formulation), the amplitude for a particle to travel from $(\mathbf{r}_a, t_a)$ to $(\mathbf{r}_b, t_b)$ is:
 
-$$K(\mathbf{r}_b, t_b;,\mathbf{r}_a, t_a) = \int_{\text{all paths}} \mathcal{D}\mathbf{r}(t),\exp!\left(\frac{i}{\hbar}S[\mathbf{r}(t)]\right)$$
+$$K(\mathbf{r}_b, t_b\,\mathbf{r}_a, t_a) = \int_{\text{all paths}} \mathcal{D}\mathbf{r}(t)\,\exp!\left(\frac{i}{\hbar}S[\mathbf{r}(t)]\right)$$
 
-where $S[\mathbf{r}(t)] = \int_{t_a}^{t_b} L(\mathbf{r},\dot{\mathbf{r}},t),dt$ is the classical action (Ch. 1 §1.4) evaluated along each possible path, and the integral runs over **all continuous paths** connecting the endpoints — not just the classical one.
+where $S[\mathbf{r}(t)] = \int_{t_a}^{t_b} L(\mathbf{r},\dot{\mathbf{r}},t)\,dt$ is the classical action (Ch. 1 §1.4) evaluated along each possible path, and the integral runs over **all continuous paths** connecting the endpoints — not just the classical one.
 
 Every path contributes equally in magnitude but with a phase $e^{iS/\hbar}$. Paths of very different action have rapidly oscillating phases that cancel.
 
@@ -110,7 +110,7 @@ As $\hbar \to 0$, the phase $S/\hbar$ oscillates infinitely rapidly for any vari
 
 The condition $\delta S = 0$ — stationary action — is exactly the **Euler-Lagrange equation** (Ch. 1 §1.5). The dominant contribution to $K$ comes from the classical trajectory $\mathbf{r}_{cl}(t)$:
 
-$$K \xrightarrow{\hbar\to 0} A(\mathbf{r}_b,\mathbf{r}_a,t),\exp!\left(\frac{i}{\hbar}S_{cl}[\mathbf{r}_{cl}(t)]\right)$$
+$$K \xrightarrow{\hbar\to 0} A(\mathbf{r}_b,\mathbf{r}_a,t)\,\exp!\left(\frac{i}{\hbar}S_{cl}[\mathbf{r}_{cl}(t)]\right)$$
 
 where $A$ is a slowly-varying prefactor from the Gaussian integral over fluctuations around the classical path.
 
@@ -126,7 +126,7 @@ This is the answer to the question raised in Ch. 1 §1.4.2: _Why should $\delta 
 
 Write the wavefunction as:
 
-$$\psi(\mathbf{r}, t) = A(\mathbf{r},t),\exp!\left(\frac{i}{\hbar}S(\mathbf{r},t)\right)$$
+$$\psi(\mathbf{r}, t) = A(\mathbf{r},t)\,\exp!\left(\frac{i}{\hbar}S(\mathbf{r},t)\right)$$
 
 where $A(\mathbf{r},t)$ is a real amplitude and $S(\mathbf{r},t)$ is a real phase. Substituting into the Schrödinger equation and separating real and imaginary parts, collecting terms by power of $\hbar$:
 
@@ -170,9 +170,9 @@ This fails at **classical turning points** ($p = 0$) where $\lambda \to \infty$.
 
 **Bohr-Sommerfeld quantization** (the semiclassical bridge): For a particle in a potential well, matching the WKB solutions at both turning points:
 
-$$\oint p,dq = \left(n + \frac{1}{2}\right)h, \qquad n = 0, 1, 2, \ldots$$
+$$\oint p\,dq = \left(n + \frac{1}{2}\right)h, \qquad n = 0, 1, 2, \ldots$$
 
-The $\frac{1}{2}$ is the **Maslov correction** from the phase shift at turning points — it gives the zero-point energy automatically. For the harmonic oscillator: $\oint p,dq = 2\pi m\omega E/\omega^2 = 2\pi E/\omega = (n+\frac{1}{2})h$, recovering $E_n = \hbar\omega(n+\frac{1}{2})$ exactly.
+The $\frac{1}{2}$ is the **Maslov correction** from the phase shift at turning points — it gives the zero-point energy automatically. For the harmonic oscillator: $\oint p\,dq = 2\pi m\omega E/\omega^2 = 2\pi E/\omega = (n+\frac{1}{2})h$, recovering $E_n = \hbar\omega(n+\frac{1}{2})$ exactly.
 
 **Geometric optics as WKB:** In the limit of short wavelength, electromagnetic waves (governed by Maxwell's equations in Layer 2) satisfy a WKB-like equation. The eikonal equation $|\nabla S|^2 = n^2(\mathbf{r})$ is the HJ equation for photons with $p = n(\mathbf{r})\hbar\omega/c$. Fermat's principle of least time is the stationary phase of the wave equation. **Optics is the $\lambda \to 0$ limit of electromagnetism, just as classical mechanics is the $\hbar \to 0$ limit of quantum mechanics — the mathematical structure is identical.**
 
@@ -189,7 +189,7 @@ Properties:
 - $\langle\hat x\rangle(t) = x_0\cos(\omega t + \phi)$ — classical oscillatory motion
 - $\langle\hat p\rangle(t) = -m\omega x_0\sin(\omega t + \phi)$ — classical momentum
 - $\Delta x = \sqrt{\hbar/2m\omega}$ and $\Delta p = \sqrt{m\omega\hbar/2}$ — constant, minimum uncertainty
-- $\Delta x,\Delta p = \hbar/2$ — saturates the uncertainty principle at all times
+- $\Delta x\,\Delta p = \hbar/2$ — saturates the uncertainty principle at all times
 
 A coherent state is a **minimum-uncertainty Gaussian wavepacket** that follows the classical trajectory without spreading. It is the quantum state that most closely resembles a classical particle in a harmonic potential.
 
@@ -201,7 +201,7 @@ For a system interacting with an environment at temperature $T$: $$\tau_{decoher
 
 where $\Delta x$ is the spatial separation between the superposed states and $\lambda_{dB} = h/\sqrt{2mkT}$ is the thermal de Broglie wavelength.
 
-For a 1 g dust particle with $\Delta x = 1$ μm in air at 300 K: $$\tau_{decoherence} \sim 10^{-31};\text{s}$$
+For a 1 g dust particle with $\Delta x = 1$ μm in air at 300 K: $$\tau_{decoherence} \sim 10^{-31}\,\text{s}$$
 
 The coherence is destroyed in a time far shorter than any observable timescale. This is why macroscopic objects always appear classical — their quantum superpositions decohere before they can be measured. **Classical mechanics is not just $\hbar\to 0$; it is also the open quantum system limit**, where the environment continuously measures and collapses the quantum state.
 
@@ -297,7 +297,7 @@ This is the quantum Liouville equation — the Poisson bracket replaced by the c
 
 For an integrable system (one with as many conserved quantities as degrees of freedom), a canonical transformation $(q_i, p_i) \to (J_i, \theta_i)$ exists where:
 
-- $J_i = \frac{1}{2\pi}\oint p_i,dq_i$ are the **action variables** — adiabatic invariants
+- $J_i = \frac{1}{2\pi}\oint p_i\,dq_i$ are the **action variables** — adiabatic invariants
 - $H = H(J_1, \ldots, J_n)$ — the Hamiltonian depends only on $J_i$
 - $\dot\theta_i = \partial H/\partial J_i = \omega_i(J) = \text{const}$ — all angles evolve uniformly
 - $\dot J_i = -\partial H/\partial\theta_i = 0$ — all action variables are constants of motion
@@ -418,7 +418,7 @@ This gives $n$ normal frequencies $\omega_k^2$ (eigenvalues) and $n$ normal mode
 
 Two identical pendulums of length $\ell$, mass $m$, connected by a spring of constant $k$ at their midpoints. Generalized coordinates: $\theta_1$, $\theta_2$.
 
-$$T_{ij} = m\ell^2\delta_{ij}, \qquad V_{ij} = \begin{pmatrix}mg\ell + k\ell^2/4 & -k\ell^2/4\-k\ell^2/4 & mg\ell + k\ell^2/4\end{pmatrix}$$
+$$T_{ij} = m\ell^2\delta_{ij}, \qquad V_{ij} = \begin{pmatrix}mg\ell + k\ell^2/4 & -k\ell^2/4\\-k\ell^2/4 & mg\ell + k\ell^2/4\end{pmatrix}$$
 
 Normal frequencies:
 
@@ -483,7 +483,7 @@ The Coriolis force is the gravitomagnetic term in the metric. For slow rotation 
 
 A pendulum free to swing in any direction, at latitude $\lambda$:
 
-The effective angular velocity vector in the local vertical frame: $\boldsymbol{\Omega}_{vert} = \Omega_{Earth}\sin\lambda,\hat z$
+The effective angular velocity vector in the local vertical frame: $\boldsymbol{\Omega}_{vert} = \Omega_{Earth}\sin\lambda\,\hat z$
 
 The Coriolis force on the pendulum causes the plane of oscillation to precess:
 
@@ -543,7 +543,7 @@ Bridge B.a is complete. The descent from quantum mechanics to classical mechanic
 |Classical limit condition|$\Delta x \ll L_V$|$d\langle p\rangle/dt = -\nabla V(\langle x\rangle) = F$|
 |Path integral, $\hbar\to 0$|Stationary phase|Classical trajectory = $\delta S = 0$ path|
 |WKB, order $\hbar^0$|Substitute $\psi = Ae^{iS/\hbar}$|Hamilton-Jacobi equation|
-|WKB, order $\hbar^1$|Next order|Continuity equation for $|
+|WKB, order $\hbar^1$|Next order|Continuity equation for probability current|
 |Normal modes|$T$, $V$ matrices → eigenvalue problem|Classical phonon dispersion|
 |Rigid body|Euler-Lagrange for rotation|Euler's equations, gyroscope precession|
 |Rotating frame|Coordinate transformation|Coriolis + centrifugal forces|

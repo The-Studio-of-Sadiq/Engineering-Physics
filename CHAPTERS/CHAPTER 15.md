@@ -54,7 +54,7 @@ where $\ell_{mfp}$ is the mean free path and $L$ is the characteristic length of
 
 |Medium|$\ell_{mfp}$|Continuum breaks at|
 |---|---|---|
-|Air at 1 atm, 300 K|68 nm|Micro/nano-channels $L < 7;\mu$m|
+|Air at 1 atm, 300 K|68 nm|Micro/nano-channels $L < 7\,\mu$m|
 |Water at 300 K|$\sim 0.3$ nm|Near-molecular systems|
 |Liquid metals|$\sim 0.1$ nm|Essentially always valid|
 |Air at 30 km altitude|$\sim 1$ mm|Small aircraft structures|
@@ -183,7 +183,7 @@ where $e$ is the specific internal energy, $\sigma_{ij}\dot\varepsilon_{ij}$ is 
 
 An **ideal** (inviscid) fluid has no viscosity: no tangential stress between fluid layers. The only stress is isotropic pressure:
 
-$$\sigma_{ij} = -p,\delta_{ij}$$
+$$\sigma_{ij} = -p\,\delta_{ij}$$
 
 Substituting into Cauchy's equation:
 
@@ -230,7 +230,7 @@ For incompressible fluid: $p(z) = p_0 - \rho g z$ (linear pressure increase with
 
 A **Newtonian fluid** has a linear relationship between the stress tensor and the strain rate tensor. The most general isotropic, linear, symmetric relation:
 
-$$\sigma_{ij} = -p,\delta_{ij} + 2\mu\dot\varepsilon_{ij} + \lambda\dot\varepsilon_{kk}\delta_{ij}$$
+$$\sigma_{ij} = -p\,\delta_{ij} + 2\mu\dot\varepsilon_{ij} + \lambda\dot\varepsilon_{kk}\delta_{ij}$$
 
 where:
 
@@ -240,7 +240,7 @@ where:
 
 **Stokes' hypothesis** ($\lambda = -\frac{2}{3}\mu$): the bulk viscosity is zero for monoatomic ideal gases (well-verified) and approximately zero for most Newtonian liquids. With Stokes' hypothesis and incompressibility ($\dot\varepsilon_{kk} = \nabla\cdot\mathbf{v} = 0$):
 
-$$\sigma_{ij} = -p,\delta_{ij} + 2\mu\dot\varepsilon_{ij}$$
+$$\sigma_{ij} = -p\,\delta_{ij} + 2\mu\dot\varepsilon_{ij}$$
 
 ### 15.6.2 — The Navier-Stokes Equation
 
@@ -287,7 +287,7 @@ $$\boxed{v_z(r) = \frac{G}{4\mu}(R^2 - r^2)} \quad\text{(parabolic profile)}$$
 
 **Hagen-Poiseuille law** (volume flow rate $Q$ and pressure drop $\Delta p$):
 
-$$Q = \int_0^R v_z(r)\cdot 2\pi r,dr = \frac{\pi R^4}{8\mu}\frac{\Delta p}{L} \quad\Longrightarrow\quad \Delta p = \frac{8\mu LQ}{\pi R^4}$$
+$$Q = \int_0^R v_z(r)\cdot 2\pi r\,dr = \frac{\pi R^4}{8\mu}\frac{\Delta p}{L} \quad\Longrightarrow\quad \Delta p = \frac{8\mu LQ}{\pi R^4}$$
 
 The $R^4$ dependence is dramatic: doubling the pipe radius increases flow by 16× at the same pressure drop. Halving the radius increases resistance by 16×.
 

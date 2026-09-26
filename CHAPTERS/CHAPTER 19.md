@@ -414,7 +414,7 @@ All convection correlations express $Nu$ as a function of $Re$ and $Pr$:
 
 **Dittus-Boelter (turbulent pipe flow, $Re > 10^4$, $0.6 < Pr < 160$):**
 
-$$Nu_D = 0.023\,Re_D^{0.8}\,Pr^n, \qquad n = 0.4\;\text{(heating)},\; 0.3\;\text{(cooling)}$$
+$$Nu_D = 0.023\,Re_D^{0.8}\,Pr^n, \qquad n = 0.4\;\text{(heating)}\,\; 0.3\;\text{(cooling)}$$
 
 **Churchill-Chu (natural convection on vertical plate):**
 
@@ -602,9 +602,44 @@ and mechanical (compressor, fans) domains:
 circuit power ($\dot m\Delta P$) to the thermal circuit power ($\dot m\Delta h$)
 through enthalpy change $\Delta h$ at each heat exchanger.
 
-The bond graph for the complete HVAC system has exactly the same mathematical
+The bond graph for the complete HVAC system has the same mathematical
 structure as a multi-domain electrical-mechanical coupled system — the same
-junction rules, the same power conservation, the same transfer function analysis.
+junction rules, the same power conservation, the same transfer function
+analysis.
+
+`[STRUCTURAL CONNECTION]` — **the junction algebra is shared; the constitutive
+relations are not, and this is where HVAC gets hard.** The bond graph
+deliberately contains no physics: it says only that power is conserved at a
+junction and that effort/flow are conjugate. Everything domain-specific lives in
+the effort-flow relations attached to each element, and in an HVAC loop those
+relations are strongly coupled and strongly nonlinear:
+
+| Element | Realistic relation | Why the linear template is insufficient |
+|---|---|---|
+| Compressor | $\dot W = f(\dot m, P_{in}, P_{out})$ | power rises steeply with pressure ratio; efficiency varies with operating point |
+| Condenser / evaporator | $Q = UA\,\Delta T_{lm}$ | $UA$ changes with refrigerant phase and fouling; $\Delta T_{lm}$ is logarithmic |
+| Expansion valve | $P_{in} \to P_{out}$ at constant $h$ | throttle is genuinely nonlinear and is the loop's dominant nonlinearity |
+| Refrigerant | two-phase $\Delta h$ varies with quality | latent heat dominates; small quality changes move $\Delta h$ a lot |
+
+So the *topology* is transferable and the *element values* are not. An HVAC
+control loop tuned as a linear second-order system will mispredict exactly where
+the interesting behaviour is: turndown, cycling, and frost recovery all live in
+the regions where the linear model breaks. Ch. 21 §21.0.2 treats this as the
+canonical case of a nonlinear loop needing a different representation.
+
+**Model Ledger — lumped HVAC system to a linear transfer function**
+
+| Field | Content |
+|---|---|
+| Parent theory | Bond-graph power conservation (Ch. 17 §17.5); refrigerant thermodynamics (Ch. 10, Ch. 19 §19.5) |
+| Reduction | Fixed operating point; linearise each effort-flow relation; $Bi \ll 1$ for each heat exchanger; quasi-steady refrigerant |
+| Model | $H(s) = Q_{cooling}(s)/T_{space}(s)$ — a first-order-plus-delay loop gain |
+| Assumptions | linearisation valid over the control band; $UA$ constant; no frost; uniform room air; no cycling |
+| Physics retained | power flow through the loop; the coupling between refrigerant mass flow and heat transfer |
+| Physics neglected | compressor map nonlinearity; two-phase slide; frost accumulation; cycling/hysteresis; heat gains and losses from the envelope |
+| Validity | small disturbances about a chosen operating point in one operating regime |
+| Fails when | setpoint changes cross regime boundaries; frost forms; the compressor cycles; ambient conditions shift the operating point |
+| Next model | piecewise-linear or gain-scheduled control; nonlinear simulation; two-phase refrigerant models |
 
 ---
 

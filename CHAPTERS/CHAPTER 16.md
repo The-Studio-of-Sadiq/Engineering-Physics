@@ -210,7 +210,7 @@ This is the **dispersion relation** — the algebraic relationship between frequ
 
 For a PDE in a finite domain with appropriate boundary conditions, try:
 
-$$\phi(\mathbf{r}, t) = X(\mathbf{r}),T(t)$$
+$$\phi(\mathbf{r}, t) = X(\mathbf{r})\,T(t)$$
 
 **Wave equation:** Substituting $\phi = X T$ into $\partial_{tt}\phi = v^2\nabla^2\phi$:
 
@@ -244,7 +244,7 @@ The spatial equation $\nabla^2 X + \lambda X = 0$ with homogeneous boundary cond
 
 **The eigenfunction expansion:**
 
-$$\phi(\mathbf{r}, t) = \sum_n c_n(t),X_n(\mathbf{r})$$
+$$\phi(\mathbf{r}, t) = \sum_n c_n(t)\,X_n(\mathbf{r})$$
 
 The coefficients $c_n(t)$ are the **normal mode amplitudes** — each evolves independently (for linear PDEs). This is the field-theoretic version of normal mode analysis from Ch. 9 §9.8.
 
@@ -270,7 +270,7 @@ Coefficients $A_n$, $B_n$ from initial conditions $\phi(\mathbf{r}, 0)$ and $\do
 
 **For the diffusion equation:**
 
-$$\phi(\mathbf{r}, t) = \sum_n c_n,e^{-D\lambda_n t},X_n(\mathbf{r})$$
+$$\phi(\mathbf{r}, t) = \sum_n c_n\,e^{-D\lambda_n t}\,X_n(\mathbf{r})$$
 
 Coefficients $c_n$ from initial condition $\phi(\mathbf{r}, 0)$.
 
@@ -282,13 +282,13 @@ Coefficients $c_n$ from initial condition $\phi(\mathbf{r}, 0)$.
 
 ### 16.6.1 — The Green's Function Concept
 
-The **Green's function** $G(\mathbf{r}, t;, \mathbf{r}', t')$ is the response of the system to an impulse at position $\mathbf{r}'$ and time $t'$:
+The **Green's function** $G(\mathbf{r}, t\, \mathbf{r}', t')$ is the response of the system to an impulse at position $\mathbf{r}'$ and time $t'$:
 
-$$\mathcal{L}G(\mathbf{r},t;,\mathbf{r}',t') = \delta^3(\mathbf{r}-\mathbf{r}')\delta(t-t')$$
+$$\mathcal{L}G(\mathbf{r},t\,\mathbf{r}',t') = \delta^3(\mathbf{r}-\mathbf{r}')\delta(t-t')$$
 
 where $\mathcal{L}$ is the differential operator of the PDE. The general solution for any source distribution $S(\mathbf{r}', t')$:
 
-$$\phi(\mathbf{r}, t) = \int G(\mathbf{r},t;,\mathbf{r}',t'),S(\mathbf{r}',t'),d^3r',dt' + \text{boundary terms}$$
+$$\phi(\mathbf{r}, t) = \int G(\mathbf{r},t\,\mathbf{r}',t')\,S(\mathbf{r}',t')\,d^3r',dt' + \text{boundary terms}$$
 
 **Systems thinking:** The Green's function is the **impulse response** — exactly the same concept as in control theory and signal processing (Ch. 21). The convolution integral $\phi = G * S$ is the same operation as filtering a signal through a linear system. **Layer 2 PDEs and Layer 3 transfer functions are the same mathematics operating at different spatial scales.**
 
@@ -296,7 +296,7 @@ $$\phi(\mathbf{r}, t) = \int G(\mathbf{r},t;,\mathbf{r}',t'),S(\mathbf{r}',t'),d
 
 **Diffusion equation** in free 3D space ($t > t'$):
 
-$$\boxed{G_{diff}(\mathbf{r},t;,\mathbf{r}',t') = \frac{1}{[4\pi D(t-t')]^{3/2}}\exp!\left(-\frac{|\mathbf{r}-\mathbf{r}'|^2}{4D(t-t')}\right)}$$
+$$\boxed{G_{diff}(\mathbf{r},t\,\mathbf{r}',t') = \frac{1}{[4\pi D(t-t')]^{3/2}}\exp!\left(-\frac{|\mathbf{r}-\mathbf{r}'|^2}{4D(t-t')}\right)}$$
 
 A **Gaussian** centered at $\mathbf{r}'$, spreading with time as $\sigma^2 = 2D(t-t')$. This is the fundamental solution — any initial condition spreads according to convolution with this Gaussian.
 
@@ -304,13 +304,13 @@ A **Gaussian** centered at $\mathbf{r}'$, spreading with time as $\sigma^2 = 2D(
 
 **Wave equation** in free 3D space:
 
-$$G_{wave}(\mathbf{r},t;,\mathbf{r}',t') = \frac{\delta(t-t'-|\mathbf{r}-\mathbf{r}'|/v)}{4\pi v|\mathbf{r}-\mathbf{r}'|}$$
+$$G_{wave}(\mathbf{r},t\,\mathbf{r}',t') = \frac{\delta(t-t'-|\mathbf{r}-\mathbf{r}'|/v)}{4\pi v|\mathbf{r}-\mathbf{r}'|}$$
 
 An **expanding spherical shell** at radius $v(t-t')$ from the source. Information travels at exactly speed $v$ — the retarded potential. This is the Green's function used in antenna radiation theory (Ch. 12).
 
 **1D diffusion (heat or mass):**
 
-$$G_{diff}^{1D}(x,t;,x',t') = \frac{1}{\sqrt{4\pi D(t-t')}}\exp!\left(-\frac{(x-x')^2}{4D(t-t')}\right)$$
+$$G_{diff}^{1D}(x,t\,x',t') = \frac{1}{\sqrt{4\pi D(t-t')}}\exp!\left(-\frac{(x-x')^2}{4D(t-t')}\right)$$
 
 This gives the solution to the semi-infinite solid problem of Ch. 14 §14.8.1 directly by convolution with the initial condition.
 
@@ -354,7 +354,7 @@ where $w(x,t)$ is the lateral deflection, $EI$ is the bending stiffness, $\rho A
 
 For plane wave solutions $w \propto e^{i(kx-\omega t)}$:
 
-$$\omega^2 = \frac{EI}{\rho A}k^4 \quad\Longrightarrow\quad v_{flexural} = \sqrt[4]{\frac{EI}{\rho A}},\sqrt{\omega}$$
+$$\omega^2 = \frac{EI}{\rho A}k^4 \quad\Longrightarrow\quad v_{flexural} = \sqrt[4]{\frac{EI}{\rho A}}\,\sqrt{\omega}$$
 
 The flexural wave speed increases as $\sqrt{\omega}$ — it is **highly dispersive**. A sharp hammer blow on a rail arrives as a "chirp" (high frequencies first, low frequencies later) at a distant microphone.
 
@@ -462,17 +462,53 @@ $$\boxed{Kn_{EM} = \frac{L}{\lambda} = \frac{Lf}{v} \ll 1}$$
 
 When this condition holds, the system behaves as a lumped element. When it fails, spatial variation matters and the PDE must be retained.
 
-**For each domain:**
+`[APPROXIMATION]` — **lumping is the single most consequential approximation in
+this book, because every engineering model in Chapters 17–21 is downstream of
+it.** Three things are being assumed at once when $\lambda \gg 2L$, and they are
+worth separating because they fail differently:
 
-|Domain|PDE variable|Speed $v$|Lumping valid when|
-|---|---|---|---|
-|EM (circuit)|$V$, $I$|$c/\sqrt{\epsilon_r}$|$f \ll v/L$ (e.g., $f\ll 300$ MHz for 10 cm)|
-|Acoustic (Helmholtz resonator)|$p$|$c_s = 343$ m/s|$f \ll c_s/2L$|
-|Elastic (lumped mass-spring)|$u$|$v_P$, $v_S$|$f \ll v_P/2L$|
-|Thermal (lumped capacitance)|$T$|Diffusive, not wave|$Bi = hL/\kappa \ll 1$ (Biot number)|
-|Hydraulic (pipe sections)|$p$|$c_{water} = 1480$ m/s|$f \ll c_{water}/L$ (water hammer threshold)|
+1. **Spatial uniformity.** The field is replaced by a single value. This is the
+   $L/\lambda \ll 1$ criterion.
+2. **Locality of the constitutive law.** The flux–gradient relation is evaluated
+   at one point. This is usually *not* an approximation at all — it is exact —
+   but it becomes one for media whose transport coefficient varies in space.
+3. **A single timescale.** By dropping $\nabla^2$, the model also drops the
+   spatial eigenmodes. So the ODE describes only the first mode. A lumped model
+   with a $Q$ of $10^6$ is a claim that no higher mode is excited — which is a
+   statement about the *input*, not just the system.
 
-The Biot number for thermal systems is the analog of the spatial Knudsen number: it measures whether the temperature is uniform within the body (small $Bi$, lump valid) or has significant spatial variation (large $Bi$, distributed model needed).
+|Domain|PDE variable|Speed $v$|Lumping valid when|Fails when|
+|---|---|---|---|---|
+|EM (circuit)|$V$, $I$|$c/\sqrt{\epsilon_r}$|$f \ll v/L$ (e.g. $f\ll 300$ MHz for 10 cm)|rise time $< 2L/v$; interconnect delay matters|
+|Acoustic (Helmholtz)|$p$|$c_s = 343$ m/s|$f \ll c_s/2L$|room modes excited; absorption layer thin vs $\lambda$|
+|Elastic (lumped mass–spring)|$u$|$v_P$, $v_S$|$f \ll v_P/2L$|first bending or shear mode reached; $L/\lambda \gtrsim 1/10$|
+|Thermal (lumped capacitance)|$T$|diffusive, not wave|$Bi = hL/\kappa \ll 1$|$Bi \gtrsim 0.1$; internal gradients matter|
+|Hydraulic (pipe sections)|$p$|$c_{water}=1480$ m/s|$f \ll c_{water}/L$|water hammer; valve closure time $< 2L/c$|
+
+The Biot number for thermal systems is the analog of the spatial Knudsen number:
+it measures whether the temperature is uniform within the body (small $Bi$,
+lumped valid) or has significant spatial variation (large $Bi$, distributed
+model needed). Note that it is the *only* row in this table with no wave speed —
+because thermal transport is diffusive, its relevant scale is the diffusion
+length $\sqrt{\alpha t}$, not a wavelength. The lumping criterion for a
+diffusive system is $L \ll \sqrt{\alpha t}$, which is time-dependent, and that
+is why a lumped thermal model has a validity *window in time* rather than a
+bandwidth. This is worth keeping in mind in Chapter 19, where lumped thermal
+capacitance is used as a fixed parameter.
+
+**Model Ledger — distributed PDE to lumped ODE**
+
+| Field | Content |
+|---|---|
+| Parent theory | Wave / diffusion PDE on a continuum domain (Ch. 15, this chapter) |
+| Reduction | $L/\lambda \ll 1$; drop $\nabla^2$; integrate the conservation law over the domain volume; lump all energy storage into one state variable per mode |
+| Model | $C\dot\phi + R\phi = u(t)$ — first-order in time, zero order in space |
+| Assumptions | only the fundamental spatial mode participates; uniform material; linear; no distributed source; state variable single-valued over the domain |
+| Physics retained | total energy, total entropy production, and their balance |
+| Physics neglected | all spatial gradients; every mode except the first; shape effects (a lumped model cannot predict resonance or standing waves) |
+| Validity | a point operating point, not a range — a lumped model is valid near one frequency/timescale, not across a band |
+| Fails when | excitation approaches $\omega_1$; distributed sources act; the geometry's shape is itself the physics (acoustics, waveguides) |
+| Next model | modal expansion; distributed model (Ch. 17 §17.10); finite-volume discretisation (§16.11.3) |
 
 ### 16.10.2 — The Lumped Equivalents
 
@@ -481,7 +517,7 @@ When the lumping criterion is satisfied, the PDE terms reduce to:
 |PDE term|Lumped equivalent|Physical meaning|
 |---|---|---|
 |$C\partial_t\phi$|$C\dot\phi$ (capacitance × rate)|Energy storage (potential)|
-|$(1/L)\int\phi,dt$|$(1/L)\phi$ (inductance inverse)|Energy storage (kinetic)|
+|$(1/L)\int\phi\,dt$|$(1/L)\phi$ (inductance inverse)|Energy storage (kinetic)|
 |$R\phi$ (or $G\nabla\phi$)|$R\phi$ (resistance)|Dissipation|
 |$\nabla^2\phi$|$\Delta\phi/L^2$ (finite difference)|Spatial coupling|
 

@@ -146,7 +146,7 @@ Graphene is a single atomic layer of carbon with a hexagonal lattice. Each carbo
 
 The honeycomb lattice has two atoms per unit cell (sublattice A and B), giving two tight-binding bands. Solving the $2\times 2$ Hamiltonian near the $K$-point (corner of the hexagonal Brillouin zone):
 
-$$E(\mathbf{q}) \approx \pm\hbar v_F|\mathbf{q}|, \qquad v_F = \frac{3ta}{2\hbar} \approx 10^6;\text{m/s}$$
+$$E(\mathbf{q}) \approx \pm\hbar v_F|\mathbf{q}|, \qquad v_F = \frac{3ta}{2\hbar} \approx 10^6\,\text{m/s}$$
 
 where $\mathbf{q} = \mathbf{k} - \mathbf{K}$ is measured from the $K$-point.
 
@@ -234,11 +234,11 @@ This is a topological statement: a completely filled band's contribution to curr
 
 In an intrinsic (undoped) semiconductor with band gap $E_g$:
 
-$$n = p = n_i = \sqrt{N_c N_v},\exp!\left(-\frac{E_g}{2k_BT}\right)$$
+$$n = p = n_i = \sqrt{N_c N_v}\,\exp!\left(-\frac{E_g}{2k_BT}\right)$$
 
 where $N_c = 2(m_e^*k_BT/2\pi\hbar^2)^{3/2}$ and $N_v = 2(m_h^*k_BT/2\pi\hbar^2)^{3/2}$ are the **effective densities of states** for the conduction and valence bands.
 
-For silicon at 300 K: $n_i = 1.5\times 10^{10};\text{cm}^{-3}$ compared to the total atomic density $5\times 10^{22};\text{cm}^{-3}$. Only 1 in $3\times 10^{12}$ silicon atoms contributes a free electron at room temperature.
+For silicon at 300 K: $n_i = 1.5\times 10^{10}\,\text{cm}^{-3}$ compared to the total atomic density $5\times 10^{22}\,\text{cm}^{-3}$. Only 1 in $3\times 10^{12}$ silicon atoms contributes a free electron at room temperature.
 
 The exponential factor $e^{-E_g/2k_BT}$ is the Boltzmann weight for exciting an electron across the gap. The same factor appears in reaction kinetics (Arrhenius law, Ch. 2 catalogue) — both reflect thermal activation over an energy barrier.
 
@@ -390,9 +390,9 @@ $$V_{NN}(r) \approx -\frac{g^2}{4\pi}\frac{e^{-m_\pi c r/\hbar}}{r}$$
 
 (Yukawa potential, where $m_\pi c^2 \approx 135$ MeV is the pion mass). The range of the strong force:
 
-$$r_0 = \frac{\hbar}{m_\pi c} \approx 1.4;\text{fm} \approx 1.4\times 10^{-15};\text{m}$$
+$$r_0 = \frac{\hbar}{m_\pi c} \approx 1.4\,\text{fm} \approx 1.4\times 10^{-15}\,\text{m}$$
 
-This sets the scale of nuclear physics. At $r < r_0$: strong attraction. At $r > 2$–$3,r_0$: negligible. At $r \lesssim 0.5$ fm: short-range repulsion (hard core). The strong force is short-range, much stronger than EM at close range, and saturates (each nucleon bonds only to its immediate neighbors).
+This sets the scale of nuclear physics. At $r < r_0$: strong attraction. At $r > 2$–$3\,r_0$: negligible. At $r \lesssim 0.5$ fm: short-range repulsion (hard core). The strong force is short-range, much stronger than EM at close range, and saturates (each nucleon bonds only to its immediate neighbors).
 
 ### 6.9.2 — Nuclear Binding Energy
 
@@ -447,7 +447,7 @@ $$G = \frac{\pi Ze^2}{\hbar v_\alpha}\left(1 - \frac{2}{\pi}\sqrt{\frac{E}{V_C(R
 
 Decay rate: $\lambda \propto f\cdot e^{-2G}$ where $f \approx 10^{21}$ s$^{-1}$ is the assault frequency.
 
-**The Geiger-Nuttall law:** $\log\lambda = C_1 Z/\sqrt{E_\alpha} + C_2$. Alpha emitters spanning 24 orders of magnitude in decay rate obey this relation — from $^{212}$Po ($t_{1/2} = 0.3;\mu$s) to $^{232}$Th ($t_{1/2} = 14$ Gyr). The enormous range comes from the exponential sensitivity of tunneling probability to $E_\alpha$ — a change of $1$ MeV in $\alpha$ energy changes $t_{1/2}$ by $\sim 20$ orders of magnitude.
+**The Geiger-Nuttall law:** $\log\lambda = C_1 Z/\sqrt{E_\alpha} + C_2$. Alpha emitters spanning 24 orders of magnitude in decay rate obey this relation — from $^{212}$Po ($t_{1/2} = 0.3\,\mu$s) to $^{232}$Th ($t_{1/2} = 14$ Gyr). The enormous range comes from the exponential sensitivity of tunneling probability to $E_\alpha$ — a change of $1$ MeV in $\alpha$ energy changes $t_{1/2}$ by $\sim 20$ orders of magnitude.
 
 ### 6.10.2 — Beta Decay: The Weak Force at Work
 
@@ -473,7 +473,7 @@ where $G_F$ is the Fermi constant (weak coupling, from $g_2$ in Ch. 0), $|M_{fi}
 
 **The radioactive decay law** (any mode):
 
-$$N(t) = N_0,e^{-\lambda t}, \qquad t_{1/2} = \frac{\ln 2}{\lambda}$$
+$$N(t) = N_0\,e^{-\lambda t}, \qquad t_{1/2} = \frac{\ln 2}{\lambda}$$
 
 Activity: $A = \lambda N$ (decays per second, unit: Becquerel, 1 Bq = 1 decay/s).
 
@@ -481,7 +481,7 @@ Activity: $A = \lambda N$ (decays per second, unit: Becquerel, 1 Bq = 1 decay/s)
 
 $$\frac{dN_i}{dt} = \lambda_{i-1}N_{i-1} - \lambda_i N_i$$
 
-**Engineering:** Geological dating uses isotope ratios (U-Pb, Rb-Sr, K-Ar) measured against the decay law to determine rock ages with precision of $\pm 1%$ over billions of years. Medical nuclear imaging uses short-lived isotopes ($^{99m}$Tc, $t_{1/2} = 6$ h; $^{18}$F, $t_{1/2} = 110$ min).
+**Engineering:** Geological dating uses isotope ratios (U-Pb, Rb-Sr, K-Ar) measured against the decay law to determine rock ages with precision of $\pm 1\%$ over billions of years. Medical nuclear imaging uses short-lived isotopes ($^{99m}$Tc, $t_{1/2} = 6$ h; $^{18}$F, $t_{1/2} = 110$ min).
 
 ---
 

@@ -41,8 +41,8 @@ $$\boxed{\nabla^2\mathbf{E} = \mu\epsilon\frac{\partial^2\mathbf{E}}{\partial t^
 
 This is the **electromagnetic wave equation in a lossy medium**:
 
-- $\mu\epsilon,\partial^2_t\mathbf{E}$: wave propagation term (speed $v = 1/\sqrt{\mu\epsilon}$)
-- $\mu\sigma,\partial_t\mathbf{E}$: damping term from Ohmic loss ($\sigma > 0$)
+- $\mu\epsilon\,\partial^2_t\mathbf{E}$: wave propagation term (speed $v = 1/\sqrt{\mu\epsilon}$)
+- $\mu\sigma\,\partial_t\mathbf{E}$: damping term from Ohmic loss ($\sigma > 0$)
 
 ### 12.1.2 — The Complex Wavenumber
 
@@ -56,7 +56,7 @@ $$\tilde\epsilon = \epsilon + i\frac{\sigma}{\omega} = \epsilon_0\tilde\epsilon_
 
 The complex wavenumber $\tilde k = \beta + i\alpha$ gives:
 
-$$\mathbf{E}(z,t) = \mathbf{E}_0,e^{-\alpha z},e^{i(\beta z - \omega t)}$$
+$$\mathbf{E}(z,t) = \mathbf{E}_0\,e^{-\alpha z}\,e^{i(\beta z - \omega t)}$$
 
 - **$\beta$ (phase constant):** determines the phase velocity $v_p = \omega/\beta$ and wavelength $\lambda = 2\pi/\beta$ in the medium
 - **$\alpha$ (attenuation constant):** the field decays as $e^{-\alpha z}$; intensity decays as $e^{-2\alpha z}$
@@ -97,7 +97,7 @@ A pulse — a superposition of frequencies — travels at the **group velocity**
 
 $$\boxed{v_g = \frac{d\omega}{dk} = \frac{c}{n + \omega,dn/d\omega} = \frac{c}{n_g}}$$
 
-where $n_g = n + \omega,dn/d\omega$ is the **group index**.
+where $n_g = n + \omega\,dn/d\omega$ is the **group index**.
 
 When $n$ is frequency-independent: $v_g = v_p = c/n$ (no dispersion). When $n = n(\omega)$: $v_g \neq v_p$ and different frequency components travel at different speeds — **dispersion**.
 
@@ -198,7 +198,7 @@ The evanescent field: $$\mathbf{E}_t \propto \exp!\left(-\frac{z}{\delta_{ev}}\r
 
 The polarization state of a plane wave is described by the **Jones vector**:
 
-$$\mathbf{J} = \begin{pmatrix}E_x\E_y\end{pmatrix}$$
+$$\mathbf{J} = \begin{pmatrix}E_x\\E_y\end{pmatrix}$$
 
 where $E_x$ and $E_y$ are complex amplitudes. Standard polarization states:
 
@@ -216,9 +216,9 @@ A birefringent medium has different refractive indices for orthogonal polarizati
 
 $$\delta = \frac{2\pi d}{\lambda_0}(n_e - n_o)$$
 
-**Quarter-wave plate** ($\delta = \pi/2$): converts linear to circular polarization. Jones matrix: $\text{QWP} = e^{i\pi/4}\begin{pmatrix}1&0\0&-i\end{pmatrix}$
+**Quarter-wave plate** ($\delta = \pi/2$): converts linear to circular polarization. Jones matrix: $\text{QWP} = e^{i\pi/4}\begin{pmatrix}1&0\\0&-i\end{pmatrix}$
 
-**Half-wave plate** ($\delta = \pi$): rotates linear polarization by $2\alpha$, where $\alpha$ is the angle between the fast axis and the input polarization. Jones matrix: $\text{HWP} = \begin{pmatrix}\cos 2\alpha & \sin 2\alpha\\sin 2\alpha & -\cos 2\alpha\end{pmatrix}$
+**Half-wave plate** ($\delta = \pi$): rotates linear polarization by $2\alpha$, where $\alpha$ is the angle between the fast axis and the input polarization. Jones matrix: $\text{HWP} = \begin{pmatrix}\cos 2\alpha & \sin 2\alpha \\ \sin 2\alpha & -\cos 2\alpha\end{pmatrix}$
 
 **Malus's law:** Intensity transmitted through an analyzer at angle $\theta$ to a linearly polarized input: $$I = I_0\cos^2\theta$$
 
@@ -291,7 +291,7 @@ The resonances (full transmission) occur at $\delta = 2m\pi$: $$\text{FSR} = \fr
 
 Every point on a wavefront is the source of a secondary spherical wavelet. The field at any subsequent point is the coherent superposition of all wavelets — the Kirchhoff diffraction integral:
 
-$$U(\mathbf{r}) = \frac{-i}{\lambda}\iint_\Sigma U(\mathbf{r}')\frac{e^{ik|\mathbf{r}-\mathbf{r}'|}}{|\mathbf{r}-\mathbf{r}'|}\cos\theta,dS'$$
+$$U(\mathbf{r}) = \frac{-i}{\lambda}\iint_\Sigma U(\mathbf{r}')\frac{e^{ik|\mathbf{r}-\mathbf{r}'|}}{|\mathbf{r}-\mathbf{r}'|}\cos\theta\,dS'$$
 
 This follows from Green's second identity applied to the wave equation from Ch. 11 — not a new assumption.
 
@@ -299,13 +299,13 @@ This follows from Green's second identity applied to the wave equation from Ch. 
 
 In the far field ($z \gg a^2/\lambda$, Fraunhofer regime), the Kirchhoff integral simplifies to a **Fourier transform** of the aperture function $t(x,y)$:
 
-$$U(f_x, f_y) \propto \iint t(x,y),e^{-i2\pi(f_x x + f_y y)}dx,dy = \mathcal{F}{t}$$
+$$U(f_x, f_y) \propto \iint t(x,y)\,e^{-i2\pi(f_x x + f_y y)}dx\,dy = \mathcal{F}{t}$$
 
 where $f_x = \sin\theta_x/\lambda$, $f_y = \sin\theta_y/\lambda$ are spatial frequencies.
 
 **Single slit** (width $a$): $t(x) = \text{rect}(x/a)$
 
-$$I(\theta) = I_0\left(\frac{\sin(\pi a\sin\theta/\lambda)}{\pi a\sin\theta/\lambda}\right)^2 = I_0,\text{sinc}^2!\left(\frac{a\sin\theta}{\lambda}\right)$$
+$$I(\theta) = I_0\left(\frac{\sin(\pi a\sin\theta/\lambda)}{\pi a\sin\theta/\lambda}\right)^2 = I_0\,\text{sinc}^2!\left(\frac{a\sin\theta}{\lambda}\right)$$
 
 First zero at $\sin\theta = \lambda/a$.
 
@@ -377,7 +377,7 @@ A step-index optical fiber has a core (index $n_1$, radius $a$) surrounded by cl
 - $V < 2.405$: **single-mode fiber** (one guided mode, HE₁₁)
 - $V \gg 2.405$: **multimode fiber** (~$V^2/2$ modes)
 
-**Single-mode fiber (SMF-28) at 1550 nm:** $a = 4.1;\mu$m, $\Delta n = 0.0036$, $V = 2.1$. One mode only — no modal dispersion.
+**Single-mode fiber (SMF-28) at 1550 nm:** $a = 4.1\,\mu$m, $\Delta n = 0.0036$, $V = 2.1$. One mode only — no modal dispersion.
 
 **Why 1550 nm?** Silica fiber has minimum attenuation at 1550 nm ($\alpha \approx 0.2$ dB/km from Rayleigh scattering $\propto\lambda^{-4}$ plus infrared absorption). The entire global internet runs on 1550 nm light.
 

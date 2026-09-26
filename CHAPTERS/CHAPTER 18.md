@@ -164,7 +164,7 @@ where $I_0$ is the reverse saturation current, $\eta = 1$–$2$ is the ideality 
 
 $$r_d = \frac{\partial V_D}{\partial I_D}\bigg|_{I_{DQ}} = \frac{\eta V_T}{I_{DQ}}$$
 
-The diode becomes a resistor $r_d$ for small AC signals. At $I_{DQ} = 1$ mA: $r_d = 26;\Omega$ (η=1). At 10 mA: $r_d = 2.6;\Omega$.
+The diode becomes a resistor $r_d$ for small AC signals. At $I_{DQ} = 1$ mA: $r_d = 26\,\Omega$ (η=1). At 10 mA: $r_d = 2.6\,\Omega$.
 
 **Junction capacitance:** The depletion region is a capacitor: $$C_j = C_{j0}\left(1 - \frac{V_D}{\phi_B}\right)^{-m}$$
 
@@ -277,7 +277,7 @@ $$\frac{0 - V_{out}}{R_f} = \frac{V_{in} - 0}{R_1} \quad\Longrightarrow\quad \bo
 
 **Summing amplifier:** $$V_{out} = -R_f\left(\frac{V_1}{R_1} + \frac{V_2}{R_2} + \cdots\right)$$
 
-**Integrator** (C replaces Rf): $$V_{out} = -\frac{1}{RC}\int V_{in},dt \quad\Longrightarrow\quad H(s) = -\frac{1}{sRC}$$
+**Integrator** (C replaces Rf): $$V_{out} = -\frac{1}{RC}\int V_{in}\,dt \quad\Longrightarrow\quad H(s) = -\frac{1}{sRC}$$
 
 **Differentiator** (C replaces R1): $$V_{out} = -RC\frac{dV_{in}}{dt} \quad\Longrightarrow\quad H(s) = -sRC$$
 
@@ -375,11 +375,11 @@ with $\omega_0 = 1/RC$ and $Q$ adjustable by varying component values. No induct
 
 A periodic signal $x(t)$ with period $T_0$ (fundamental frequency $f_0 = 1/T_0$):
 
-$$x(t) = \sum_{n=-\infty}^{\infty} c_n e^{jn\omega_0 t}, \qquad c_n = \frac{1}{T_0}\int_0^{T_0}x(t)e^{-jn\omega_0 t},dt$$
+$$x(t) = \sum_{n=-\infty}^{\infty} c_n e^{jn\omega_0 t}, \qquad c_n = \frac{1}{T_0}\int_0^{T_0}x(t)e^{-jn\omega_0 t}\,dt$$
 
 **Connection to Ch. 16 §16.5:** The Fourier series is the eigenfunction expansion for the 1D wave equation with periodic boundary conditions. The modes $e^{jn\omega_0 t}$ are eigenfunctions of $d/dt$, and the expansion is the same superposition as in Ch. 16 §16.5.2.
 
-**Parseval's theorem (power conservation):** $$\frac{1}{T_0}\int_0^{T_0}|x(t)|^2,dt = \sum_{n=-\infty}^{\infty}|c_n|^2$$
+**Parseval's theorem (power conservation):** $$\frac{1}{T_0}\int_0^{T_0}|x(t)|^2\,dt = \sum_{n=-\infty}^{\infty}|c_n|^2$$
 
 Average power in time = sum of powers at each harmonic.
 
@@ -387,7 +387,7 @@ Average power in time = sum of powers at each harmonic.
 
 For aperiodic signals:
 
-$$X(f) = \int_{-\infty}^{\infty}x(t)e^{-j2\pi ft},dt, \qquad x(t) = \int_{-\infty}^{\infty}X(f)e^{j2\pi ft},df$$
+$$X(f) = \int_{-\infty}^{\infty}x(t)e^{-j2\pi ft}\,dt, \qquad x(t) = \int_{-\infty}^{\infty}X(f)e^{j2\pi ft}\,df$$
 
 **Key transform pairs:**
 
@@ -396,7 +396,7 @@ $$X(f) = \int_{-\infty}^{\infty}x(t)e^{-j2\pi ft},dt, \qquad x(t) = \int_{-\inft
 |$\delta(t)$|$1$|Impulse response, white spectrum|
 |$1$|$\delta(f)$|DC signal|
 |$e^{-t/\tau}u(t)$|$\tau/(1+j2\pi f\tau)$|RC filter step response|
-|$\text{rect}(t/T)$|$T,\text{sinc}(fT)$|Ideal pulse, brick-wall filter|
+|$\text{rect}(t/T)$|$T\,\text{sinc}(fT)$|Ideal pulse, brick-wall filter|
 |$e^{-\pi t^2}$|$e^{-\pi f^2}$|Gaussian pulse (minimum time-bandwidth)|
 |$\cos(2\pi f_0 t)$|$\frac{1}{2}[\delta(f-f_0)+\delta(f+f_0)]$|Single tone|
 
@@ -410,7 +410,7 @@ Convolution in time = multiplication in frequency. The output of any LTI system 
 
 The bilateral Laplace transform:
 
-$$X(s) = \int_{-\infty}^{\infty}x(t)e^{-st},dt, \quad s = \sigma + j\omega$$
+$$X(s) = \int_{-\infty}^{\infty}x(t)e^{-st}\,dt, \quad s = \sigma + j\omega$$
 
 For causal systems (unilateral Laplace, $t \geq 0$): generalizes the Fourier transform to include exponentially growing/decaying signals.
 
@@ -488,7 +488,7 @@ For $N = 10^6$: DFT needs $10^{12}$ operations; FFT needs $2\times 10^7$ — 50,
 
 $$V_{ripple} \approx \frac{I_{load}}{2fC}$$
 
-For $I_{load} = 100$ mA, $f = 60$ Hz, $C = 1000;\mu$F: $V_{ripple} \approx 0.83$ V. Larger C → smaller ripple → larger peak current demand.
+For $I_{load} = 100$ mA, $f = 60$ Hz, $C = 1000\,\mu$F: $V_{ripple} \approx 0.83$ V. Larger C → smaller ripple → larger peak current demand.
 
 ### 18.8.2 — Switching Converters
 

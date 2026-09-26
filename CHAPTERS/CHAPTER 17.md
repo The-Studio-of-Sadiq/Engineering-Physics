@@ -49,11 +49,11 @@ $$\frac{\partial\phi}{\partial t} = D\nabla^2\phi + S$$
 
 **Step 1: Integrate over the control volume $V = L^3$:**
 
-$$\int_V\frac{\partial\phi}{\partial t},dV = D\int_V\nabla^2\phi,dV + \int_V S,dV$$
+$$\int_V\frac{\partial\phi}{\partial t}\,dV = D\int_V\nabla^2\phi\,dV + \int_V S\,dV$$
 
 **Step 2: Apply the divergence theorem to the Laplacian:**
 
-$$\frac{d}{dt}\int_V\phi,dV = D\oint_{\partial V}\nabla\phi\cdot\hat n,dA + \dot Q_{source}$$
+$$\frac{d}{dt}\int_V\phi\,dV = D\oint_{\partial V}\nabla\phi\cdot\hat n\,dA + \dot Q_{source}$$
 
 **Step 3: Invoke the lumping assumption** — $\phi$ is spatially uniform inside $V$, so:
 
@@ -67,7 +67,35 @@ where $C_{lump} = V$ (capacitance = volume for mass storage, $\rho c_p V$ for he
 
 **This is an ODE — the PDE has become a lumped circuit element.**
 
-The same procedure applied to the wave equation gives an LC oscillator. Applied to Navier-Stokes (linearized) gives a mass-spring-damper. The lumping criterion is the only assumption — **the mathematical identity between domains is exact, not approximate.**
+The same procedure applied to the wave equation gives an LC oscillator. Applied to Navier-Stokes (linearized) gives a mass-spring-damper.
+
+But the identity is not exact, and the reason is on line 58. **Steps 1 and 2 are
+exact** — the divergence theorem is an identity and the integral form is a
+restatement. **Step 3 is the approximation**: replacing $\phi(\mathbf{r},t)$
+inside the volume by a single $\phi(t)$ is valid only under the lumping criterion
+of Ch. 16 §16.10 ($L/\lambda \ll 1$, or $Bi \ll 0.1$ for thermal). **Step 4 is a
+definition**, not a derivation: $C_{lump}$ and $R_{lump}$ are *defined* by
+identifying volume with capacitance and $L/DA$ with resistance, which makes them
+easy to remember and easy to misapply.
+
+`[APPROXIMATION]` — so the cross-branch result is a **shared procedure applied
+to different physics**, not a mathematical identity between the domains. What is
+identical across domains is Steps 1, 2, and 4. The physics is entirely in Step 3's
+justification and in the values that Step 4 assigns.
+
+**Model Ledger — control-volume integral to lumped element**
+
+| Field | Content |
+|---|---|
+| Parent theory | Continuum conservation law + constitutive flux law (Ch. 15, Ch. 16) |
+| Reduction | Integrate over $V$ (exact); apply the divergence theorem (exact); impose spatial uniformity inside $V$ (approximate); define $C_{lump}$, $R_{lump}$ by correspondence |
+| Model | $C\dot\phi = \frac{\phi_{out}-\phi_{in}}{R} + \dot Q_{source}$ |
+| Assumptions | $L/\lambda \ll 1$ or $Bi < 0.1$; linear constitutive law; time-invariant parameters; no distributed source inside $V$; a single state variable per element |
+| Physics retained | total storage, total flow, and the balance between them |
+| Physics neglected | every internal gradient; internal modes; spatial distribution of the source |
+| Validity | a point in parameter space, not a region — valid at one frequency or timescale |
+| Fails when | the criterion is violated; the constitutive law is nonlinear; parameters drift with state |
+| Next model | retain $\phi(\mathbf{r},t)$ and solve the PDE (Ch. 17 §17.10); or resolve modes (Ch. 19 §19.3) |
 
 ### 17.1.2 — The Lumping Criterion, Domain by Domain
 
@@ -111,9 +139,9 @@ From the lumped control volume, every physical domain has exactly two conjugate 
 |Chemical|Chem. potential $\mu$ [J/mol]|Molar flow $\dot n$ [mol/s]|Watts [W]|Moles|
 |Magnetic|Magnetomotive force $\mathcal{F}$ [A]|Magnetic flux rate $\dot\Phi$ [V]|Watts [W]|Flux $\Phi$|
 
-**The generalized momentum** (integral of effort): $p_e = \int e,dt$ (charge in electrical, momentum in mechanical, flux linkage in magnetic)
+**The generalized momentum** (integral of effort): $p_e = \int e\,dt$ (charge in electrical, momentum in mechanical, flux linkage in magnetic)
 
-**The generalized displacement** (integral of flow): $q_f = \int f,dt$ (charge $Q = \int I,dt$ in electrical, displacement $x = \int v,dt$ in mechanical)
+**The generalized displacement** (integral of flow): $q_f = \int f\,dt$ (charge $Q = \int I\,dt$ in electrical, displacement $x = \int v\,dt$ in mechanical)
 
 ### 17.2.3 — Why Exactly Two Variables?
 
@@ -152,7 +180,7 @@ The resistor is the lumped form of the **constitutive transport relation** (Kubo
 
 A capacitor relates effort to the **integral of flow** (has memory of past flow):
 
-$$e = \frac{1}{C}\int f,dt \quad\Longleftrightarrow\quad f = C\frac{de}{dt}$$
+$$e = \frac{1}{C}\int f\,dt \quad\Longleftrightarrow\quad f = C\frac{de}{dt}$$
 
 Energy stored: $W_C = \frac{1}{2}Ce^2$ (effort-squared storage).
 
@@ -171,7 +199,7 @@ The capacitor is the lumped form of the **∂φ/∂t storage term** in the PDE.
 
 An inductor relates flow to the **integral of effort** (has memory of past effort):
 
-$$f = \frac{1}{L}\int e,dt \quad\Longleftrightarrow\quad e = L\frac{df}{dt}$$
+$$f = \frac{1}{L}\int e\,dt \quad\Longleftrightarrow\quad e = L\frac{df}{dt}$$
 
 Energy stored: $W_L = \frac{1}{2}Lf^2$ (flow-squared storage).
 
@@ -365,7 +393,7 @@ The second-order system (L-R-C, mass-spring-damper, hydraulic RCL):
 
 $$\boxed{L\ddot q + R\dot q + \frac{q}{C} = e_{source}(t)}$$
 
-where $q = \int f,dt$ is the generalized displacement (charge, position, volume). In standard form, dividing by $L$:
+where $q = \int f\,dt$ is the generalized displacement (charge, position, volume). In standard form, dividing by $L$:
 
 $$\ddot q + 2\zeta\omega_0\dot q + \omega_0^2 q = \frac{e_{source}}{L}$$
 
@@ -391,19 +419,19 @@ Oscillates at $\omega_d$ with exponentially decaying envelope. Time to decay: $\
 
 **Critically damped** ($\zeta = 1$): repeated root $s = -\omega_0$
 
-$$q(t) = (A + Bt),e^{-\omega_0 t}$$
+$$q(t) = (A + Bt)\,e^{-\omega_0 t}$$
 
 Fastest approach to equilibrium without overshoot.
 
 **Overdamped** ($\zeta > 1$): two real roots $s_1 < s_2 < 0$
 
-$$q(t) = A,e^{s_1 t} + B,e^{s_2 t}$$
+$$q(t) = A\,e^{s_1 t} + B\,e^{s_2 t}$$
 
 Slow exponential approach; no oscillation.
 
 ### 17.7.3 — Step Response
 
-For a unit step input $e_{source} = E_0,u(t)$:
+For a unit step input $e_{source} = E_0\,u(t)$:
 
 **Underdamped ($\zeta < 1$):**
 
@@ -498,7 +526,7 @@ This is the first law of thermodynamics (Noether energy conservation, Ch. 1 §1.
 
 For sinusoidal steady state at frequency $\omega$:
 
-**Complex power:** $\tilde S = \frac{1}{2}\hat e,\hat f^* = P + iQ_{reac}$
+**Complex power:** $\tilde S = \frac{1}{2}\hat e\,\hat f^* = P + iQ_{reac}$
 
 - $P = \text{Re}[\tilde S]$: **active power** (actually dissipated, time-averaged)
 - $Q_{reac} = \text{Im}[\tilde S]$: **reactive power** (stored/returned each cycle)
@@ -571,11 +599,36 @@ $$L\ddot q + R\dot q + q/C = e_{source}$$
 
 with the same $\omega_0$, $\zeta$, $Q$, step response, Bode plot, and Thévenin/Norton equivalents.
 
+`[STRUCTURAL CONNECTION]` — **the differential equation is genuinely the same;
+the $R$, $C$, $L$ are genuinely different quantities with different units and
+different values.** This is the honest limit of the cross-branch claim. What
+unifies is the *order* of the ODE and the algebra of its solution, not the
+physics that fixes the coefficients.
+
+| Domain | $R$ | $C$ | $L$ | Sets the timescale |
+|---|---|---|---|---|
+| Electrical | resistance [Ω] | capacitance [F] | inductance [H] | $1/RC$ |
+| Mechanical (translational) | damping [N·s/m] | compliance [m/N] | mass [kg] | $\sqrt{m/k}$ |
+| Thermal | thermal resistance [K/W] | heat capacity [J/K] | — (no inertia) | $RC$ only |
+| Hydraulic | hydraulic resistance [Pa·s/m³] | compliance [m³/Pa] | inertance [Pa·s²/m³] | $RC$ or $LC$ |
+
+Two things this table is for. First, **thermal systems have no $L$**: heat has
+no inertial term, so a lumped thermal system is first-order and has no
+resonance, no overshoot, and no $\zeta$. Any PID tuning rule imported from
+mechanical or electrical practice has to be re-derived for thermal loops.
+Second, **the dimensionless ratios are what actually transfer**: $\omega_0$, $\zeta$,
+and $Q$ are unit-free, so a normalised step response is comparable across
+domains even though $R$ and $C$ are not.
+
 **A PID controller** (Ch. 21 preview) doesn't know what domain it's in:
 
-$$u(t) = K_p e(t) + K_i\int e,dt + K_d\dot e$$
+$$u(t) = K_p e(t) + K_i\int e\,dt + K_d\dot e$$
 
-The gains $K_p$, $K_i$, $K_d$ are tuned the same way whether the controlled variable is voltage, temperature, position, pressure, or concentration. Control theory operates at the level of the transfer function $H(s)$ — entirely above the physics. This is possible only because Bridge C has reduced all domains to the same mathematical object.
+The gains $K_p$, $K_i$, $K_d$ are tuned the same way whether the controlled variable is voltage, temperature, position, pressure, or concentration — **provided the loop is adequately described by one linear time-invariant transfer function $H(s)$.** That proviso is a real restriction, not a formality: Ch. 21 §21.0.2 is explicit that nonlinear, time-varying, hybrid, distributed, stochastic, and delayed systems each need a different representation first. A controller that "does not know the domain" is a controller that *assumes* the domain is linear, time-invariant, and describable by a single rational function of $s$.
+
+This is possible only because Bridge C has reduced all domains to the same
+mathematical object — and that reduction is an approximation whose validity is
+established in Ch. 16 §16.10, not a free-standing fact about nature.
 
 ---
 
@@ -583,11 +636,11 @@ The gains $K_p$, $K_i$, $K_d$ are tuned the same way whether the controlled vari
 
 Bridge C performed three operations:
 
-|Step|Mathematical operation|Result|
-|---|---|---|
-|1. Integrate PDE over control volume|$\int_V(\partial_t\phi = D\nabla^2\phi)dV$|Flux in = rate of change|
-|2. Invoke lumping criterion|$L/\lambda \ll 1$ or $Bi \ll 1$|Spatial uniformity assumed|
-|3. Identify lumped parameters|$C = V$, $R = L/DA$|ODE with lumped R, C, L|
+|Step|Mathematical operation|Result|Connection|
+|---|---|---|---|
+|1. Integrate PDE over control volume|$\int_V(\partial_t\phi = D\nabla^2\phi)dV$|Flux in = rate of change|`[DERIVATION]` — exact|
+|2. Invoke lumping criterion|$L/\lambda \ll 1$ or $Bi \ll 1$|Spatial uniformity assumed|`[APPROXIMATION]` — the load-bearing step|
+|3. Identify lumped parameters|$C = V$, $R = L/DA$|ODE with lumped R, C, L|`[STRUCTURAL CONNECTION]` — same form, different coefficients|
 
 **The three laws of Layer 3:**
 
@@ -595,7 +648,7 @@ Bridge C performed three operations:
 - Effort sum around every loop = 0 (potential structure, KVL-type)
 - Element constitutive laws: $e = Rf$, $f = C\dot e$, $e = L\dot f$
 
-**The universal result:** $L\ddot q + R\dot q + q/C = e_{source}(t)$ — the governing equation for every second-order engineering system in every physical domain.
+**The universal result:** $L\ddot q + R\dot q + q/C = e_{source}(t)$ — the governing equation for every second-order engineering system in every physical domain, *for those domains in which lumping is valid.* The equation is a consequence of step 1, is conditional on step 2, and is merely re-labelled in step 3. §17.10 is where it stops working.
 
 ---
 

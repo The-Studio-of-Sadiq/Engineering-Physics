@@ -12,7 +12,7 @@
 
 Every physical process ever observed in a laboratory is a consequence of the following action being stationary under variation:
 
-$$\boxed{ S = \int d^4x,\sqrt{-g}; \Biggl[ \underbrace{\frac{R}{16\pi G}}_{\text{§0.3}} + \underbrace{-\frac{1}{4}B_{\mu\nu}B^{\mu\nu} -\frac{1}{4}W^{a}_{\mu\nu}W^{a\mu\nu} -\frac{1}{4}G^{a}_{\mu\nu}G^{a\mu\nu}}_{\text{§0.4 — gauge forces}} + \underbrace{i\bar{\psi}_f\gamma^\mu D_\mu \psi_f}_{\text{§0.5 — matter}} + \underbrace{|D_\mu H|^2 - V(H)}_{\text{§0.7 — Higgs}} + \underbrace{Y_{ij}^f,\bar{\psi}_i H \psi_j + \text{h.c.}}_{\text{§0.8 — Yukawa}} + \underbrace{\frac{\theta, g_3^2}{32\pi^2}G^{a}_{\mu\nu}\tilde{G}^{a\mu\nu}}_{\text{§0.9 — topology}} + \underbrace{\mathcal{F}\bigl[\text{topology, anomalies, } \phi_{?}\bigr]}_{\text{§0.10 — placeholder}} \Biggr] }$$
+$$\boxed{ S = \int d^4x\,\sqrt{-g}\,\Biggl[ \underbrace{\frac{R}{16\pi G}}_{\text{§0.3}} + \underbrace{-\frac{1}{4}B_{\mu\nu}B^{\mu\nu} -\frac{1}{4}W^{a}_{\mu\nu}W^{a\mu\nu} -\frac{1}{4}G^{a}_{\mu\nu}G^{a\mu\nu}}_{\text{§0.4 — gauge forces}} + \underbrace{i\bar{\psi}_f\gamma^\mu D_\mu \psi_f}_{\text{§0.5 — matter}} + \underbrace{|D_\mu H|^2 - V(H)}_{\text{§0.7 — Higgs}} + \underbrace{Y_{ij}^f\,\bar{\psi}_i H \psi_j + \text{h.c.}}_{\text{§0.8 — Yukawa}} + \underbrace{\frac{\theta\,g_3^2}{32\pi^2}G^{a}_{\mu\nu}\tilde{G}^{a\mu\nu}}_{\text{§0.9 — topology}} + \underbrace{\mathcal{F}\bigl[\text{topology, anomalies, } \phi_{?}\bigr]}_{\text{§0.10 — placeholder}} \Biggr] }$$
 
 The symmetry group of everything except gravity in this action is:
 
@@ -38,17 +38,17 @@ Each section follows the same structure:
 
 ---
 
-## 0.2 — The Stage: $\int d^4x,\sqrt{-g}$
+## 0.2 — The Stage: $\int d^4x\,\sqrt{-g}$
 
 Before any physics, we must specify _where_ the action is evaluated.
 
 ### 0.2.1 — The Integration Measure $d^4x$
 
-$$d^4x = dx^0,dx^1,dx^2,dx^3$$
+$$d^4x = dx^0\,dx^1\,dx^2\,dx^3$$
 
 This is the four-dimensional volume element over spacetime. $x^0 = ct$ is the time coordinate; $x^1, x^2, x^3$ are the three spatial coordinates. The action integrates the Lagrangian density $\mathcal{L}$ over all of spacetime — summing contributions from every point in space at every moment in time.
 
-This is why $\mathcal{L}$ is called a _density_: it has units of energy per unit volume, and $\int d^4x,\mathcal{L}$ has units of energy × time = action (units of $\hbar$, or J·s).
+This is why $\mathcal{L}$ is called a _density_: it has units of energy per unit volume, and $\int d^4x\,\mathcal{L}$ has units of energy × time = action (units of $\hbar$, or J·s).
 
 ### 0.2.2 — The Factor $\sqrt{-g}$
 
@@ -72,13 +72,13 @@ In curved spacetime (near a mass, for instance), $g_{\mu\nu}$ is a nontrivial ma
 
 ### The Term
 
-$$S_{EH} = \int d^4x,\sqrt{-g};\frac{R}{16\pi G}$$
+$$S_{EH} = \int d^4x\,\sqrt{-g}\,\frac{R}{16\pi G}$$
 
 This is the **Einstein-Hilbert action**, the simplest possible action for gravity.
 
 ### The Objects
 
-**$G$** — Newton's gravitational constant: $$G = 6.674 \times 10^{-11};\text{N·m}^2/\text{kg}^2$$ The same $G$ that appears in $F = Gm_1m_2/r^2$. It sets the strength of gravity relative to the other forces.
+**$G$** — Newton's gravitational constant: $$G = 6.674 \times 10^{-11}\,\text{N·m}^2/\text{kg}^2$$ The same $G$ that appears in $F = Gm_1m_2/r^2$. It sets the strength of gravity relative to the other forces.
 
 **$g_{\mu\nu}$** — the metric tensor (already introduced). This is the **dynamical variable** of gravity — the field that "is" gravity in GR. In classical GR, it is a smooth classical field; how to quantize it is unknown and is one of the primary targets of the $\mathcal{F}$ placeholder in §0.10.
 
@@ -139,7 +139,7 @@ where $F^a_{\mu\nu}$ is the **field strength tensor** — the gauge-invariant me
 
 The field strength is built from the **gauge potential** $A^a_\mu$:
 
-$$F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g,f^{abc}A^b_\mu A^c_\nu$$
+$$F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g\,f^{abc}A^b_\mu A^c_\nu$$
 
 - The first two terms: the "curl" of the gauge potential (as in EM: $\mathbf{B} = \nabla\times\mathbf{A}$)
 - The last term: **only present for non-Abelian gauge groups** (SU(2), SU(3)). $f^{abc}$ are the **structure constants** of the group. This term means the force field can interact with itself — gluons interact with gluons; W bosons interact with each other. Photons do not (QED is Abelian).
@@ -160,7 +160,7 @@ $$\mathcal{L}_{B} = -\frac{1}{4}B_{\mu\nu}B^{\mu\nu}$$
 
 $$\mathcal{L}_{W} = -\frac{1}{4}W^a_{\mu\nu}W^{a\mu\nu}, \quad a = 1,2,3$$
 
-**$W^a_\mu$** — three gauge fields (a = 1, 2, 3), one for each generator of SU(2). Each is a four-vector. Their field strength: $$W^a_{\mu\nu} = \partial_\mu W^a_\nu - \partial_\nu W^a_\mu + g_2,\epsilon^{abc}W^b_\mu W^c_\nu$$
+**$W^a_\mu$** — three gauge fields (a = 1, 2, 3), one for each generator of SU(2). Each is a four-vector. Their field strength: $$W^a_{\mu\nu} = \partial_\mu W^a_\nu - \partial_\nu W^a_\mu + g_2\,\epsilon^{abc}W^b_\mu W^c_\nu$$
 
 The $\epsilon^{abc}W^b W^c$ term: the W bosons carry weak charge themselves, so they interact with each other. This self-interaction makes the weak force structurally different from electromagnetism.
 
@@ -183,7 +183,7 @@ The $\epsilon^{abc}W^b W^c$ term: the W bosons carry weak charge themselves, so 
 
 $$\mathcal{L}_{G} = -\frac{1}{4}G^a_{\mu\nu}G^{a\mu\nu}, \quad a = 1,...,8$$
 
-**$G^a_\mu$** — **eight gluon fields**, one for each generator of SU(3). SU(3) is the group of 3×3 unitary matrices with determinant 1; it has 8 independent generators (the Gell-Mann matrices $\lambda^a$). Their field strength: $$G^a_{\mu\nu} = \partial_\mu G^a_\nu - \partial_\nu G^a_\mu + g_3,f^{abc}G^b_\mu G^c_\nu$$
+**$G^a_\mu$** — **eight gluon fields**, one for each generator of SU(3). SU(3) is the group of 3×3 unitary matrices with determinant 1; it has 8 independent generators (the Gell-Mann matrices $\lambda^a$). Their field strength: $$G^a_{\mu\nu} = \partial_\mu G^a_\nu - \partial_\nu G^a_\mu + g_3\,f^{abc}G^b_\mu G^c_\nu$$
 
 $f^{abc}$ are the SU(3) structure constants — completely determined by the algebra of the Gell-Mann matrices.
 
@@ -309,7 +309,7 @@ $$V(H) = -\mu^2(H^\dagger H) + \lambda(H^\dagger H)^2$$
 
 ### The Objects
 
-**$H$** — the **Higgs field**, a complex scalar SU(2) doublet: $$H = \begin{pmatrix}H^+\H^0\end{pmatrix}$$
+**$H$** — the **Higgs field**, a complex scalar SU(2) doublet: $$H = \begin{pmatrix}H^+\\H^0\end{pmatrix}$$
 
 It has four real degrees of freedom. $H^+$ is the charged component; $H^0$ is the neutral component. The superscripts indicate electric charge. The Higgs carries hypercharge $Y = +\frac{1}{2}$.
 
@@ -330,13 +330,13 @@ $$V(H) = -\mu^2|H|^2 + \lambda|H|^4$$
 |$|H|= 0$|
 |$|H|= v/\sqrt{2}$|
 
-The minimum occurs at: $$|H|_{\min} = \frac{v}{\sqrt{2}}, \quad v = \sqrt{\frac{\mu^2}{\lambda}} \approx 246;\text{GeV}$$
+The minimum occurs at: $$|H|_{\min} = \frac{v}{\sqrt{2}}, \quad v = \sqrt{\frac{\mu^2}{\lambda}} \approx 246\,\text{GeV}$$
 
 $v$ is the **vacuum expectation value (VEV)** of the Higgs field. In "empty" space, the Higgs field is not zero — it sits at the bottom of the Mexican hat, at $|H| = v/\sqrt{2}$. This nonzero background value permeates all of spacetime.
 
 ### Spontaneous Symmetry Breaking
 
-The vacuum state breaks SU(2)$_L \times$ U(1)$_Y$ down to U(1)$_{EM}$. We choose: $$\langle H\rangle = \begin{pmatrix}0\v/\sqrt{2}\end{pmatrix}$$
+The vacuum state breaks SU(2)$_L \times$ U(1)$_Y$ down to U(1)$_{EM}$. We choose: $$\langle H\rangle = \begin{pmatrix}0\\v/\sqrt{2}\end{pmatrix}$$
 
 (Any point on the circle of minima is equivalent — we "gauge away" the others.)
 
@@ -349,9 +349,9 @@ Writing $H = \langle H\rangle + $ perturbations, four degrees of freedom split:
 
 Inserting $\langle H\rangle$ into $(D_\mu H)^\dagger(D^\mu H)$:
 
-$$m_W = \frac{1}{2}g_2 v \approx 80.4;\text{GeV}$$
+$$m_W = \frac{1}{2}g_2 v \approx 80.4\,\text{GeV}$$
 
-$$m_Z = \frac{v}{2}\sqrt{g_1^2 + g_2^2} \approx 91.2;\text{GeV}$$
+$$m_Z = \frac{v}{2}\sqrt{g_1^2 + g_2^2} \approx 91.2\,\text{GeV}$$
 
 $$m_\gamma = 0 \quad \text{(photon remains exactly massless)}$$
 
@@ -375,7 +375,7 @@ where $\tilde H = i\sigma^2 H^*$ is the **charge-conjugated Higgs doublet** (has
 
 ### The Objects
 
-**$Y^u_{ij}, Y^d_{ij}, Y^e_{ij}$** — the **Yukawa coupling matrices**, each a $3\times 3$ complex matrix in generation space ($i,j = 1,2,3$). These are dimensionless numbers — measured, not predicted.
+**$Y^u_{ij}, Y^d_{ij}, Y^e_{ij}$** — the **Yukawa coupling matrices**, each a $3\times 3$ complex matrix in generation space ($i\,j = 1,2,3$). These are dimensionless numbers — measured, not predicted.
 
 After symmetry breaking, insert $\langle H\rangle = (0,, v/\sqrt{2})^T$:
 
@@ -414,7 +414,7 @@ These are genuine open questions. The $\mathcal{F}$ term is expected to eventual
 
 ### The Term
 
-$$\mathcal{L}_\theta = \frac{\theta,g_3^2}{32\pi^2},G^a_{\mu\nu}\tilde{G}^{a\mu\nu}$$
+$$\mathcal{L}_\theta = \frac{\theta,g_3^2}{32\pi^2}\,G^a_{\mu\nu}\tilde{G}^{a\mu\nu}$$
 
 where $\tilde{G}^{a\mu\nu} = \frac{1}{2}\varepsilon^{\mu\nu\rho\sigma}G^a_{\rho\sigma}$ is the **dual field strength** of the gluon field ($\varepsilon^{\mu\nu\rho\sigma}$ is the completely antisymmetric Levi-Civita tensor in four dimensions).
 
@@ -432,7 +432,7 @@ In quantum mechanics, the path integral sums over _all_ field configurations. Di
 
 **Physical consequence:** If $\theta \neq 0$, the strong force violates **CP symmetry** — the combined symmetry of charge conjugation (C) and parity (P). This would give the neutron a nonzero **electric dipole moment (EDM)**.
 
-Experimental bound: $d_n < 1.8\times 10^{-26},e\cdot\text{cm}$ (measured). This constrains: $$|\theta| < 10^{-10}$$
+Experimental bound: $d_n < 1.8\times 10^{-26}\,e\cdot\text{cm}$ (measured). This constrains: $$|\theta| < 10^{-10}$$
 
 The puzzle: why is $\theta$ so small? Nothing in the theory forces it to be zero. This is the **strong CP problem** — one of the major open questions in physics. A leading solution is the **Peccei-Quinn mechanism**, which promotes $\theta$ to a dynamical field (the **axion**) that relaxes to zero dynamically. The axion is a candidate for dark matter — and therefore a candidate for part of $\mathcal{F}$.
 
@@ -495,7 +495,7 @@ This works **only because quarks come in 3 colors and have those specific hyperc
 
 ### The Pedagogical Statement
 
-> If a Theory of Everything exists, we have compelling reason to believe it will be expressible as: $$\delta\left(\int d^4x,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\right]\right) = 0$$ The known terms $R/16\pi G + \mathcal{L}_{SM}$ are not wrong — they are correct limiting cases that any future $\mathcal{F}$ must reproduce. The student who understands the known part completely understands what any future theory must reduce to.
+> If a Theory of Everything exists, we have compelling reason to believe it will be expressible as: $$\delta\left(\int d^4x\,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\right]\right) = 0$$ The known terms $R/16\pi G + \mathcal{L}_{SM}$ are not wrong — they are correct limiting cases that any future $\mathcal{F}$ must reproduce. The student who understands the known part completely understands what any future theory must reduce to.
 
 ---
 
@@ -517,7 +517,7 @@ $$\boxed{ S = \int d^4x\sqrt{-g}\left[ \frac{R}{16\pi G}
 
 |Vary w.r.t.|Equation of motion|Name|
 |---|---|---|
-|$g^{\mu\nu}$|$G_{\mu\nu} = 8\pi G,T_{\mu\nu}$|Einstein field equations|
+|$g^{\mu\nu}$|$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$|Einstein field equations|
 |$B_\mu$|$\partial^\nu B_{\nu\mu} = g_1 j^\mu_Y$|Hypercharge Maxwell equation|
 |$W^a_\mu$|$D^\nu W^a_{\nu\mu} = g_2 j^{a\mu}_W$|Weak field equations|
 |$G^a_\mu$|$D^\nu G^a_{\nu\mu} = g_3 j^{a\mu}_C$|QCD field equations|

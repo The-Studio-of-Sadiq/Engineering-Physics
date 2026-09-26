@@ -33,12 +33,12 @@ In quantum mechanics, physical quantities are **operators** — mathematical obj
 |Classical quantity|Quantum operator|Action on $\psi$|
 |---|---|---|
 |Position $x$|$\hat x$|Multiply by $x$|
-|Momentum $p_x$|$\hat p_x = -i\hbar,\partial/\partial x$|Differentiate, multiply by $-i\hbar$|
+|Momentum $p_x$|$\hat p_x = -i\hbar\,\partial/\partial x$|Differentiate, multiply by $-i\hbar$|
 |Kinetic energy $p^2/2m$|$\hat T = -(\hbar^2/2m)\nabla^2$|Apply Laplacian, multiply by $-\hbar^2/2m$|
 |Potential energy $V(\mathbf{r})$|$\hat V = V(\mathbf{r})$|Multiply by $V(\mathbf{r})$|
 |Total energy $H$|$\hat H = \hat T + \hat V$|Apply both above|
 
-The momentum operator $\hat p_x = -i\hbar,\partial/\partial x$ is not an arbitrary choice — it follows directly from the plane wave $\psi = e^{ikx}$ being an eigenstate with $\hat p_x \psi = \hbar k,\psi$, and $p = \hbar k$ being the de Broglie relation from Ch. 3.
+The momentum operator $\hat p_x = -i\hbar\,\partial/\partial x$ is not an arbitrary choice — it follows directly from the plane wave $\psi = e^{ikx}$ being an eigenstate with $\hat p_x \psi = \hbar k\,\psi$, and $p = \hbar k$ being the de Broglie relation from Ch. 3.
 
 ### 4.1.2 — The Eigenvalue Equation
 
@@ -54,15 +54,15 @@ is an **eigenvalue equation**: find the functions $\psi_n$ (eigenfunctions) and 
 
 You will not always find the system in an energy eigenstate. For a general wavefunction $\psi$, the **expectation value** of an observable $\hat A$ is:
 
-$$\langle A\rangle = \int_{-\infty}^{\infty}\psi^*\hat A\psi,d^3r$$
+$$\langle A\rangle = \int_{-\infty}^{\infty}\psi^*\hat A\psi\,d^3r$$
 
 This is the statistical average of many repeated measurements on identically prepared systems. For the position:
 
-$$\langle x\rangle = \int x,|\psi|^2,dx$$
+$$\langle x\rangle = \int x,|\psi|^2\,dx$$
 
 The probability of finding the particle between $x$ and $x + dx$ is $|\psi(x)|^2 dx$. This is why normalization is required:
 
-$$\int_{-\infty}^{\infty}|\psi|^2,d^3r = 1$$
+$$\int_{-\infty}^{\infty}|\psi|^2\,d^3r = 1$$
 
 Total probability must be 1 — the particle is somewhere. This is the continuity equation from Ch. 3 §3.9.2, integrated over all space.
 
@@ -109,7 +109,7 @@ The $\sqrt{2/L}$ normalization constant comes from requiring $\int_0^L|\psi_n|^2
 
 **Lesson 2: Zero-point energy is not zero.** The lowest allowed energy is $E_1 = \pi^2\hbar^2/2mL^2 > 0$, not zero. The particle cannot be at rest. From the uncertainty principle (Ch. 3 §3.11): confining a particle to length $\Delta x \approx L$ forces $\Delta p \geq \hbar/2L$, which requires nonzero kinetic energy. Zero-point energy is the uncertainty principle made concrete.
 
-**Lesson 3: Quantum numbers label orthogonal states.** Different eigenfunctions are orthogonal: $\int_0^L\psi_m^*\psi_n,dx = \delta_{mn}$. States with different $n$ are completely distinguishable. The quantum number $n$ is an integer label for a standing-wave mode.
+**Lesson 3: Quantum numbers label orthogonal states.** Different eigenfunctions are orthogonal: $\int_0^L\psi_m^*\psi_n\,dx = \delta_{mn}$. States with different $n$ are completely distinguishable. The quantum number $n$ is an integer label for a standing-wave mode.
 
 **Lesson 4: The correspondence principle.** For large $n$, the probability density $|\psi_n|^2$ becomes nearly uniform over the well — matching what classical mechanics predicts (equal probability of being anywhere in the well). Quantum mechanics recovers classical mechanics at large quantum numbers.
 
@@ -121,7 +121,7 @@ $$\langle x\rangle = \frac{L}{2}, \quad \Delta x = \frac{L}{\sqrt{12}}\sqrt{1 - 
 
 $$\langle p\rangle = 0, \quad \Delta p = \frac{\pi\hbar}{L}$$
 
-$$\Delta x,\Delta p = \frac{\pi\hbar}{L}\cdot\frac{L}{\sqrt{12}}\sqrt{1 - \frac{6}{\pi^2}} \approx 0.568,\hbar \geq \frac{\hbar}{2};\checkmark$$
+$$\Delta x\,\Delta p = \frac{\pi\hbar}{L}\cdot\frac{L}{\sqrt{12}}\sqrt{1 - \frac{6}{\pi^2}} \approx 0.568\,\hbar \geq \frac{\hbar}{2}\,\checkmark$$
 
 The inequality is satisfied — as it must be for any quantum state.
 
@@ -168,7 +168,7 @@ $$\psi_n(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}\frac{1}{\sqrt{2^n n!}}
 The first few:
 
 - $\psi_0 \propto e^{-m\omega x^2/2\hbar}$ — Gaussian, no nodes
-- $\psi_1 \propto x,e^{-m\omega x^2/2\hbar}$ — one node at $x = 0$
+- $\psi_1 \propto x\,e^{-m\omega x^2/2\hbar}$ — one node at $x = 0$
 - $\psi_2 \propto (2m\omega x^2/\hbar - 1)e^{-m\omega x^2/2\hbar}$ — two nodes
 
 The $n$-th state has exactly $n$ nodes — the same node-counting rule as the infinite square well. This is not a coincidence: for any confining potential, the $n$-th eigenstate has $n-1$ (or $n$) nodes, by the oscillation theorem.
@@ -217,7 +217,7 @@ $$\boxed{T \approx 16\frac{E}{V_0}!\left(1 - \frac{E}{V_0}\right)e^{-2\kappa d}}
 |α-decay (Ch. 6)|α particle|Coulomb barrier|Nuclear dating|
 |MOSFET gate leakage|Electrons|Gate oxide|Limits transistor scaling|
 
-The STM tunnel current $I \propto e^{-2\kappa z}$ where $z$ is tip-sample distance; at $\kappa \approx 10,\text{nm}^{-1}$, a 1 Å change in $z$ changes the current by a factor of $e^2 \approx 7.4$. This extraordinary sensitivity is what gives STM atomic resolution.
+The STM tunnel current $I \propto e^{-2\kappa z}$ where $z$ is tip-sample distance; at $\kappa \approx 10\,\text{nm}^{-1}$, a 1 Å change in $z$ changes the current by a factor of $e^2 \approx 7.4$. This extraordinary sensitivity is what gives STM atomic resolution.
 
 ---
 
@@ -247,7 +247,7 @@ This looks terrifying. The key observation: **the angular part is a known operat
 
 ### 4.5.3 — Separation of Variables: The Core Strategy
 
-Try a solution of the form: $$\psi(r,\theta,\phi) = R(r),Y(\theta,\phi)$$
+Try a solution of the form: $$\psi(r,\theta,\phi) = R(r)\,Y(\theta,\phi)$$
 
 Substituting into the Schrödinger equation and dividing through by $R(r)Y(\theta,\phi)$:
 
@@ -299,7 +299,7 @@ The constraint $|m| \leq \ell$ has a clear physical meaning: the z-component of 
 
 Combining the $\Theta$ and $\Phi$ solutions gives the **spherical harmonics** $Y_\ell^m(\theta, \phi)$:
 
-$$Y_\ell^m(\theta,\phi) = \sqrt{\frac{(2\ell+1)}{4\pi}\frac{(\ell-|m|)!}{(\ell+|m|)!}}P_\ell^m(\cos\theta),e^{im\phi}$$
+$$Y_\ell^m(\theta,\phi) = \sqrt{\frac{(2\ell+1)}{4\pi}\frac{(\ell-|m|)!}{(\ell+|m|)!}}P_\ell^m(\cos\theta)\,e^{im\phi}$$
 
 These are the angular eigenfunctions of the hydrogen atom — and of every spherically symmetric potential. The first few:
 
@@ -307,14 +307,14 @@ These are the angular eigenfunctions of the hydrogen atom — and of every spher
 |---|---|---|---|
 |0|0|$s$|$1/\sqrt{4\pi}$|
 |1|0|$p_z$|$\sqrt{3/4\pi}\cos\theta$|
-|1|±1|$p_{x,y}$|$\mp\sqrt{3/8\pi}\sin\theta,e^{\pm i\phi}$|
+|1|±1|$p_{x,y}$|$\mp\sqrt{3/8\pi}\sin\theta\,e^{\pm i\phi}$|
 |2|0|$d_{z^2}$|$\sqrt{5/16\pi}(3\cos^2\theta - 1)$|
 
 The shapes of these functions — spherical, dumbbell, cloverleaf — are the shapes of the atomic orbitals that govern all of chemistry.
 
 **Key properties:**
 
-- Orthonormal: $\int Y_\ell^{m*}Y_{\ell'}^{m'},d\Omega = \delta_{\ell\ell'}\delta_{mm'}$
+- Orthonormal: $\int Y_\ell^{m*}Y_{\ell'}^{m'}\,d\Omega = \delta_{\ell\ell'}\delta_{mm'}$
 - Angular momentum: $\hat L^2 Y_\ell^m = \ell(\ell+1)\hbar^2 Y_\ell^m$ and $\hat L_z Y_\ell^m = m\hbar Y_\ell^m$
 
 ---
@@ -347,13 +347,13 @@ where $n$ is called the **principal quantum number**.
 
 ### 4.7.3 — The Energy Levels of Hydrogen
 
-$$\boxed{E_n = -\frac{m_e e^4}{2(4\pi\epsilon_0)^2\hbar^2}\cdot\frac{1}{n^2} = -\frac{13.6;\text{eV}}{n^2}, \qquad n = 1, 2, 3, \ldots}$$
+$$\boxed{E_n = -\frac{m_e e^4}{2(4\pi\epsilon_0)^2\hbar^2}\cdot\frac{1}{n^2} = -\frac{13.6\,\text{eV}}{n^2}, \qquad n = 1, 2, 3, \ldots}$$
 
 This is the **Bohr formula** — but now derived rigorously from the Schrödinger equation, not guessed from Bohr's circular orbit model. Bohr guessed correctly; Schrödinger explained why.
 
 The **Bohr radius** $a_0$ sets the natural length scale:
 
-$$a_0 = \frac{4\pi\epsilon_0\hbar^2}{m_e e^2} = 0.529;\text{\AA} = 0.0529;\text{nm}$$
+$$a_0 = \frac{4\pi\epsilon_0\hbar^2}{m_e e^2} = 0.529\,\text{\AA} = 0.0529\,\text{nm}$$
 
 In terms of $a_0$, the energy becomes $E_n = -e^2/8\pi\epsilon_0 a_0 n^2$.
 
@@ -389,7 +389,7 @@ $$\psi_{200} = \frac{1}{4\sqrt{2\pi}}\left(\frac{1}{a_0}\right)^{3/2}\left(2 - \
 
 $$\psi_{210} = \frac{1}{4\sqrt{2\pi}}\left(\frac{1}{a_0}\right)^{3/2}\frac{r}{a_0}e^{-r/2a_0}\cos\theta$$
 
-$$\psi_{21\pm1} = \mp\frac{1}{8\sqrt{\pi}}\left(\frac{1}{a_0}\right)^{3/2}\frac{r}{a_0}e^{-r/2a_0}\sin\theta,e^{\pm i\phi}$$
+$$\psi_{21\pm1} = \mp\frac{1}{8\sqrt{\pi}}\left(\frac{1}{a_0}\right)^{3/2}\frac{r}{a_0}e^{-r/2a_0}\sin\theta\,e^{\pm i\phi}$$
 
 All have energy $E_2 = -13.6/4 = -3.4$ eV.
 
@@ -416,13 +416,13 @@ So the ground state is non-degenerate (1 state), the first excited level has 4 d
 
 When an electron transitions from a higher energy state $n_i$ to a lower state $n_f$, a photon is emitted with energy:
 
-$$h\nu = E_{n_i} - E_{n_f} = 13.6;\text{eV}\left(\frac{1}{n_f^2} - \frac{1}{n_i^2}\right)$$
+$$h\nu = E_{n_i} - E_{n_f} = 13.6\,\text{eV}\left(\frac{1}{n_f^2} - \frac{1}{n_i^2}\right)$$
 
 The corresponding wavelength:
 
-$$\boxed{\frac{1}{\lambda} = R_\infty\left(\frac{1}{n_f^2} - \frac{1}{n_i^2}\right), \qquad R_\infty = \frac{m_e e^4}{8\epsilon_0^2 h^3 c} = 1.097 \times 10^7;\text{m}^{-1}}$$
+$$\boxed{\frac{1}{\lambda} = R_\infty\left(\frac{1}{n_f^2} - \frac{1}{n_i^2}\right), \qquad R_\infty = \frac{m_e e^4}{8\epsilon_0^2 h^3 c} = 1.097 \times 10^7\,\text{m}^{-1}}$$
 
-This is the **Rydberg formula**, empirically discovered in 1888, theoretically derived here. The **Rydberg constant** $R_\infty$ is one of the most precisely measured constants in physics ($R_\infty = 1.0973731568539 \times 10^7,\text{m}^{-1}$) and is used to define the hydrogen energy scale in the SI system.
+This is the **Rydberg formula**, empirically discovered in 1888, theoretically derived here. The **Rydberg constant** $R_\infty$ is one of the most precisely measured constants in physics ($R_\infty = 1.0973731568539 \times 10^7\,\text{m}^{-1}$) and is used to define the hydrogen energy scale in the SI system.
 
 **Spectral series:**
 
@@ -490,8 +490,8 @@ Together they give a complete, exact description of the hydrogen atom that agree
 |Particle in box: energies|$E_n = n^2\pi^2\hbar^2/2mL^2$|Boundary conditions|
 |Harmonic oscillator: energies|$E_n = \hbar\omega(n+\frac{1}{2})$|Ladder operators|
 |Tunneling transmission|$T \approx e^{-2\kappa d}$|Exponential decay in barrier|
-|Hydrogen energies|$E_n = -13.6,\text{eV}/n^2$|Radial equation + normalizability|
-|Quantum numbers|$n \geq 1$; $\ell \leq n-1$; $|m|
+|Hydrogen energies|$E_n = -13.6\,\text{eV}/n^2$|Radial equation + normalizability|
+|Quantum numbers|$n \geq 1$; $\ell \leq n-1$; $|m| \leq \ell$|Three quantum numbers label a state|
 |Rydberg formula|$1/\lambda = R_\infty(1/n_f^2 - 1/n_i^2)$|Energy conservation for photon emission|
 |Shell capacity (with spin)|$2n^2$ electrons per shell|Degeneracy × 2 for spin|
 

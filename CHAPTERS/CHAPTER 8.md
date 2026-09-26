@@ -24,7 +24,7 @@ Bridge B is not one transition but five simultaneous limiting operations (from t
 
 This chapter extracts the gravitational sector from Ch. 0's action:
 
-$$S_{EH} = \frac{1}{16\pi G}\int d^4x,\sqrt{-g},R$$
+$$S_{EH} = \frac{1}{16\pi G}\int d^4x\,\sqrt{-g}\,R$$
 
 The destination is Newton's law $F = -GMm/r^2$ — but we will pass through general relativity properly, collecting every correction that engineering currently cares about along the way.
 
@@ -182,7 +182,7 @@ This is the **linearized Schwarzschild metric** — valid wherever $|\Phi|/c^2 \
 
 For a clock at rest ($d\mathbf{x} = 0$), the proper time interval:
 
-$$d\tau = \sqrt{-g_{00}/c^2},dt = \sqrt{1 + \frac{2\Phi}{c^2}},dt \approx \left(1 + \frac{\Phi}{c^2}\right)dt$$
+$$d\tau = \sqrt{-g_{00}/c^2}\,dt = \sqrt{1 + \frac{2\Phi}{c^2}}\,dt \approx \left(1 + \frac{\Phi}{c^2}\right)dt$$
 
 A clock deeper in a gravitational well ($\Phi$ more negative) ticks more slowly relative to coordinate time. The fractional rate difference between clocks at potentials $\Phi_1$ and $\Phi_2$:
 
@@ -204,7 +204,7 @@ For a static, spherically symmetric mass $M$ (the Sun, Earth, a star), the exact
 
 $$\boxed{ds^2 = -\left(1 - \frac{r_s}{r}\right)c^2,dt^2 + \frac{dr^2}{1 - r_s/r} + r^2,d\Omega^2}$$
 
-where $d\Omega^2 = d\theta^2 + \sin^2\theta,d\phi^2$ and the **Schwarzschild radius**:
+where $d\Omega^2 = d\theta^2 + \sin^2\theta\,d\phi^2$ and the **Schwarzschild radius**:
 
 $$r_s = \frac{2GM}{c^2}$$
 
@@ -225,7 +225,7 @@ A clock at radius $r$ runs slow compared to a clock at infinity by factor $\sqrt
 
 $$\frac{d\tau_{surface}}{dt} = 1 - \frac{GM_\oplus}{R_\oplus c^2} = 1 - 6.95\times 10^{-10}$$
 
-The surface clock loses $60.1;\mu$s per day relative to a clock at infinity.
+The surface clock loses $60.1\,\mu$s per day relative to a clock at infinity.
 
 ### 8.5.2 — Circular Orbits and Orbital Velocity
 
@@ -249,7 +249,7 @@ $$\Box\bar h_{\mu\nu} = 0$$
 
 This has wave solutions propagating at $c$. In the **transverse-traceless (TT) gauge** (imposing both $\partial^\mu\bar h_{\mu\nu} = 0$ and $\bar h = 0$ and choosing the wave propagating in the $z$-direction), only two independent components survive:
 
-$$h_{\mu\nu}^{TT} = \begin{pmatrix}0&0&0&0\0&h_+&h_\times&0\0&h_\times&-h_+&0\0&0&0&0\end{pmatrix}\cos(\omega t - kz)$$
+$$h_{\mu\nu}^{TT} = \begin{pmatrix}0&0&0&0\\0&h_+&h_\times&0\\0&h_\times&-h_+&0\\0&0&0&0\end{pmatrix}\cos(\omega t - kz)$$
 
 **The plus polarization** ($h_+$): stretches space in $x$, compresses in $y$ simultaneously, then reverses. Ring of test particles: oscillates between $\bigcirc\to\Rightarrow\to\bigcirc\to\Uparrow\to\bigcirc$.
 
@@ -295,9 +295,9 @@ $$V_{eff}(r) = -\frac{GM}{r} - \frac{L^2}{2m^2r^2} + \underbrace{\frac{GML^2}{m^
 
 This causes the ellipse to **precess** — the perihelion advances by:
 
-$$\Delta\phi_{per;orbit} = \frac{6\pi GM}{a(1-e^2)c^2}$$
+$$\Delta\phi_{\text{per orbit}} = \frac{6\pi GM}{a(1-e^2)c^2}$$
 
-For Mercury: $a = 5.79\times 10^{10}$ m, $e = 0.206$: $$\Delta\phi = \frac{6\pi\times(6.67\times10^{-11})(1.99\times10^{30})}{(5.79\times10^{10})(1-0.206^2)(9\times10^{16})} = 5.02\times 10^{-7};\text{rad/orbit}$$
+For Mercury: $a = 5.79\times 10^{10}$ m, $e = 0.206$: $$\Delta\phi = \frac{6\pi\times(6.67\times10^{-11})(1.99\times10^{30})}{(5.79\times10^{10})(1-0.206^2)(9\times10^{16})} = 5.02\times 10^{-7}\,\text{rad/orbit}$$
 
 Mercury completes 415 orbits per century: $\Delta\phi_{century} = 2.08\times 10^{-4}$ rad/century $= 43.0''$/century.
 
@@ -311,7 +311,7 @@ $$\alpha = \frac{4GM}{bc^2}$$
 
 This is **twice the Newtonian prediction** ($2GM/bc^2$) because in GR both the temporal and spatial components of the metric are perturbed — light is deflected by time curvature AND space curvature equally, whereas Newton's law only captures the time-curvature analog.
 
-For light grazing the Sun ($b = R_\odot$): $$\alpha = \frac{4\times(6.67\times10^{-11})\times(1.99\times10^{30})}{(6.96\times10^8)\times(9\times10^{16})} = 8.48\times10^{-6};\text{rad} = 1.75''$$
+For light grazing the Sun ($b = R_\odot$): $$\alpha = \frac{4\times(6.67\times10^{-11})\times(1.99\times10^{30})}{(6.96\times10^8)\times(9\times10^{16})} = 8.48\times10^{-6}\,\text{rad} = 1.75''$$
 
 Eddington's 1919 expedition to measure stellar positions during a solar eclipse confirmed $\alpha = 1.75'' \pm 0.09''$ — the first empirical test of GR and the observation that made Einstein world-famous.
 
@@ -352,21 +352,21 @@ Clock rate relative to infinity (from §8.5.1): $$\frac{d\tau}{dt}\bigg|_{surfac
 
 Satellite clock runs faster than surface clock due to weaker gravity by: $$\Delta\frac{d\tau}{dt}\bigg|_{GR} = (6.95 - 1.66)\times10^{-10} = 5.29\times10^{-10}$$
 
-Per day: $5.29\times10^{-10}\times 86{,}400;\text{s} = +45.7;\mu\text{s/day}$ (satellite runs fast)
+Per day: $5.29\times10^{-10}\times 86{,}400\,\text{s} = +45.7\,\mu\text{s/day}$ (satellite runs fast)
 
 ### 8.8.3 — Velocity Time Dilation (Special Relativity Effect)
 
 From SR (time dilation due to velocity): $$\frac{d\tau}{dt}\bigg|_{SR} = \sqrt{1 - \frac{v_{sat}^2}{c^2}} \approx 1 - \frac{v_{sat}^2}{2c^2} = 1 - 8.32\times10^{-11}$$
 
-Per day: $-8.32\times10^{-11}\times 86{,}400;\text{s} = -7.2;\mu\text{s/day}$ (satellite runs slow)
+Per day: $-8.32\times10^{-11}\times 86{,}400\,\text{s} = -7.2\,\mu\text{s/day}$ (satellite runs slow)
 
 ### 8.8.4 — Net Correction
 
-$$\Delta t_{net} = +45.7 - 7.2 = +38.5;\mu\text{s/day}$$
+$$\Delta t_{net} = +45.7 - 7.2 = +38.5\,\mu\text{s/day}$$
 
 The satellite clock runs fast by 38.5 μs/day. Since GPS positioning requires timing accuracy $\delta t < 20$ ns for $\delta x < 6$ m accuracy, and the uncorrected error would be $38{,}500$ ns/day:
 
-$$\delta x_{uncorrected} \approx c\times 38.5;\mu\text{s} \approx 11.5;\text{km/day}$$
+$$\delta x_{uncorrected} \approx c\times 38.5\,\mu\text{s} \approx 11.5\,\text{km/day}$$
 
 **Without the GR and SR corrections, GPS would accumulate 11.5 km of positional error per day.** The correction is implemented by pre-adjusting the satellite clock frequency before launch:
 

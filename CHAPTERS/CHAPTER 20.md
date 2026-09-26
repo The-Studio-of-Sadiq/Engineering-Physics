@@ -4,10 +4,13 @@
 
 ---
 
-> *The soil consolidation equation is the heat equation.*
-> *The NTU method for a mass transfer column is the NTU method for a heat exchanger.*
-> *The Arrhenius factor in a reaction rate is the Boltzmann factor in a partition function.*
-> *The mathematics is not analogous — it is identical.*
+> *Terzaghi's consolidation equation and the 1D heat equation are the same equation.*
+> *The NTU method for an absorption column and the NTU method for a heat exchanger are the same design framework.*
+> *Darcy's law and Fick's law are the same constitutive shape arrived at independently.*
+> *The Arrhenius factor and the Boltzmann factor share a statistical origin, not an equation.*
+>
+> Four different claims, and the difference between them matters. This chapter
+> labels which is which rather than calling all of them "identical".
 
 ---
 
@@ -22,20 +25,66 @@ groundwater flow, soil consolidation.
 **Chemical Engineering (ChE):** Mass and energy balances, reaction kinetics
 and reactor design, separation processes, mass transfer.
 
-Every concept in this chapter traces to earlier physics:
+Every concept in this chapter traces to earlier physics. The last column states
+**what kind of trace** — see §20.0.1 for why the distinction is not pedantry.
 
-| Ch. 20 concept | Physics origin |
-|---|---|
-| Beam bending $EId^4w/dx^4 = q$ | Euler-Bernoulli (Ch. 16 §16.7.2); Navier equation (Ch. 15) |
-| Stiffness method $\mathbf{K}\mathbf{u} = \mathbf{F}$ | FEM discretization of Navier equation (Ch. 16 §16.11) |
-| Darcy's law (groundwater) | Fick's law (Ch. 13); same Kubo transport |
-| Terzaghi consolidation | Diffusion equation (Ch. 16); error function solution (Ch. 14) |
-| Arrhenius kinetics $k = Ae^{-E_a/RT}$ | Boltzmann factor $e^{-E/k_BT}$ (Ch. 10 §10.3) |
-| CSTR design equation | Lumped mass balance (Bridge C, Ch. 17) |
-| PFR design equation | 1D advection-reaction PDE (Ch. 16) |
-| NTU for absorption columns | NTU for heat exchangers (Ch. 19 §19.6.3) — same mathematics |
-| Two-resistance mass transfer | Thermal resistances in series (Ch. 17, 19) |
-| Manning's equation | Navier-Stokes empirically integrated (Ch. 15) |
+| Ch. 20 concept | Physics origin | Connection |
+|---|---|---|
+| Beam bending $EI\,d^4w/dx^4 = q$ | Euler-Bernoulli (Ch. 16 §16.7.2); Navier equation (Ch. 15) | `[DERIVATION]` |
+| Stiffness method $\mathbf{K}\mathbf{u} = \mathbf{F}$ | FEM discretisation of the Navier equation (Ch. 16 §16.11) | `[DERIVATION]` |
+| Terzaghi consolidation $\partial u_e/\partial t = c_v\,\partial^2 u_e/\partial z^2$ | 1D diffusion equation (Ch. 16 §16.8; Ch. 14 §14.8) | `[DERIVATION]` — same equation |
+| Transient groundwater $S\,\partial h/\partial t = T\nabla^2 h$ | Advection–diffusion / storage formulation (Ch. 16) | `[DERIVATION]` under stated storage assumptions |
+| Darcy's law $q = -K\nabla h$ | Linear transport law, same form as Fick (Ch. 13 §13.6) | `[STRUCTURAL CONNECTION]` |
+| PFR design equation | 1D advection–reaction PDE (Ch. 16) | `[DERIVATION]` |
+| CSTR design equation | Lumped mass balance (Bridge C, Ch. 17) | `[APPROXIMATION]` — well-mixed is an assumption |
+| Arrhenius $k = A\,e^{-E_a/RT}$ | Boltzmann factor $e^{-E/k_BT}$ (Ch. 10 §10.3.3) | `[STRUCTURAL CONNECTION]` — shared statistical origin |
+| NTU for absorption columns | NTU for heat exchangers (Ch. 19 §19.6.3) | `[STRUCTURAL CONNECTION]` — shared design framework |
+| Two-resistance mass transfer | Thermal resistances in series (Ch. 17, 19) | `[STRUCTURAL CONNECTION]` |
+| Manning's equation | Navier–Stokes, empirically integrated (Ch. 15) | `[PHENOMENOLOGICAL]` |
+| Rational method unit hydrograph | Linear filter / transfer function (Ch. 21 §21.4) | `[ANALOGY]` |
+
+### 20.0.1 — Four kinds of "same", and which one this chapter is allowed to claim
+
+CE and ChE reuse the mathematics of physics constantly. But "the same
+mathematics" is not one claim — it is four, with different strength and
+different failure conditions. Collapsing them is how a physics text turns into
+a false analogy, so the distinction is stated once here and then applied.
+
+| Kind | What is actually shared | What is *not* shared | Can fail because… |
+|---|---|---|---|
+| **Mathematical identity** | The governing equation itself, term by term, once the assumptions are imposed | Nothing — the equations are the same object | The *assumptions* fail (1D, homogeneous, linear, incompressible) |
+| **Constitutive correspondence** | The algebraic/functional form of a constitutive law, arrived at independently by different routes | The microscopic derivation, the closure, the coefficient values, the state variables | The closure model fails (turbulent, unsaturated, non-Newtonian, reactive) |
+| **Shared statistical origin** | A statistical-mechanical structure (exponential activation, fluctuation–response) | The macroscopic law built on top of it | The statistical regime fails (non-equilibrium, non-ideal, many-body) |
+| **Shared dimensionless framework** | The way dimensionless groups organise a design space | The driving forces, the equilibrium relations, the performance definition | The framework is applied outside its validated range |
+
+Worked instantiations, in the order they appear:
+
+- **Mathematical identity** — Terzaghi consolidation (§20.4.2). Once the soil
+  skeleton is treated as linear-elastic and the flow as 1D, the equation *is*
+  the diffusion equation. The erfc solution, the $T_v$ time factor, and the
+  $T_v \approx (\pi/4)U^2$ parabola are not "analogues" of anything: they are
+  the same solutions.
+- **Constitutive correspondence** — Darcy's law (§20.4.1). Darcy's law is *not*
+  a special case of Fick's law. It was measured, not derived, and the linear
+  form emerges from pore-scale momentum balance plus an empirical closure. What
+  it shares with Fick's law is the *shape* — linear in the gradient, flux
+  proportional to a transport coefficient. The coefficient $K$ is not a
+  diffusivity and does not have units that make it one.
+- **Shared statistical origin** — Arrhenius kinetics (§20.7.1). The Arrhenius
+  factor and the Boltzmann factor are the same exponential because both come
+  from the Maxwell–Boltzmann energy distribution. But $k(T)$ is a rate
+  constant for a specific reaction mechanism, whereas $e^{-E/k_BT}$ is a
+  population ratio. Sharing an origin is not sharing an equation.
+- **Shared dimensionless framework** — NTU/HTU (§20.9.2). The heat-exchanger and
+  absorption-column methods are organised the same way, and the tabulated
+  $\varepsilon$–NTU curves transfer usefully. But $NTU_{OG} = \int dy/(y^*-y)$
+  and $NTU = UA/C_{min}$ have *different driving forces* (composition
+  deficit against a VLE equilibrium vs temperature deficit against a fixed
+  inlet), and the capacity-rate ratio is mimicked, not the same quantity.
+
+**The rule used throughout this chapter:** the word "identical" appears only for
+the first kind. Everything else is named for what it is.
+
 
 ---
 
@@ -55,6 +104,20 @@ where:
 - $\mathbf{K}$: global stiffness matrix (assembled from element stiffness matrices)
 
 **The stiffness matrix is the discrete version of the elastic modulus tensor** from Ch. 15 §15.9.1 — the same physical law, now expressed as a matrix equation rather than a PDE.
+
+**Model Ledger — continuum elastodynamics to the stiffness method**
+
+| Field | Content |
+|---|---|
+| Parent theory | Linear elasticity (Ch. 15 §15.9): $\sigma_{ij} = \lambda\varepsilon_{ij}\delta_{ij} + \mu\varepsilon_{ij}$, $\varepsilon_{ij} = \tfrac12(\partial_i u_j + \partial_j u_i)$ |
+| Reduction | static equilibrium; small strain; linear elastic material; prismatic geometry; conforming interpolation |
+| Model | $\mathbf{K}\mathbf{u} = \mathbf{F}$, with $\mathbf{K}$ assembled from element matrices |
+| Assumptions | $\varepsilon \ll 1$; $\sigma = D\varepsilon$ with constant $D$; no body force in the element; full continuity of $u$ across elements |
+| Physics retained | load path through stiffness; stress redistribution; equilibrium |
+| Physics neglected | inertia (dynamics), geometric non-linearity, plasticity, fracture, contact, thermal strain |
+| Validity | deflections $\lesssim L/100$; stresses below yield; mesh refined so element stiffness converges |
+| Fails when | large deflection (buckling, $P$-$\Delta$), yielding, or a singular/non-conforming element stiffness |
+| Next model | nonlinear FEM; dynamic stiffness (modal analysis, Ch. 21); plastic $D(\varepsilon)$ |
 
 ### 20.1.2 — Bar Elements: Trusses
 
@@ -217,14 +280,26 @@ $$q = -K\nabla h$$
 where $q$ is the specific discharge (Darcy flux, [m/s]), $K$ is the hydraulic
 conductivity [m/s], and $h$ is the hydraulic head $h = z + p/\gamma_w$.
 
-**This is exactly Fick's law** (Ch. 13 §13.6) with:
-- Flux → $q$ (water flux)
-- Diffusivity → $K$ (hydraulic conductivity)
-- Concentration → $h$ (hydraulic head)
+`[STRUCTURAL CONNECTION]` — **same constitutive shape as Fick's law, different
+derivation.** Fick's law (Ch. 13 §13.6) is a constitutive postulate. Darcy's law
+was *measured*, not derived: Darcy's 1856 sand experiment produced a linear
+relation between flux and head gradient, and the pore-scale justification —
+drag balance on a grain, closed over an unresolved pore geometry — is a
+different argument that arrives at the same algebraic form:
 
-And thus it is the same Kubo Green-function transport as every other
-diffusion law (Ch. 13 §13.10). Groundwater flow is Ohm's law for water
-in soil.
+| | Fick's law | Darcy's law |
+|---|---|---|
+| Driving force | chemical potential gradient $\nabla\mu$ | hydraulic head gradient $\nabla h$ |
+| Transport coefficient | diffusivity $D$ [m²/s] | hydraulic conductivity $K$ [m/s] |
+| Driving variable | concentration | hydraulic head (length) |
+| Status | constitutive postulate | empirical law, later rationalised |
+| Fails when | activity coefficients matter | flow is turbulent, unsaturated, or reactive |
+
+Note the dimensional asymmetry: $D$ carries the length that $K$ does not. That
+single difference is why these are not the same equation and why
+groundwater flow is *not* "Fick's law with different letters". What is shared
+is the linear-gradient structure, which is why the same solvers, error-function
+solutions, and network analogies reappear.
 
 **Hydraulic conductivity values:**
 
@@ -236,13 +311,16 @@ in soil.
 | Silt | $10^{-7}$–$10^{-5}$ |
 | Clay | $10^{-10}$–$10^{-7}$ |
 
-**Groundwater flow equation** (Theis unsteady):
-$$S\frac{\partial h}{\partial t} = T\nabla^2 h + R_{recharge}$$
+**Groundwater flow equation** (confined, transient):
+$$S\frac{\partial h}{\partial t} = T\nabla^2 h + W$$
 
-where $S$ is the storage coefficient and $T = Kb$ is transmissivity. This is
-exactly the diffusion equation with $D = T/S$ — the same equation governing
-heat conduction, mass diffusion, and voltage in a resistive sheet. The same
-error function and Theis well function solutions apply.
+where $S$ is the storage coefficient, $T = Kb$ is transmissivity, and $W$ is the
+recharge rate. `[DERIVATION]` — given confined flow, constant $S$ and $T$, and
+horizontal isotropic flow, this is the diffusion equation with $D = T/S$, so the
+same error-function and well-function solutions apply. The identity is exact
+*under those assumptions* and fails outside them: for unconfined flow
+$h$ varies enough to matter in $T = Kb(h)$, and for unsaturated flow the
+saturation-dependent Richards equation is nonlinear.
 
 ### 20.4.2 — Terzaghi's Consolidation: Settlement by Diffusion
 
@@ -265,7 +343,34 @@ $$U(t) = 1 - \frac{8}{\pi^2}\sum_{n=0}^{\infty}\frac{1}{(2n+1)^2}\exp\!\left(-\f
 where $U(t) = \Delta H/\Delta H_{final}$ is the **degree of consolidation** and
 $T_v = c_v t/H_{dr}^2$ is the dimensionless time factor.
 
-**Approximate solution for $U \leq 60\%$:** $T_v \approx (\pi/4)U^2$ — a parabola.
+`[DERIVATION]` — **this is a mathematical identity, not an analogy.** The
+Fourier-number series above, the step-load boundary condition, and the
+$T_v \approx (\pi/4)U^2$ parabola are the *same* solutions as the slab
+cooling problem of Ch. 14 §14.8, applied to a different field. Nothing is
+being reinterpreted; only the name of the field changes.
+
+| | Heat conduction (Ch. 14 §14.8) | Terzaghi consolidation |
+|---|---|---|
+| Field | temperature $T$ | excess pore pressure $u_e$ |
+| Governing equation | $\partial T/\partial t = \alpha\,\partial^2 T/\partial z^2$ | $\partial u_e/\partial t = c_v\,\partial^2 u_e/\partial z^2$ |
+| Transport coefficient | thermal diffusivity $\alpha$ | coefficient of consolidation $c_v$ |
+| Step boundary condition | surface suddenly cooled | load suddenly applied |
+| Solution | Fourier series in Fo | same series in $T_v$ |
+| Early-time asymptote | $1 - \text{erf}(z/2\sqrt{\alpha t})$ | $U \approx (\pi/4)T_v$ |
+
+**Model Ledger — load step to degree of consolidation**
+
+| Field | Content |
+|---|---|
+| Parent theory | Poroelasticity: Terzaghi's one-dimensional consolidation theory |
+| Reduction | Linear elastic soil skeleton + incompressible pore water + 1D flow + constant $c_v$ |
+| Model | $\partial u_e/\partial t = c_v\,\partial^2 u_e/\partial z^2$ with step-load BCs |
+| Assumptions | 1D; saturated; linear skeleton ($m_v$ constant); negligible self-weight; uniform $c_v$ |
+| Physics retained | transient pore-pressure dissipation driving settlement |
+| Physics neglected | lateral drainage, skeleton non-linearity, overconsolidation, secondary compression (creep), air entrapment |
+| Validity | normally consolidated, single load increment, $U \lesssim 90\%$, drainage path well defined |
+| Fails when | load is removed (swelling, not consolidation), $m_v$ varies with stress, or secondary compression dominates |
+| Next model | nonlinear $m_v(\sigma')$; coupled 2D radial consolidation; creep superposition |
 
 **Engineering application:** A 6 m clay layer ($c_v = 10^{-3}$ cm²/s, $H_{dr} = 3$ m)
 achieves 90% consolidation at $T_v = 0.848$:
@@ -367,6 +472,26 @@ transition state. The fraction of molecules with enough energy is $e^{-E_a/k_BT}
 (from the Maxwell-Boltzmann distribution, Ch. 10 §10.8.2) — and this fraction
 sets the reaction rate.
 
+`[STRUCTURAL CONNECTION]` — **shared statistical origin, not a shared equation.**
+Both exponentials come from the same place: the Boltzmann weight of a state at
+energy $E$ relative to thermal energy $k_BT$. But they answer different
+questions.
+
+| | Boltzmann factor (Ch. 10) | Arrhenius factor (here) |
+|---|---|---|
+| Quantity | population ratio $n_E/n_0$ | rate constant $k(T)$ [1/s] |
+| $E$ means | energy of a *state* | height of a *barrier* |
+| Denominator | $k_BT$, per molecule | $RT$, per mole (hence the factor 1000) |
+| What follows | equilibrium populations | a reaction rate, only after a mechanism is assumed |
+| Needs a mechanism? | no | yes — the exponential is necessary, not sufficient |
+
+The gap between the second and third rows is where mechanism lives. A rate
+constant cannot be read off the Boltzmann factor; it is the Boltzmann factor
+multiplied by a prefactor that encodes collision frequency, steric orientation,
+entropy of activation, and — for a specific mechanism — the number of distinct
+reaction routes. Two reactions with the same $E_a$ can differ in $k$ by orders
+of magnitude.
+
 Every thermally-activated process in engineering follows Arrhenius:
 - Chemical reactions (this section)
 - Solid-state diffusion (Ch. 14 §14.8.2: same formula!)
@@ -376,6 +501,20 @@ Every thermally-activated process in engineering follows Arrhenius:
 
 The pre-exponential $A$ encodes collision frequency and steric factors —
 it comes from statistical mechanics (Ch. 10) and transition state theory.
+
+**Model Ledger — Arrhenius fit to a reactor rate constant**
+
+| Field | Content |
+|---|---|
+| Parent theory | Maxwell-Boltzmann energy distribution; transition state theory |
+| Reduction | Single rate-limiting step, dilute collision-controlled regime, $E_a \gg k_BT$ |
+| Model | $k(T) = A\exp(-E_a/RT)$, $A$ taken as $T$-independent |
+| Assumptions | one mechanism dominates; $A$ constant over the fitted range; isothermal |
+| Physics retained | thermal activation of a barrier |
+| Physics neglected | entropy of activation, pressure dependence, non-Arrhenius curvature, falloff at high $T$, diffusion limitation |
+| Validity | Arrhenius plot $ln\,k$ vs $1/T$ is linear over the fitted range |
+| Fails when | plot curves (indicating a mechanism change or a diffusion-limited regime), or $A$ must vary with $T$ |
+| Next model | modified Arrhenius / Eyring; explicit diffusion–reaction coupling |
 
 ### 20.7.2 — Rate Laws and Reaction Orders
 
@@ -493,8 +632,9 @@ a pinch point with the VLE curve — infinite stages needed.
 
 For continuous-contact equipment (packed columns for absorption, stripping,
 liquid-liquid extraction), the number of theoretical stages is replaced by
-**Transfer Units (NTU)** — exactly the same NTU concept as heat exchangers
-(Ch. 19 §19.6.3), because mass transfer and heat transfer obey the same equations.
+**Transfer Units (NTU)** — the NTU concept used for heat exchangers
+(Ch. 19 §19.6.3), applied here to a mass-transfer driving force. The
+organisation of the method is shared; the equations are not (§20.9.2 below).
 
 **NTU (gas-phase basis):**
 $$NTU_{OG} = \int_{y_1}^{y_2}\frac{dy}{y^* - y}$$
@@ -511,14 +651,47 @@ and $a$ is the interfacial area per unit volume of packing.
 **Packed column height:**
 $$Z = NTU_{OG}\times HTU_{OG}$$
 
-**The mathematical identity with heat exchangers:**
+**The correspondence with heat exchangers:**
 - Heat exchanger: $NTU = UA/C_{min}$, $\varepsilon = f(NTU, C_r)$
-- Absorption column: $NTU_{OG} = K_{ya}Z/G$, efficiency = $f(NTU, m G/L)$
+- Absorption column: $NTU_{OG} = K_{ya}Z/G$, efficiency $= f(NTU, mG/L)$
   where $mG/L$ plays the role of $C_r$
 
-The same equations, the same tabulated solutions, the same $\varepsilon$-NTU
-charts — because heat and mass transfer are both the same Kubo transport law
-(Ch. 13 §13.10) applied to different currents.
+`[STRUCTURAL CONNECTION]` — **shared dimensionless design framework, not the
+same equation.** What genuinely transfers is the *organising idea*: divide the
+required driving-force change by the local driving force, count the number of
+increments, multiply by the size of one increment. That is why the tabulated
+$\varepsilon$–NTU curves and the "how many transfer units, how tall per unit"
+workflow carry over intact.
+
+What does **not** transfer, and is where a careless reading goes wrong:
+
+| | Heat exchanger | Absorption column |
+|---|---|---|
+| Driving force | $\Delta T$ against a fixed $T_{h,\text{in}}$ | $y^* - y$ against a *moving* VLE equilibrium |
+| Equilibrium | constant $T_h$ (single phase) | $y^* = f(x, T, P)$ — composition-dependent |
+| Capacity rate | $C_{min}$ of one stream | $mG/L$ — a transformed, not identical, capacity |
+| Transport coefficient | $U$ [W/m²K] | $K_{ya}$ [mol/m²s] — area *and* driving-force dependent |
+| Failure mode | one side phase-changes | flooding, channeling, mass-transfer limitation |
+
+Both are ultimately diffusive transport (Ch. 13 §13.10), but they are driven by
+*different currents* with *different coefficients* against *different
+equilibria*. The framework is shared; the equations are not interchangeable, and
+the column's $K_{ya}$ cannot be measured with an NTU chart borrowed from a
+heat-exchanger correlation.
+
+**Model Ledger — packed column to NTU design**
+
+| Field | Content |
+|---|---|
+| Parent theory | Two-film mass transfer (Ch. 13 §13.6, §20.10.1); countercurrent diffusion |
+| Reduction | steady state; constant molar flow rates; linearised driving force; uniform packing |
+| Model | $Z = NTU_{OG}\times HTU_{OG}$, $HTU_{OG} = G/K_{ya}$ |
+| Assumptions | dilute solute; negligible pressure drop; constant $T,P$; no radial gradients; dilute-phase operation |
+| Physics retained | composition-driven diffusion and the countercurrent gradient |
+| Physics neglected | pressure drop, heat effects, non-dilute VLE curvature, channeling, flooding |
+| Validity | $\varepsilon$ within the tabulated range; column below flooding limit |
+| Fails when | flooding onset, $K_{ya}$ varies with composition, or heat effects shift $y^*$ |
+| Next model | rigorous stagewise solve; non-isothermal VLE; packed-bed pressure-drop coupling |
 
 ---
 
@@ -542,12 +715,18 @@ film coefficients.
 $$\frac{1}{K_G} = \frac{1}{k_G} + \frac{m}{k_L}$$
 
 where $m$ is the Henry's law constant (equilibrium slope). This is the two-resistance
-model in series — identical in form to the overall heat transfer coefficient from
-Ch. 19 §19.6.1: $1/U = 1/h_1 + R_{wall} + 1/h_2$.
+model in series. The **algebra** is identical to the overall heat transfer
+coefficient of Ch. 19 §19.6.1 — $1/U = 1/h_1 + R_{wall} + 1/h_2$ — because series
+addition of resistances is one piece of algebra. The **resistances** are not the
+same physical quantities: $k_G$ and $k_L$ are mass-transfer coefficients set by
+molecular diffusivity, whereas $h$ is set by convection, and $m$ is an
+equilibrium slope that has no thermal counterpart. `[STRUCTURAL CONNECTION]`.
 
 **The chemical potential** $\mu$ is the effort variable for mass transfer —
-diffusion occurs from high $\mu$ to low $\mu$, exactly as heat flows from
-high $T$ to low $T$. In the ideal case, $\Delta\mu = RT\ln(y/y^*)$
+diffusion runs from high $\mu$ to low $\mu$, in the same sense as heat flows from
+high $T$ to low $T$. `[ANALOGY]`: the two effort variables are not
+interchangeable, and the driving force is $-\nabla\mu$ rather than $-k\nabla T$.
+In the ideal case, $\Delta\mu = RT\ln(y/y^*)$
 is the driving force for absorption.
 
 ### 20.10.2 — Dimensionless Groups for Mass Transfer
@@ -634,12 +813,20 @@ and chemical recycle loops.
 
 **Key PDEs that appear literally in CE/ChE Layer 3:**
 
-| PDE | CE/ChE appearance | Chapter origin |
-|---|---|---|
-| Diffusion $\partial_t u = c_v\partial_{xx}u$ | Terzaghi consolidation (clay settlement) | Ch. 13, 16 |
-| Diffusion $\partial_t h = (T/S)\nabla^2 h$ | Groundwater (Theis equation) | Ch. 13, 16 |
-| Wave equation (4th order) $EI\partial_{xxxx}w = q$ | Euler-Bernoulli beam deflection | Ch. 16 §16.7.2 |
-| Advection-reaction $\partial_V F_A = r_A$ | PFR design equation | Ch. 16 |
+| PDE | CE/ChE appearance | Chapter origin | Kind |
+|---|---|---|---|
+| Diffusion $\partial_t u = c_v\,\partial_{xx}u$ | Terzaghi consolidation (clay settlement) | Ch. 13, 16 | mathematical identity |
+| Diffusion $\partial_t h = (T/S)\nabla^2 h$ | Groundwater (confined, transient) | Ch. 13, 16 | mathematical identity, under stated storage assumptions |
+| Beam equation $EI\,\partial_{xxxx}w = q$ | Euler-Bernoulli beam deflection | Ch. 16 §16.7.2 | mathematical identity |
+| Advection–reaction $\partial_V F_A = r_A$ | PFR design equation | Ch. 16 | mathematical identity |
+| Linear gradient law $q = -K\nabla h$ | Darcy's law | Ch. 13 §13.6 | constitutive correspondence |
+| $k = A\,e^{-E_a/RT}$ | Arrhenius kinetics | Ch. 10 §10.3.3 | shared statistical origin |
+| $Z = NTU\times HTU$ | Packed-column design | Ch. 19 §19.6.3 | shared dimensionless framework |
+
+Only the first four rows earn the word "identical" — and each one earns it
+conditionally, on the assumptions named in its own section. The last three rows
+are the ones that get over-claimed in textbooks, and they are the ones this
+chapter now labels explicitly (§20.0.1).
 
 ---
 
@@ -673,12 +860,17 @@ The inventory of what Layer-3 models are available:
 - **ChE (Ch. 20):** Process balances, reaction kinetics, reactor design, separations, mass transfer
 
 **Chapter 21** closes the book with the capstone: **feedback and control**.
-Control theory operates entirely at the level of the transfer function $H(s)$
-— above all physical domains simultaneously. A PID controller does not know
-(or care) whether it is controlling temperature, position, flow rate, or pH.
-It only sees the error signal and the process transfer function. Chapter 21
-brings together everything from the layer map into a unified closing argument
-for the book's central claim: physics, in the right limits, becomes engineering.
+For any system that admits an appropriate linear time-invariant
+representation, control theory operates at the level of the transfer function
+$H(s)$ — above all physical domains simultaneously. A PID controller does not
+know whether it is controlling temperature, position, flow rate, or pH; it sees
+the error signal and the process transfer function, and nothing about the
+underlying physics. That claim is bounded, and Chapter 21 §21.0.2 is explicit
+about the bound: nonlinear, time-varying, hybrid, distributed, stochastic, and
+delayed systems are not described by one $H(s)$, and each needs a different
+representation before the same design machinery applies. Chapter 21 brings
+everything from the layer map into a unified closing argument for the book's
+central claim: physics, in the right limits, becomes engineering.
 
 ---
 

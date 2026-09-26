@@ -53,7 +53,7 @@ Limits:
 
 The **residual resistivity ratio (RRR)** is the single most informative measure of metal purity for cryogenic and superconducting applications:
 
-$$RRR = \frac{\rho(300;\text{K})}{\rho(4;\text{K})}$$
+$$RRR = \frac{\rho(300\,\text{K})}{\rho(4\,\text{K})}$$
 
 For copper: commercial purity (99.9%) gives $RRR \sim 40$–$100$. Ultra-pure copper (99.9999%) gives $RRR > 10{,}000$.
 
@@ -65,9 +65,9 @@ The nearly linear $\rho(T)$ of platinum is exploited in RTDs. The Callendar-Van 
 
 $$R(T) = R_0\left(1 + A,T + B,T^2 + C,T^3(T-100)\right)$$
 
-For Pt100 ($R_0 = 100;\Omega$ at 0°C): $A = 3.9083\times10^{-3}$, $B = -5.775\times10^{-7}$, $C = -4.183\times10^{-12}$ (IEC 60751 standard).
+For Pt100 ($R_0 = 100\,\Omega$ at 0°C): $A = 3.9083\times10^{-3}$, $B = -5.775\times10^{-7}$, $C = -4.183\times10^{-12}$ (IEC 60751 standard).
 
-Sensitivity: $dR/dT \approx 0.385;\Omega/°$C for Pt100.
+Sensitivity: $dR/dT \approx 0.385\,\Omega/°$C for Pt100.
 
 **Why platinum?** Stable crystal structure, reproducible RRR, chemically inert over a wide temperature range, well-characterized impurity scattering. The NIST Pt resistance standard is the most precise thermometer from 14 K to 962°C.
 
@@ -87,7 +87,7 @@ for a circular contact of radius $a$.
 
 $$R_{Sharvin} = \frac{h}{2e^2}\frac{1}{\langle T\rangle N_{modes}} = \frac{4\rho\ell_{mfp}}{3\pi a^2}$$
 
-Sharvin resistance is geometry-limited, not scattering-limited — it represents the quantum resistance of the few ballistic modes that fit through the contact. For an aluminum nanocontact ($a = 1$ nm, $\ell_{mfp} = 18$ nm): $R_{Sharvin} \approx 4;\text{k}\Omega$.
+Sharvin resistance is geometry-limited, not scattering-limited — it represents the quantum resistance of the few ballistic modes that fit through the contact. For an aluminum nanocontact ($a = 1$ nm, $\ell_{mfp} = 18$ nm): $R_{Sharvin} \approx 4\,\text{k}\Omega$.
 
 **Engineering implication:** As interconnect widths in semiconductor ICs approach $\ell_{mfp}$ (currently $\sim 10$–$20$ nm), Matthiessen's rule breaks down, resistivity increases beyond bulk values (sidewall scattering), and quantum resistance becomes significant. This is the physical wall constraining Moore's Law.
 
@@ -129,7 +129,7 @@ InAs and InSb (high mobility $\mu \sim 10^4$ cm²/Vs) give high sensitivity. Si 
 
 From Ch. 7 §7.3 and Ch. 13 §13.11.2: at filling factor $\nu$:
 
-$$R_{xy} = \frac{h}{\nu e^2} = \frac{R_K}{\nu}, \qquad R_K = \frac{h}{e^2} = 25812.807;\Omega$$
+$$R_{xy} = \frac{h}{\nu e^2} = \frac{R_K}{\nu}, \qquad R_K = \frac{h}{e^2} = 25812.807\,\Omega$$
 
 Since 2019 (SI redefinition), $h$ and $e$ are exact, so $R_K$ is exact. A 2DEG in a cryostat at $T < 1$ K, $B \sim 10$ T holds this value to better than $10^{-9}$ — the most precisely reproducible resistance in physics.
 
@@ -163,14 +163,14 @@ The relative Seebeck coefficient $S_{AB} = S_A - S_B$ (in $\mu$V/K) defines the 
 
 |Type|Materials|Range|Sensitivity|Note|
 |---|---|---|---|---|
-|K|NiCr / NiAl|$-200$ to $1260°$C|$\approx 41;\mu$V/°C|Most common; general purpose|
-|J|Fe / CuNi|$-210$ to $760°$C|$\approx 52;\mu$V/°C|Oxidises above 760°C|
-|T|Cu / CuNi|$-270$ to $370°$C|$\approx 43;\mu$V/°C|Best for cryogenic|
-|E|NiCr / CuNi|$-270$ to $1000°$C|$\approx 68;\mu$V/°C|Highest sensitivity|
-|N|NiCrSi / NiSi|$-270$ to $1300°$C|$\approx 39;\mu$V/°C|Stable at high T|
-|R|Pt13Rh / Pt|$0$ to $1600°$C|$\approx 12;\mu$V/°C|Precision high-T|
-|B|Pt30Rh / Pt6Rh|$100$ to $1820°$C|$\approx 10;\mu$V/°C|Very high T; self-compensating|
-|S|Pt10Rh / Pt|$0$ to $1600°$C|$\approx 10;\mu$V/°C|Primary standard|
+|K|NiCr / NiAl|$-200$ to $1260°$C|$\approx 41\,\mu$V/°C|Most common; general purpose|
+|J|Fe / CuNi|$-210$ to $760°$C|$\approx 52\,\mu$V/°C|Oxidises above 760°C|
+|T|Cu / CuNi|$-270$ to $370°$C|$\approx 43\,\mu$V/°C|Best for cryogenic|
+|E|NiCr / CuNi|$-270$ to $1000°$C|$\approx 68\,\mu$V/°C|Highest sensitivity|
+|N|NiCrSi / NiSi|$-270$ to $1300°$C|$\approx 39\,\mu$V/°C|Stable at high T|
+|R|Pt13Rh / Pt|$0$ to $1600°$C|$\approx 12\,\mu$V/°C|Precision high-T|
+|B|Pt30Rh / Pt6Rh|$100$ to $1820°$C|$\approx 10\,\mu$V/°C|Very high T; self-compensating|
+|S|Pt10Rh / Pt|$0$ to $1600°$C|$\approx 10\,\mu$V/°C|Primary standard|
 
 **Cold junction compensation:** The reference junction must be at a known temperature $T_0$. In practice, an isothermal terminal block with an on-board temperature sensor (thermistor or RTD) measures $T_0$; the microcontroller adds $V(T_0)$ from a lookup table to the measured voltage.
 
@@ -196,7 +196,7 @@ For $N$ couples with matched resistance $R_{total} = NR_0$ and thermal conductan
 
 **Thermoelectric generator (TEG):**
 
-Open-circuit voltage: $V_{OC} = N,S_{PN}\Delta T$
+Open-circuit voltage: $V_{OC} = N\,S_{PN}\Delta T$
 
 Maximum power: $P_{max} = N\frac{(S_{PN}\Delta T)^2}{4R_0}$ (matched load $R_L = R_{total}$)
 
@@ -224,7 +224,7 @@ Current best materials ($ZT \sim 2$–$3$): ~40–50% of Carnot efficiency.
 
 **Thermoelectric cooler (TEC/Peltier module):**
 
-Peltier cooling power (heat pumped from cold side): $$\dot Q_C = S_{PN},T_C,I - \frac{1}{2}I^2 R_{total} - K_{total}\Delta T$$
+Peltier cooling power (heat pumped from cold side): $$\dot Q_C = S_{PN}\,T_C\,I - \frac{1}{2}I^2 R_{total} - K_{total}\Delta T$$
 
 Maximum $\Delta T$ (at $\dot Q_C = 0$, optimizing over $I$):
 
@@ -248,7 +248,7 @@ $ZT = S^2\sigma T/\kappa$: maximize power factor $S^2\sigma$, minimize $\kappa$.
 
 |Strategy|Mechanism|Example|
 |---|---|---|
-|Resonant levels|Sharp feature in DOS near $E_F$ → large $|dS/dE|
+|Resonant levels|Sharp feature in DOS near $E_F$ → large $|dS/dE|$|HgTe quantum wells|
 |Band convergence|Multiple valleys contributing to transport → high $S$ with high $\sigma$|PbTe (high-T), SnSe|
 |Nanostructuring|Phonon scattering at grain boundaries without electron scattering|BiSbTe nanocomposite|
 |Lattice softening|Rattler atoms in cages scatter phonons (PGEC)|Skutterudites, clathrates|
@@ -263,9 +263,9 @@ $ZT = S^2\sigma T/\kappa$: maximize power factor $S^2\sigma$, minimize $\kappa$.
 
 ### 14.4.3 — Applications of Thermoelectric Devices
 
-**Radioisotope thermoelectric generators (RTGs):** The Voyager 1 and 2 spacecraft (launched 1977) are still transmitting — powered by ²³⁸Pu RTGs delivering $\sim 40$ W at launch. PbTe thermoelectric couples convert decay heat directly to electricity with $\eta \sim 6%$, no moving parts, 100% reliability over decades.
+**Radioisotope thermoelectric generators (RTGs):** The Voyager 1 and 2 spacecraft (launched 1977) are still transmitting — powered by ²³⁸Pu RTGs delivering $\sim 40$ W at launch. PbTe thermoelectric couples convert decay heat directly to electricity with $\eta \sim 6\%$, no moving parts, 100% reliability over decades.
 
-**Automotive waste heat recovery:** A typical gasoline engine wastes $\sim 60%$ of fuel energy as heat. TEG modules on the exhaust pipe can recover 1–2 kW, reducing alternator load. Currently limited by $ZT$ and cost.
+**Automotive waste heat recovery:** A typical gasoline engine wastes $\sim 60\%$ of fuel energy as heat. TEG modules on the exhaust pipe can recover 1–2 kW, reducing alternator load. Currently limited by $ZT$ and cost.
 
 **Precision temperature control:** Peltier coolers maintain laser diode junctions to $\pm 0.001°$C — critical for wavelength stability in fiber-optic communications (DWDM channels are 0.8 nm apart).
 
@@ -308,13 +308,13 @@ For minority electrons in p-type material (no applied field, $\mathbf{E}\approx 
 
 $$D_n\frac{d^2\Delta n}{dx^2} - \frac{\Delta n}{\tau_n} = 0$$
 
-Solution: $\Delta n(x) = \Delta n_0,e^{-x/L_n}$
+Solution: $\Delta n(x) = \Delta n_0\,e^{-x/L_n}$
 
 **Electron diffusion length:** $L_n = \sqrt{D_n\tau_n}$
 
 This is the average distance a minority carrier diffuses before recombining. It sets the length scale for p-n junction and transistor behavior.
 
-For silicon at 300 K: $D_n \approx 25$ cm²/s, $\tau_n \approx 1;\mu$s → $L_n = \sqrt{25\times10^{-4}\times10^{-6}} = 50;\mu$m.
+For silicon at 300 K: $D_n \approx 25$ cm²/s, $\tau_n \approx 1\,\mu$s → $L_n = \sqrt{25\times10^{-4}\times10^{-6}} = 50\,\mu$m.
 
 ### 14.5.4 — The p-n Junction and Shockley Equation
 
@@ -340,7 +340,7 @@ $$V_{OC} = \frac{k_BT}{e}\ln\left(\frac{I_{SC}}{I_0}+1\right) \approx \frac{k_BT
 
 For silicon solar cell: $I_0 \approx 10^{-10}$ A, $I_{SC} \approx 30$ mA/cm² → $V_{OC} \approx 0.6$–$0.7$ V at 300 K.
 
-**Maximum power point:** Efficiency limited by the Shockley-Queisser limit ($\eta_{max} \approx 33%$ for single-junction under AM1.5 spectrum) from thermodynamic analysis of blackbody radiation (Ch. 10 §10.8.4) + Carnot considerations at the bandgap.
+**Maximum power point:** Efficiency limited by the Shockley-Queisser limit ($\eta_{max} \approx 33\%$ for single-junction under AM1.5 spectrum) from thermodynamic analysis of blackbody radiation (Ch. 10 §10.8.4) + Carnot considerations at the bandgap.
 
 ---
 
@@ -350,9 +350,9 @@ For silicon solar cell: $I_0 \approx 10^{-10}$ A, $I_{SC} \approx 30$ mA/cm² �
 
 From Ch. 10 §10.8.2 (Fermi-Dirac distribution): electrons in a metal at temperature $T$ have an energy distribution $f(E) = 1/(e^{(E-E_F)/k_BT}+1)$. The fraction with enough energy to escape the surface (energy $> E_F + W$, where $W$ is the work function):
 
-$$J = A_R,T^2,e^{-W/k_BT}$$
+$$J = A_R\,T^2\,e^{-W/k_BT}$$
 
-$$\boxed{A_R = \frac{4\pi m_e k_B^2 e}{h^3} = 1.20\times 10^6;\text{A/(m}^2\text{K}^2\text{)}}$$
+$$\boxed{A_R = \frac{4\pi m_e k_B^2 e}{h^3} = 1.20\times 10^6\,\text{A/(m}^2\text{K}^2\text{)}}$$
 
 This is the **Richardson-Dushman equation**. $A_R$ is the Richardson constant; experimentally it ranges from $0.5\times 10^6$ to $1.5\times 10^6$ depending on crystal orientation and surface condition.
 
@@ -460,11 +460,11 @@ For a semi-infinite solid ($x > 0$) with surface concentration $c_s$ (constant) 
 
 $$\boxed{c(x,t) = c_s + (c_0 - c_s),\text{erf}!\left(\frac{x}{2\sqrt{Dt}}\right)}$$
 
-where $\text{erf}(z) = \frac{2}{\sqrt{\pi}}\int_0^z e^{-u^2},du$.
+where $\text{erf}(z) = \frac{2}{\sqrt{\pi}}\int_0^z e^{-u^2}\,du$.
 
 **Junction depth in semiconductor doping:** After a diffusion anneal at temperature $T$ for time $t$, the dopant profile is approximately Gaussian. The junction depth $x_j$ (where $c = c_{background}$):
 
-$$x_j \approx 2\sqrt{Dt},\text{erfc}^{-1}!\left(\frac{c_{background}}{c_s}\right)$$
+$$x_j \approx 2\sqrt{Dt}\,\text{erfc}^{-1}!\left(\frac{c_{background}}{c_s}\right)$$
 
 For phosphorus in silicon at $1000°$C ($D = 2.5\times10^{-14}$ cm²/s) for $t = 1$ h: $\sqrt{Dt} = \sqrt{2.5\times10^{-14}\times3600} = 9.5\times10^{-6}$ cm $= 95$ nm.
 
@@ -472,11 +472,11 @@ For phosphorus in silicon at $1000°$C ($D = 2.5\times10^{-14}$ cm²/s) for $t =
 
 Solid-state diffusion requires atoms to jump between lattice sites, overcoming an energy barrier $Q$ (activation energy, from Ch. 6 §6.8.1 — bond breaking):
 
-$$D = D_0,e^{-Q/RT} = D_0,e^{-Q/k_BT N_A}$$
+$$D = D_0\,e^{-Q/RT} = D_0\,e^{-Q/k_BT N_A}$$
 
 Same Boltzmann factor as reaction kinetics. For self-diffusion in copper: $D_0 = 0.78$ cm²/s, $Q = 211$ kJ/mol.
 
-At 800°C (1073 K): $D = 0.78,e^{-211000/8.314/1073} = 5.2\times10^{-11}$ cm²/s. At 600°C: $D = 2.4\times10^{-13}$ cm²/s — 200× slower. Activated processes are highly sensitive to temperature.
+At 800°C (1073 K): $D = 0.78\,e^{-211000/8.314/1073} = 5.2\times10^{-11}$ cm²/s. At 600°C: $D = 2.4\times10^{-13}$ cm²/s — 200× slower. Activated processes are highly sensitive to temperature.
 
 **Engineering applications:**
 
@@ -505,7 +505,7 @@ In ferromagnetic metals (Ni, Fe, permalloy), the resistivity depends on the angl
 
 $$\rho(\theta) = \rho_\perp + (\rho_\parallel - \rho_\perp)\cos^2\theta$$
 
-AMR ratio: $(\rho_\parallel - \rho_\perp)/\rho_\perp \approx 2$–$5%$ for Ni-Fe alloys.
+AMR ratio: $(\rho_\parallel - \rho_\perp)/\rho_\perp \approx 2$–$5\%$ for Ni-Fe alloys.
 
 **Application:** Hard disk drive read heads (1990s–early 2000s) used AMR sensors detecting the fringing field of magnetic bits. Superseded by GMR.
 
@@ -513,13 +513,13 @@ AMR ratio: $(\rho_\parallel - \rho_\perp)/\rho_\perp \approx 2$–$5%$ for Ni-Fe
 
 From Ch. 7 §7.2 (spin-dependent transport):
 
-**GMR** (spin-valve): $\Delta R/R \sim 5$–$80%$ for metallic spacer. Current HDD read heads use TMR for still higher ratios.
+**GMR** (spin-valve): $\Delta R/R \sim 5$–$80\%$ for metallic spacer. Current HDD read heads use TMR for still higher ratios.
 
 **TMR** (magnetic tunnel junction, MTJ): Two ferromagnetic electrodes separated by a thin ($\sim 1$ nm) insulating barrier. Tunnel current depends on relative magnetization orientation:
 
 $$\text{TMR} = \frac{R_{AP} - R_P}{R_P} = \frac{2P_1P_2}{1-P_1P_2}$$
 
-where $P_i$ is the spin polarization of electrode $i$. For CoFeB/MgO/CoFeB: TMR $> 600%$ at room temperature — the spin-polarized tunneling through crystalline MgO is symmetry-filtered.
+where $P_i$ is the spin polarization of electrode $i$. For CoFeB/MgO/CoFeB: TMR $> 600\%$ at room temperature — the spin-polarized tunneling through crystalline MgO is symmetry-filtered.
 
 **MRAM (Magnetic RAM):** Each MTJ is a non-volatile memory bit — high resistance = "1", low resistance = "0". Written by spin-transfer torque (STT), read by measuring resistance. STT-MRAM offers SRAM-like speed, flash-like non-volatility, and essentially unlimited endurance. In production at 22–28 nm nodes (Everspin, Samsung, GlobalFoundries).
 
@@ -546,8 +546,8 @@ where $P_i$ is the spin polarization of electrode $i$. For CoFeB/MgO/CoFeB: TMR 
 |Transient thermal|$\tau_{th} = R_{th}C_{th}$|Pulsed power; thermal shock analysis|
 |Error function diffusion|$c = c_s\text{erfc}(x/2\sqrt{Dt})$|Doping profiles; case hardening|
 |Arrhenius diffusion|$D = D_0 e^{-Q/RT}$|Process time-temperature control|
-|AMR|$\Delta\rho/\rho \sim 2$–$5%$|Magnetic field sensors|
-|GMR/TMR|$\Delta R/R$ up to $600%$|HDD read heads; MRAM|
+|AMR|$\Delta\rho/\rho \sim 2$–$5\%$|Magnetic field sensors|
+|GMR/TMR|$\Delta R/R$ up to $600\%$|HDD read heads; MRAM|
 
 ---
 

@@ -38,15 +38,15 @@ $$[\hat S_x, \hat S_y] = i\hbar\hat S_z, \quad [\hat S_y, \hat S_z] = i\hbar\hat
 
 The eigenvalues of $\hat S^2$ and $\hat S_z$:
 
-$$\hat S^2,\chi = s(s+1)\hbar^2,\chi, \qquad \hat S_z,\chi = m_s\hbar,\chi$$
+$$\hat S^2\,\chi = s(s+1)\hbar^2\,\chi, \qquad \hat S_z\,\chi = m_s\hbar\,\chi$$
 
 For the electron: $s = \frac{1}{2}$ (a fixed intrinsic property), so:
 
-$$\hat S^2,\chi = \frac{3}{4}\hbar^2,\chi, \qquad m_s = \pm\frac{1}{2}$$
+$$\hat S^2\,\chi = \frac{3}{4}\hbar^2\,\chi, \qquad m_s = \pm\frac{1}{2}$$
 
 There are exactly two spin states. In the Pauli equation (Ch. 3 §3.6), they are represented by two-component **spinors**:
 
-$$\chi_+ = \begin{pmatrix}1\0\end{pmatrix} \equiv \uparrow \quad\text{(spin-up, }m_s = +\tfrac{1}{2}\text{)}$$ $$\chi_- = \begin{pmatrix}0\1\end{pmatrix} \equiv \downarrow \quad\text{(spin-down, }m_s = -\tfrac{1}{2}\text{)}$$
+$$\chi_+ = \begin{pmatrix}1\\0\end{pmatrix} \equiv \uparrow \quad\text{(spin-up, }m_s = +\tfrac{1}{2}\text{)}$$ $$\chi_- = \begin{pmatrix}0\\1\end{pmatrix} \equiv \downarrow \quad\text{(spin-down, }m_s = -\tfrac{1}{2}\text{)}$$
 
 In terms of the Pauli matrices (which appeared in the FW transformation of Ch. 3):
 
@@ -54,7 +54,7 @@ $$\hat{\mathbf{S}} = \frac{\hbar}{2}\boldsymbol{\sigma} = \frac{\hbar}{2}\begin{
 
 ### 5.1.3 — The Stern-Gerlach Experiment: Spin Made Visible
 
-In 1922, Otto Stern and Walther Gerlach sent a beam of silver atoms through an inhomogeneous magnetic field. Classically, a magnetic dipole in a field gradient experiences a force $F_z = \mu_z,\partial B_z/\partial z$; if the orientation of the magnetic moment is continuous, the beam should spread into a continuous smear on the detector.
+In 1922, Otto Stern and Walther Gerlach sent a beam of silver atoms through an inhomogeneous magnetic field. Classically, a magnetic dipole in a field gradient experiences a force $F_z = \mu_z\,\partial B_z/\partial z$; if the orientation of the magnetic moment is continuous, the beam should spread into a continuous smear on the detector.
 
 Instead: two discrete spots appeared.
 
@@ -64,13 +64,13 @@ $$\Delta z = \frac{\mu_B}{m_{\text{atom}}v^2}\frac{\partial B_z}{\partial z}L_{\
 
 This experiment directly measures spin quantization. The discreteness is not a resolution limit — it is forced by the eigenvalue equation $\hat S_z\chi = m_s\hbar\chi$.
 
-**Engineering connection:** The Stern-Gerlach principle is the basis of atomic beam frequency standards. The cesium atomic clock — which defines the SI second — uses a magnetic state selector that works exactly like a Stern-Gerlach apparatus, selecting the $m_s = 0$ hyperfine transition to define $1,\text{s} \equiv 9{,}192{,}631{,}770$ periods.
+**Engineering connection:** The Stern-Gerlach principle is the basis of atomic beam frequency standards. The cesium atomic clock — which defines the SI second — uses a magnetic state selector that works exactly like a Stern-Gerlach apparatus, selecting the $m_s = 0$ hyperfine transition to define $1\,\text{s} \equiv 9{,}192{,}631{,}770$ periods.
 
 ### 5.1.4 — The Complete Hydrogen Quantum Numbers
 
 Adding spin, the complete state of the electron in hydrogen is:
 
-$$\psi_{n\ell m m_s}(\mathbf{r}) = \psi_{n\ell m}(\mathbf{r}),\chi_{m_s}$$
+$$\psi_{n\ell m m_s}(\mathbf{r}) = \psi_{n\ell m}(\mathbf{r})\,\chi_{m_s}$$
 
 Four quantum numbers, four constraints:
 
@@ -123,7 +123,7 @@ A wavefunction that is identically zero means the probability of that configurat
 
 The correct antisymmetric wavefunction for $N$ electrons, each occupying a single-particle state $\phi_i$, is:
 
-$$\Psi(\mathbf{x}_1, \ldots, \mathbf{x}_N) = \frac{1}{\sqrt{N!}} \begin{vmatrix} \phi_1(\mathbf{x}_1) & \phi_1(\mathbf{x}_2) & \cdots & \phi_1(\mathbf{x}_N) \ \phi_2(\mathbf{x}_1) & \phi_2(\mathbf{x}_2) & \cdots & \phi_2(\mathbf{x}_N) \ \vdots & \vdots & \ddots & \vdots \ \phi_N(\mathbf{x}_1) & \phi_N(\mathbf{x}_2) & \cdots & \phi_N(\mathbf{x}_N) \end{vmatrix}$$
+$$\Psi(\mathbf{x}_1, \ldots, \mathbf{x}_N) = \frac{1}{\sqrt{N!}} \begin{vmatrix} \phi_1(\mathbf{x}_1) & \phi_1(\mathbf{x}_2) & \cdots & \phi_1(\mathbf{x}_N) \\ \phi_2(\mathbf{x}_1) & \phi_2(\mathbf{x}_2) & \cdots & \phi_2(\mathbf{x}_N) \\ \vdots & \vdots & \ddots & \vdots \\ \phi_N(\mathbf{x}_1) & \phi_N(\mathbf{x}_2) & \cdots & \phi_N(\mathbf{x}_N) \end{vmatrix}$$
 
 This is the **Slater determinant**. Its key properties:
 
@@ -148,7 +148,7 @@ where $\sigma_{n\ell}$ is the **screening constant** — the amount of nuclear c
 
 The energy of a state in a multi-electron atom is approximately:
 
-$$E_{n\ell} \approx -\frac{Z_{\text{eff}}^2 \times 13.6;\text{eV}}{n^2}$$
+$$E_{n\ell} \approx -\frac{Z_{\text{eff}}^2 \times 13.6\,\text{eV}}{n^2}$$
 
 ### 5.3.2 — Why $2s$ Has Lower Energy Than $2p$
 
@@ -395,7 +395,7 @@ When two hydrogen atoms approach, their $1s$ wavefunctions overlap. Form linear 
 
 $$\psi_{\pm} = \frac{1}{\sqrt{2(1\pm S_{AB})}}(\phi_{1s}^A \pm \phi_{1s}^B)$$
 
-where $S_{AB} = \int\phi_{1s}^A\phi_{1s}^B,d^3r$ is the **overlap integral**.
+where $S_{AB} = \int\phi_{1s}^A\phi_{1s}^B\,d^3r$ is the **overlap integral**.
 
 - $\psi_+$ (symmetric, bonding): probability density **between** the nuclei is enhanced — reduces the electron-nuclear distance and lowers energy
 - $\psi_-$ (antisymmetric, antibonding): node between the nuclei — electrons are excluded from the internuclear region, raising energy
@@ -404,7 +404,7 @@ Energy of the two molecular orbitals:
 
 $$E_{\pm} = E_{1s} \pm \frac{H_{AB} - E_{1s}S_{AB}}{1 \pm S_{AB}}$$
 
-where $H_{AB} = \int\phi_{1s}^A \hat H\phi_{1s}^B,d^3r < 0$ is the resonance integral (negative, so $E_+$ is below $E_{1s}$).
+where $H_{AB} = \int\phi_{1s}^A \hat H\phi_{1s}^B\,d^3r < 0$ is the resonance integral (negative, so $E_+$ is below $E_{1s}$).
 
 Two electrons (one from each H atom, with opposite spins by Pauli exclusion) both occupy $\psi_+$: total energy is $2E_+ < 2E_{1s}$. The molecule is stable.
 

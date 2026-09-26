@@ -37,9 +37,9 @@ Consider a quantum system with a Hamiltonian $\hat H(\mathbf{R})$ that depends o
 
 The state acquires two phases:
 
-$$|\psi(t)\rangle = e^{i\gamma_n(t)},e^{-\frac{i}{\hbar}\int_0^t E_n(t')dt'},|n(\mathbf{R}(t))\rangle$$
+$$|\psi(t)\rangle = e^{i\gamma_n(t)}\,e^{-\frac{i}{\hbar}\int_0^t E_n(t')dt'},|n(\mathbf{R}(t))\rangle$$
 
-- The second exponential: the familiar **dynamical phase** $-\int E_n,dt/\hbar$
+- The second exponential: the familiar **dynamical phase** $-\int E_n\,dt/\hbar$
 - The first exponential: a **geometric phase** $\gamma_n(t)$ discovered by Berry in 1984 — it depends only on the geometry of the path in parameter space, not on how fast you traverse it
 
 ### 7.1.2 — The Berry Connection and Berry Phase
@@ -102,7 +102,7 @@ $$\mathbf{J}_{anomalous} = \frac{e^2}{\hbar}\sum_{n,\in,\text{filled}}\int\frac{
 
 The Hall conductivity:
 
-$$\sigma_{xy} = \frac{e^2}{\hbar}\sum_{n,\in,\text{filled}}\frac{1}{2\pi}\iint_{\text{BZ}}\Omega_n,d^2k = \frac{e^2}{h}\sum_n C_n$$
+$$\sigma_{xy} = \frac{e^2}{\hbar}\sum_{n,\in,\text{filled}}\frac{1}{2\pi}\iint_{\text{BZ}}\Omega_n\,d^2k = \frac{e^2}{h}\sum_n C_n$$
 
 **The Hall conductivity equals the sum of Chern numbers of all filled bands, in units of $e^2/h$.** This is the TKNN formula (Thouless, Kohmoto, Nightingale, den Nijs, 1982) — one of the deepest results in condensed matter physics.
 
@@ -133,7 +133,7 @@ $$\sigma_{xy} = \nu\frac{e^2}{h}, \quad \sigma_{xx} = 0$$
 - $\sigma_{xy}$ is quantized to 1 part in $10^9$ — regardless of sample imperfections, impurities, or edge geometry
 - $\sigma_{xx} = 0$ simultaneously — no energy dissipation at plateaus
 
-The resistance standard: $R_K = h/e^2 \approx 25812.807,\Omega$ is now exact by SI definition (2019).
+The resistance standard: $R_K = h/e^2 \approx 25812.807\,\Omega$ is now exact by SI definition (2019).
 
 ### 7.3.3 — Why Topology Protects It
 
@@ -172,7 +172,7 @@ The Kramers theorem: for $\hat{\mathcal{T}}^2 = -1$, every eigenstate is at leas
 
 **The Z₂ invariant** counts the parity of the number of times the surface band crosses the Fermi energy between two TRIM points. Informally:
 
-$$(-1)^{\nu_0} = \prod_{\text{TRIM}},\xi_{2m}(\Gamma_i)$$
+$$(-1)^{\nu_0} = \prod_{\text{TRIM}}\,\xi_{2m}(\Gamma_i)$$
 
 where $\xi_{2m}$ are parity eigenvalues of occupied bands at TRIM points.
 
@@ -217,7 +217,7 @@ The spin is locked perpendicular to $\mathbf{k}$ (helical spin texture). ARPES (
 
 The effective electromagnetic action of a 3D TI contains a topological term:
 
-$$S_\theta = \frac{\theta e^2}{2\pi h}\int d^3r,dt;\mathbf{E}\cdot\mathbf{B}$$
+$$S_\theta = \frac{\theta e^2}{2\pi h}\int d^3r\,dt\,\mathbf{E}\cdot\mathbf{B}$$
 
 For a trivial insulator: $\theta = 0$. For a strong TI: $\theta = \pi$.
 
@@ -279,7 +279,7 @@ In a normal metal at $T = 0$, the Fermi sea is filled. Adding two electrons abov
 
 The binding energy of a Cooper pair:
 
-$$E_{binding} \approx -2\hbar\omega_D,\exp!\left(-\frac{2}{N(0)V}\right)$$
+$$E_{binding} \approx -2\hbar\omega_D\,\exp!\left(-\frac{2}{N(0)V}\right)$$
 
 where $\omega_D$ is the Debye frequency (maximum phonon frequency), $N(0)$ is the density of states at the Fermi level, and $V > 0$ is the dimensionless pairing strength.
 
@@ -299,11 +299,11 @@ $$\boxed{\Delta = V\sum_\mathbf{k}\frac{\Delta}{2\sqrt{\xi_\mathbf{k}^2 + |\Delt
 
 At $T = 0$, the solution:
 
-$$\Delta(0) = 2\hbar\omega_D,\exp!\left(-\frac{1}{N(0)V}\right)$$
+$$\Delta(0) = 2\hbar\omega_D\,\exp!\left(-\frac{1}{N(0)V}\right)$$
 
 At temperature $T$:
 
-$$\Delta(T) \approx \Delta(0)\sqrt{1 - \frac{T}{T_c}}, \qquad k_BT_c = 1.764,\Delta(0)$$
+$$\Delta(T) \approx \Delta(0)\sqrt{1 - \frac{T}{T_c}}, \qquad k_BT_c = 1.764\,\Delta(0)$$
 
 The ratio $2\Delta(0)/k_BT_c = 3.528$ is a universal BCS prediction — one of the first great successes of the theory, confirmed in many conventional superconductors.
 
@@ -357,7 +357,7 @@ $$\nabla^2\mathbf{B} = \frac{\mathbf{B}}{\lambda_L^2}, \qquad \lambda_L = \sqrt{
 
 The solution inside a superconductor occupying $x > 0$:
 
-$$B(x) = B_0,e^{-x/\lambda_L}$$
+$$B(x) = B_0\,e^{-x/\lambda_L}$$
 
 The magnetic field **decays exponentially** from the surface with the **London penetration depth** $\lambda_L$. For most conventional SCs: $\lambda_L \sim 10$–$100$ nm. For $x \gg \lambda_L$: $\mathbf{B} = 0$ — the Meissner effect.
 
@@ -393,7 +393,7 @@ $$\oint\nabla\phi\cdot d\mathbf{l} = 2\pi n, \quad n \in \mathbb{Z}$$
 
 Using the expression for the supercurrent (London equation), the total magnetic flux threading the loop:
 
-$$\boxed{\Phi = n\Phi_0, \qquad \Phi_0 = \frac{h}{2e} = 2.067\times 10^{-15};\text{Wb}}$$
+$$\boxed{\Phi = n\Phi_0, \qquad \Phi_0 = \frac{h}{2e} = 2.067\times 10^{-15}\,\text{Wb}}$$
 
 **The $2e$ denominator** confirms that the supercurrent is carried by Cooper pairs (charge $2e$), not individual electrons ($e$). This was experimentally confirmed in 1961 — two years before BCS theory was fully accepted.
 
@@ -411,10 +411,10 @@ where $I_c$ is the critical current (maximum Cooper pair tunneling rate) and $\p
 
 $$I(t) = I_c\sin!\left(\phi_0 + \frac{2eV}{\hbar}t\right) \quad\Longrightarrow\quad f_{AC} = \frac{2eV}{h}$$
 
-**The Josephson frequency-voltage relation** $f = 2eV/h = 483597.8...;\text{GHz/V}$:
+**The Josephson frequency-voltage relation** $f = 2eV/h = 483597.8\,\text{GHz/V}$:
 
 - It depends only on fundamental constants ($e$ and $h$), not on the material
-- Since 2019, it defines the volt in the SI system: $1;\text{V} \equiv f/483597.8;\text{GHz}$ (exact by definition, traceable to quantum mechanics)
+- Since 2019, it defines the volt in the SI system: $1\,\text{V} \equiv f/483597.8\,\text{GHz}$ (exact by definition, traceable to quantum mechanics)
 
 ### 7.8.3 — The SQUID: Most Sensitive Magnetometer
 
@@ -424,9 +424,9 @@ $$I_c(\Phi) = 2I_{c0}\left|\cos!\left(\frac{\pi\Phi}{\Phi_0}\right)\right|$$
 
 oscillates with the magnetic flux $\Phi$ through the loop with period $\Phi_0 = h/2e$. Measuring $I_c$ to 1 part in $10^3$ resolves flux changes of:
 
-$$\delta\Phi \sim 10^{-3}\Phi_0 = 2\times 10^{-18};\text{Wb}$$
+$$\delta\Phi \sim 10^{-3}\Phi_0 = 2\times 10^{-18}\,\text{Wb}$$
 
-For a loop area of $1;\text{mm}^2$: $\delta B \sim 2\times 10^{-12};\text{T}$ — sensitivity far below Earth's field ($\sim 50;\mu$T) and the magnetic field of the human brain ($\sim 10^{-13}$ T at the scalp).
+For a loop area of $1\,\text{mm}^2$: $\delta B \sim 2\times 10^{-12}\,\text{T}$ — sensitivity far below Earth's field ($\sim 50\,\mu$T) and the magnetic field of the human brain ($\sim 10^{-13}$ T at the scalp).
 
 **Engineering applications:** Magnetoencephalography (MEG) for brain imaging; non-destructive testing; geodetic surveys; detection of unexploded ordnance; qubit readout in superconducting quantum computers.
 
@@ -456,15 +456,70 @@ The result: **Coulomb oscillations** — the conductance through the dot oscilla
 
 Five connections between the topology of Ch. 0 and the physics of this chapter:
 
-|Ch. 0 structure|Condensed matter analog|Ch. 7 section|
-|---|---|---|
-|θ-term in QCD|Axion electrodynamics in TI; $\theta = \pi$|§7.4.4|
-|Weyl fermion field $\psi_L$ in $\mathcal{L}_{SM}$|Weyl quasiparticle in TaAs, NbAs|§7.5.1|
-|ABJ chiral anomaly|Negative magnetoresistance in Weyl metals|§7.5.4|
-|Higgs mechanism: U(1) → photon mass|Meissner: U(1) breaking → photon mass inside SC|§7.7.1|
-|Anomaly cancellation in SM requires specific particle content|Nielsen-Ninomiya: Weyl nodes come in equal and opposite pairs|§7.5.2|
+|Ch. 0 structure|Condensed matter analog|Ch. 7 section|Connection|
+|---|---|---|---|
+|θ-term in QCD|Axion electrodynamics in TI; $\theta = \pi$|§7.4.4|`[STRUCTURAL CONNECTION]` — same topological term, different field content|
+|Weyl fermion field $\psi_L$ in $\mathcal{L}_{SM}$|Weyl quasiparticle in TaAs, NbAs|§7.5.1|`[STRUCTURAL CONNECTION]` — same Dirac algebra, emergent spectrum|
+|ABJ chiral anomaly|Negative magnetoresistance in Weyl metals|§7.5.4|`[DERIVATION]` — the anomaly is universal and the calculation is the same|
+|Higgs mechanism: U(1) → photon mass|Meissner: U(1) breaking → photon mass inside SC|§7.7.1|`[DERIVATION]` — Anderson-Higgs, same field theory|
+|Anomaly cancellation in SM requires specific particle content|Nielsen-Ninomiya: Weyl nodes come in equal and opposite pairs|§7.5.2|`[DERIVATION]` — same theorem, applied to the Brillouin zone|
 
-**The summary statement:** The topological terms in the Standard Model Lagrangian (the θ-term, the chiral anomaly, the Higgs mechanism) are not curiosities of high-energy physics. They are the mathematical structure that also governs the behavior of electrons in specific crystal arrangements. The book's claim from Ch. 0 — that every later chapter is a limit or projection of the action — is literalized here: a Weyl semimetal is a condensed matter quantum field theory with the same action as part of $\mathcal{L}_{SM}$.
+### 7.10.1 — What this thread is, and what it is not
+
+`[STRUCTURAL CONNECTION]` — **a shared mathematical and topological thread, not
+a descent.** The book's claim is that later physics is a *limit or projection* of
+earlier action. That claim is true of Chapter 3 (Dirac → Pauli → Schrödinger) and
+true of Chapter 16 (continuum → lumped). It is **not** true here, and the
+distinction is worth being precise about rather than quietly rounding up.
+
+What is genuinely shared:
+
+- The **Berry phase** of §7.1 and the $\theta$-term of Chapter 0 are both
+  integrals of a curvature over a closed parameter manifold, and both are
+  integer-quantised for topological indices. That is a real structural identity,
+  and it is why the axion angle $\theta$ of QCD and the magnetoelectric
+  coupling of a topological insulator can be discussed in the same language.
+- The **chiral anomaly** and the **ABJ anomaly** are the same theorem. The
+  calculation is not analogous to itself; it is one result, applied once to
+  quark fields and once to Weyl quasiparticles.
+- The **Nielsen–Ninomiya theorem** constrains both the Standard Model's fermion
+  content and the existence of isolated Weyl nodes in a Brillouin zone. Same
+  theorem, different lattice.
+
+What is *not* shared, and what "the same action" would wrongly imply:
+
+- A Weyl semimetal is **not** a sector of $\mathcal{L}_{SM}$ with a different
+  parameter value. It is a low-energy **effective** theory in which Weyl nodes
+  are *emergent* — they are not present in the microscopic crystal Hamiltonian
+  and appear only after integrating out the full band structure. The
+  quasiparticle fields are not the Standard Model's $\psi_L$; they are
+  constructed from Bloch states.
+- The relevant energy scales are unrelated. Chapter 0's fermions sit at
+  $E \gg m_W$; a Weyl node at $k$ in TaAs sits at meV–100 meV. There is no limit
+  operation relating them.
+- The symmetries are analogies, not identifications: QED's U(1)$_A$ is an
+  approximate flavour symmetry; a condensed-matter system's particle-hole
+  symmetry is a lattice property with no Standard Model counterpart.
+
+**Model Ledger — topological classification to a measured transport coefficient**
+
+| Field | Content |
+|---|---|
+| Parent theory | Berry connection and Chern number from Bloch band structure (§7.1) |
+| Reduction | Semiclassical equations of motion for a Weyl node pair; linear response to $E$ and $B$ |
+| Model | $\sigma_{xy} = e^2/h$ per chiral channel, set by the integer $\nu$ |
+| Assumptions | clean band structure; Fermi level in the gap; no phonon or disorder scattering; $k_BT \ll \Delta$; semiclassical regime $\hbar\omega_c \ll E_F$ |
+| Physics retained | Berry-curvature pumping; integer topological invariant |
+| Physics neglected | disorder and localisation physics, phonon-assisted scattering, interactions, thermal activation, edge reconstruction |
+| Validity | quantised plateau observed; $T \lesssim 1$ K in high-mobility 2DEGs |
+| Fails when | disorder broadening exceeds the gap; interactions localise; sample edges are reconstructed |
+| Next model | non-interacting edge theory (Landauer, Ch. 13 §13.11); K-matrix/fractional QH; magnetotransport with disorder (Ch. 18) |
+
+The honest summary statement: topology in Chapter 0 and topology in condensed
+matter are **the same mathematics applied to different systems**. That is a real
+and useful connection — it is why techniques transfer — but it is a statement
+about mathematics, not about one theory descending from the other, and the two
+should not be conflated.
 
 ---
 
@@ -475,7 +530,7 @@ Layer 1 closes with the topological perspective:
 |Result|Key formula|Protection|
 |---|---|---|
 |Berry phase|$\gamma = \oint\mathbf{A}_n\cdot d\mathbf{k}$|Geometric (path-dependent)|
-|Chern number|$C = (1/2\pi)\iint\Omega,d^2k \in\mathbb{Z}$|Topological (always integer)|
+|Chern number|$C = (1/2\pi)\iint\Omega\,d^2k \in\mathbb{Z}$|Topological (always integer)|
 |Hall conductivity|$\sigma_{xy} = (e^2/h)\sum_n C_n$|Topological (quantized)|
 |TI surface states|$H = \hbar v_F(\hat z\times\boldsymbol{\sigma})\cdot\mathbf{k}$|Symmetry ($\mathcal{T}$)|
 |Weyl node|$H = \pm\hbar v_F\boldsymbol{\sigma}\cdot\mathbf{k}$; $C = \pm 1$|Topological (Berry monopole)|
