@@ -693,7 +693,7 @@ LAYER 1: Quantum mechanics (wavefunctions, bands, nuclei, topology)
          BRIDGE B (five simultaneous limits)
          B.a: ħ→0         → Classical mechanics (Ch. 9)
          B.b: N→∞         → Thermodynamics (Ch. 10)
-         B.c: U(1) classical → Maxwell equations (Ch. 11–12)
+         B.c: EM field limit → Maxwell equations (Ch. 11–12)
          B.d: Weak-field GR → Newton (Ch. 8)
          B.e: Kubo         → Transport laws (Ch. 13–14)
               │

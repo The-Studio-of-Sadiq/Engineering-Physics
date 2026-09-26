@@ -169,8 +169,8 @@ From the lumped control volume, every physical domain has exactly two conjugate 
 > $$\dot S_{gen} = \dot Q\left(\frac{1}{T_{cold}} - \frac{1}{T_{hot}}\right)$$
 > so no single constant $R$ relates $\Delta T$ to $\dot S$ across the whole range. **Do not read $R = T\,R_{th}$ as an exact transformation for arbitrary $\Delta T$.** The tables below quote K/W; the two conventions must never be mixed silently, and the conversion is a linearisation.
 
-> [!note] A caveat on the "conserved quantity" column
-> For the mechanical and electrical rows the flow really is the Noether current of a conserved charge, which is what makes force balance and KCL statements of conservation. Two rows are weaker, and the table should not pretend otherwise:
+> [!warning] Not every flow in this table is a Noether current
+> For electrical rows the flow is the conserved charge current itself, which is what makes KCL a statement of charge conservation. For mechanical rows, $F$ and $v$ are a *power-conjugate* pair — a representation choice, not a conservation law. The Noether current of spatial translations is momentum density and its flux, not velocity: in a continuum, $\partial_t(\rho v_i) + \partial_j\Pi_{ij} = f_i$ expresses momentum balance, and the transported quantity is $\Pi_{ij}$. A lumped $F$–$v$ pair therefore encodes momentum transport without $v$ being a conserved current. Two further rows are weaker still, and the table should not pretend otherwise:
 > - **Thermal.** $\int\dot S\,dt$ is entropy **production**, not a conserved quantity. What is conserved is energy $U$; heat flow *moves* energy between bodies. The Noether framing applies to the energy transfer, not to the entropy current.
 > - **Magnetic.** Flux $\Phi$ is not a Noether charge of any ordinary continuous symmetry. It is the state variable of an inductive element; its *quantization* in superconductors comes from the winding of the condensate phase, not from Noether's theorem applied to a magnetic symmetry.
 
@@ -180,7 +180,7 @@ From the lumped control volume, every physical domain has exactly two conjugate 
 
 ### 17.2.3 — Why Exactly Two Variables?
 
-From the Noether perspective (Ch. 1 §1.7): every conserved quantity generates a pair of conjugate variables in its domain. The conserved charge becomes the flow variable; its conjugate potential (from the Hamiltonian formulation, Ch. 1 §1.6) becomes the effort variable. (Two rows of the table above are weaker than this picture — thermal and magnetic — and the caveats are recorded there.)
+From the network perspective (Ch. 1 §1.7): many conserved physical quantities participate in a pair of power-conjugate variables whenever a suitable lumped representation exists. Conservation is a statement about a Noether current; the effort–flow pair is a modelling choice that corresponds to one in the electrical case and only indirectly in the mechanical case. In the electrical case the conserved charge becomes the flow variable and its conjugate potential (from the Hamiltonian formulation, Ch. 1 §1.6) becomes the effort variable; in the mechanical case the power-conjugate pair is velocity and force, and what is transported is the momentum flux $\Pi_{ij}$ rather than either member of the pair. (Two rows of the table above are weaker than this picture — thermal and magnetic — and the caveats are recorded there.)
 
 **Power = effort × flow** in every domain because this product equals the rate of energy transfer, and energy is the Hamiltonian — the conserved quantity of time translation (Ch. 1 §1.7.3). The product is invariant across domains because energy is invariant across domains. (This holds for the thermal domain only once the flow is the entropy rate $\dot S$ rather than $\dot Q$ — see the warning above. Fixing the flow variable is what makes the slogan literally true instead of approximately true.)
 

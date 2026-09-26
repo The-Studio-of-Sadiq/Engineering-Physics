@@ -597,7 +597,7 @@ Everything above is quantum mechanical. Chapter 8 begins **Bridge B** — the de
 
 - $\hbar\to 0$: quantum expectation values → Newton's laws (Ch. 9)
 - $N\to\infty$, ensemble average: quantum states → thermodynamics (Ch. 10)
-- Classical U(1) field limit: quantum EM → Maxwell's equations (Ch. 11)
+- Classical EM field limit: quantum EM → Maxwell's equations (Ch. 11)
 - Weak metric field: GR → Newtonian gravity (Ch. 8)
 - Kubo averaging: quantum scattering → Ohm, Fourier, Fick, viscosity, Hooke (Ch. 13)
 

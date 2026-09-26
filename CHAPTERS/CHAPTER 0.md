@@ -394,7 +394,7 @@ $v$ is the **vacuum expectation value (VEV)** of the Higgs field. In "empty" spa
 > [!warning] "Circle of degenerate minima" is a picture, not the geometry
 > The familiar Mexican-hat image shows a **circle of degenerate minima**. Strictly, $H$ is a complex $SU(2)$ doublet, i.e. **four real components**, and the minimum condition is
 > $$H^\dagger H = \frac{v^2}{2}$$
-> In four-dimensional real field space this level set is an **$S^3$**, not a circle $S^1$. The 2D circle picture is the correct picture for a *complex scalar* (two real components), and it is what almost every textbook draws. It is a legitimate pedagogical representation of the *pattern* — a flat degenerate manifold of minima — but it is not the literal geometry, and the distinction matters as soon as one asks how many Goldstone directions there are. (There are three, which you can see from $\mathrm{dim}\,S^3 = 3$ or, equivalently, from $\mathrm{dim}\,SU(2) - \mathrm{dim}\,U(1)_{EM} = 3 - 1 = 2$ broken generators; the naive $S^1$ picture would wrongly suggest one.)
+> In four-dimensional real field space this level set is an **$S^3$**, not a circle $S^1$. The 2D circle picture is the correct picture for a *complex scalar* (two real components), and it is what almost every textbook draws. It is a legitimate pedagogical representation of the *pattern* — a flat degenerate manifold of minima — but it is not the literal geometry, and the distinction matters as soon as one asks how many Goldstone directions there are. (There are three. The manifold itself gives $\mathrm{dim}\,S^3 = 3$, and the group structure agrees: $\dim\!\big[SU(2)_L\times U(1)_Y\big] - \dim U(1)_{EM} = (3+1) - 1 = 3$ broken generators. The naive $S^1$ picture would wrongly suggest one.)
 >
 > **A second subtlety: this is a gauge symmetry.** Calling $SU(2)_L \times U(1)_Y \to U(1)_{EM}$ "spontaneous symmetry breaking" is the standard and useful shorthand, and this book uses it. But the electroweak symmetry is a *gauge redundancy*, not a physical global symmetry, so strictly the gauge-fixed vacuum is a **choice of representative**, not a selection of a preferred physical state. The physical content is the pattern of symmetry of the vacuum and the masses it produces; the particular point chosen is a gauge convention. The conventional statement is retained throughout, with that understood.
 
@@ -628,7 +628,7 @@ explicitly unknown.
 |$\bar\psi_f$|$i\gamma^\mu D_\mu\psi_f = m_f\psi_f$|Dirac equation (with Higgs-generated mass)|
 |$H^\dagger$|$D^2 H = \frac{\partial V}{\partial H^\dagger} + Y^f\psi_f$|Higgs field equation|
 
-Together, these equations encode all known fundamental dynamics.
+Together, these equations encode the fundamental dynamics included in the GR + minimal-SM framework used in this book.
 
 ---
 
@@ -695,7 +695,7 @@ Chapter 0  S = ∫ d⁴x √-g [R/16πG + L_SM + F[topology,...]]
      Ch. 10 (Bridge B.b): N→∞
      → Thermodynamics, phase transitions
            │
-     Ch. 11 (Bridge B.c): classical U(1) limit
+     Ch. 11 (Bridge B.c): classical EM field limit
      → Maxwell's equations
            │
      Ch. 12: EM waves, optics, AC circuits

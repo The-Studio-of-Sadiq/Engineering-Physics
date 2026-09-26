@@ -583,7 +583,7 @@ One wave equation from Ch. 11 — extended to matter and systematically applied:
 
 Chapter 12 has deployed Maxwell's equations across the electromagnetic spectrum, from waveguides to lasers to nonlinear photonics.
 
-**Chapter 13 performs Bridge B.e:** the final Bridge B path. Starting from the quantum scattering theory of Ch. 6, applying the Kubo formula, and taking the statistical average gives the **generalized transport law** — Ohm's law, Fourier's law, Fick's law, Newton's viscosity, and Hooke's law, all from one Green-Kubo calculation. The conductivity $\sigma$ that appeared in this chapter as a constitutive parameter will be derived from first principles in Ch. 13.
+**Chapter 13 performs Bridge B.e:** the final Bridge B path. Starting from the quantum scattering theory of Ch. 6, applying the Kubo formula, and taking the statistical average gives the **generalized transport law** — Ohm's law, Fourier's law, Fick's law, and Newton's viscosity, all from one Green–Kubo linear-response scheme. Hooke's law enters Ch. 13 as well, but on a different footing: the elastic modulus is a static, nondissipative response coefficient relating stress to strain, so Hooke's law is a constitutive relation arising from static response rather than a fifth dissipative Green–Kubo transport coefficient. Ch. 13 draws that distinction explicitly. The conductivity $\sigma$ that appeared in this chapter as a constitutive parameter will be derived from first principles in Ch. 13.
 
 After Ch. 13, all five Bridge B paths are complete, and Layer 2 is fully assembled. Bridge C (Ch. 17) then begins the lumping operation that converts the PDEs of Layer 2 into the ODE systems of Layer 3.
 

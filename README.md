@@ -41,7 +41,7 @@ The descent is not a single vertical stack. It branches, runs in parallel, and r
                                ↓
                     ── BRIDGE B ──
         four named limits, applied simultaneously, not one at a time:
-        ħ→0  ·  N→∞  ·  U(1) classical  ·  weak-field  ·  Kubo
+         ħ→0  ·  N→∞  ·  classical EM field  ·  weak-field  ·  Kubo
                                ↓
               STATISTICAL / CLASSICAL PHYSICS
               L₂   Newton · Maxwell · thermo · continuum
@@ -151,7 +151,7 @@ Applied inline, a tag is a blockquote attached to the equation it qualifies:
 
 > **[APPROXIMATION]** Dirac equation → nonrelativistic expansion in $(v/c)^2$ → Pauli equation, retaining the Zeeman and spin–orbit terms to order $(v/c)^2$.
 
-> **[STRUCTURAL CONNECTION]** An electrical RC network and a thermal RC network both obey $C\,dT/dt = (T_{in}-T)/R$. Same equation, different conserved quantity.
+> **[STRUCTURAL CONNECTION]** An electrical RC network and a thermal RC network both obey $C\,dT/dt = (T_{in}-T)/R$. Same lumped differential-equation structure, different physical variables, constitutive parameters, and energy-storage mechanisms.
 
 ---
 

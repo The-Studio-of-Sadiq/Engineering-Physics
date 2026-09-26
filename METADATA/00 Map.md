@@ -36,9 +36,9 @@ $$\boxed{S_{\text{eff}} = S_{EH} + S_{SM} + S_{\text{unknown}} = \int d^4x\,\sqr
 |---|---|---|
 |$R / 16\pi G$|Curvature of spacetime (gravity)|Confirmed, tested to high precision|
 |$\mathcal{L}_{SM}$|Quantum fields for all known matter and three forces|Confirmed, tested to extraordinary precision|
-|$f(\ldots)$|Everything we don't know yet|Unknown; active research|
+|$\mathcal{F}[\ldots]$|Everything we don't know yet|Unknown; active research|
 
-**What we know about f, even without knowing f:**
+**What we know about $\mathcal{F}$, even without knowing $\mathcal{F}$:**
 
 - It must be a Lorentz scalar (action is coordinate-independent)
 - It must reduce to zero correction in all regimes that $\mathcal{L}_{SM} + R/16\pi G$ already handles correctly
@@ -189,9 +189,9 @@ This is the whole book in one diagram, with **every arrow tagged**. It is the sa
     four simultaneous descents. They are NOT one limit.
     B.a  ħ → 0                      (Ch. 9)   → Newton, Lagrangian
     B.b  N → ∞, ensemble averaging   (Ch. 10)  → stat. mech, thermo
-    B.c  classical U(1) coherent     (Ch. 11)  → Maxwell
+    B.c  classical EM field limit    (Ch. 11)  → Maxwell equations
     B.d  weak-field metric           (Ch. 8)   → Newtonian gravity
-    B.e  Kubo linear response        (Ch. 13)  → the five transport laws
+    B.e  Kubo linear response        (Ch. 13)  → the transport laws
     Each discards something. Each names what.
                               ↓
               STATISTICAL / CLASSICAL PHYSICS
@@ -301,7 +301,7 @@ LAYER 1    Quantum / Atomic Scale
                           │
               ══════ BRIDGE B ══════
               Four simultaneous descents:
-              ħ→0, N→∞, U(1)→Maxwell, g→η
+              ħ→0, N→∞, classical EM field→Maxwell, g→η
               (Bridge zones: WKB, quantum stat mech,
                classical coherent fields)
                           │
@@ -385,7 +385,7 @@ The compressed slogan — "KCL is Noether's theorem, seen from far away" — is 
 
 ### 0.3 — Symmetry Breaking and the Higgs: A Template to Recognize Later
 
-The Higgs potential $V(H) = -\mu^2|H|^2 + \lambda|H|^4$ has a "Mexican hat" shape. The ground state sits in a circle of degenerate minima. The system "picks one" — breaking the SU(2)×U(1) symmetry. This gives masses.
+The Higgs potential $V(H) = -\mu^2|H|^2 + \lambda|H|^4$ has a "Mexican hat" shape, so the vacuum is degenerate rather than a single point. The familiar picture shows a circle of degenerate minima; for the SM Higgs doublet the literal minimum manifold in four-real-dimensional field space is $S^3$, with gauge fixing selecting a representative. The system "picks one" — breaking the SU(2)×U(1) symmetry. This gives masses. (See Ch. 0 §0.3 for the full $S^3$ statement and why the naive circle picture undercounts the Goldstone directions.)
 
 **Mark this mechanism, not this instance.** [STRUCTURAL CONNECTION] The Higgs mechanism is _one example_ of spontaneous symmetry breaking in field theory — it is not the physical ancestor of ferromagnetism or superconductivity. Landau theory (Layer 2, §2.3) is the general mathematical template underneath all of them: a free energy expanded in an order parameter, with a coefficient that changes sign at a critical point.
 
@@ -676,7 +676,9 @@ When $a(T) = a_0(T-T_c)$ changes sign, the minimum shifts from $\phi=0$ to $\phi
 
 ---
 
-### Bridge B.c — Classical Limit of U(1) Gauge Sector
+### Bridge B.c — Classical Electromagnetic-Field Limit of the U(1) Gauge Theory
+
+**What the name means.** This is **not** a limit in which the group $U(1)$ itself becomes Maxwell's equations. It denotes the *classical-field limit of the electromagnetic $U(1)$ gauge theory*, in which the field behaves as a coherent classical configuration and quantum fluctuations of the field are negligible. The gauge group is unchanged by the limit; what is discarded is the quantisation of the field.
 
 **What you are assuming:** Many photons in coherent states, so quantum fluctuations are negligible; fields are smooth and classical.
 
@@ -864,7 +866,7 @@ These ε, μ, σ are not phenomenological constants — they are the Layer-1 ban
 
 ### 2.5 — Continuum Mechanics
 
-The continuum limit of $N\to\infty$ particles (Bridge B.b, spatial version):
+The continuum limit of $N\to\infty$ particles (Bridge B.b, spatial version). Note that the thermodynamic limit alone does not produce a continuum field — coarse-graining additionally requires scale separation, $\ell_{\text{micro}} \ll L_{\text{variation}}$ (Ch. 15 §15.1):
 
 **Fluid mechanics:**
 
@@ -879,7 +881,7 @@ $$\rho\left(\frac{\partial\mathbf{v}}{\partial t} + \mathbf{v}\cdot\nabla\mathbf
 
 - Displacement field $\mathbf{u}(\mathbf{r})$ — the continuum limit of atomic positions
 - Strain tensor: $\varepsilon_{ij} = \frac{1}{2}(\partial_i u_j + \partial_j u_i)$
-- Stress tensor: $\sigma_{ij} = C_{ijkl}\varepsilon_{kl}$ (generalized Hooke — from Kubo)
+- Stress tensor: $\sigma_{ij} = C_{ijkl}\varepsilon_{kl}$ (generalized Hooke — a static, nondissipative response, not a dissipative Green–Kubo coefficient)
 - Equilibrium: $\nabla\cdot\boldsymbol{\sigma} + \mathbf{f} = 0$
 
 ---
@@ -1189,7 +1191,7 @@ S = ∫ √-g [(R−2Λ)/16πG + L_SM + F[…]]
 ╠══ BRIDGE B (four paths) ══════════════════════════════════════╗
 ║  B.a: ħ→0 → Newton/Lagrangian     Bridge zone: WKB           ║
 ║  B.b: N→∞ → Thermo/stat mech      Bridge zone: Fermi-Dirac   ║
-║  B.c: U(1) classical → Maxwell    Bridge zone: coherent field ║
+║  B.c: EM field limit → Maxwell    Bridge zone: coherent field ║
 ║       (continuity ∂_μj^μ=0 — link 2/6 of the KCL chain)       ║
 ║  B.d: weak field metric → gravity                             ║
 ║  B.e: Kubo → Generalized Transport Law (all five laws)        ║

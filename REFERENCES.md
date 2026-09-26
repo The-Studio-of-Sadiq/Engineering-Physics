@@ -299,7 +299,7 @@ This cross-thread claim (echoed in Ch. 21, Thread 2) is the book's own organisin
 
 ---
 
-## Chapter 11 — Classical U(1) → Maxwell's Equations
+## Chapter 11 — Bridge B.c: Maxwell's Equations from the U(1) Gauge Sector
 
 **[DERIVED / TEXTBOOK] [R37] Speed of light from $\mu_0\,\epsilon_0$; Maxwell's identification of light as an EM wave**
 Maxwell, J.C., "A Dynamical Theory of the Electromagnetic Field," *Phil. Trans. R. Soc. Lond.* 155, 459–512 (1865). DOI: 10.1098/rstl.1865.0008
@@ -395,8 +395,8 @@ The book's operation-count comparison ($10^{12}$ vs. $2\times 10^7$ for $N=10^6$
 **[SYNTHESIS] "Thread 2: The Mexican Hat" — framing Higgs/BCS/Landau as independent instances of one template, not a causal chain**
 Same flag as the Ch. 10 entry. Correctly cited components (Higgs mechanism, BCS, Landau) are sourced under their chapters; the unifying claim itself is the book's argument.
 
-**[SYNTHESIS] The Generalized Transport Law as the book's "convergence chapter" unifying Ohm, Fourier, Fick, Newtonian viscosity, and Hooke's law under one Kubo-formula calculation**
-The individual transport laws and the Kubo formula are separately and correctly citable (see Ch. 13); their explicit unification under this framing is original pedagogical synthesis specific to this book. This is the most important claim in the book to keep honestly labelled, since it is the thesis the convergence chapter rests on. See the Ch. 13 §13.0 caveat on which members of the family use which part of the Kubo expression.
+**[SYNTHESIS] The Generalized Transport Law as the book's "convergence chapter" unifying Ohm, Fourier, Fick, and Newtonian viscosity under one Kubo-formula linear-response scheme, with Hooke's law entering as static response**
+The individual transport laws and the Kubo formula are separately and correctly citable (see Ch. 13); their explicit unification under this framing is original pedagogical synthesis specific to this book. This is the most important claim in the book to keep honestly labelled, since it is the thesis the convergence chapter rests on. The claim must also be stated precisely: the four dissipative coefficients $\sigma$, $\kappa$, $D$, $\eta$ share a linear-response framework in which the transport coefficient is expressed through an equilibrium current-correlation integral, subject to the relevant quantum/classical and closure assumptions. The elastic modulus $C_{ijkl}$ is not a member of that family — it is a static, nondissipative response coefficient relating stress to strain, so Hooke's law is a constitutive relation arising from static response, not a fifth dissipative Green–Kubo transport coefficient. See the Ch. 13 §13.0 caveat on which members of the family use which part of the Kubo expression.
 
 **[SYNTHESIS] The four-way classification of CE/ChE correspondence in Ch. 20 (§20.0.1)**
 The distinction between mathematical identity, constitutive correspondence, shared statistical origin, and shared dimensionless framework is the book's own contribution. The underlying results it sorts (Terzaghi consolidation, Darcy's law, Arrhenius kinetics, NTU methods) are textbook material — T16, T15, T18, T12 respectively.

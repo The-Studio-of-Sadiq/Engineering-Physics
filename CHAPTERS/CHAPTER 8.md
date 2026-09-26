@@ -19,7 +19,7 @@ Bridge B is not one transition but five simultaneous limiting operations (from t
 |**B.d**|Weak field + slow motion + static|Newton's gravity|**8 (this chapter)**|
 |B.a|$\hbar\to 0$|Classical mechanics|9|
 |B.b|$N\to\infty$, ensemble average|Thermodynamics|10|
-|B.c|Classical U(1) field limit|Maxwell's equations|11|
+|B.c|Classical EM field limit|Maxwell's equations|11|
 |B.e|Kubo + quantum scattering|Generalized transport law|13|
 
 This chapter extracts the gravitational sector from Ch. 0's action:
@@ -52,7 +52,13 @@ Everything in this equation has appeared before, but let us restate it clearly:
     - $T^{0i} = $ momentum density (energy flux)
     - $T^{ij} = $ stress tensor (pressure and shear)
 
-    Its connection to Noether's theorem needs a caveat, because in general relativity the naive statement is not correct. In **flat-space** field theory, translation invariance is a continuous symmetry and the (canonical, or symmetrised Belinfante) stress-energy tensor is indeed the Noether current of spacetime translations (Ch. 1 §1.9.3). In **GR** this becomes delicate: the diffeomorphism group is a *gauge* redundancy rather than a physical global symmetry, so translations are not an ordinary Noether symmetry of general covariance. Gravitational energy cannot be assigned a local gauge-invariant density at all (it lives in the pseudotensor or in the ADM/ Ashtekar variables at infinity), and the quantity appearing on the right of Einstein's equation is the **matter** stress tensor, which is covariantly conserved ($\nabla_\mu T^{\mu\nu}=0$) rather than being a plain Noether current. The safe statement, used here: **$T_{\mu\nu}$ is the stress-energy tensor associated with matter's energy-momentum; in flat-space field theory it is connected to translation symmetry through Noether's theorem.**
+    Its connection to Noether's theorem needs a caveat, because in general relativity the naive statement is not correct. In **flat-space** field theory, translation invariance is a continuous symmetry and the (canonical, or symmetrised Belinfante) stress-energy tensor is indeed the Noether current of spacetime translations (Ch. 1 §1.9.3). In **GR** this becomes delicate: the diffeomorphism group is a *gauge* redundancy rather than a physical global symmetry, so translations are not an ordinary Noether symmetry of general covariance. Gravitational energy cannot be assigned a local gauge-invariant density at all (it lives in the pseudotensor or in the ADM/ Ashtekar variables at infinity), and the quantity appearing on the right of Einstein's equation is the **matter** stress tensor, which is covariantly conserved ($\nabla_\mu T^{\mu\nu}=0$) rather than being a plain Noether current. The safe statement, used here: **$T_{\mu\nu}$ is the stress-energy tensor associated with matter's energy-momentum.** The definition actually used in this chapter is the metric variation given immediately after this list. In flat-spacetime field theory the same tensor is instead connected to translation symmetry through Noether's theorem; the two constructions agree in the flat limit, but only the metric-variation one is valid in a curved geometry.
+
+**The covariant definition.** In general relativity the stress-energy tensor of matter is defined by varying the matter action with respect to the metric:
+
+$$T_{\mu\nu} = -\frac{2}{\sqrt{-g}}\frac{\delta S_{\text{matter}}}{\delta g^{\mu\nu}}$$
+
+Its covariant conservation, $\nabla_\mu T^{\mu\nu} = 0$, then follows from the diffeomorphism invariance of $S_{\text{matter}}$ rather than from a Noether current (Ch. 1 §1.9.3). This ordering matters: the flat-space statement "the stress-energy tensor is the Noether current of translations" and the GR statement "the stress-energy tensor is the metric variation of the matter action" are **different constructions**, not two ways of writing one definition. They coincide in the flat limit, where the metric is fixed and translations are a genuine global symmetry; in curved spacetime the translation generators are part of a gauge redundancy, and only the metric-variation definition is available. The symbol $S_{\text{matter}}$ denotes the matter action alone, so $T_{\mu\nu}$ here is the source on the right-hand side of Einstein's equation and carries no description of gravitational energy itself.
 
 **The equation in words:**
 

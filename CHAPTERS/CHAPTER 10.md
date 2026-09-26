@@ -28,7 +28,7 @@ and averaging over microscopic degrees of freedom.
 |---|---|---|---|
 | B.a | $\hbar\to 0$ | Classical mechanics | 9 |
 | **B.b** | Thermodynamic limit ($N,V\to\infty$ at fixed density) + statistical/ensemble description | **Statistical mechanics + thermodynamics** | **10 (this)** |
-| B.c | Classical U(1) field limit | Maxwell's equations | 11 |
+| B.c | Classical EM field limit | Maxwell's equations | 11 |
 | B.d | Weak-field metric | Newtonian gravity | 8 |
 | B.e | Kubo + quantum scattering | Generalized transport law | 13 |
 

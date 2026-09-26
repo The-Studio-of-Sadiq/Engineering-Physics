@@ -21,11 +21,11 @@ This chapter derives the governing equations of fluid mechanics (Euler and Navie
 
 |Concept|Origin|
 |---|---|
-|Continuum hypothesis|$N\to\infty$ limit of Ch. 10 (Bridge B.b), spatial averaging|
+|Continuum hypothesis|Coarse-graining with $\ell_{\text{micro}} \ll L_{\text{variation}}$, built on the $N\to\infty$ limit of Ch. 10 (Bridge B.b)|
 |Strain tensor $\varepsilon_{ij}$|Generalization of Ch. 9 spring extension to 3D|
 |Viscous stress|Newton's viscosity from Ch. 13 §13.7 (Kubo)|
 |Elastic stress|Hooke's law from Ch. 13 §13.8|
-|Conservation laws|Noether's theorem (Ch. 1 §1.7): mass, momentum, energy|
+|Conservation laws|Noether's theorem (Ch. 1 §1.7): momentum, energy; particle number — hence mass for a single nonrelativistic species|
 |Elastic waves|Classical limit of phonons (Ch. 6 §6.7)|
 |Turbulence|Where the PDE refuses to lump — Layer 3 has no exact model|
 
@@ -35,7 +35,7 @@ This chapter derives the governing equations of fluid mechanics (Euler and Navie
 
 ### 15.1.1 — From Particles to Fields
 
-The N→∞ statistical limit of Ch. 10 gave thermodynamic quantities as ensemble averages. Applied to a spatially inhomogeneous system, it gives **field variables** — quantities that vary continuously in space:
+The coarse-grained continuum description of Ch. 10, with many microscopic degrees of freedom inside each representative volume, gave thermodynamic quantities as ensemble averages. Applied to a spatially inhomogeneous system, it gives **field variables** — quantities that vary continuously in space:
 
 - **Density field:** $\rho(\mathbf{r}, t) = \langle\hat\rho\rangle$ — mass per unit volume
 - **Velocity field:** $\mathbf{v}(\mathbf{r}, t) = \langle\hat{\mathbf{v}}\rangle$ — momentum per unit mass
@@ -47,6 +47,9 @@ The averaging volume must be:
 
 - Large enough to contain many molecules (thermodynamic limit valid)
 - Small enough to resolve the spatial variation of interest
+
+> [!warning] $N\to\infty$ alone does not give a continuum field
+> The thermodynamic limit of Ch. 10 is a statement about *particle number*; it says nothing about length scales. A continuum description additionally requires **scale separation** — a microscopic length $\ell_{\text{micro}}$ and a scale of variation $L_{\text{variation}}$ with $\ell_{\text{micro}} \ll L_{\text{variation}}$. A system with $N\to\infty$ but no such separation, such as a cluster small enough that every molecule is still individually resolved, has no continuum field to coarse-grain onto. This is the same reason the Knudsen criterion below is the practical test, and the two must not be conflated: the thermodynamic limit supplies the many-body averaging, the Knudsen number supplies the spatial validity.
 
 **Validity criterion — Knudsen number:** $$Kn = \frac{\ell_{mfp}}{L} \ll 1$$
 
@@ -152,7 +155,7 @@ or equivalently: $\frac{D\rho}{Dt} + \rho\nabla\cdot\mathbf{v} = 0$
 
 **For incompressible flow** ($D\rho/Dt = 0$, constant density following a parcel): $$\nabla\cdot\mathbf{v} = 0$$
 
-Every divergence-free velocity field is volume-preserving. This is the continuum form of the conservation of particle number (Noether, U(1) of mass in the non-relativistic limit, Ch. 1 §1.7).
+Every divergence-free velocity field is volume-preserving. This is the continuum form of the conservation of **particle number**. For a single nonrelativistic species the relevant symmetry is the *global* phase $U(1)$ of the matter field, whose Noether charge is the particle number $N = \int n\,d^3x$ (Ch. 1 §1.7); the mass density $\rho = m n$ is proportional to that charge for fixed $m$, so mass conservation follows for that species as a *consequence*. It should not be claimed, however, that mass conservation in general descends from a fundamental $U(1)$. For relativistic fields the rest mass is part of the four-momentum rather than a separate conserved charge, and for a multi-component system the total mass is not fixed by any one conserved charge at all. The particle-number statement is the primitive one; mass conservation follows only where the proportionality $\rho = m n$ holds.
 
 ### 15.4.2 — Momentum Conservation (Cauchy's Equation of Motion)
 

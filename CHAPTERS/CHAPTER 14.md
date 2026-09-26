@@ -10,7 +10,7 @@
 
 ## 14.0 — Overview
 
-Chapter 13 put all five transport laws into the Green–Kubo framework, with no additional input beyond equilibrium quantum mechanics *beyond the linear-response and closure assumptions stated there*. The coefficients $\sigma$, $\kappa$, $D$, $\eta$, $C_{ijkl}$ are time-integrated current autocorrelations (with $C$ a static susceptibility rather than a transport coefficient); the Onsager matrix gives the off-diagonal effects.
+Chapter 13 places the transport laws in a common Green–Kubo linear-response framework, with no additional input beyond equilibrium quantum mechanics *beyond the linear-response and closure assumptions stated there*. The four dissipative coefficients $\sigma$, $\kappa$, $D$, $\eta$ share that framework: each is expressible through an equilibrium current-correlation integral, subject to the relevant quantum/classical and closure assumptions. The elastic modulus $C_{ijkl}$ is different — it is a static, nondissipative response coefficient relating stress to strain, so Hooke's law is a constitutive relation arising from static response, not a fifth dissipative Green–Kubo transport coefficient. The Onsager matrix gives the off-diagonal effects.
 
 This chapter applies those results to concrete engineering problems. It is **Layer 2 applied** — the transport laws in their full engineering detail, with quantitative worked results, before Bridge C lumps them into circuit elements and control volumes in Chapter 17.
 

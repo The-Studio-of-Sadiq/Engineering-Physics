@@ -95,7 +95,7 @@ calculation.
 |---|---|---|
 |B.a|$\hbar\to 0$|Classical mechanics (Ch. 9)|
 |B.b|$N\to\infty$|Thermodynamics (Ch. 10)|
-|B.c|Classical U(1)|Maxwell's equations (Ch. 11)|
+|B.c|Classical EM field limit|Maxwell's equations (Ch. 11)|
 |B.d|Weak-field GR|Newton's gravity (Ch. 8)|
 |**B.e**|**Kubo averaging**|**Generalized Transport Law (Ch. 13)**|
 
@@ -928,7 +928,7 @@ Layer 1 (Quantum)
   │
   ├─ B.a (ħ→0) ──────────────► Classical mechanics (Ch. 9)
   ├─ B.b (N→∞) ──────────────► Thermodynamics (Ch. 10)
-  ├─ B.c (U(1) classical) ───► Maxwell's equations (Ch. 11)
+  ├─ B.c (EM field limit) ───► Maxwell's equations (Ch. 11)
   │                              └─ EM waves, optics (Ch. 12)
   ├─ B.d (weak-field GR) ────► Newton's gravity (Ch. 8)
   └─ B.e (Kubo) ─────────────► Generalized transport law (Ch. 13)

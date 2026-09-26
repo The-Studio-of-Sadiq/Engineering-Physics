@@ -15,8 +15,18 @@
 
 Bridges B.a and B.b ($\hbar\to 0$ and $N\to\infty$) recovered classical
 mechanics and thermodynamics from quantum mechanics. Bridge B.c is a different
-operation entirely: it takes the **classical limit of the U(1) gauge sector**
-of $\mathcal{L}_{SM}$.
+operation entirely: it takes the **classical electromagnetic-field limit of the
+$U(1)$ gauge theory** — the classical limit of the $U(1)$ gauge sector of
+$\mathcal{L}_{SM}$.
+
+> [!warning] What the name of this bridge does and does not mean
+> This is **not** a limit in which the group $U(1)$ itself becomes Maxwell's
+> equations. It denotes the *classical-field limit of the electromagnetic $U(1)$
+> gauge theory*, in which quantum fluctuations of the field are negligible. The
+> gauge group is unchanged by the limit; what is discarded is the quantisation of
+> the field. The arrow in "B.c → Maxwell" is a statement that Maxwell's equations
+> are *derived from* the classical $U(1)$ gauge theory, not that the two objects
+> are the same thing.
 
 **The operation:** The quantum U(1) gauge field $A_\mu$ is, at the quantum level,
 the photon field — its excitations are photons. In the classical limit
@@ -39,7 +49,7 @@ of Ch. 0 by the field Euler-Lagrange procedure of Ch. 1 §1.9.
 |---|---|---|---|
 | B.a | $\hbar\to 0$ | Classical mechanics | 9 |
 | B.b | $N\to\infty$ | Thermodynamics | 10 |
-| **B.c** | Classical U(1) field | **Maxwell's equations** | **11** |
+| **B.c** | Classical EM field | **Maxwell's equations** | **11** |
 | B.d | Weak-field metric | Newton's gravity | 8 |
 | B.e | Kubo averaging | Transport laws | 13 |
 
@@ -649,7 +659,7 @@ Bridge B.c complete. Maxwell's equations descended from one Lagrangian term:
 Chapters 8–11 have now completed four of the five Bridge B paths:
 - B.a (Ch. 9): $\hbar\to 0$ → classical mechanics
 - B.b (Ch. 10): $N\to\infty$ → thermodynamics
-- B.c (Ch. 11): classical U(1) → Maxwell's equations
+- B.c (Ch. 11): classical EM field limit of the $U(1)$ gauge theory → Maxwell's equations
 - B.d (Ch. 8): weak-field GR → Newton's gravity
 
 **Chapter 12** uses the Maxwell equations derived here to develop electromagnetic
