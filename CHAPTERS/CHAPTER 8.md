@@ -162,7 +162,23 @@ Therefore:
 
 $$\boxed{\mathbf{a} = -\nabla\Phi \quad\Longrightarrow\quad \mathbf{F} = m\mathbf{a} = -\frac{GMm}{r^2}\hat r}$$
 
-**Newton's law of gravitation is the geodesic equation in the weak-field, slow-motion, static limit of general relativity.**
+**Newton's law of gravitation is recovered in the weak-field, slow-motion,
+quasi-static limit of general relativity** — three conditions taken *together*,
+each with a stated scale. The passage from the geodesic equation to
+$\mathbf{a}=-\nabla\Phi$ requires:
+
+1. $|h_{\mu\nu}| \ll 1$ — the field is weak, $r \gg r_s$;
+2. $v \ll c$ — slow motion, so $g_{0i}$ terms are negligible and the geodesic
+   equation's leading spatial term is just acceleration;
+3. **quasi-static** — the metric is effectively time-independent over the
+   interval used, so $\partial_0 g_{00}$ terms can be neglected and the
+   potential can be integrated once, globally.
+
+Dropping any one of the three leaves a different equation. Without (1) the field
+strength itself is not perturbative. Without (2) velocity-dependent and
+gravitomagnetic terms survive. Without (3) the potential is not static and
+$\Phi$ cannot be defined as a single-valued function of position — which is why
+this is a *quasi-static* limit and not merely a "weak-field, slow-motion" one.
 
 The key insight: there is no gravitational _force_ in GR. A freely falling particle follows a **geodesic** — the straightest possible path in curved spacetime. What appears as a gravitational force to an accelerating observer (standing on the ground) is the Christoffel symbol term — the correction from the curvature of spacetime.
 
@@ -368,7 +384,18 @@ The satellite clock runs fast by 38.5 μs/day. Since GPS positioning requires ti
 
 $$\delta x_{uncorrected} \approx c\times 38.5\,\mu\text{s} \approx 11.5\,\text{km/day}$$
 
-**Without the GR and SR corrections, GPS would accumulate 11.5 km of positional error per day.** The correction is implemented by pre-adjusting the satellite clock frequency before launch:
+**Without the GR and SR corrections, the dominant error would be a range error of
+roughly 11.5 km per day** — this is a light-travel-time-equivalent displacement
+$\delta x \approx c\,\delta t$, i.e. the range error a receiver would attribute
+to a satellite if it trusted the uncorrected onboard clock. It is *not* a
+statement that a receiver's reported position drifts by exactly 11.5 km per
+day: in a four-satellite solution the clock bias is estimated as a fourth
+unknown, so an uncorrected satellite clock bias is largely absorbed into the
+receiver's own clock estimate, and the positional error that actually appears is
+much smaller and geometry-dependent. The number is retained because it is the
+standard order-of-magnitude figure for *why* relativistic clock effects must be
+corrected at all. The correction is implemented by pre-adjusting the satellite
+clock frequency before launch:
 
 $$f_{corrected} = f_0 \times \left(1 - \frac{38.5\times10^{-6}}{86{,}400}\right) = f_0\times\left(1 - 4.46\times10^{-10}\right)$$
 

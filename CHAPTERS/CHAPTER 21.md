@@ -734,7 +734,7 @@ The θ-term, the Chern number, and the Nyquist encirclement count are three inde
 
 Throughout this book, a term has appeared in the action but has never been given content:
 
-$$\mathcal{F}(\phi_{?},,g_{\mu\nu},,\partial_\mu,,\text{topology, anomalies})$$
+$$\mathcal{F}\!\left[g,\, \phi_{?},\, \text{new fields},\, \text{topology},\, \text{anomalies},\, \ldots\right]$$
 
 This placeholder represents:
 

@@ -444,7 +444,7 @@ After the descent from $\mathcal{L}_{SM}$ to the Schrödinger equation, the foll
 
 A complex-valued function of position and time. It is not a classical field you can directly observe — it is a **probability amplitude**. Its origin is the large component of the Dirac spinor, which is itself the fermion field $\psi$ of $\mathcal{L}_{SM}$ in the single-particle, non-relativistic limit.
 
-### 3.9.2 — The Probability Interpretation: Noether's Theorem in Action
+### 3.9.2 — The Probability Current: What Noether's Theorem Does and Does Not Give
 
 From the Dirac Lagrangian, the U(1) symmetry $\psi \to e^{i\alpha}\psi$ gives, via Noether's theorem, a conserved current:
 
@@ -458,9 +458,23 @@ Dividing by $-e$:
 
 $$\frac{\partial|\psi|^2}{\partial t} + \nabla\cdot\left(\frac{\mathbf{j}}{-e}\right) = 0$$
 
-This is the **continuity equation for probability**: $|\psi|^2$ is a conserved density. The probability of finding the electron somewhere is conserved over time.
+This is the **continuity equation for $|\psi|^2$**: the quantity $|\psi|^2$ is a conserved density, and current flows so that its integral over any closed region is time-independent.
 
-**The probabilistic interpretation of quantum mechanics is not a philosophical choice added on top of the mathematics. It is Noether's theorem applied to U(1) gauge symmetry.**
+> [!warning] What Noether's theorem does **not** establish
+> The step from "$|\psi|^2$ is conserved" to "$|\psi|^2\,d^3x$ is the *probability* of finding the particle there" is **not** a consequence of Noether's theorem. Noether's theorem delivers a conserved current from a continuous symmetry. It does not deliver a probability interpretation.
+>
+> The two claims are logically distinct, and conflating them is a standard error in "everything is just symmetry" treatments of QM:
+>
+> | Step | What supplies it | Status |
+> |---|---|---|
+> | Global U(1) symmetry $\Rightarrow$ conserved current $j^\mu$ | Noether's theorem (Ch. 1) | `[DERIVATION]` |
+> | Normalization $\int|\psi|^2 = 1$ | definition of the state vector / wavefunction | **definition** |
+> | $P(x) = |\psi(x)|^2$ is a probability | the Born rule | **postulate** of standard QM |
+> | Non-negativity, $\sum_i P_i = 1$ | positivity + normalization of $\|\psi\|^2$ | follows once Born is assumed |
+>
+> **Where the Born rule stands in this book.** The Born rule is retained as a **foundational probabilistic postulate of quantum mechanics**. It is *not* derived here, and the book's own tagging rules forbid claiming otherwise. What the descent *does* earn is real and worth stating precisely: the continuity equation above fixes the *functional form* of the conserved quantity to be $|\psi|^2$, so once the Born postulate is adopted, probability conservation follows from charge conservation. The interpretive step is assumed; the conservation arithmetic is derived.
+>
+> There is a substantial literature attempting to derive or motivate Born-type rules from deeper principles — envariance, Wigner-friendliness and related no-go results, decision-theoretic arguments, and axiomatic approaches. None is accepted as a derivation within mainstream practice, and this book does not reproduce or rely on them. Claiming a settled derivation would be exactly the kind of overclaim the `[SYNTHESIS]` / `[DERIVATION]` distinction exists to prevent. See [`REFERENCES.md`](../REFERENCES.md) for how the book's other interpretive commitments are tiered.
 
 ### 3.9.3 — Superposition
 

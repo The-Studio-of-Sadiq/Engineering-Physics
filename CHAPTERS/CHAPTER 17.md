@@ -16,7 +16,28 @@ Chapters 8–16 built Layer 2 completely. The full set of classical continuum ph
 
 The result is **Layer 3** — the engineering systems scale. Its defining feature: all physical domains share one mathematical template, with the only difference being the names of variables.
 
-**This chapter is the book's most important structural claim, made explicit:** EEE, ME, CE, and ChE are not four different subjects. They are four different labelings of one mathematical system, valid when the lumping criterion holds.
+**This chapter is the book's central structural claim, made explicit:** EEE, ME,
+CE, and ChE are not four different subjects. They are four different *labelings*
+of one mathematical system, valid when the appropriate lumping criterion holds.
+
+`[STRUCTURAL CONNECTION]` — the claim is about **representations, not
+physics**, and it holds strongly for the domains in this book while not being a
+theorem about all of engineering. Three qualifications keep it honest:
+
+1. **The unification is a modeling choice, not a discovered identity.** An
+   effort/flow pair can be *constructed* for any two conjugate variables, which
+   means the template is available essentially anywhere. That generality is a
+   feature of the representation and a warning against reading physics into it.
+2. **Not every system is naturally effort/flow.** Systems with multiple
+   distributed inputs and outputs, with strong spatial structure, or with
+   constraints that are not captured by a single conjugate pair, are better
+   served by other representations — Hamiltonian, port-Hamiltonian, passivity-
+   based, or a full network. The template is most valuable where the lumping
+   criterion holds, because then the system genuinely reduces to a small number of
+   states.
+3. **"Four branches" is illustrative, not exhaustive.** These four are the ones
+   this book develops. Their formal similarities extend to further domains, and
+   their internal differences are far larger than the similarity suggests.
 
 **Bridge C in the layer map:**
 

@@ -12,21 +12,32 @@ authoritative and the conflict here is a bug in this file.
 
 ## 1. The core principle: one chain, not a collection of essays
 
-The spine is a single action, introduced in Chapter 0:
+The spine is a single action, introduced in Chapter 0 and stated canonically in
+Ch. 0 §0.10:
 
 ```
-S = ∫ d⁴x √(−g) [ f(φ) R + ℒ_SM ]
+S_eff = S_EH + S_SM + S_unknown
+      = ∫ d⁴x √(−g) [ R/16πG + ℒ_SM + ℱ[g, φ?, new fields, topology, …] ]
 ```
 
-Every chapter, bridge, and thread connects back to it through an explicit, named
-step — either a mathematical limit (a derivation) or a labelled structural
-connection. There are no free-floating results.
+**Every major result must identify its physical or mathematical provenance.**
+Where a genuine descent from this framework exists, show it and name the step.
+Where one does not, say so and label the result `[PHENOMENOLOGICAL]`,
+`[STRUCTURAL CONNECTION]`, `[ANALOGY]`, or a constitutive correspondence.
+
+An earlier draft of this rule said *every* chapter must connect back to the
+master action. That was too strong, and it was wrong in a way that mattered:
+Ch. 13's engineering correlations, Ch. 19's thermofluid property fits, and
+Ch. 20's open-channel formulas are `[PHENOMENOLOGICAL]` or empirical. Forcing
+them into a descent would have manufactured derivations that do not exist. The
+book's own epistemic taxonomy already recognises this; the rule now matches it.
 
 Concretely:
 
-- Before writing a section, identify **which term in the master action it
-  descends from** and **which named bridge gets you there** (Bridge A,
-  Bridge B.a–B.e, Bridge C — see §7).
+- Before writing a section, identify **which term of the master action it
+  descends from and which named bridge gets you there** (Bridge A, Bridge
+  B.a–B.e, Bridge C — see §7) — *or* identify why no such descent exists and
+  tag it accordingly.
 - When you introduce a new equation, state in prose what was discarded to get it
   and why discarding it was legitimate. The recurring question every chapter must
   answer somewhere: **"What did we throw away to get here, and why were we
@@ -221,14 +232,25 @@ citation is the failure mode this rule exists to prevent. See
 
 - **Ch. 0 before Ch. 1.** Ch. 0 gives the full equation; Ch. 1 teaches the
   machinery that explains why it works. Deliberate.
-- **`f(φ)` is never dropped.** The action is never written without the `f(φ)`
-  placeholder — this is an honest acknowledgement of an open question, not a
-  simplification to clean up.
+- **The unknown sector `ℱ[…]` is never dropped.** The action is always written
+  with all three sectors — $S_{EH}$, $S_{SM}$, $S_{\text{unknown}}$ — or with
+  an explicit statement about $\mathcal{F}$. Writing $S_{EH} + S_{SM}$ alone is
+  a silent claim that the unknown sector is empty.
+- **Never write the unknown sector as $f(\phi)R$.** That form asserts the missing
+  physics is a scalar times the Ricci scalar, which nothing supports.
+  $\mathcal{F}[\ldots]$ is a placeholder for an unknown *sector*, not a
+  functional form. This supersedes earlier drafts that used `f(φ)`.
 - **Pauli exclusion is a theorem, not a postulate**, derived from fermion-field
   anticommutation in Ch. 0 and carried into Ch. 5. Do not reintroduce it as an
   axiom.
-- **The Born rule is Noether's theorem**, established in Ch. 3 via U(1) charge
-  conservation. Do not reintroduce it as independent.
+- **The Born rule remains a foundational probabilistic postulate of standard
+  quantum mechanics.** It is *not* derived in this book, and no design decision
+  may be reversed to make it look as though it were. What U(1) symmetry and
+  Noether's theorem *do* give (Ch. 3 §3.9.2) is a conserved current of
+  $|\psi|^2$, so that probability conservation follows from charge conservation
+  *once the Born postulate is adopted*. That arrow runs one way. Never write the
+  reverse — "the Born rule is Noether's theorem" is false, and it is the single
+  most common error in "everything is symmetry" treatments of QM.
 - **The periodic table is derived** term by term from Aufbau, Hund's rule, and
   the four quantum numbers in Ch. 5.
 - **Newton's law is presented as GR's weak-field limit.** Ch. 8 derives it; Ch.

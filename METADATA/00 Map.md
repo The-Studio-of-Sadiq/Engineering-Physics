@@ -26,9 +26,11 @@ This document is the **conceptual argument** of the repository: how the whole sy
 
 ## The Organizational Claim (Stated Once, Up Front)
 
-Every successful physical theory we have admits an action description. This is not proven necessary — it is an extraordinarily good empirical pattern. The amplitudes program and AdS/CFT both hint that the Lagrangian may be a convenient organizing language rather than the only possible one. Nevertheless: **if a Theory of Everything exists, we have overwhelming reason to expect it will appear in this form:**
+Most fundamental physical theories are naturally formulated in terms of an action, and this has proved to be an extraordinarily powerful organizing framework. Whether *every* fundamental theory must admit an action formulation is an open question — the amplitudes program and AdS/CFT both hint that the Lagrangian may be a convenient organizing language rather than the only possible one. Nevertheless: **if a Theory of Everything exists, we have overwhelming reason to expect it will appear in this form:**
 
-$$\boxed{S = \int d^4x\,\sqrt{-g} \left[ \frac{R}{16\pi G} + \mathcal{L}_{SM} + f(\phi_?, g_{\mu\nu}, \partial_\mu, \text{topology}) \right]}$$
+$$\boxed{S_{\text{eff}} = S_{EH} + S_{SM} + S_{\text{unknown}} = \int d^4x\,\sqrt{-g} \left[ \frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\!\left[g,\, \phi_{?},\, \text{new fields},\, \text{topology},\, \ldots\right] \right]}$$
+
+**Notation.** $\mathcal{F}[\ldots]$ is a *placeholder for an unknown sector*, not a specific functional form. It is deliberately **not** written as $f(\phi)R$: that form would assert the missing physics is a scalar times the Ricci scalar, which nothing supports. The canonical statement is Ch. 0 §0.10.
 
 |Term|What it captures|Status|
 |---|---|---|
@@ -216,7 +218,7 @@ This is the whole book in one diagram, with **every arrow tagged**. It is the sa
                     ── BRIDGE C ──
     control-volume integration · spatial discretisation
     lumping · linearisation
-    criterion:  L_element ≪ λ_field
+     criterion: domain-specific (L≪λ, Bi≪1, modal separation, mixing)
     bridge zone: transmission line, Euler–Bernoulli beam
                               ↓
         ┌─────────────────────┼─────────────────────┐
@@ -260,9 +262,13 @@ This is the whole book in one diagram, with **every arrow tagged**. It is the sa
 | $\hat\Pi$, $\hat\Pi$ | $\eta$ | Newton viscosity | Fluid momentum |
 | $\hat\sigma$, $\hat\sigma$ | $C$ | Hooke | Structural |
 
-One linear-response calculation, five operators. This is the chapter that makes the rest of the book possible, and it is a `[DERIVATION]` within each domain — *not* a claim that the five domains are physically the same thing.
+One linear-response framework, four dissipative coefficients and one static
+susceptibility, each with its own operators and closure. This is a
+`[STRUCTURAL CONNECTION]` across domains — *not* a claim that the five domains are
+physically the same thing, and not a claim that one calculation emits all five
+(Ch. 13 §13.0, §13.2.2).
 
-**2. The reconvergence at Layer 3 is a statement about representations, not about physics.** EEE, ME, CE and ChE do not share physics; they share an effort/flow pair and an R/C/L template. `P = e · f` in every domain because work is work. The unification is in the *mathematics of the lumped model*, and it is exactly as strong as — and exactly as weak as — the lumping assumption that produced it.
+**2. The reconvergence at Layer 3 is a statement about representations, not about physics.** EEE, ME, CE and ChE do not share physics; they share an effort/flow pair and an R/C/L template. `P = e · f` in every domain because work is work. The unification is in the *mathematics of the lumped model*, and it is exactly as strong as — and exactly as weak as — the lumping assumption that produced it. The effort/flow construction is moreover available for almost any conjugate variable pair, so its generality is a property of the representation rather than evidence of deep shared structure; and not every system is naturally effort/flow — distributed, multi-port, or strongly constrained systems are often better served by Hamiltonian or port-based descriptions (Ch. 17 §17.1.1).
 
 **3. The break points map backwards, and that is the point.** Every Layer-3 model has a documented failure regime and a documented destination:
 
@@ -362,7 +368,7 @@ $$\mathcal{L}_{SM} = \underbrace{-\frac{1}{4}F^a_{\mu\nu}F^{a\mu\nu}}_{\text{gau
 
 > **[DERIVATION]** Integrating $\partial_\mu j^\mu = 0$ over a finite spatial volume and applying the divergence theorem gives an integral charge-balance statement: the rate of charge accumulation inside any closed surface equals the net current crossing that surface.
 
-> **[APPROXIMATION]** Bridge C's lumped-node approximation ($L_{element} \ll \lambda_{field}$, defined in full in Bridge C below) shrinks that closed surface down to a single circuit node, discarding spatial variation inside it.
+> **[APPROXIMATION]** Bridge C's lumped-node approximation (the appropriate domain criterion — $L/\lambda\ll1$ for EM, $Bi\ll1$ for thermal, modal separation for structures, mixing time for reactors; defined in full in Bridge C below) shrinks that closed surface down to a single circuit node, discarding spatial variation inside it.
 
 > **[DERIVATION]** In steady state, with no charge accumulating at the node, the integral balance reduces algebraically to $\sum I_{node} = 0$ — Kirchhoff's current law.
 
@@ -509,7 +515,7 @@ $$i\hbar\frac{\partial\Psi}{\partial t} = \hat{H}\Psi = \left(-\frac{\hbar^2}{2m
 Key structures:
 
 - Superposition: not a strange axiom, but a consequence of linearity in the field equation that survived from Layer 0
-- Probability interpretation: $|\Psi|^2$ is the charge density smeared out by the field dynamics — Noether's theorem (charge conservation) forces this interpretation to be consistent
+- Probability current: U(1) symmetry and Noether's theorem give a conserved current of $|\Psi|^2$ `[DERIVATION]`. The step from *conserved density* to *probability* is the Born rule, which is a **postulate** of standard QM, not a Noether consequence. See Ch. 3 §3.9.2
 - Quantization of energy: not an axiom, but the result of imposing boundary conditions on the wavefunction (same reason a guitar string has discrete harmonics)
 
 ---
@@ -713,17 +719,19 @@ The **Green-Kubo formula** for any transport coefficient $L_{AB}$:
 
 $$L_{AB} = \frac{1}{Vk_BT}\int_0^\infty \langle \hat{A}(0)\hat{B}(t)\rangle_0 , dt$$
 
-This single formula, with different operators $\hat A$, $\hat B$, gives:
+This single *template*, with different operators $\hat A$, $\hat B$ and different closure assumptions, gives:
 
-|$\hat{A}$, $\hat{B}$|$L_{AB}$|Law|Equation|
-|---|---|---|---|
-|Current $\hat{J}$, $\hat{J}$|Electrical conductivity σ|Ohm|$\mathbf{J} = \sigma\mathbf{E}$|
-|Heat current $\hat{J}_Q$, $\hat{J}_Q$|Thermal conductivity κ|Fourier|$\mathbf{q} = -\kappa\nabla T$|
-|Particle current $\hat{J}_N$, $\hat{J}_N$|Diffusivity D|Fick|$\mathbf{J}_N = -D\nabla c$|
-|Momentum flux $\hat\Pi$, $\hat\Pi$|Viscosity η|Newton viscosity|$\tau = -\eta, dv/dy$|
-|Stress $\hat\sigma$, $\hat\sigma$|Elastic moduli|Hooke|$\sigma = C:\varepsilon$|
+|$\hat{A}$, $\hat{B}$|$L_{AB}$|Law|Equation|Extra input required|
+|---|---|---|---|---|
+|Current $\hat{J}$, $\hat{J}$|Electrical conductivity σ|Ohm|$\mathbf{J} = \sigma\mathbf{E}$|Drude / memory closure|
+|Heat current $\hat{J}_Q$, $\hat{J}_Q$|Thermal conductivity κ|Fourier|$\mathbf{q} = -\kappa\nabla T$|closure; Wiedemann–Franz needs elastic scattering|
+|Particle current $\hat{J}_N$, $\hat{J}_N$|Diffusivity D|Fick|$\mathbf{J}_N = -D\nabla c$|Einstein relation|
+|Momentum flux $\hat\Pi$, $\hat\Pi$|Viscosity η|Newton viscosity|$\tau = -\eta\,dv/dy$|transverse projection, $\tau_v$|
+|Stress $\hat\sigma$, $\hat\sigma$|Elastic moduli| Hooke|$\sigma = C:\varepsilon$|**free-energy second derivative** — a static susceptibility, not a transport coefficient|
 
-**The convergence chapter: every transport law in every branch is one formula applied to a different conserved quantity.** The coefficient in each law (σ, κ, D, η, C) is a time-integrated autocorrelation of the corresponding flux operator in the equilibrium quantum state. Ohm's law and Fourier's law are not analogies — they are the same computation.
+**The convergence chapter: all five laws instantiate one response-theory framework.** For the four dissipative transport coefficients (σ, κ, D, η), the coefficient is a time-integrated autocorrelation of the corresponding flux operator in the equilibrium quantum state, and each requires its own closure. The fifth, $C$, sits in the framework only as a zero-frequency nondissipative limit, not as a transport coefficient.
+
+**Precise scope of the claim.** Ohm's law and Fourier's law are *not* the same computation — they use different operators, different couplings, and Wiedemann–Franz requires an extra physical assumption (quasi-elastic scattering). What they share is a template. Ch. 13 §13.2.2 states exactly what "exact" does and does not attach to: the Kubo *relation* is exact given linear response; any particular closed form for a coefficient additionally requires the correct operator definitions, equilibrium state, order of limits, thermodynamic limit, boundary conditions, and separation of nondissipative/contact terms.
 
 **The role of scattering (Bridge A.1.6 paying off here):** If the current-current correlator never decays (perfect crystal, zero temperature, no disorder), the integral diverges → σ → ∞ → the material is a perfect conductor or superconductor. Ohm's law requires finite scattering. The irreversibility of $\mathbf{J}=\sigma\mathbf{E}$ comes from this decay — quantum decoherence injected by the environment.
 
@@ -914,14 +922,27 @@ Every coefficient L is traceable to a Layer-1 Kubo calculation. When these coeff
 
 **The operation:** Integrate the Layer-2 PDEs over **control volumes** (finite regions of space), discarding spatial variation _within_ each element. The PDE becomes an ODE or algebraic equation.
 
-**What you are assuming small:** $L_{element}/\lambda_{field}$, where $L_{element}$ is the physical size of a component and $\lambda_{field}$ is the shortest wavelength relevant in the problem (EM wavelength, acoustic wavelength, diffusion length, etc.).
+**What you are assuming small:** *the relevant within-element scale* — and this
+depends on the domain. There is no single lumping criterion for all of physics.
+For wave-carrying domains it is the shortest relevant wavelength; for diffusive
+domains it is a diffusion length and the criterion is time-dependent; for
+structural dynamics it is modal separation; for chemical reactors it is a mixing
+time. Treating $L_{element}\ll\lambda_{field}$ as *the* criterion is a
+wave-domain statement misapplied as a general one.
 
-|Domain|Lumping valid when|Typical limit|
-|---|---|---|
-|Electrical (RF circuits)|$L \ll \lambda_{EM}$|Valid below ~300 MHz for 10cm components|
-|Thermal|$L \ll$ diffusion length|Almost always valid for lumped masses|
-|Fluid|$L \ll$ acoustic wavelength|Valid for most pipe network problems|
-|Structural|$L \ll$ elastic wavelength|Valid for most quasi-static structures|
+|Domain|Lumping valid when|Relevant scale|Notes|
+|---|---|---|---|
+|Electrical (RF circuits)|$Lf/v_{em}\ll 1$|EM wavelength|Valid below ~300 MHz for 10 cm components; interconnect delay matters|
+|Thermal|$Bi = hL/\kappa \ll 1$|Diffusion length $\sqrt{\alpha t}$|**Time-dependent** — validity window in time, not a bandwidth|
+|Acoustic|$Lf/c_s \ll 1$|Sound wavelength|Also needs absorption layer thick vs $\lambda$; $c_s = 343$ m/s|
+|Fluid / hydraulic|$Lf/c_{water} \ll 1$|Acoustic wavelength|$c \approx 1480$ m/s; also fails on water hammer|
+|Structural|$Lf/v_P \ll 1$|Elastic stress-wave wavelength|Quasi-static limit; first bending/shear mode sets the edge ($L/\lambda \gtrsim 1/10$)|
+|Chemical (CSTR)|Mixing time $\ll$ reaction time|Residence time|Perfect-mixing assumption, not a spatial scale at all|
+
+`[APPROXIMATION]` — the criterion is a claim about the *input*, not just the
+component: a lumped model is valid near one frequency or timescale, and drops
+every spatial mode above the first. Full derivation and the three separate
+things lumping assumes: Ch. 16 §16.10.1, Ch. 17 §17.1.2.
 
 This is the operation referenced in §0.2 as link 4 of the KCL chain, and in §2.4 as the second stage of the KVL derivation.
 
@@ -1175,7 +1196,9 @@ S = ∫ √-g [R/16πG + L_SM + f(φ?,topology)]
 ╠══════════════ BRIDGE C ══════════════╗
 ║  Operation: integrate PDE over       ║
 ║  control volumes (lump in space)     ║
-║  Criterion: L_element ≪ λ_field      ║
+║  Criterion: domain-specific —         ║
+║  L≪λ (wave), Bi≪1 (diffusive),        ║
+║  modal separation, mixing time        ║
 ║  Bridge zone: transmission line,     ║
 ║               Euler-Bernoulli beam   ║
 ║  Discards: spatial variation within  ║

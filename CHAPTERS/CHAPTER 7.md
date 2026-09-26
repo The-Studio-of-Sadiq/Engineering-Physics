@@ -323,15 +323,30 @@ with $a(T) = a_0(T - T_c)$. Below $T_c$: $a < 0$, the minimum is at $|\Delta| = 
 
 |System|Order parameter|Symmetry broken|Energy scale|
 |---|---|---|---|
-|Higgs field (Ch. 0)|$H =|H|e^{i\phi}$|
-|BEC (Ch. 10)|$\Psi =|\Psi|e^{i\phi}$|
-|Superconductor|$\Delta =|\Delta|e^{i\phi}$|
-|Ferromagnet|$M =|M|e^{i\phi}$|
+|Higgs field (Ch. 0)|$H = \vert H\vert e^{i\phi}$|electroweak $SU(2)\times U(1)\to U(1)_{em}$|~100 GeV|
+|BEC (Ch. 10)|$\Psi = \vert\Psi\vert e^{i\phi}$|global $U(1)$|~nK|
+|Superconductor|$\Delta = \vert\Delta\vert e^{i\phi}$|global $U(1)$ (gauge-invariant; see below)|~meV|
+|Ferromagnet|$M$ — a real vector, **not** $\vert M\vert e^{i\phi}$|time-reversal, not $U(1)$|~eV|
 
-**Same equation, same physics, same topology.** The broken U(1) gives:
+**Same free-energy form for the first three — but not the same symmetry story.**
+The superconducting and BEC order parameters both carry a global $U(1)$ phase,
+so the free energy is identical in form. The ferromagnet does *not*: its order
+parameter is a real vector and it breaks time-reversal symmetry, not $U(1)$.
+Putting it in this table as $\vert M\vert e^{i\phi}$ was wrong and has been
+removed.
 
-- A Goldstone boson (the phason, or in SC: the phase $\phi$ becomes a dynamical field — but it is "eaten" by the photon, giving the photon a mass inside the SC — exactly the Higgs mechanism)
-- The photon mass inside the SC is what causes the Meissner effect
+**On the gauge case, precisely.** For a superconductor the broken $U(1)$ is
+*global*, and the condensate phase is a gauge-invariant physical observable, not a
+gauge artefact. Electromagnetic $U(1)$ is **not** physically broken — by
+Elitzur's theorem a local gauge symmetry cannot be spontaneously broken, because
+gauge-dependent expectation values are not gauge invariant. What happens is the
+**Anderson–Higgs mechanism**: the phase stiffness of the condensate supplies an
+effective mass to the electromagnetic field within the penetration depth,
+$\lambda_L^{-2} = \mu_0 n_s e^{*2}/m^{*}$, which is dynamically equivalent to the
+Higgs mechanism. So "the photon acquires a mass inside the superconductor" is a
+correct and useful statement; "U(1) is broken" is shorthand that needs the
+qualification above. The observable consequence is the Meissner effect — magnetic
+field excluded from the bulk, decaying over $\lambda_L$ (§7.7).
 
 ---
 
@@ -461,7 +476,7 @@ Five connections between the topology of Ch. 0 and the physics of this chapter:
 |θ-term in QCD|Axion electrodynamics in TI; $\theta = \pi$|§7.4.4|`[STRUCTURAL CONNECTION]` — same topological term, different field content|
 |Weyl fermion field $\psi_L$ in $\mathcal{L}_{SM}$|Weyl quasiparticle in TaAs, NbAs|§7.5.1|`[STRUCTURAL CONNECTION]` — same Dirac algebra, emergent spectrum|
 |ABJ chiral anomaly|Negative magnetoresistance in Weyl metals|§7.5.4|`[DERIVATION]` — the anomaly is universal and the calculation is the same|
-|Higgs mechanism: U(1) → photon mass|Meissner: U(1) breaking → photon mass inside SC|§7.7.1|`[DERIVATION]` — Anderson-Higgs, same field theory|
+|Higgs mechanism: local gauge $U(1)$ → photon mass|Meissner: global $U(1)$ condensate + Anderson–Higgs → photon mass in SC|§7.7.1|`[STRUCTURAL CONNECTION]` — same field-theoretic mechanism, different symmetry status (§7.6.3)|
 |Anomaly cancellation in SM requires specific particle content|Nielsen-Ninomiya: Weyl nodes come in equal and opposite pairs|§7.5.2|`[DERIVATION]` — same theorem, applied to the Brillouin zone|
 
 ### 7.10.1 — What this thread is, and what it is not
@@ -535,7 +550,7 @@ Layer 1 closes with the topological perspective:
 |TI surface states|$H = \hbar v_F(\hat z\times\boldsymbol{\sigma})\cdot\mathbf{k}$|Symmetry ($\mathcal{T}$)|
 |Weyl node|$H = \pm\hbar v_F\boldsymbol{\sigma}\cdot\mathbf{k}$; $C = \pm 1$|Topological (Berry monopole)|
 |BCS gap|$\Delta = 2\hbar\omega_D e^{-1/N(0)V}$|Symmetry breaking|
-|Meissner|$B = B_0 e^{-x/\lambda_L}$; $B_{bulk} = 0$|Broken U(1) + Higgs|
+|Meissner|$B = B_0 e^{-x/\lambda_L}$; $B_{bulk} = 0$|Anderson–Higgs / phase stiffness|
 |Flux quant.|$\Phi = n h/2e$|Phase winding (integer)|
 |Josephson|$I = I_c\sin\Delta\phi$; $f = 2eV/h$|Phase coherence|
 

@@ -60,7 +60,7 @@ The descent is not a single vertical stack. It branches, runs in parallel, and r
                                │
                     ── BRIDGE C ──
         control-volume integration, spatial discretisation,
-        lumping, linearisation      (criterion: L_element ≪ λ_field)
+         lumping, linearisation   (criterion: domain-specific — L≪λ, Bi≪1, modal separation)
                                ↓
         ┌──────────────────────┼──────────────────────┐
         ↓                      ↓                      ↓
@@ -80,10 +80,10 @@ The descent is not a single vertical stack. It branches, runs in parallel, and r
 
 Two features of this diagram carry the argument:
 
-- **The reconvergence is real.** Five apparently independent fundamental threads — gauge structure, gravity, quantum statistics, scattering, and field topology — all discharge into the *same* small set of classical continuum equations. The Generalized Transport Law (Ch. 13) is where this is stated most sharply: Ohm, Fourier, Fick, Newton viscosity, and Hooke are one Kubo calculation with different operators.
-- **The four engineering branches reconverge too.** They are not four subjects that happen to share methods. They are four choices of effort/flow pair, instantiated on one R/C/L template. Chapters 18–21 are the proof of concept for everything Chapters 0–17 set up.
+- **The reconvergence is real.** Five apparently independent fundamental threads — gauge structure, gravity, quantum statistics, scattering, and field topology — all discharge into the *same* small set of classical continuum equations. The Generalized Transport Law (Ch. 13) is where this is stated most sharply: Ohm, Fourier, Fick and Newton viscosity are instances of one linear-response framework with different operators and closures, while Hooke's law enters only as a static limit. This is a shared *framework*, not one calculation producing five results.
+- **The four engineering branches reconverge too.** They are not four subjects that happen to share methods. They are four choices of effort/flow pair, instantiated on one R/C/L template — a statement about representations rather than about shared physics, and strongest exactly where the lumping criterion holds. Chapters 18–21 are the proof of concept for everything Chapters 0–17 set up.
 
-The full tagged version of this graph — every arrow labelled, every discarded term named — is in [`00 Map.md`](METADATA/00%20Map.md).
+The full tagged version of this graph — every arrow labelled, every discarded term named — is in the [Master Map](METADATA/00%20Map.md).
 
 ---
 
@@ -91,7 +91,7 @@ The full tagged version of this graph — every arrow labelled, every discarded 
 
 | | Name | What happens |
 |---|---|---|
-| **L₀** | Framework | $S = \int d^4x\,\sqrt{-g}\,[\,R/16\pi G + \mathcal{L}_{SM} + f(\phi_?, \ldots)\,]$ — the best available framework, with an explicit placeholder for what we do not know |
+| **L₀** | Framework | $S_{\text{eff}} = S_{EH} + S_{SM} + S_{\text{unknown}}$, with $S_{\text{unknown}} \equiv \int d^4x\,\sqrt{-g}\,\mathcal{F}[\ldots]$ — the best available framework, with an explicit placeholder for what we do not know. Canonical form: Ch. 0 §0.10 |
 | **A** | Bridge A | Isolate matter fields; take $E \ll mc^2$, $v \ll c$. Bridge zone: the Dirac equation and the Foldy–Wouthuysen expansion |
 | **L₁** | Quantum / atomic | Wavefunctions, spin, exchange, atoms, molecules, bands, nuclei, quantum scattering, topology |
 | **B** | Bridge B | Four simultaneous descents: $\hbar\to0$ (classical mechanics), $N\to\infty$ (statistical mechanics), classical $U(1)$ (Maxwell), weak-field metric (Newton). Plus Kubo linear response (transport) |
@@ -194,8 +194,16 @@ The goal is to make **model selection** part of learning physics and engineering
 **Sequential** — the intended descent:
 
 ```text
-00 Map  →  Ch 0  →  Ch 1  →  …  →  Ch 21  →  Epilogue
+Master Map  →  Chapter 0  →  Chapter 1  →  …  →  Chapter 21  →  Epilogue
 ```
+
+> [!note] Two different "0" documents
+> The **Master Map** (`METADATA/00 Map.md`) is navigation and provenance — the
+> dependency graph, tagged arrows, and break points. It is not part of the
+> conceptual sequence. **Chapter 0** (`CHAPTERS/CHAPTER 0.md`) is the first
+> chapter of the descent, where the action and the Mexican hat are introduced.
+> They are numbered in different systems and are easy to confuse; "Chapter 0"
+> always means the chapter.
 
 **Reverse** — start from an equation you use at work and walk it backwards to its origin. This is the more useful direction for a working engineer:
 

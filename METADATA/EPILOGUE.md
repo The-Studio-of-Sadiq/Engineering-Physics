@@ -20,7 +20,7 @@
 
 Twenty-one chapters ago, the book opened with this:
 
-$$S = \int d^4x\,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\!\left(\phi_{?},\,g_{\mu\nu},\,\partial_\mu,\,\text{topology, anomalies}\right)\right]$$
+$$S_{\text{eff}} = S_{EH} + S_{SM} + S_{\text{unknown}} = \int d^4x\,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\!\left[g,\, \phi_{?},\, \text{new fields},\, \text{topology},\, \ldots\right]\right]$$
 
 Everything in this book — from hydrogen wavefunctions to Navier-Stokes to PID
 controllers to NTU heat exchanger methods — was derived from the first two terms.

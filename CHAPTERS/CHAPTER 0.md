@@ -444,13 +444,40 @@ Topology is already inside everyday condensed matter devices. The Berry phase (a
 
 ---
 
-## 0.10 — The Honest Placeholder: $\mathcal{F}[\text{topology, anomalies}, \phi_?]$
+## 0.10 — The Honest Placeholder: $S_{\text{unknown}}$
+
+### The Canonical Notation
+
+This book uses **one** schematic form of the action, stated here once and used
+everywhere else:
+
+$$S_{\text{eff}} = S_{EH} + S_{SM} + S_{\text{unknown}}$$
+
+$$S_{EH} \equiv \int d^4x\,\sqrt{-g}\,\frac{R}{16\pi G}, \qquad S_{SM} \equiv \int d^4x\,\sqrt{-g}\,\mathcal{L}_{SM}, \qquad \boxed{S_{\text{unknown}} \equiv \int d^4x\,\sqrt{-g}\,\mathcal{F}\!\left[g,\, \phi_{?},\, \text{new fields},\, \text{topology},\, \text{anomalies},\, \ldots\right]}$$
+
+**Why this form and not $f(\phi)R$.** Earlier drafts of this material wrote the
+unknown sector as $f(\phi)\,R$ — a *nonminimal coupling* multiplying the Ricci
+scalar. That was a mistake, and a consequential one: it silently asserted that
+whatever physics is missing must be a scalar function times gravity. Nothing
+supports that. The missing sector could be fermions, gauge fields, topological
+terms, curvature-squared corrections, modified dynamics, or something with no
+precedent. Writing $\mathcal{F}[\ldots]$ as a **placeholder for an unknown
+sector**, rather than a specific functional form, keeps the claim exactly as
+strong as the evidence — no stronger.
+
+So the single expanded form, used in the README, the Map, and the Epilogue, is:
+
+$$\boxed{S_{\text{eff}} = \int d^4x\,\sqrt{-g}\left[\frac{R}{16\pi G} + \mathcal{L}_{SM} + \mathcal{F}\!\left[g,\, \phi_{?},\, \text{new fields},\, \text{topology},\, \ldots\right]\right]}$$
+
+**Notation discipline.** $\mathcal{F}[g, \ldots]$ with square brackets means
+"a yet-unspecified functional of these inputs." Write it as a functional, never
+as a specific product, and never drop it. The master action is *always* written
+with all three sectors present; abbreviating to $S_{EH} + S_{SM}$ without a
+statement about $\mathcal{F}$ is a silent claim that the unknown sector is empty.
 
 ### What This Term Is
 
-$$\mathcal{F}[\text{topology},,\text{anomalies},,\phi_?]$$
-
-This is **explicitly unknown**. It is not a gap we are filling lazily — it is a gap that represents the genuine frontier of human knowledge. We include it in the action because the action principle is the framework within which any future physics will almost certainly be expressed.
+$\mathcal{F}$ is **explicitly unknown**. It is not a gap we are filling lazily — it is a gap that represents the genuine frontier of human knowledge. We include it in the action because the action principle is the framework within which any future physics will almost certainly be expressed.
 
 ### What We Know About $\mathcal{F}$, Even Without Knowing $\mathcal{F}$
 

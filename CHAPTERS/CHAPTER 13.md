@@ -1,6 +1,15 @@
 # Bridge B.e — The Kubo Formula and the Generalized Transport Law
 
-### Five Transport Laws from One Quantum Mechanical Calculation
+### Five Constitutive Laws Through the Kubo / Linear-Response Framework
+
+> [!note] Why not "one calculation"?
+> An earlier title claimed *Five Transport Laws from One Quantum Mechanical Calculation*.
+> That is false as stated, and it is false in a way the chapter itself
+> demonstrates. The five laws share one **response-theory structure**, but
+> producing each one requires a different generalized force, a different current
+> operator, a different constitutive closure, and — for $C$ — a different
+> limiting procedure entirely (§13.9.2). What this chapter delivers is a
+> *framework* in which all five sit, not a single calculation that emits all five.
 
 ---
 
@@ -18,11 +27,27 @@ $$\text{flux} = -L \cdot \nabla\phi$$
 
 The claim was that Ohm's law, Fourier's law, Fick's law, Newton's law of viscosity, and Hooke's law are the same formula with different labels.
 
-**This chapter delivers the derivation.** All five response coefficients ($\sigma$, $\kappa$, $D$, $\eta$, $C$) follow from one formula — the **Green-Kubo relation** — applied to five different current operators. The only thing that changes is which physical current you put in.
+**This chapter delivers the framework.** All five response coefficients ($\sigma$, $\kappa$, $D$, $\eta$, $C$) are *expressible* through the **Green–Kubo relation**, but each one requires its own generalized force, its own current operator, its own closure, and — for $C$ — a different limiting procedure. What is shared is the response structure, not the calculation:
 
-`[DERIVATION]` — with one boundary condition that has to be stated, because
-"delivers the proof" is doing more work than it should. Three assumptions carry
-the whole chapter:
+| Law | Generalized force $\hat A$ | Current operator $\hat B$ | Extra step needed |
+|---|---|---|---|
+| Ohm | $\hat{\mathbf{E}}$ | $\hat{\mathbf{J}}$ (charge) | Drude/memory closure |
+| Fourier | $\hat{\mathbf{T}}$ or $-\nabla T$ | $\hat{\mathbf{J}}_Q$ | same closure; Wiedemann–Franz adds an assumption |
+| Fick | $\nabla\mu$ | $\hat{\mathbf{J}}^N$ | Einstein relation |
+| Newton viscosity | $\partial_j u_i$ | $\hat\sigma_{ij}$ (transverse) | transverse projection |
+| Hooke | $\varepsilon_{kl}$ | $\delta\hat\sigma_{ij}$ | **free-energy second derivative** — not a transport coefficient at all |
+
+`[STRUCTURAL CONNECTION]` — the unification is real and it is the book's
+organizing insight, but it is a shared *framework* claim, not a claim that one
+substitution yields five laws. The honest formulation: **linear-response theory
+gives a single template for dissipative response, and these five laws are
+instances of that template applied to five different observables — with the
+fifth, elasticity, only partially an instance.**
+
+`[DERIVATION]` — *within* that framework, the Kubo relation itself is derived
+rather than assumed, but it carries boundary conditions that must be stated,
+because "delivers the proof" is doing more work than it should. Three assumptions
+carry the whole chapter:
 
 1. **Linear response.** The system is perturbed weakly, $\hat A = \hat A_0 + \delta\hat A$
    with $|\delta\hat A| \ll |\hat A_0|$, and the response is taken to first order
@@ -148,7 +173,16 @@ The transport coefficient $L_{BA}$ — which tells you how much of current $B$ f
 
 **2. The integral must converge for a finite transport coefficient to exist.** If the current-current correlator decays to zero at long times (as it does in any real material with scattering), $L_{BA}$ is finite. If the correlator never decays (perfect crystal at $T = 0$ with no defects), $L_{BA}\to\infty$ — the material is a perfect conductor. **Ohm's law requires scattering.**
 
-**3. The formula is exact.** No approximations have been made beyond the linear response assumption (weak perturbation). It is valid for any quantum system, any temperature, any material.
+**3. The framework is exact; a given formula for a given coefficient is not automatically so.** The derivation above made exactly one approximation — linear response. Within that, the Kubo relation is an identity. But "exact" attaches to the *relation*, not to any particular closed form for $\sigma$, $\kappa$, $D$, or $\eta$. Getting a usable expression for a specific coefficient additionally requires:
+
+- choosing the correct observable–force pair $\hat A$, $\hat B$ and defining the current operator consistently (§13.4.1 shows this is where factors of $e$ and $V$ come from);
+- an equilibrium state and a well-defined order of limits — $\omega\to 0$, $V\to\infty$, and $t\to\infty$ **do not always commute**, and dc conductivity is a case where the order matters;
+- the thermodynamic limit, or an explicit finite-size treatment;
+- boundary conditions, and for charged systems the treatment of **diamagnetic and contact terms**, which contribute a nondissipative ($\delta$-function in $\omega$) piece that must be separated from the dissipative part;
+- handling **conservation laws** — a conserved current has a Drude weight, and a nondecaying correlator is a statement about a conserved quantity, not a divergence;
+- deciding whether the coefficient wanted is dissipative or nondissipative, since only the dissipative part is positive and only that part is a "transport coefficient" in the Green–Kubo sense.
+
+So the defensible statement is: **the Kubo linear-response formalism is exact within its domain of assumptions; specific transport-coefficient formulas require the appropriate equilibrium state, operator definitions, limiting procedure, and treatment of nondissipative/contact contributions.** "Valid for any quantum system, any temperature, any material" was an overclaim and has been removed.
 
 ---
 
@@ -194,43 +228,95 @@ The **Fano factor** $F = S_I/2eI$ measures the deviation from Poissonian statist
 
 ### 13.4.1 — The Kubo Conductivity
 
-The electrical conductivity tensor:
+**Operator convention first, because the factors of $e$ and $V$ depend on it.** Two
+different objects are both called "current" in the literature, and conflating them
+is the usual source of a Drude derivation that loses an $e^2$:
+
+| Symbol | Object | Units | Definition |
+|---|---|---|---|
+| $\hat{\mathbf{J}}$ | **total** charge current | C·m/s | $\hat{\mathbf{J}} = \sum_k \mathbf{j}_k$ |
+| $\hat{\mathbf{j}}$ | **current density** | A/m² | $\hat{\mathbf{j}} = \hat{\mathbf{J}}/V$ |
+
+For a free electron in band state $k$, with velocity $\mathbf{v}_k = \hbar\mathbf{k}/m_e$ and
+charge $-e$, the single-particle current is
+
+$$\mathbf{j}_k = -e\,\mathbf{v}_k = -\frac{e\hbar}{m_e}\,\mathbf{k}$$
+
+so the total current operator is
+
+$$\hat{\mathbf{J}} = -\frac{e\hbar}{m_e}\sum_k \mathbf{k}\,\hat c_k^\dagger\hat c_k = -\frac{e}{m_e}\hat{\mathbf{P}}$$
+
+with $\hat{\mathbf{P}} = \sum_k \hbar\mathbf{k}\,\hat c_k^\dagger\hat c_k$ the total
+momentum operator. **Note the sign** — the electron charge is $-e$ with $e>0$, and it
+survives into the correlator as a positive $e^2$.
+
+The conductivity **tensor** follows from the full retarded response. Writing the
+current–current correlator in spectral (imaginary-time) form, with
+$\beta = 1/k_BT$:
 
 $$\sigma_{\alpha\beta}(\omega) = \frac{1}{V}\int_0^\infty dt\,e^{i\omega t}\int_0^\beta d\lambda\,\langle\hat J_\alpha(-i\hbar\lambda)\hat J_\beta(t)\rangle_0$$
 
-where $\hat{\mathbf{J}}$ is the charge current density operator:
+Note the $1/V$: the prefactor converts a **total** current into a current **density**.
+That single factor is what keeps the conductivity's units at $(\text{S/m})$.
 
-$$\hat{\mathbf{J}} = \frac{e\hbar}{m}\sum_k\mathbf{k}\,\hat c_k^\dagger\hat c_k$$
+For an isotropic system in the DC limit ($\omega\to 0$), the standard
+Green–Kubo reduction drops the $\lambda$ integral (the $\omega=0$ correlator is
+$\lambda$-independent) and contracts the tensor with $\frac{1}{3}\delta_{\alpha\beta}$:
 
-summing over all occupied single-particle states.
+$$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty \langle\hat{\mathbf{J}}(0)\cdot\hat{\mathbf{J}}(t)\rangle_0\,dt$$
 
-For an isotropic system in the DC limit ($\omega\to 0$):
-
-$$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty\langle\hat{\mathbf{J}}(0)\cdot\hat{\mathbf{J}}(t)\rangle_0\,dt$$
+The $\frac{1}{3}$ is the **isotropic average** $\langle k_\alpha k_\beta\rangle \to \frac{1}{3}k^2\delta_{\alpha\beta}$ — it is required because a conductor has no preferred direction. It is *not* a fudge factor, and the next step shows exactly what it does.
 
 ### 13.4.2 — The Drude Result from Kubo
 
-In a metal with an effective relaxation time $\tau$ (from electron-phonon or electron-impurity scattering, Ch. 6 §6.7.3), the current-current correlator decays exponentially:
+In a metal with an effective relaxation time $\tau$ (from electron–phonon or
+electron–impurity scattering, Ch. 6 §6.7.3), the current–current correlator decays
+exponentially. Evaluating $\langle\hat J_\alpha\hat J_\beta\rangle_0$ at $t=0$ from
+the operator definition above:
 
-$$\langle\hat J_\alpha(0)\hat J_\beta(t)\rangle_0 = \frac{n_e^2k_BT}{m}\delta_{\alpha\beta}\,e^{-t/\tau}$$
+$$\langle\hat J_\alpha(0)\hat J_\beta(0)\rangle_0 = \frac{e^2}{m_e^2}\sum_{k,k'}\hbar^2 k_\alpha k_\beta\,\langle\hat c_k^\dagger\hat c_k\hat c_{k'}^\dagger\hat c_{k'}\rangle_0 = \frac{e^2\hbar^2}{m_e^2}\sum_k k_\alpha k_\beta\,\big(\epsilon_k - \mu\big)$$
 
-(The prefactor follows from the equipartition theorem for the current in a free electron gas, Ch. 10 §10.7.2.)
+using $\langle\hat n_k\hat n_{k'}\rangle_0 = \delta_{kk'}(\epsilon_k-\mu)$ from Fermi–Dirac
+statistics, and $\hbar^2 k^2/2m_e = \epsilon_k$. The isotropic sum is then
+$\sum_k k_\alpha k_\beta(\epsilon_k-\mu) \to \frac{V m_e k_BT}{3\hbar^2}\delta_{\alpha\beta}$
+by the density-of-states counting with the equipartition factor $k_BT$, giving
 
-Substituting into the Kubo formula:
+$$\langle\hat J_\alpha(0)\hat J_\beta(0)\rangle_0 = \frac{n_e e^2 V k_BT}{m_e}\,\delta_{\alpha\beta}$$
 
-$$\sigma_{DC} = \frac{1}{3Vk_BT}\cdot\frac{Vn_e^2k_BT}{m}\int_0^\infty e^{-t/\tau}dt = \frac{n_e^2\tau}{m}\cdot\frac{1}{3}\times 3 = \frac{n_e^2\tau}{m_e}$$
+with $n_e$ the **number density** ($1/\text{m}^3$), so $n_eV$ is the electron count.
+Dimensions check: $[e^2 k_BT/m_e] = \text{C}^2\!\cdot\!\text{J}/\text{kg} = \text{C}^2\text{m}^2/\text{s}^2 = (\text{C·m/s})^2$, which is
+current squared — correct for a correlator of two total currents. Attach the
+relaxation factor $e^{-t/\tau}$:
+
+$$\langle\hat J_\alpha(0)\hat J_\beta(t)\rangle_0 = \frac{n_e e^2 V k_BT}{m_e}\,\delta_{\alpha\beta}\,e^{-t/\tau}$$
+
+Substituting into the Kubo formula, and tracking the $1/3$ explicitly — the
+$\delta_{\alpha\beta}$ contraction $\mathbf{J}\cdot\mathbf{J} = \sum_\alpha\langle J_\alpha J_\alpha\rangle$
+supplies a factor of 3 that exactly cancels the isotropic $\frac{1}{3}$:
+
+$$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty \frac{n_e e^2 Vk_BT}{m_e}\,\underbrace{3}_{\delta_{\alpha\beta}\text{ contraction}}\,\underbrace{e^{-t/\tau}dt}_{\tau} = \frac{1}{3Vk_BT}\cdot\frac{3n_e e^2 Vk_BT\tau}{m_e}$$
 
 $$\boxed{\sigma_{DC} = \frac{n_e e^2\tau}{m_e}}$$
 
-This is the **Drude formula** — derived from quantum mechanics via the Kubo formula, not from a classical billiard-ball model. The mean free path is $\ell = v_F\tau$, and the resistivity:
+The $V$ and $k_BT$ cancel between the correlator and the prefactor, the $1/3$ and 3
+cancel, and what survives is $n_e e^2\tau/m_e$ — the **Drude formula**, with the $e^2$
+present because the current is *charge* current, $n_e$ present because it is a
+density of carriers, and $\tau$ because it is the integral of the decay. It is
+derived here from quantum statistics, not from a classical billiard-ball model. The
+mean free path is $\ell = v_F\tau$, and the resistivity:
 
 $$\rho = \frac{1}{\sigma} = \frac{m_e}{n_e e^2\tau} = \frac{m_e v_F}{n_e e^2\ell}$$
 
-**Frequency-dependent conductivity** (from the full Kubo formula):
+**Frequency-dependent conductivity** (from the full Kubo formula, with the $e^{i\omega t}$ weight):
 
-$$\sigma(\omega) = \frac{\sigma_0}{1 - i\omega\tau}, \qquad \sigma_0 = \frac{n_ee^2\tau}{m_e}$$
+$$\sigma(\omega) = \frac{n_ee^2\tau}{m_e}\cdot\frac{1}{1 - i\omega\tau}, \qquad \sigma_0 = \frac{n_e e^2\tau}{m_e}$$
 
 At $\omega\tau \ll 1$: purely real, Ohmic. At $\omega\tau \gg 1$: purely imaginary, reactive. The crossover at $\omega = 1/\tau \sim 10^{13}$–$10^{14}$ Hz (infrared) marks where metals transition from good reflectors to transparent.
+
+> [!warning] What this derivation assumed
+> The exponential form $e^{-t/\tau}$ is **not** derived here — it is the Drude closure, a `[PHENOMENOLOGICAL]` modelling assumption that relaxation is a single exponential (a memory kernel with one time constant). Kubo gives the *exact* relation between the correlator and the response; it does not tell you the correlator's shape. Replacing the exponential with the true many-body correlator yields the full memory function, and $\sigma(\omega)$ acquires the frequency dependence that plain Drude misses (electron–electron scattering, vertex corrections, band curvature).
+>
+> This is the honest shape of the result: **the framework is exact, the closure is a model.**
 
 ### 13.4.3 — Ohm's Law as an Emergent, Not Fundamental, Law
 
@@ -480,7 +566,7 @@ $ZT > 1$ is the threshold for useful thermoelectric devices. Best materials (Bi�
 
 ## 13.10 — The Generalized Transport Law: The Complete Table
 
-All five transport laws, now with their Kubo derivations:
+The five constitutive laws, each in its Green–Kubo form. Read the table as *five instances of one template*, not five outputs of one calculation — and note that $C$ is a static susceptibility, not a transport coefficient (§13.9.2):
 
 $$\boxed{\mathbf{J}_X = -L_{XX}\nabla\phi_X}$$
 
