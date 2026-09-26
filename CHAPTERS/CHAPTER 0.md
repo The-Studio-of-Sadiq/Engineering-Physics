@@ -10,7 +10,7 @@
 
 ## 0.0 — The Full Action
 
-Every physical process ever observed in a laboratory is a consequence of the following action being stationary under variation:
+“The best-established fundamental theories used in this book can be organized into an action principle combining general relativity, the Standard Model, and an explicitly unresolved sector.”
 
 $$\boxed{ S = \int d^4x\,\sqrt{-g}\,\Biggl[ \underbrace{\frac{R}{16\pi G}}_{\text{§0.3}} + \underbrace{-\frac{1}{4}B_{\mu\nu}B^{\mu\nu} -\frac{1}{4}W^{a}_{\mu\nu}W^{a\mu\nu} -\frac{1}{4}G^{a}_{\mu\nu}G^{a\mu\nu}}_{\text{§0.4 — gauge forces}} + \underbrace{i\bar{\psi}_f\gamma^\mu D_\mu \psi_f}_{\text{§0.5 — matter}} + \underbrace{|D_\mu H|^2 - V(H)}_{\text{§0.7 — Higgs}} + \underbrace{Y_{ij}^f\,\bar{\psi}_i H \psi_j + \text{h.c.}}_{\text{§0.8 — Yukawa}} + \underbrace{\frac{\theta\,g_3^2}{32\pi^2}G^{a}_{\mu\nu}\tilde{G}^{a\mu\nu}}_{\text{§0.9 — topology}} + \underbrace{\mathcal{F}\bigl[\text{topology, anomalies, } \phi_{?}\bigr]}_{\text{§0.10 — placeholder}} \Biggr] }$$
 
@@ -19,6 +19,8 @@ The symmetry group of everything except gravity in this action is:
 $$G_{SM} = \text{SU}(3)_C \times \text{SU}(2)_L \times \text{U}(1)_Y$$
 
 and the symmetry of the geometry is **diffeomorphism invariance** — the action is the same in any coordinate system.
+
+From this point through the relativistic action discussion, c=ℏ=1 unless SI units are explicitly restored.
 
 The subscripts on each term tell you which section explains it. The rest of this chapter unpacks every symbol.
 
