@@ -160,8 +160,13 @@ Now the loading. The scope presents 1 MΩ in parallel with the 2.2 kΩ:
 $$R_{eq} = \frac{2.2\times 10^3 \times 10^6}{2.2\times 10^3 + 10^6} = 2.195\ \text{k}\Omega$$
 
 A 0.2% change. Negligible — *because* 1 MΩ ≫ 2.2 kΩ. Swap in a 50 Ω scope input
-and $R_{eq} = 49.5\ \Omega$, giving $f_{-3\text{dB}} = 1.45$ MHz and a badly
-distorted square wave. **The same design is correct or useless depending on a
+and $R_{eq} = \frac{2.2\times 10^3 \times 50}{2.2\times 10^3 + 50} = 48.89\ \Omega$.
+The source now sees a ~45:1 divider (2.2 kΩ into 50 Ω), so the signal reaching the
+scope is attenuated ~45-fold, and the time constant collapses from 22 µs to
+$48.89\times 10\times 10^{-9} = 0.49\ \mu$s, pushing
+$f_{-3\text{dB}} = \frac{1}{2\pi \times 48.89 \times 10\times 10^{-9}} = 325$ kHz
+— 45$\times$ *higher* than the designed corner. The design is no longer the
+circuit that was analysed. **The same design is correct or useless depending on a
 load the circuit theory never mentions**, because the load is outside the
 lumped element and only enters as a boundary condition.
 
@@ -181,11 +186,15 @@ about the circuit, it is a statement about the circuit *and its surroundings*.
 | $R \gg 0$ | Superconductors, ideal conductors | $R=0$ gives a genuinely different topology (flux quantisation, Ch. 7 §7.8) |
 | Frequency-independent $R$ | Skin effect, $f > R_{skin}$ | $Z(\omega)$, complex permittivity |
 
-A worked confirmation of the first row: a 10 cm trace has
-$\lambda/4 \approx 1.5$ cm at 500 MHz, so the lumping criterion is already
-violated in ordinary FR-4 at ordinary signal rates. The "just wires" model is
-an approximation with a hard frequency ceiling, and that ceiling is the reason
-signal-integrity engineering exists as a discipline.
+A worked confirmation of the first row: on FR-4 ($\epsilon_r \approx 4$, effective
+permittivity somewhat lower on microstrip, so $\epsilon_{eff}\approx 3$–3.5) a trace
+on 500 MHz has a guided wavelength of only
+$\lambda = c/(f\sqrt{\epsilon_{eff}}) \approx 0.32$–0.35 m, so
+$\lambda/4 \approx 8$–9 cm. A 10 cm trace therefore exceeds a quarter wavelength —
+$L/\lambda \approx 0.3$ — and the lumping criterion is already violated in ordinary
+FR-4 at ordinary signal rates. The "just wires" model is an approximation with a
+hard frequency ceiling, and that ceiling is the reason signal-integrity engineering
+exists as a discipline.
 
 **What this example demonstrates.** Three of the four steps — integrate,
 apply the divergence theorem, identify $L$ and $C$ — are exact. The entire

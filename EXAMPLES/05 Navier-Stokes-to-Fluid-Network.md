@@ -174,20 +174,30 @@ the 30 m mark to a tank at the 10 m mark. Find the flow rate.
 
 **Iterate on $Re$ because $f$ depends on it.** Guess $v = 1$ m/s:
 $Re = vD/\nu = 1\times 0.04/10^{-6} = 4\times 10^4$ (turbulent).
-$\varepsilon/D = 0.000045/0.04 = 1.125\times 10^{-3}$; Colebrook gives $f \approx 0.0216$.
+$\varepsilon/D = 0.000045/0.04 = 1.125\times 10^{-3}$; Colebrook gives $f \approx 0.0251$.
 
-$$h_f = f\frac{L}{D}\frac{v^2}{2g} = 0.0216\times\frac{60}{0.04}\times\frac{1}{19.62} = 32.4\times 0.051 = 1.65\ \text{m}$$
+$$h_f = f\frac{L}{D}\frac{v^2}{2g} = 0.0251\times\frac{60}{0.04}\times\frac{1}{19.62} = 37.7\times 0.051 = 1.92\ \text{m}$$
 
 That is far below the 20 m available, so the guess was too low. Try $v = 3$ m/s:
-$Re = 1.2\times 10^5$, $f \approx 0.0187$,
-$$h_f = 0.0187\times 1500\times\frac{9}{19.62} = 28.1\times 0.459 = 12.9\ \text{m}$$
+$Re = 1.2\times 10^5$, $f \approx 0.0223$,
+$$h_f = 0.0223\times 1500\times\frac{9}{19.62} = 33.4\times 0.459 = 15.3\ \text{m}$$
 
-Still below 20. Try $v = 3.7$ m/s: $Re = 1.48\times 10^5$, $f \approx 0.0183$,
-$$h_f = 0.0183\times 1500\times\frac{13.69}{19.62} = 27.5\times 0.698 = 19.2\ \text{m}$$
+Still below 20. Try $v = 3.45$ m/s: $Re = 1.38\times 10^5$, $f \approx 0.0220$,
+$$h_f = 0.0220\times 1500\times\frac{11.90}{19.62} = 33.0\times 0.607 = 20.0\ \text{m}$$
 
-Close. $v \approx 3.8$ m/s gives $h_f \approx 20.4$ m. **Converged: $v \approx 3.76$ m/s.**
+**Converged: $v \approx 3.45$ m/s**, at $Re \approx 1.38\times 10^5$ with $f \approx 0.0220$.
 
-$$Q = vA = 3.76\times\frac{\pi(0.04)^2}{4} = 3.76\times 1.257\times 10^{-3} = 4.72\times 10^{-3}\ \text{m}^3/\text{s} \approx 4.7\ \text{L/s}$$
+$$Q = vA = 3.45\times\frac{\pi(0.04)^2}{4} = 3.45\times 1.257\times 10^{-3} = 4.33\times 10^{-3}\ \text{m}^3/\text{s} \approx 4.33\ \text{L/s}$$
+
+**A caution about the friction factor.** It is worth being explicit about why the
+answer is sensitive to $f$, because the arithmetic is easy to get wrong in the
+direction that flatters the result. Colebrook at this roughness
+($\varepsilon/D = 1.125\times 10^{-3}$) returns $f \approx 0.022$ across the whole
+range $Re = 10^5$–$10^{5.5}$, and using a value near $0.018$ — as a Moody-chart
+eyeball or a smooth-pipe habit might suggest — understates the loss by roughly 20%
+and inflates the flow by about 10%. The converged $f$ is only weakly dependent on
+$Re$ here precisely *because* the relative roughness dominates at these Reynolds
+numbers, which is exactly the regime the Colebrook form is built to handle.
 
 **The design finding.** Head loss scales as $v^2$, so for a fixed pipe the
 available head is consumed as the *square root* of the flow rate: $Q\propto\sqrt{\Delta h}$.
@@ -198,8 +208,8 @@ intersected with a system curve numerically.
 identical second pipe between the same two reservoirs **doubles the flow
 exactly**: $Q_{total} = 2Q_1$. Each parallel branch spans the same two nodes, so
 each sees the *same* head difference of 20 m, each runs at the same $Re$ and the
-same $f$, and each independently carries $Q_1 = 4.7$ L/s. For this example that
-gives $Q_{total} \approx 9.4$ L/s. Head is *shared* between parallel branches, not
+same $f$, and each independently carries $Q_1 = 4.33$ L/s. For this example that
+gives $Q_{total} \approx 8.66$ L/s. Head is *shared* between parallel branches, not
 divided among them; it is **series** elements that split the available head, each
 taking a share in proportion to its resistance.
 

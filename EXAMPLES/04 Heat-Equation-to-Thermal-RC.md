@@ -137,7 +137,7 @@ temperature after 60 s, and state whether the lumped model was justified.
 
 **Check the criterion first** — this is the step most solutions skip:
 
-$$L_c = \frac{V}{A} = \frac{0.05}{6} = 8.33\ \text{mm},\qquad Bi = \frac{hL_c}{k} = \frac{50 \times 0.00833}{205} = 2.03\times 10^{-3}$$
+$$L_c = \frac{V}{A} = \frac{10^{-3}\ \text{m}^3}{6\times 10^{-2}\ \text{m}^2} = 1.667\times 10^{-2}\ \text{m} = 16.67\ \text{mm},\qquad Bi = \frac{hL_c}{k} = \frac{50 \times 0.01667}{205} = 4.07\times 10^{-3}$$
 
 $Bi \ll 0.1$: the lumped model is justified, with a large margin. (At $Bi = 0.1$ the internal gradient reaches 10% of the surface value and lumping fails.)
 
@@ -181,7 +181,8 @@ nearly isothermal.
 Here $\alpha = k/(\rho c_p) = 205/(2.90\times 10^6) = 7.07\times 10^{-5}$ m²/s, so
 over the thermal time constant $\tau = RC = 968$ s the diffusion length is
 $\sqrt{\alpha\tau} = \sqrt{7.07\times 10^{-5}\times 968} = 0.26$ m — about five
-times the 50 mm half-width. In Fourier-number form, $Fo = \alpha\tau/L_c^2 = 27$
+times the 50 mm half-width. In Fourier-number form,
+$Fo = \alpha\tau/L_c^2 = (7.07\times 10^{-5}\times 968)/(0.01667)^2 = 246$
 $\gg 1$. **The body is therefore well mixed internally, and the single-node RC
 model is self-consistent** — which is exactly what the $Bi \ll 0.1$ check
 already said. $Bi$ compares surface resistance against internal resistance; $Fo$

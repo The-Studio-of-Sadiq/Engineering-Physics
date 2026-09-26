@@ -25,6 +25,7 @@ here is typed, and the typing carries information.
 |---|---|---|
 | **[MEASURED]** | An experimentally measured number or a discovery, traceable to one primary paper (or a small number of them) | Full citation with DOI where one exists |
 | **[DERIVED / TEXTBOOK]** | Standard, uncontested physics, not tied to a single paper — the kind of thing that appears identically in every graduate textbook on the subject | Cited to a standard textbook (`T#` below), because that is the honest citation. No single paper "discovered" the textbook derivation of the Wiedemann–Franz ratio, even though von Klitzing's *measurement* of it is a paper |
+| **[THEORY]** | An original theoretical result, prediction, or no-go theorem — traceable to one or a small number of primary papers, but not itself an observation | Full citation with DOI to the primary theory paper(s). Kept distinct from [DERIVED / TEXTBOOK]: a *named original result* (BCS, ABJ anomaly, Nielsen–Ninomiya, Higgs mechanism, Abrikosov vortices) is credited to its authors' paper, not to a textbook, and distinct from [MEASURED]: a theoretical prediction is not a measurement even when it is later confirmed |
 | **[SYNTHESIS]** | The book's own argument or pedagogical framing, not a fact borrowed from the literature | Flagged explicitly rather than given a decorative citation. This is the tier that matters most: the book's central claims live here, and marking them is the point |
 
 ### Numbered citation key
@@ -116,7 +117,7 @@ Source: ATLAS Collaboration, "Observation of a new particle in the search for th
 Companion paper: CMS Collaboration, "Observation of a new boson at a mass of 125 GeV with the CMS experiment at the LHC," *Phys. Lett. B* 716, 30–61 (2012). DOI: 10.1016/j.physletb.2012.08.021
 Combined ATLAS+CMS mass measurement, 125.09 ± 0.24 GeV: ATLAS+CMS Collaborations, *Phys. Rev. Lett.* 114, 191803 (2015). DOI: 10.1103/PhysRevLett.114.191803
 
-**[MEASURED] [R3] Original Higgs-mechanism theory papers (1964)**
+**[THEORY] [R3] Original Higgs-mechanism theory papers (1964)**
 - Englert, F. & Brout, R., "Broken Symmetry and the Mass of Gauge Vector Mesons," *Phys. Rev. Lett.* 13, 321–323 (1964). DOI: 10.1103/PhysRevLett.13.321
 - Higgs, P.W., "Broken Symmetries, Massless Particles and Gauge Fields," *Phys. Lett.* 12, 132–133 (1964). DOI: 10.1016/0031-9163(64)91136-9
 - Higgs, P.W., "Broken Symmetries and the Masses of Gauge Bosons," *Phys. Rev. Lett.* 13, 508–509 (1964). DOI: 10.1103/PhysRevLett.13.508
@@ -126,8 +127,12 @@ Combined ATLAS+CMS mass measurement, 125.09 ± 0.24 GeV: ATLAS+CMS Collaboration
 Wu, C.S., Ambler, E., Hayward, R.W., Hoppes, D.D., Hudson, R.P., "Experimental Test of Parity Conservation in Beta Decay," *Phys. Rev.* 105, 1413–1415 (1957). DOI: 10.1103/PhysRev.105.1413
 This is the direct source for the book's claim that the cobalt-60 nucleus emitted electrons preferentially opposite to its spin.
 
-**[MEASURED] [R5] Electron electric dipole moment bound, $d_e < 1.8\times 10^{-26}\,e\cdot\text{cm}$**
+**[MEASURED] [R5] Electron electric dipole moment — experimental upper bound, $d_e < 1.8\times 10^{-26}\,e\cdot\text{cm}$**
 Source: ACME Collaboration (Andreev, V. et al.), "Improved limit on the electric dipole moment of the electron," *Nature* 562, 355–360 (2018). DOI: 10.1038/s41586-018-0599-8
+Tier note: this is an *experimental bound/limit* — a null-result exclusion, not a
+measured central value. [MEASURED] is retained because the limit is set by experiment,
+but the claim it supports is the inequality, never a value for $d_e$; the number must
+not be cited as though $d_e$ had been resolved.
 The strong-CP bound $|\theta_{QCD}| < 10^{-10}$ derived from neutron EDM bounds is [DERIVED / TEXTBOOK] — see T8, Ch. 19.
 
 **[SYNTHESIS] [R6] Gauge coupling unification near $10^{16}$ GeV "suggesting a GUT"**
@@ -216,18 +221,18 @@ Berry, M.V., "Quantal Phase Factors Accompanying Adiabatic Changes," *Proc. R. S
 Klitzing, K. von, Dorda, G., Pepper, M., "New Method for High-Accuracy Determination of the Fine-Structure Constant Based on Quantized Hall Resistance," *Phys. Rev. Lett.* 45, 494–497 (1980). DOI: 10.1103/PhysRevLett.45.494
 Quantization to 1 part in $10^9$ is repeatedly re-confirmed metrologically; see BIPM/NIST resistance-standard documentation for current figures.
 
-**[MEASURED] [R20] Adler–Bell–Jackiw chiral anomaly (original theory papers, 1969)**
+**[THEORY] [R20] Adler–Bell–Jackiw chiral anomaly (original theory papers, 1969)**
 - Adler, S.L., "Axial-Vector Vertex in Spinor Electrodynamics," *Phys. Rev.* 177, 2426–2438 (1969). DOI: 10.1103/PhysRev.177.2426
 - Bell, J.S. & Jackiw, R., "A PCAC puzzle: $\pi^0\to\gamma\gamma$ in the $\sigma$-model," *Nuovo Cimento A* 60, 47–61 (1969). DOI: 10.1007/BF02823296
 
-**[MEASURED] [R21] Nielsen–Ninomiya (no-go) theorem for chiral fermions on a lattice**
+**[THEORY] [R21] Nielsen–Ninomiya (no-go) theorem for chiral fermions on a lattice**
 Nielsen, H.B. & Ninomiya, M., "Absence of Neutrinos on a Lattice: I. Proof by Homotopy Theory," *Nucl. Phys. B* 185, 20–40 (1981). DOI: 10.1016/0550-3213(82)90011-6
 Part II: *Nucl. Phys. B* 193, 173–194 (1981). DOI: 10.1016/0550-3213(81)90524-1
 
 **[MEASURED] [R22] Negative longitudinal magnetoresistance from the chiral anomaly, observed in TaAs (2015)**
 Huang, X. et al., "Observation of the Chiral-Anomaly-Induced Negative Magnetoresistance in 3D Weyl Semimetal TaAs," *Phys. Rev. X* 5, 031023 (2015). DOI: 10.1103/PhysRevX.5.031023
 
-**[MEASURED] [R23] BCS theory of superconductivity (1957)**
+**[THEORY] [R23] BCS theory of superconductivity (1957)**
 Bardeen, J., Cooper, L.N., Schrieffer, J.R., "Theory of Superconductivity," *Phys. Rev.* 108, 1175–1204 (1957). DOI: 10.1103/PhysRev.108.1175
 The universal gap ratio $2\Delta(0)/k_BT_c = 3.528$ is a prediction of this paper, confirmed across conventional superconductors — [DERIVED / TEXTBOOK] for the confirming measurements; see T5, Ch. 3, for the standard compiled comparison table.
 
@@ -236,11 +241,11 @@ The universal gap ratio $2\Delta(0)/k_BT_c = 3.528$ is a prediction of this pape
 - Doll, R. & Näbauer, M., "Experimental Proof of Magnetic Flux Quantization in a Superconducting Ring," *Phys. Rev. Lett.* 7, 51–52 (1961). DOI: 10.1103/PhysRevLett.7.51
 Flux quantum $\Phi_0 = h/2e = 2.067833848\times 10^{-15}$ Wb: CODATA (NIST). Link: https://physics.nist.gov/cgi-bin/cuu/Value?flxquhs2e
 
-**[MEASURED] [R25] Josephson effect (theory, 1962)**
+**[THEORY] [R25] Josephson effect (theory, 1962)**
 Josephson, B.D., "Possible new effects in superconductive tunnelling," *Phys. Lett.* 1, 251–253 (1962). DOI: 10.1016/0031-9163(62)91369-0
 Josephson constant $K_J = 2e/h = 483597.8484\ldots\times 10^9$ Hz/V (exact since the 2019 SI redefinition): CODATA (NIST). Link: https://physics.nist.gov/cgi-bin/cuu/Value?kjos
 
-**[MEASURED] [R26] Abrikosov vortices (theory, 1957; Nobel Prize 2003)**
+**[THEORY] [R26] Abrikosov vortices (theory, 1957; Nobel Prize 2003)**
 Abrikosov, A.A., "On the Magnetic Properties of Superconductors of the Second Group," *Sov. Phys. JETP* 5, 1174–1182 (1957) [Zh. Eksp. Teor. Fiz. 32, 1442 (1957)].
 
 **[MEASURED] [R27] Quantized conductance of a point contact (1988)**
@@ -346,8 +351,12 @@ Link: https://www.bipm.org/en/measurement-units/rev-si/
 Source: IEC 60751:2008, "Industrial platinum resistance thermometers and platinum temperature sensors."
 Link: https://webstore.iec.ch/publication/3376
 
-**[DERIVED / TEXTBOOK] Silicon dopant diffusion coefficients, minority-carrier lifetimes, solar-cell $I_0/I_{SC}$ figures**
-Standard semiconductor-device values — see T10, relevant chapters on diffusion and p-n junctions.
+**[DERIVED / TEXTBOOK] [GAP] Silicon dopant diffusion coefficients, minority-carrier lifetimes, solar-cell $I_0/I_{SC}$ figures**
+Standard semiconductor-device values. The textbook pointer originally given here (T10)
+is absent from the table above and its intended identity could not be recovered, so no
+source is cited rather than a guessed one. These are routine tabulated device
+parameters; pin a recognised semiconductor-device textbook and the relevant chapters on
+dopant diffusion and p-n junctions before press.
 
 ---
 
@@ -481,6 +490,7 @@ Full citations for the [DERIVED / TEXTBOOK] tier. Chapter text cites these as
 
 Recorded honestly rather than papered over. These are known-unfinished items.
 
+- **[GAP] Dangling identifier T10.** The Ch. 14 semiconductor-device entry (dopant diffusion coefficients, minority-carrier lifetimes, solar-cell $I_0/I_{SC}$) cited textbook "T10", but no T10 entry exists in the textbook key above — the table runs T1–T9, then T13 in the core block, with T11/T12 relocated to the fluids/heat block. The intended textbook could not be identified from the surrounding numbering (it is not sequential by subject). Rather than guess an entry, the in-text citation is flagged and no source is asserted. Resolve by adding a verified semiconductor-device text as T10 (or renumbering); do not leave a bare "T10" pointer in the table.
 - **[GAP] Chapters 16, 17, 19, 20** contain further named correlations — acoustic cavitation and Rayleigh–Plesset dynamics, MEMS resonator $Q$-factors, the fissility parameter, geological dating precision — not individually traced to primary sources. These are almost certainly [DERIVED / TEXTBOOK], and the textbook key above now names the standard references for each domain (T21, T22, T27, T11, T12, T30, T4), but no page-level citation has been pinned. Flagged rather than manufactured.
 - **[FLAG] CODATA/PDG links** point to live NIST/PDG reference pages rather than a fixed dataset year. These bodies update periodically (CODATA roughly every 4 years; PDG annually). A print bibliography must pin the specific edition actually used, or "current CODATA value" will silently drift.
 - **[FLAG] Section numbers** were matched to chapters, not re-verified line-by-line against the manuscript after the Chapter 20, Chapter 7, and Chapter 13 rewrites changed section numbering. Re-pin against the chapter files before press.
