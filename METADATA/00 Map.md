@@ -252,7 +252,7 @@ This is the whole book in one diagram, with **every arrow tagged**. It is the sa
 
 ### The three things this graph is claiming
 
-**1. The reconvergence at Layer 2 is the book's central technical result.** Five apparently independent L₀/L₁ threads — gauge structure, gravity, quantum statistics, scattering, field topology — discharge into one small set of classical continuum equations. The sharpest statement is the Generalized Transport Law (Bridge B.e / Ch. 13):
+**1. The reconvergence at Layer 2 is the book's central technical result.** Five apparently independent L₀/L₁ threads — gauge structure, gravity, quantum statistics, scattering, field topology — converge on one small set of classical continuum equations. The sharpest statement is the Generalized Transport Law (Bridge B.e / Ch. 13):
 
 | $\hat A$, $\hat B$ | $L_{AB}$ | Law | Domain |
 |---|---|---|---|
@@ -430,7 +430,7 @@ What a student should take away: **symmetry breaking is a scale-independent math
 
 The θ-term is a topological term — it integrates to a topological invariant (the Pontryagin number) over closed spacetime regions. It doesn't contribute to the classical equations of motion (it's a total derivative) but profoundly affects the quantum vacuum structure.
 
-Why tell engineering students this? Because **topology has already reached semiconductor labs.** The quantum Hall effect, topological insulators, and Weyl semimetals all derive their exotic properties from topological terms in their effective Layer-1 Hamiltonians — which are shadows of Layer-0 topology. The f(φ) placeholder is where a more complete understanding of this topology will eventually sit.
+Why tell engineering students this? Because **topology has already reached semiconductor labs.** The quantum Hall effect, topological insulators, and Weyl semimetals all derive their exotic properties from topological terms in their effective Layer-1 Hamiltonians — which are shadows of Layer-0 topology. Note the epistemic status: the link between fundamental topological terms and effective topological phases is a **structural correspondence**, not a claim that these materials require new physics. Most of topological condensed matter is already accounted for by established quantum mechanics and quantum field theory. Whether genuinely new fundamental input is required in that sector is an open question, not a premise — and the unknown sector $\mathcal{F}[\ldots]$ is where such new physics would enter *if* it turned out to be needed.
 
 [STRUCTURAL CONNECTION] Note in advance, because this is the thread most often over-read: the θ-term, the Chern numbers of Layer 1, and the encirclement count that appears in Layer-3 control theory (Ch. 21) share a common branch of mathematics — the classification of maps by winding number or degree — **without one being derived from another.** This is a *shared mathematical thread*, not a physical descent.
 

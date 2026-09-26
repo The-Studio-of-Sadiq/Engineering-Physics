@@ -356,23 +356,72 @@ function.
 
 #### The legitimate route: linearized Boltzmann transport
 
-`[DERIVATION]` The one-particle distribution function obeys the Boltzmann
-equation. Linearizing about equilibrium $f_0$ in a uniform field $\mathbf{E}$,
-and writing $\delta f$ for the perturbation:
+> [!note] Kubo does not imply Boltzmann — they are two branches
+> This is a **change of framework**, not a step inside Kubo. Kubo is a
+> many-body response theory; the Boltzmann equation is a *kinetic* description
+> of a distribution function, valid under additional assumptions (well-defined
+> quasiparticles, weak correlations, separation of microscopic collision scales
+> from macroscopic transport scales). The relationship is:
+>
+> ```text
+> Quantum many-body theory
+>        │
+>        ├── Kubo linear response          (exact, given linear response)
+>        │
+>        └── kinetic / semiclassical limit (requires the assumptions above)
+>                 ↓
+>         Boltzmann equation
+>                 ↓
+>         relaxation-time closure
+>                 ↓
+>            Drude conductivity
+> ```
+>
+> So `[DERIVATION]` below is scoped: it is a derivation *within the Boltzmann
+> framework*, and that framework's own validity conditions are part of the claim.
 
-$$\frac{\partial\,\delta f}{\partial t} + \frac{e\mathbf{E}}{m_e}\cdot\nabla_{\mathbf{k}}f_0(\mathbf{k}) = -\frac{\delta f - \delta f_{eq}}{\tau}$$
+`[DERIVATION]` **Charge convention for the rest of this subsection:** the electron
+charge is $-e$ with $e>0$, so the semiclassical equation of motion is
 
-`[PHENOMENOLOGICAL]` The right-hand side is the **relaxation-time closure**: all
-scattering — electron–phonon, electron–impurity, electron–electron — is
-replaced by a single time constant $\tau$ (Ch. 6 §6.7.3). In steady state,
-$\partial_t \delta f = 0$, and to leading order in $\mathbf{E}$ the $\delta f_{eq}$
-term drops, giving
+$$\hbar\dot{\mathbf{k}} = -e\mathbf{E} \qquad\Longleftrightarrow\qquad \dot{\mathbf{k}} = -\frac{e\mathbf{E}}{\hbar}$$
 
-$$\delta f(\mathbf{k}) = e\tau\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\left(-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\right)$$
+Note this is a $1/\hbar$ times a **$\mathbf{k}$-gradient**. (The familiar $1/m_e$
+form, $\dot{\mathbf{v}} = -e\mathbf{E}/m_e$, is equivalent but must be paired
+with a **$\mathbf{v}$-gradient**; mixing the $1/m_e$ coefficient with a
+$\nabla_{\mathbf{k}}$ is a units error.) Since $\mathbf{v}_{\mathbf{k}} = \frac{1}{\hbar}\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}}$, the Boltzmann equation is
 
-The current density is then
+$$\frac{\partial f}{\partial t} - \frac{e\mathbf{E}}{\hbar}\cdot\nabla_{\mathbf{k}}f(\mathbf{k}) = \left(\frac{\partial f}{\partial t}\right)_{\text{coll}}$$
 
-$$\mathbf{J} = e\int \mathbf{v}_{\mathbf{k}}\,\delta f(\mathbf{k})\,\frac{d^3k}{(2\pi)^3} = e^2\tau\int \frac{d^3k}{(2\pi)^3}\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\left(-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\right)\mathbf{v}_{\mathbf{k}}$$
+`[PHENOMENOLOGICAL]` The collision term is the **relaxation-time closure**: all
+scattering — electron–phonon, electron–impurity, electron–electron — is replaced
+by relaxation toward the *unperturbed* equilibrium $f_0$ with a single time
+constant $\tau$ (Ch. 6 §6.7.3),
+
+$$\left(\frac{\partial f}{\partial t}\right)_{\text{coll}} = -\frac{f - f_0}{\tau} = -\frac{\delta f}{\tau}$$
+
+(More refined collision models relax toward a *displaced* local equilibrium
+$\delta f_{eq}$ — the displaced-Dirac-distribution or shift model of hot-electron
+transport. That sophistication is not needed here and is deliberately omitted
+rather than half-introduced.)
+
+Linearizing, $f = f_0 + \delta f$ with $|\delta f| \ll f_0$, and taking the
+steady state $\partial_t \delta f = 0$:
+
+$$-\frac{e\mathbf{E}}{\hbar}\cdot\nabla_{\mathbf{k}}f_0 = -\frac{\delta f}{\tau}$$
+
+Using $\nabla_{\mathbf{k}}f_0 = \frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}} = \hbar\,\mathbf{v}_{\mathbf{k}}\,\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}$:
+
+$$\delta f(\mathbf{k}) = e\tau\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\,\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}$$
+
+Since $\partial f_0/\partial\epsilon_{\mathbf{k}} < 0$, this correctly *depletes*
+states moving along $\mathbf{E}$ — which is the right sign for electrons, whose
+drift is opposite to $\mathbf{E}$.
+
+The current density carries the electron charge $-e$:
+
+$$\mathbf{J} = -e\int \mathbf{v}_{\mathbf{k}}\,\delta f(\mathbf{k})\,\frac{d^3k}{(2\pi)^3} = e^2\tau\int \frac{d^3k}{(2\pi)^3}\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\left(-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\right)\mathbf{v}_{\mathbf{k}}$$
+
+Both signs are now correct and they work together: $-\partial f_0/\partial\epsilon_{\mathbf{k}} > 0$ and the angular average of $(\mathbf{E}\cdot\mathbf{v})\mathbf{v}$ is along $+\mathbf{E}$, so $\mathbf{J} \parallel +\mathbf{E}$, as Ohm's law requires.
 
 **This is where degeneracy is handled correctly.** The Fermi–Dirac derivative
 becomes a surface delta function as $T\to0$:
@@ -385,9 +434,7 @@ classical correlator cannot express at all. Performing the angular average,
 
 $$\int \frac{d^3k}{(2\pi)^3}\,\delta(\epsilon_{\mathbf{k}}-\mu)\,v^\alpha v^\beta = \frac{n_e}{m_e}\,\delta_{\alpha\beta}$$
 
-(here $\int \frac{d^3k}{(2\pi)^3}\delta(\epsilon_{\mathbf{k}}-\mu)v^2 = \frac{3n_e}{m_e}$ using
-$v_F^2 = \hbar^2k_F^2/m_e^2$ and $n_e = k_F^3/3\pi^2$; the isotropic $\frac{1}{3}$
-is contained in the angular average and is compensated by the trace). Therefore
+(Angular average gives $\int(\mathbf{E}\cdot\mathbf{v})\mathbf{v}(-\partial f_0/\partial\epsilon)\frac{d^3k}{(2\pi)^3} = \frac{\mathbf{E}}{3}\int v^2\delta(\epsilon_{\mathbf{k}}-\mu)\frac{d^3k}{(2\pi)^3}$, and the radial integral is $\int \frac{d^3k}{(2\pi)^3}\delta(\epsilon_{\mathbf{k}}-\mu)\,v^2 = \frac{3n_e}{m_e}$ using $v_F^2 = \hbar^2k_F^2/m_e^2$ and $n_e = k_F^3/3\pi^2$ — so the angular $1/3$ and the radial factor of $3$ cancel exactly.) Therefore
 
 $$\mathbf{J} = \frac{n_e e^2\tau}{m_e}\,\mathbf{E} \quad\Longrightarrow\quad \boxed{\sigma_{DC} = \frac{n_e e^2\tau}{m_e}}$$
 
@@ -434,9 +481,11 @@ model's equipartition correlator and presenting it as the quantum result.
 
 ### 13.4.3 — Ohm's Law as an Emergent, Not Fundamental, Law
 
-**Why Ohm's law has an arrow of time:** The current-current correlator decays because electrons scatter off phonons and defects. Each scattering event is irreversible (the electron's phase is randomized). This decoherence — the same operation as tracing out environmental degrees of freedom in Ch. 10 §10.1.3 — is what makes $\sigma$ finite and real.
+**Why Ohm's law has an arrow of time:** The current-current correlator decays because electrons relax momentum into phonons, defects, and other environmental degrees of freedom. Careful about what this claim is: the underlying electron–phonon or electron–impurity interaction is *reversible quantum dynamics* — closed-system unitary evolution cannot produce genuine irreversibility. What produces the decaying correlator is a **coarse-graining**: tracing over the phonons and defects, averaging over ensembles, and adopting a kinetic approximation that discards the full dynamics of the environment. Within that coarse-grained description the correlator decays, and that decay is what makes $\sigma$ finite and real. Irreversibility is a feature of the effective description, not of the microscopic laws. (The mechanism is the same partial trace that produces decoherence in Ch. 10 §10.1.3 — with the important difference that here we trace over *bath* degrees of freedom, not a measuring apparatus.)
 
-**In a perfect crystal at $T = 0$:** No phonons, no impurities, no scattering. The correlator never decays. $\tau\to\infty$, $\sigma\to\infty$ — perfect conductance without applied voltage. This is not Ohm's law; it is the non-dissipative current of a superconductor or a topological edge state.
+**In an ideal translationally invariant system at $T = 0$:** With no momentum-relaxing mechanism, the current correlation function has a non-decaying component, so $\tau\to\infty$ and $\sigma_{DC}\to\infty$. Note precisely what this does and does not say: it means the DC conductivity contains a **persistent (Drude) contribution** — the system sustains a current against arbitrarily small dissipation. It does *not* mean a current spontaneously appears in the absence of an applied field. There is still no current unless something drives one; what is unbounded is the *response* to a drive, and the absence of resistivity. A finite resistivity requires momentum relaxation, whether from scattering, from boundaries, or from an explicit momentum sink.
+
+This should also not be identified with superconductivity. A clean normal metal with exactly conserved momentum has infinite Drude weight while remaining an ordinary metal: $\omega_p \neq 0$, no gap, no phase-coherent supercurrent. Superconductivity is a distinct phenomenon — it adds a many-body state (Cooper pairing, energy gap, phase rigidity) on top of the electrons. Infinite Drude weight and superconductivity are related but not equivalent.
 
 **Ohm's law is not fundamental.** It is an emergent law valid in the regime of diffusive, decoherent transport. Its emergence from the Kubo formula tells you exactly when it fails: when mean free path exceeds the device size (ballistic transport), when topology protects the current from backscattering, or when strong correlations destroy the quasiparticle picture.
 
@@ -460,24 +509,22 @@ For metals (electronic heat conduction dominates), the same relaxation time $\ta
 
 $$\frac{\kappa}{\sigma T} = \frac{\pi^2}{3}\left(\frac{k_B}{e}\right)^2 = L_0 = 2.44\times 10^{-8}\,\text{W}\cdot\Omega\cdot\text{K}^{-2}$$
 
-This is the **Wiedemann-Franz law** with the **Lorenz number** $L_0$ — a constant depending only on fundamental constants, independent of material. It holds for all metals in the diffusive regime and is confirmed to $\sim 10\%$ across metals from $-200°$C to $+600°$C.
+The *number* is universal; the *law* is not unconditional. $L_0$ is a **low-temperature Fermi-liquid** result, valid in the degenerate limit where electronic quasiparticle transport dominates.
 
-`[APPROXIMATION]` — **the universality of $L_0$ is a statement about a scattering
-model, not about metals.** The ratio is constant precisely because the *same*
-$\tau$ cancels from both $\sigma$ and $\kappa$. That requires elastic scattering
-only. When heat and charge relax by different mechanisms, the ratio drifts:
+`[APPROXIMATION]` **The universality of $L_0$ is a statement about a scattering model, not about metals.** The ratio is constant precisely because the *same* $\tau$ cancels between $\sigma$ and $\kappa$ — which requires elastic scattering off a static bath, Galilean-invariant parabolic dispersion, and heat carried by electrons alone. Whenever heat and charge relax by *different* mechanisms, the ratio drifts:
 
 | Regime | What happens to $\kappa/\sigma T$ |
 |---|---|
 | Elastic scattering, low $T$ | approaches $L_0$ |
 | Electron–phonon scattering, high $T$ | $\tau_Q \neq \tau_N$ — ratio below $L_0$ |
-| Transition metals, strong spin–orbit | $s$-wave scattering suppressed — ratio far above $L_0$ |
+| Momentum-conserving electron–electron scattering | relaxes heat but not charge — ratio below $L_0$; a key diagnostic of strange metals |
+| Transition metals, strong spin–orbit | $s$-wave scattering suppressed — ratio above $L_0$ |
 | Strongly correlated (heavy fermions, cuprates) | quasiparticle picture fails — no constant ratio |
+| High $T$ (classical regime) | degenerate-gas assumption breaks; equipartition applies instead |
 
-So "universal constant, independent of material" is true to $\sim 10\%$ across
-ordinary metals and false in exactly the materials where the interesting physics
-is. Reading the deviations diagnostically is more useful than treating $L_0$ as
-a law.
+So "a constant depending only on fundamental constants, independent of material" accurately describes the *low-temperature Fermi-liquid limit* and is false in general — including in exactly the materials where the interesting physics lives. Reading the deviations diagnostically is more useful than treating $L_0$ as a law: the size and sign of the departure identifies which additional relaxation channel is active.
+
+This is a good illustration of the book's method. The *universal number* is `[DERIVATION]`; the *scope of validity* is `[APPROXIMATION]`; and the failure cases are where the new physics becomes visible.
 
 **Physical origin:** Both charge and heat are carried by electrons near the Fermi level. The energy $E_F$ per electron is the same whether you are measuring electrical or thermal transport. The factor $k_B^2/e^2$ converts energy² (thermal) to energy/charge (electrical) squared.
 
