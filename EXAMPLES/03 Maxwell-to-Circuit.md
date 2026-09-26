@@ -92,13 +92,30 @@ Three constitutive laws, one per element type:
 | Capacitor | $I = C\dot V$ | stored, $\tfrac12 CV^2$ | field energy, polarisation |
 | Inductor | $V = L\dot I$ | stored, $\tfrac12 LI^2$ | magnetic field, inertia |
 
-KCL and KVL follow, and they are *not* extra postulates — they are conservation,
-but each statement needs its own correct justification, and KVL's is the one that is
-usually got wrong:
+KCL and KVL follow, and they are *not* extra postulates — but each is a specific
+conservation law, and KVL's identity in particular is usually mis-stated:
 
 $$\sum_k I_k = 0 \qquad\text{(charge conservation: }\nabla\cdot\mathbf{J} = -\partial_t\rho\text{ integrated over a node)}$$
 
-$$\sum_k V_k = 0 \qquad\text{(energy conservation, equivalently Faraday's law applied around the loop)}$$
+$$\sum_k V_k = 0 \qquad\text{(Faraday's law expressed in the lumped-element representation)}$$
+
+**KVL is a loop statement about $\mathbf{E}$, not a statement about energy.** It is
+Faraday's law $\oint\mathbf{E}\cdot d\mathbf{l} = -d\Phi_B/dt$, rewritten once every
+branch has been assigned a terminal voltage — which is the content of the chain
+below. Calling it "energy conservation" conflates two different laws: the
+conservation of energy in the electromagnetic field is **Poynting's theorem**,
+
+$$\frac{\partial}{\partial t}\left(u_{\rm em}\right) + \nabla\cdot\mathbf{S} = -\mathbf{J}\cdot\mathbf{E}, \qquad \mathbf{S} = \frac{1}{\mu_0}\mathbf{E}\times\mathbf{B}$$
+
+which is a *local, volumetric* statement involving the energy density $u_{\rm em}$ and
+the flux $\mathbf{S}$. KVL is an *integrated, topological* statement around a loop.
+
+The two are related, but the relation runs through the circuit elements rather than
+through identity: once the three constitutive laws of step 4 are substituted, the
+resulting $RC$, $RL$ and $RLC$ equations do satisfy an energy balance — each element
+either stores ($\tfrac12CV^2$, $\tfrac12LI^2$) or dissipates ($I^2R$). That
+consistency is a *result* of the reduction, and a useful check on it. It is not what
+KVL states.
 
 **The correct chain is Faraday → flux linkage → induced EMF → KVL.** Start from
 

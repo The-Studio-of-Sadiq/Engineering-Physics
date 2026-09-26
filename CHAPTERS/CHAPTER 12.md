@@ -145,7 +145,28 @@ Since $k = n\omega/c$ and $k_1 = k_r$ (same medium):
 
 $$\theta_r = \theta_i \qquad\text{(law of reflection)}$$ $$\boxed{n_1\sin\theta_i = n_2\sin\theta_t} \qquad\text{(Snell's law)}$$
 
-**Snell's law is a consequence of translational symmetry** of the interface — Noether's theorem applied to the tangential spatial direction. The component of momentum parallel to the interface is conserved. This is not an empirical law; it is a Noether consequence of planar geometry.
+**Snell's law follows from translational invariance parallel to the interface: the
+tangential component of wavevector is conserved.** The section title says it — phase
+matching — and that is the direct route, because the boundary conditions have to hold
+at *every* point along the interface and at *every* time, which admits only a common
+tangential $\mathbf{k}$.
+
+This *is* an optical analogue of a symmetry-conservation relation, and the
+connection to Noether's theorem is worth preserving in that weaker form. Continuous
+translation symmetry parallel to a planar interface is precisely what forces the
+phase-matching condition, so the structural shape is Noether-like: a continuous
+spatial symmetry $\Rightarrow$ a conserved quantity. But the conserved quantity
+carried here is the **tangential wavevector**, not a Noether current of a Lagrangian,
+and the derivation that produced the boxed equation above is the boundary-condition
+argument, not an application of Noether's theorem to an action. Invoking Noether
+directly is stronger than the derivation supports: there is no field-translation
+symmetry of the optical action being used to get this, and the wave amplitude in each
+medium is governed by a different wave equation.
+
+So: the tangential $\mathbf{k}$ is conserved because the interface is
+translation-invariant along itself, and that conservation is what Snell's law
+encodes. The result is not empirical and it is not a coincidence — but the honest
+label is *phase matching arising from a geometric symmetry*, not *Noether's theorem*.
 
 ### 12.3.3 — Fresnel Equations
 
@@ -539,7 +560,7 @@ One wave equation from Ch. 11 — extended to matter and systematically applied:
 |Complex refractive index $\tilde n = n+i\kappa$|Complex $\tilde\epsilon = \epsilon + i\sigma/\omega$|
 |Skin depth $\delta = 1/\alpha$|Imaginary part of $\tilde k$ in good conductor|
 |Phase vs. group velocity|$v_p = \omega/\beta$; $v_g = d\omega/dk$|
-|Snell's law $n_1\sin\theta_i = n_2\sin\theta_t$|Phase matching at boundary (Noether, translational symmetry)|
+|Snell's law $n_1\sin\theta_i = n_2\sin\theta_t$|Phase matching at boundary; tangential $\mathbf{k}$ conserved by interface translation symmetry|
 |Fresnel equations|Maxwell boundary conditions applied|
 |Brewster's angle $\tan\theta_B = n_2/n_1$|$r_p = 0$ condition on Fresnel equation|
 |TIR, evanescent field|$\sin\theta_t > 1$; field decays as $e^{-z/\delta_{ev}}$|

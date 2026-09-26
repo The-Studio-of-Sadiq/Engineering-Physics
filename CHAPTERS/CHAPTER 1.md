@@ -485,13 +485,41 @@ The conserved charge: $$Q = \int j^0\,d^3x = \text{const}$$
 
 **The energy-momentum tensor** comes from invariance under spacetime translations $x^\mu \to x^\mu + \epsilon^\mu$:
 
-$$T^{\mu\nu} = \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi_a)}\partial^\nu\phi_a - g^{\mu\nu}\mathcal{L}$$
+$$T^{\mu\nu}_{\rm can} = \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi_a)}\partial^\nu\phi_a - g^{\mu\nu}\mathcal{L}$$
 
 - $T^{00}$ = energy density
 - $T^{0i}$ = momentum density
 - $\partial_\mu T^{\mu\nu} = 0$ encodes energy-momentum conservation in field theory
 
-This is Noether's theorem applied to the fields of Chapter 0. The $T_{\mu\nu}$ that appears on the right side of the Einstein equations $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ is exactly this object — the Noether current of the matter action under spacetime translations. Gravity couples to energy-momentum because spacetime translation symmetry is what defines energy-momentum.
+This is the **canonical** Noether tensor, and the label matters. The object that
+sources Einstein's equations is the **Hilbert** stress-energy tensor,
+
+$$T_{\mu\nu} = -\frac{2}{\sqrt{-g}}\frac{\delta S_{\rm matter}}{\delta g^{\mu\nu}}$$
+
+which is defined by a *functional derivative with respect to the metric* — a
+different construction, and one that requires no preferred flat background. In flat
+spacetime, with fields taken to be independent of the metric, the two agree. In
+general relativity they do not coincide: the canonical tensor is typically neither
+symmetric nor gauge invariant, so it is not by itself a well-behaved source for a
+diffeomorphism-invariant theory.
+
+The two are nonetheless **related**. The canonical tensor can be *improved* — the
+Belinfante-Rosenfeld procedure adds a total divergence,
+
+$$T^{\mu\nu} = T^{\mu\nu}_{\rm can} + \partial_\mu(\cdots)$$
+
+which leaves the conserved four-momentum unchanged, and under suitable conditions
+(scalar, spin-0 and spin-1/2 matter with the standard improvement) the result
+matches the Hilbert tensor up to the flat-background limit. So the correct statement
+is: the Hilbert tensor is the general-relativistic object, and for restricted matter
+content it coincides with an improved version of the canonical Noether tensor.
+**Not** "exactly this object."
+
+What survives without qualification is the structural point that follows the
+display above: gravity couples to energy-momentum because spacetime-translation
+symmetry is what *defines* energy-momentum, so the stress-energy tensor is the
+natural source of Einstein's equations. Identifying it with the flat-space Noether
+current is what fails, not the symmetry argument.
 
 ---
 
@@ -503,7 +531,26 @@ We can now answer the question from §1.0.
 
 **Symmetry is primary:** By writing physics as an action, symmetries are directly visible as transformations that leave $S$ unchanged. Noether's theorem then guarantees conserved quantities without calculation. In Newton's framework, discovering a conservation law requires solving the equations first and observing the pattern. In the action framework, symmetry $\Rightarrow$ conservation _by construction_.
 
-**Unique generalization:** There is essentially one consistent way to write a Lorentz-invariant, gauge-invariant, renormalizable quantum field theory in 3+1 dimensions — an action of the form $\int d^4x\,\mathcal{L}$ with a Lagrangian density satisfying certain symmetry and power-counting conditions. The Standard Model is (essentially) the unique theory of this type consistent with the observed particle content and symmetry group. The framework almost forces the answer.
+**Constrained generalization:** There is a *tight* way to write a Lorentz-invariant,
+gauge-invariant, renormalizable quantum field theory in 3+1 dimensions — an action
+of the form $\int d^4x\,\mathcal{L}$ whose Lagrangian density is dimensionless
+(power-counting renormalizability), local, and restricted by the internal symmetry
+group. Those requirements are strong, but they are not a uniqueness theorem. Many
+such theories exist, and they are not related by cosmetic choices: scalar QED,
+non-Abelian gauge theories with different groups, four-fermion theories, and — within
+the Standard Model gauge group itself — many admissible field contents and parameter
+choices. Even fixing the gauge group, the particle content and Yukawa structure are
+inputs, not outputs.
+
+What is genuinely remarkable is the **convergence from data**, not a deduction from
+the framework. The observed Standard Model is pinned down from many directions at
+once: the measured gauge group, the observed particle spectrum and its quantum
+numbers, charge quantisation, anomaly cancellation across each generation, the
+measured fermion masses and mixing angles, and the absence of any observed
+extension at collider energies. A large space of consistent theories is reduced to
+one *empirically*. The framework narrows the possibilities a great deal; experiment
+selects among what survives. Those are two different acts, and conflating them is
+what makes "the framework almost forces the answer" sound stronger than it is.
 
 **Classical-quantum bridge:** As shown in §1.8.3, classical mechanics is the $\hbar \to 0$ limit of quantum mechanics, and this limit is made precise by the HJ equation. The action $S$ is literally the phase of the quantum wavefunction. Writing physics as an action is writing it in the language that is maximally transparent about this relationship.
 

@@ -569,9 +569,21 @@ $$\sum_k I_k = 0$$
 This is **Kirchhoff's Current Law** — charge conservation (Noether U(1))
 applied to a lumped node.
 
-**The two Kirchhoff laws are exactly Maxwell's equations in the quasi-static,
-lumped-element limit.** Every circuit calculation you will ever perform in
-Chapter 18 traces back to the two lines of covariant EM theory in §11.3.
+**The two Kirchhoff laws are the lumped-circuit balance relations obtained from
+charge conservation and Faraday's law under the appropriate quasi-static and
+lumped assumptions** — not "exactly Maxwell's equations." The distinction is worth
+holding onto, because the circuit model has *already discarded something*: the
+spatial degrees of freedom of the field. The continuous $\nabla\cdot\mathbf{E}$ and
+$\nabla\times\mathbf{E}$ statements have been integrated over vanishing volumes, so
+what survives is a set of algebraic constraints on a finite set of node voltages and
+branch currents. That reduction is a real approximation with a real criterion
+(§11.12.1), and the word "exactly" erases it.
+
+What *is* exact is each Kirchhoff law relative to the conservation law it comes
+from — KCL from charge conservation, KVL from Faraday's law (§11.12.2–3). What is
+approximate is the lumping that produces them. Every circuit calculation you will
+ever perform in Chapter 18 does trace back to the two lines of covariant EM theory
+in §11.3, but through an approximation rather than without one.
 
 ### 11.12.4 — Impedance from Maxwell
 

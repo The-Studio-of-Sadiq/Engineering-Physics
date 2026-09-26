@@ -492,7 +492,31 @@ This is the **continuity equation for $|\psi|^2$**: the quantity $|\psi|^2$ is a
 
 The Schrödinger equation is linear in $\psi$. If $\psi_1$ and $\psi_2$ are solutions, so is $c_1\psi_1 + c_2\psi_2$ for any complex constants. This linearity is inherited from the linearity of the Dirac equation, which is itself linear because the Lagrangian $\bar\psi(i\gamma^\mu D_\mu - m)\psi$ is quadratic in the fields (first power of $\psi$ and first power of $\bar\psi$).
 
-Superposition is not an axiom of quantum mechanics. It is a consequence of the Lagrangian having no higher powers of the fermion field.
+**But the two claims must be kept apart, and the second sentence of this section used
+to run them together.** The quadratic action gives a *linear field equation*. The
+superposition principle for states rests on something else: the **linear structure of
+the state space itself**, $\mathcal{H} = \{c_1|\psi_1\rangle + c_2|\psi_2\rangle\}$
+for any $|\psi_1\rangle,|\psi_2\rangle \in \mathcal{H}$ and any complex $c_i$. That
+is a statement about the vector space of physical states — what quantum theory
+assumes, along with the Born rule that makes the amplitudes physical — and it is not
+deduced from the form of any particular Lagrangian.
+
+The clean separation:
+
+- **quadratic free-field action $\Rightarrow$ linear field equation.** Real, and
+  demonstrated by the Dirac equation above.
+- **linear quantum state space $\Rightarrow$ superposition principle.** Structural, and
+  independent of the free-field action.
+- **particular interacting or effective equations may be nonlinear.** Interacting
+  QFTs have higher-order interaction terms — $\lambda\phi^4$, $g^2\phi^4$, electroweak
+  terms — and states still superpose. Conversely, nonlinear equations such as the
+  Gross–Pitaevskii equation describe a *mean-field* or classical-field limit in which
+  the many-body state has already been packaged, and it is the quantised fluctuations
+  about that solution that again obey a linear equation and again superpose.
+
+So the free Dirac equation is *consistent* with superposition because the state space
+is linear, and its linearity is *visible* as a linear equation — not because the
+quadratic action caused the superposition principle to exist.
 
 ### 3.9.4 — Minimal Coupling: $\hat{\mathbf{p}} \to \hat{\mathbf{p}} - \frac{e}{c}\mathbf{A}$
 
