@@ -372,7 +372,7 @@ where $\hat{\mathbf{L}} = \hat{\mathbf{r}}\times\hat{\mathbf{p}}$ is the orbital
 
 When the magnetic field is absent or spin is irrelevant (e.g., we are studying spatial wavefunctions for spinless situations), each component of $\phi$ satisfies the same equation independently. Setting $\mathbf{B} = 0$ and writing $\psi$ for a single spin component:
 
-$$\boxed{i\hbar\frac{\partial\psi}{\partial t} = \hat H\psi = \left(-\frac{\hbar^2}{2m_e}\nabla^2 + V(\mathbf{r})\right)\psi$$
+$$\boxed{i\hbar\frac{\partial\psi}{\partial t} = \hat H\psi = \left(-\frac{\hbar^2}{2m_e}\nabla^2 + V(\mathbf{r})\right)\psi}$$
 
 This is the **Schrödinger equation** — the foundation of all of Layer 1.
 
