@@ -86,6 +86,10 @@ FIGURES/
 mcp-server/
   server.py            deterministic MCP tooling layer (§16)
   smoke_test.py
+tools/
+  build_pdf.py         compiles the repo into Engineering-Physics-Top-Down.pdf
+  package.json         KaTeX dependency for the PDF build
+Engineering-Physics-Top-Down.pdf   generated; edit the Markdown, not the PDF
 ```
 
 Figures are SVGs and cannot be read as images. Each one is described by the

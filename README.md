@@ -146,6 +146,8 @@ Chapters 18–21 are the load-bearing part. Without them this is an unconvention
 
 **Figures** live in [`FIGURES/`](FIGURES/), one folder per chapter or example. Every figure is an SVG drawn by the `make_figures.py` script beside it, from the equations and parameters in the text. Run `python FIGURES/build_all.py` to regenerate them all.
 
+**The whole book as one PDF:** [`Engineering-Physics-Top-Down.pdf`](Engineering-Physics-Top-Down.pdf) (A4, about 630 pages) has every chapter, example, appendix and figure, with typeset math and a linked contents page. To rebuild it after editing, run `python tools/build_pdf.py` (one-time setup: `pip install markdown-it-py mdit-py-plugins` and `npm install --prefix tools`; it needs Chrome or Edge installed). Add `--check` to list any equations that fail to typeset.
+
 **AI tooling.** [`MCP.md`](MCP.md) is the context manifest for AI agents. [`mcp-server/`](mcp-server/) is an MCP server with structure audits, Model Ledger extraction, model tracing and a figure index. The repo's `.mcp.json` registers it with Claude Code.
 
 ---

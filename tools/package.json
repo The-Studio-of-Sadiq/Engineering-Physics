@@ -1,0 +1,8 @@
+{
+  "name": "engineering-physics-pdf-tools",
+  "private": true,
+  "description": "KaTeX for tools/build_pdf.py (math typesetting in the compiled PDF)",
+  "dependencies": {
+    "katex": "0.16.11"
+  }
+}
