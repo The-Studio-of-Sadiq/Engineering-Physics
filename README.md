@@ -133,6 +133,21 @@ Chapters 18–21 are the load-bearing part. Without them this is an unconvention
 
 **Worked demonstrations** of single descents, end to end, are in [`EXAMPLES/`](EXAMPLES/) — each one takes a starting theory, names the approximation, shows the reduction, lands on the engineering equation, and states the validity limits.
 
+**Full derivations and proofs** that the chapters state or sketch are in [`APPENDIX/`](APPENDIX/). The appendices support the 21 chapters; they are not new chapters.
+
+| Appendix | Subject | Supports |
+|---|---|---|
+| [A](APPENDIX/APPENDIX%20A.md) | Variational calculus, Noether's theorems, conservation laws | Ch 0, 1, 9, 11, 17 |
+| [B](APPENDIX/APPENDIX%20B.md) | Dirac → Foldy–Wouthuysen → Pauli; hydrogen fine structure | Ch 3, 4, 5 |
+| [C](APPENDIX/APPENDIX%20C.md) | Quantum → classical (stationary phase, Ehrenfest, WKB); GR → Newton | Ch 1, 4, 8, 9 |
+| [D](APPENDIX/APPENDIX%20D.md) | Ensembles, quantum statistics, Kubo, Green–Kubo, Drude | Ch 10, 13, 14 |
+| [E](APPENDIX/APPENDIX%20E.md) | Continuum balance laws and their reduction to lumped networks | Ch 11, 15, 16, 17, 19, 20 |
+| [F](APPENDIX/APPENDIX%20F.md) | Linear systems and feedback: Laplace, Nyquist, Routh, root locus | Ch 17, 18, 21 |
+
+**Figures** live in [`FIGURES/`](FIGURES/), one folder per chapter or example. Every figure is an SVG drawn by the `make_figures.py` script beside it, from the equations and parameters in the text. Run `python FIGURES/build_all.py` to regenerate them all.
+
+**AI tooling.** [`MCP.md`](MCP.md) is the context manifest for AI agents. [`mcp-server/`](mcp-server/) is an MCP server with structure audits, Model Ledger extraction, model tracing and a figure index. The repo's `.mcp.json` registers it with Claude Code.
+
 ---
 
 ## How connections are marked
@@ -239,11 +254,13 @@ The chapter count will not grow. What the project needs now is rigour, not bread
 - [x] Model Ledgers on the major model transitions
 - [x] `REFERENCES.md` — load-bearing claims traced to sources, with unverified items flagged rather than guessed
 - [x] `EXAMPLES/` — worked single-descent demonstrations
+- [x] `APPENDIX/` — full derivations and proofs behind the chapters (A–F)
+- [x] `FIGURES/` — script-generated figures embedded across chapters, examples, Map and Epilogue
 - [ ] Extend tagging coverage to the remaining heuristic sections
 - [ ] Pin CODATA / PDG citations to fixed dataset editions
 - [ ] Second-pass verification of Chapters 16, 17, 19, 20 against primary sources
 
-Read it as a **research and study map**, not as an authoritative replacement for specialist textbooks. The detailed conceptual argument — every layer expanded, every discarded term named, every arrow tagged — lives in [`00 Map.md`](METADATA/00%20Map.md). Writing rules for extending it are in [`AUTHORING.md`](CONTRIBUTING.md).
+Read it as a **research and study map**, not as an authoritative replacement for specialist textbooks. The detailed conceptual argument — every layer expanded, every discarded term named, every arrow tagged — lives in [`00 Map.md`](METADATA/00%20Map.md). Writing rules for extending it are in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 

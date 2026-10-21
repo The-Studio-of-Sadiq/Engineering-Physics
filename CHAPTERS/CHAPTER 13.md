@@ -147,19 +147,19 @@ $$i\hbar\frac{\partial\hat\rho}{\partial t} = [\hat H_0 + \hat H', \hat\rho]$$
 
 Write $\hat\rho = \hat\rho_0 + \delta\hat\rho$ and linearize in $\hat H'$:
 
-$$i\hbar\frac{\partial,\delta\hat\rho}{\partial t} = [\hat H_0, \delta\hat\rho] + [\hat H', \hat\rho_0]$$
+$$i\hbar\frac{\partial\,\delta\hat\rho}{\partial t} = [\hat H_0, \delta\hat\rho] + [\hat H', \hat\rho_0]$$
 
 Solving this first-order equation using the interaction picture and integrating:
 
-$$\delta\hat\rho(t) = \frac{i}{\hbar}\int_{-\infty}^t e^{-i\hat H_0(t-t')/\hbar}[\hat H'(t'), \hat\rho_0]e^{i\hat H_0(t-t')/\hbar}dt'$$
+$$\delta\hat\rho(t) = -\frac{i}{\hbar}\int_{-\infty}^t e^{-i\hat H_0(t-t')/\hbar}[\hat H'(t'), \hat\rho_0]e^{i\hat H_0(t-t')/\hbar}dt'$$
 
-Taking the trace with $\hat B$ and using the cyclic property of the trace and the equilibrium density matrix $[\hat\rho_0, e^{-\beta\hat H_0}] = 0$:
+Substituting $\hat H' = -\hat A\,F(t')$ (which flips the overall sign to $+i/\hbar$), taking the trace with $\hat B$ and using the cyclic property of the trace and the equilibrium density matrix $[\hat\rho_0, e^{-\beta\hat H_0}] = 0$:
 
 $$\chi_{BA}(\tau) = \frac{i}{\hbar}\Theta(\tau)\langle[\hat B(\tau), \hat A(0)]\rangle_0$$
 
 This confirms §13.1.2. The transport coefficient $L_{BA}$ (the DC, $\omega\to 0$ limit):
 
-$$\boxed{L_{BA} = \frac{1}{Vk_BT}\int_0^\infty\langle\hat J_B(0)\hat J_A(t)\rangle_0,dt}$$
+$$\boxed{L_{BA} = \frac{1}{Vk_BT}\int_0^\infty\langle\hat J_B(0)\hat J_A(t)\rangle_0\,dt}$$
 
 where $\hat J_A$, $\hat J_B$ are the current operators associated with observables $\hat A$, $\hat B$ (related by continuity equations), and $V$ is the system volume. This is the **Green-Kubo formula** for transport coefficients.
 
@@ -196,7 +196,7 @@ $$\boxed{\text{Im}[\tilde\chi_{AA}(\omega)] = \frac{\omega}{2k_BT}S_A(\omega)}$$
 
 where the **spectral density** (power spectrum of fluctuations):
 
-$$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(0)\hat A(t)\rangle_0\,e^{i\omega t}\,dt$$
+$$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(t)\hat A(0)\rangle_0\,e^{i\omega t}\,dt$$
 
 > [!warning] This is the *classical* limit, not the general quantum relation
 > `[APPROXIMATION]` The boxed formula is valid when $\hbar\omega \ll k_BT$ — the
@@ -206,7 +206,7 @@ $$S_A(\omega) = \int_{-\infty}^{\infty}\langle\hat A(0)\hat A(t)\rangle_0\,e^{i\
 > The general quantum fluctuation-dissipation relation depends on whether the
 > spectrum $S_A$ is **symmetrized** or **unsymmetrized**, and the two
 > normalizations differ. The $S_A$ defined above is unsymmetrized (it carries the
-> ordering $\langle\hat A(0)\hat A(t)\rangle$, not a commutator average), so the
+> ordering $\langle\hat A(t)\hat A(0)\rangle$, not a commutator average), so the
 > matching statement is
 >
 > $$\boxed{\text{Im}[\tilde\chi_{AA}(\omega)] = \frac{1-e^{-\hbar\omega/k_BT}}{2\hbar}\,S_A(\omega)}$$
@@ -292,14 +292,16 @@ The conductivity **tensor** follows from the full retarded response. Writing the
 current–current correlator in spectral (imaginary-time) form, with
 $\beta = 1/k_BT$:
 
-$$\sigma_{\alpha\beta}(\omega) = \frac{1}{V}\int_0^\infty dt\,e^{i\omega t}\int_0^\beta d\lambda\,\langle\hat J_\alpha(-i\hbar\lambda)\hat J_\beta(t)\rangle_0$$
+$$\sigma_{\alpha\beta}(\omega) = \frac{1}{V}\int_0^\infty dt\,e^{i\omega t}\int_0^\beta d\lambda\,\langle\hat J_\beta(-i\hbar\lambda)\hat J_\alpha(t)\rangle_0$$
 
 Note the $1/V$: the prefactor converts a **total** current into a current **density**.
 That single factor is what keeps the conductivity's units at $(\text{S/m})$.
 
 For an isotropic system in the DC limit ($\omega\to 0$), the standard
-Green–Kubo reduction drops the $\lambda$ integral (the $\omega=0$ correlator is
-$\lambda$-independent) and contracts the tensor with $\frac{1}{3}\delta_{\alpha\beta}$:
+Green–Kubo reduction replaces the $\lambda$ integral by a factor $\beta$ (exact
+only if $\hat{\mathbf{J}}$ commutes with $\hat H_0$, i.e. a conserved current, or in
+the classical limit; otherwise an approximation valid when the current decays
+slowly on the scale $\hbar/k_BT$) and contracts the tensor with $\frac{1}{3}\delta_{\alpha\beta}$:
 
 $$\sigma_{DC} = \frac{1}{3Vk_BT}\int_0^\infty \langle\hat{\mathbf{J}}(0)\cdot\hat{\mathbf{J}}(t)\rangle_0\,dt$$
 
@@ -333,7 +335,7 @@ instructive, so it is worth recording what actually blocks the direct route.
 Start from the one occupation relation that *is* elementary. Since a fermionic
 mode satisfies $n_k^2 = n_k$,
 
-$$\langle \hat n_k \hat n_{k'}\rangle_0 = \delta_{kk'}\,\langle n_k^2\rangle_0 = \delta_{kk'} f_k, \qquad f_k = \frac{1}{e^{\beta(\epsilon_k-\mu)}+1}$$
+$$\langle \hat n_k \hat n_{k'}\rangle_0 = f_k f_{k'} + \delta_{kk'}\,f_k(1-f_k), \qquad f_k = \frac{1}{e^{\beta(\epsilon_k-\mu)}+1}$$
 
 (Note what this is *not*: the variance $\mathrm{Var}(n_k) = f_k(1-f_k)$ governs
 number and charge fluctuations and shot noise. It is not the dc conductivity.)
@@ -438,7 +440,7 @@ drift is opposite to $\mathbf{E}$.
 
 The current density carries the electron charge $-e$:
 
-$$\mathbf{J} = -e\int \mathbf{v}_{\mathbf{k}}\,\delta f(\mathbf{k})\,\frac{d^3k}{(2\pi)^3} = e^2\tau\int \frac{d^3k}{(2\pi)^3}\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\left(-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\right)\mathbf{v}_{\mathbf{k}}$$
+$$\mathbf{J} = -2e\int \mathbf{v}_{\mathbf{k}}\,\delta f(\mathbf{k})\,\frac{d^3k}{(2\pi)^3} = 2e^2\tau\int \frac{d^3k}{(2\pi)^3}\,(\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}})\left(-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}}\right)\mathbf{v}_{\mathbf{k}}$$
 
 Both signs are now correct and they work together: $-\partial f_0/\partial\epsilon_{\mathbf{k}} > 0$ and the angular average of $(\mathbf{E}\cdot\mathbf{v})\mathbf{v}$ is along $+\mathbf{E}$, so $\mathbf{J} \parallel +\mathbf{E}$, as Ohm's law requires.
 
@@ -447,13 +449,16 @@ becomes a surface delta function as $T\to0$:
 
 $$-\frac{\partial f_0}{\partial\epsilon_{\mathbf{k}}} = \frac{1}{4k_BT}\operatorname{sech}^2\!\left(\frac{\epsilon_{\mathbf{k}}-\mu}{2k_BT}\right) \;\xrightarrow[T\to0]{}\; \delta(\epsilon_{\mathbf{k}}-\mu)$$
 
+![Fermi window minus df0/de versus energy at 30, 100 and 300 K](../FIGURES/CH13/fermi-window.svg)
+*The Fermi window $-\partial f_0/\partial\epsilon = (4k_BT)^{-1}\,\mathrm{sech}^2[(\epsilon - \mu)/2k_BT]$ at $T = 30$, $100$ and $300$ K: each curve has unit area and a full width of $3.53\,k_BT$ (about 91 meV at room temperature), so only electrons within a few $k_BT$ of $\mu$ — a sliver of a metal's several-eV Fermi sea — carry current, and the window sharpens toward $\delta(\epsilon - \mu)$ as $T \to 0$.*
+
 So the current is carried by states *on the Fermi surface* — which is the actual
 physical content of conduction in a degenerate metal, and something the
 classical correlator cannot express at all. Performing the angular average,
 
-$$\int \frac{d^3k}{(2\pi)^3}\,\delta(\epsilon_{\mathbf{k}}-\mu)\,v^\alpha v^\beta = \frac{n_e}{m_e}\,\delta_{\alpha\beta}$$
+$$2\int \frac{d^3k}{(2\pi)^3}\,\delta(\epsilon_{\mathbf{k}}-\mu)\,v^\alpha v^\beta = \frac{n_e}{m_e}\,\delta_{\alpha\beta}$$
 
-(Angular average gives $\int(\mathbf{E}\cdot\mathbf{v})\mathbf{v}(-\partial f_0/\partial\epsilon)\frac{d^3k}{(2\pi)^3} = \frac{\mathbf{E}}{3}\int v^2\delta(\epsilon_{\mathbf{k}}-\mu)\frac{d^3k}{(2\pi)^3}$, and the radial integral is $\int \frac{d^3k}{(2\pi)^3}\delta(\epsilon_{\mathbf{k}}-\mu)\,v^2 = \frac{3n_e}{m_e}$ using $v_F^2 = \hbar^2k_F^2/m_e^2$ and $n_e = k_F^3/3\pi^2$ — so the angular $1/3$ and the radial factor of $3$ cancel exactly.) Therefore
+(The factor 2 counts spin, since $n_e$ includes both spin states. Angular average gives $2\int(\mathbf{E}\cdot\mathbf{v})\mathbf{v}(-\partial f_0/\partial\epsilon)\frac{d^3k}{(2\pi)^3} = \frac{\mathbf{E}}{3}\,2\int v^2\delta(\epsilon_{\mathbf{k}}-\mu)\frac{d^3k}{(2\pi)^3}$, and the radial integral is $2\int \frac{d^3k}{(2\pi)^3}\delta(\epsilon_{\mathbf{k}}-\mu)\,v^2 = \frac{3n_e}{m_e}$ using $v_F^2 = \hbar^2k_F^2/m_e^2$ and $n_e = k_F^3/3\pi^2$ — so the angular $1/3$ and the radial factor of $3$ cancel exactly.) Therefore
 
 $$\mathbf{J} = \frac{n_e e^2\tau}{m_e}\,\mathbf{E} \quad\Longrightarrow\quad \boxed{\sigma_{DC} = \frac{n_e e^2\tau}{m_e}}$$
 
@@ -468,6 +473,9 @@ $$\rho = \frac{1}{\sigma} = \frac{m_e}{n_e e^2\tau} = \frac{m_e v_F}{n_e e^2\ell
 $$\sigma(\omega) = \frac{n_e e^2\tau}{m_e}\cdot\frac{1}{1 - i\omega\tau}, \qquad \sigma_0 = \frac{n_e e^2\tau}{m_e}$$
 
 At $\omega\tau \ll 1$: purely real, Ohmic. At $\omega\tau \gg 1$: purely imaginary, reactive. The crossover at $\omega \sim 1/\tau$ therefore marks where the Drude response stops being predominantly **dissipative** and becomes predominantly **reactive**. For typical metals $\tau \sim 10^{-14}$ s, so this sits in the far infrared.
+
+![Real and imaginary parts of the Drude conductivity versus omega tau](../FIGURES/CH13/drude-conductivity.svg)
+*Drude conductivity $\sigma(\omega)/\sigma_0 = 1/(1 - i\omega\tau)$: the dissipative part $\mathrm{Re}\,\sigma/\sigma_0 = 1/(1 + \omega^2\tau^2)$ is flat (Ohmic) for $\omega\tau \ll 1$ and falls as $(\omega\tau)^{-2}$ beyond, the reactive part $\mathrm{Im}\,\sigma/\sigma_0 = \omega\tau/(1 + \omega^2\tau^2)$ peaks at the crossover $\omega\tau = 1$ where the two are equal at $1/2$ — about 16 THz for $\tau = 10^{-14}$ s, well below the plasma frequency.*
 
 > [!warning] $1/\tau$ is *not* the optical transparency frequency
 > It is tempting to read the Drude crossover as the frequency at which a metal stops reflecting and becomes transparent. That is wrong, and conflating the two is a common error. Reflectivity and transparency are governed principally by the **plasma frequency**
@@ -523,7 +531,7 @@ This should also not be identified with superconductivity. A clean normal metal 
 
 For electrons, the heat current is the energy current minus the chemical potential times the particle current:
 
-$$\hat{\mathbf{J}}_Q = \hat{\mathbf{J}}_E - \mu\hat{\mathbf{J}}_N = \frac{\hbar}{V}\sum_k(E_k - \mu)\mathbf{v}_k\hat c_k^\dagger\hat c_k$$
+$$\hat{\mathbf{J}}_Q = \hat{\mathbf{J}}_E - \mu\hat{\mathbf{J}}_N = \sum_k(E_k - \mu)\mathbf{v}_k\hat c_k^\dagger\hat c_k$$
 
 The Kubo formula for thermal conductivity (at zero electric field):
 
@@ -537,7 +545,7 @@ $$\frac{\kappa}{\sigma T} = \frac{\pi^2}{3}\left(\frac{k_B}{e}\right)^2 = L_0 = 
 
 The *number* is universal; the *law* is not unconditional. $L_0$ is a **low-temperature Fermi-liquid** result, valid in the degenerate limit where electronic quasiparticle transport dominates.
 
-`[APPROXIMATION]` **The universality of $L_0$ is a statement about a scattering model, not about metals.** The ratio is constant precisely because the *same* $\tau$ cancels between $\sigma$ and $\kappa$ — which requires elastic scattering off a static bath, Galilean-invariant parabolic dispersion, and heat carried by electrons alone. Whenever heat and charge relax by *different* mechanisms, the ratio drifts:
+`[APPROXIMATION]` **The universality of $L_0$ is a statement about a scattering model, not about metals.** The ratio is constant precisely because the *same* $\tau$ cancels between $\sigma$ and $\kappa$ — which requires elastic scattering off a static bath (the same $\tau(\epsilon)$ for charge and heat), a degenerate electron gas, and heat carried by electrons alone; no particular dispersion is needed. Whenever heat and charge relax by *different* mechanisms, the ratio drifts:
 
 | Regime | What happens to $\kappa/\sigma T$ |
 |---|---|
@@ -595,6 +603,9 @@ $$D = \frac{1}{3}\cdot 3\cdot\frac{k_BT}{m}\tau = \frac{k_BT\tau}{m} = \frac{k_B
 
 where $\ell$ is the mean free path and $v_{th} = \sqrt{k_BT/m}$ is the thermal velocity.
 
+![Exponential velocity autocorrelation function with the area under it shaded](../FIGURES/CH13/green-kubo-vacf.svg)
+*Normalised velocity autocorrelation $C_{vv}(t)/(k_BT/m) = e^{-t/\tau}$ for a Brownian tracer: the tangent at $t = 0$ reaches zero at $t = \tau$, and the shaded area under the curve is the Green–Kubo diffusivity $D = \int_0^\infty C_{vv}\,dt = k_BT\tau/m$.*
+
 > [!note] When the classical correlator *is* legitimate — and when it is not
 > The velocity autocorrelation $C_{vv}(t) = \frac{k_BT}{m}e^{-t/\tau}$ used above
 > is **legitimate here**, because a Brownian tracer in a classical thermal medium
@@ -649,7 +660,7 @@ $$\eta = \frac{V}{k_BT}\int_0^\infty\langle\hat\sigma_{xy}(0)\hat\sigma_{xy}(t)\
 
 For a simple fluid with a single structural relaxation time $\tau_v$:
 
-$$\langle\hat\sigma_{xy}(0)\hat\sigma_{xy}(t)\rangle_0 = \frac{nk_BT}{V}e^{-t/\tau_v}$$
+$$\langle\hat\sigma_{xy}(0)\hat\sigma_{xy}(t)\rangle_0 = \frac{n(k_BT)^2}{V}e^{-t/\tau_v}$$
 
 $$\eta = nk_BT\tau_v$$
 
@@ -715,7 +726,9 @@ At $\omega\to 0$: recovers the static elastic modulus (material responds slowly 
 
 When multiple driving forces act simultaneously, the currents become coupled. Define thermodynamic forces:
 
-$$\mathbf{X}_E = \mathbf{E} - \frac{\nabla\mu}{e}, \quad \mathbf{X}_Q = -\frac{\nabla T}{T}$$
+$$\mathbf{X}_E = \frac{1}{T}\left(\mathbf{E} + \frac{\nabla\mu}{e}\right), \quad \mathbf{X}_Q = -\frac{\nabla T}{T^2}$$
+
+(for carriers of charge $-e$; these are the forces conjugate to $\mathbf{J}^e$ and $\mathbf{J}^Q$ in the entropy production).
 
 The Onsager transport equations:
 
@@ -734,7 +747,7 @@ $$\begin{pmatrix}\mathbf{J}^e \\ \mathbf{J}^Q\end{pmatrix} = \begin{pmatrix}L_{E
 
 $$\boxed{L_{AB} = L_{BA}}$$
 
-**Proof:** Time-reversal symmetry of the equilibrium correlation functions. Under time reversal, $\langle J_A(0)J_B(t)\rangle_0 = \langle J_B(0)J_A(t)\rangle_0$ for currents with the same sign under time reversal (both odd or both even). Therefore the Kubo integrals are equal: $L_{AB} = L_{BA}$.
+**Proof:** Time-reversal symmetry of the equilibrium correlation functions. Under time reversal, $\langle J_A(0)J_B(t)\rangle_0 = \langle J_B(0)J_A(t)\rangle_0$ for currents with the same sign under time reversal (both odd or both even). Therefore the Kubo integrals are equal: $L_{AB} = L_{BA}$. In general (Onsager–Casimir), with time-reversal parities $\varepsilon_A, \varepsilon_B = \pm1$ and a magnetic field $\mathbf{B}$, which is odd under time reversal, the statement is $L_{AB}(\mathbf{B}) = \varepsilon_A\varepsilon_B\,L_{BA}(-\mathbf{B})$; the boxed form is the $\mathbf{B}=0$, equal-parity case. For the thermal force $\nabla T$, which is not a term in the Hamiltonian, writing $L_{QQ}$ and $L_{EQ}$ as Kubo correlators itself needs an extra step (Luttinger's fictitious gravitational potential).
 
 **Physical consequence:** If a temperature gradient drives a charge current (Seebeck effect), then an electric field drives an equal heat current (Peltier effect). These must be related — you cannot have one without the other.
 
@@ -744,7 +757,7 @@ $$\boxed{L_{AB} = L_{BA}}$$
 
 $$S = \frac{L_{EQ}}{TL_{EE}} = \frac{\Delta V}{\Delta T}\bigg|_{J^e=0}$$
 
-For a free electron gas: $S = -\frac{\pi^2k_B^2T}{3eE_F}$ (Mott formula) At 300 K for copper ($E_F = 7$ eV): $S \approx -1.8\,\mu$V/K (measured: $-1.8\,\mu$V/K) ✓
+From the Mott formula $S = -\frac{\pi^2k_B^2T}{3e}\frac{d\ln\sigma}{dE}\big|_{E_F}$, a free electron gas with constant mean free path ($\sigma\propto E$) gives $S = -\frac{\pi^2k_B^2T}{3eE_F}$; constant $\tau$ ($\sigma\propto E^{3/2}$) gives $-\frac{\pi^2k_B^2T}{2eE_F}$ instead. At 300 K for copper ($E_F = 7$ eV) the first gives $S \approx -1.05\,\mu$V/K. Measured copper is $\approx +1.8\,\mu$V/K: the free-electron model gets the magnitude roughly right but the **sign wrong** — a known failure, attributed to energy-dependent scattering and the non-spherical Fermi surface of Cu (necks touching the zone boundary).
 
 **Peltier coefficient** $\Pi$ — heat current per unit charge current:
 
@@ -758,7 +771,7 @@ This is not an independent empirical law — it is the Onsager reciprocal relati
 
 **Thermoelectric figure of merit:**
 
-$$ZT = \frac{S^2\sigma T}{\kappa} = \frac{S^2 L_{EE}}{L_{QQ} - L_{QE}^2/L_{EE}}$$
+$$ZT = \frac{S^2\sigma T}{\kappa} = \frac{T^2 S^2 L_{EE}}{L_{QQ} - L_{QE}^2/L_{EE}}$$
 
 $ZT > 1$ is the threshold for useful thermoelectric devices. Best materials (Bi₂Te₃ alloys, SnSe single crystals): $ZT \approx 2$–$3$. The Onsager matrix shows exactly what needs to be optimized — maximize $S^2\sigma$ (power factor) while minimizing $\kappa$ (thermal conductivity). These are coupled through the underlying band structure and phonon spectrum.
 
@@ -828,6 +841,9 @@ $$\boxed{G = \frac{2e^2}{h}\sum_n T_n}$$
 This is the **Landauer formula** (1957). For a perfect conductor ($T_n = 1$) with $N$ modes: $G = 2Ne^2/h$.
 
 **The quantum of conductance** $G_0 = 2e^2/h \approx 7.75\times 10^{-5}$ S $= 1/(12.9\,\text{k}\Omega)$: the conductance of a single perfectly transmitting channel. First measured directly in quantum point contacts (1988).
+
+![Quantized conductance staircase of a quantum point contact versus gate voltage](../FIGURES/CH13/landauer-steps.svg)
+*Landauer conductance $G = (2e^2/h)\sum_n T_n$ of a quantum point contact as the gate widens the channel, with saddle-point transmissions $T_n = 1/[1 + e^{-(V_g - V_n)/w}]$ for evenly spaced mode thresholds $V_n$ (illustrative gate units): each newly opened mode adds one quantum $2e^2/h = 77.5\ \mu$S, and the plateaus round off as the transmission steps broaden (larger $w$, e.g. higher temperature or a smoother constriction).*
 
 **The hierarchy of transport theories:**
 

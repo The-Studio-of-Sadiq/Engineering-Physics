@@ -30,7 +30,7 @@ Every concept in this chapter traces to earlier physics. The last column states
 
 | Ch. 20 concept | Physics origin | Connection |
 |---|---|---|
-| Beam bending $EI\,d^4w/dx^4 = q$ | Euler-Bernoulli (Ch. 16 §16.7.2); Navier equation (Ch. 15) | `[DERIVATION]` |
+| Beam bending $EI\,d^4w/dx^4 = q$ | Euler-Bernoulli (Ch. 16 §16.7.2); Navier equation (Ch. 15) | `[APPROXIMATION]` — slender beam, $L/r \gg 1$ |
 | Stiffness method $\mathbf{K}\mathbf{u} = \mathbf{F}$ | FEM discretisation of the Navier equation (Ch. 16 §16.11) | `[DERIVATION]` |
 | Terzaghi consolidation $\partial u_e/\partial t = c_v\,\partial^2 u_e/\partial z^2$ | 1D diffusion equation (Ch. 16 §16.8; Ch. 14 §14.8) | `[DERIVATION]` — same equation |
 | Transient groundwater $S\,\partial h/\partial t = T\nabla^2 h$ | Advection–diffusion / storage formulation (Ch. 16) | `[DERIVATION]` under stated storage assumptions |
@@ -115,6 +115,9 @@ where:
 | Assumptions | $\varepsilon \ll 1$; $\sigma = D\varepsilon$ with constant $D$; no body force in the element; full continuity of $u$ across elements |
 | Physics retained | load path through stiffness; stress redistribution; equilibrium |
 | Physics neglected | inertia (dynamics), geometric non-linearity, plasticity, fracture, contact, thermal strain |
+| Validity | deflections $\lesssim L/100$; stresses below yield; mesh refined so element stiffness converges |
+| Fails when | large deflection (buckling, $P$-$\Delta$), yielding, or a singular/non-conforming element stiffness |
+| Next model | nonlinear FEM; dynamic stiffness (modal analysis, Ch. 21); plastic $D(\varepsilon)$ |
 
 > **Note on the constitutive form.** The isotropic law has two structurally
 > distinct pieces, and both are load-bearing. The term
@@ -129,9 +132,6 @@ where:
 > makes $\mu_L$ the wrong modulus by a factor of two. An element stiffness
 > matrix built on a corrupted form of this equation will pass equilibrium
 > checks and still give the wrong displacements.
-| Validity | deflections $\lesssim L/100$; stresses below yield; mesh refined so element stiffness converges |
-| Fails when | large deflection (buckling, $P$-$\Delta$), yielding, or a singular/non-conforming element stiffness |
-| Next model | nonlinear FEM; dynamic stiffness (modal analysis, Ch. 21); plastic $D(\varepsilon)$ |
 
 ### 20.1.2 — Bar Elements: Trusses
 
@@ -192,10 +192,12 @@ $$\boxed{EI\frac{d^4w}{dx^4} = q(x)}$$
 This is a 4th-order ODE — a static limit of the flexural wave equation from Ch. 16 §16.7.2
 (with $\partial_{tt}w = 0$). Integrating successively:
 
-- $EI\,d^3w/dx^3 = V(x) + C_1$ — shear force
-- $EI\,d^2w/dx^2 = M(x) + C_1 x + C_2$ — bending moment
-- $EI\,dw/dx = \theta(x)$ — slope
-- $EI\,w(x)$ — deflection
+- $EI\,d^3w/dx^3 = V(x)$ — shear force, $V = \int q\,dx + C_1$
+- $EI\,d^2w/dx^2 = M(x)$ — bending moment, $M = \int V\,dx + C_2$
+- $dw/dx = \theta(x)$ — slope, $\theta = \frac{1}{EI}\int M\,dx + C_3$
+- $w(x) = \int\theta\,dx + C_4$ — deflection
+
+(sign convention here: $dV/dx = q$, $dM/dx = V$; the four constants are fixed by the boundary conditions.)
 
 **Bending stress** at distance $y$ from the neutral axis:
 
@@ -216,6 +218,9 @@ where $S = I/c$ is the **section modulus** — the key geometric quantity in bea
 
 **Design check:** $\sigma_{max} = M_{max}c/I \leq \sigma_{allowable}$ (strength)
 and $w_{max} \leq L/360$ or $L/250$ (serviceability — deflection limit).
+
+![Normalised deflected shapes of the standard beam cases](../FIGURES/CH20/beam-deflections.svg)
+*Elastic curves $w(x)/w_{max}$ from the closed-form Euler–Bernoulli solutions for the five tabulated cases, each normalised by its tabulated $w_{max}$ (which the curves reproduce exactly); cantilevers peak at the free tip, the symmetric cases at midspan, and fixed ends flatten the curve to zero slope at the supports.*
 
 ### 20.2.3 — Second Moment of Area
 
@@ -272,6 +277,9 @@ derived analytically for open-channel turbulent flow.
 
 **Specific energy:** $E = y + \frac{Q^2}{2gA^2}$ where $y$ is the flow depth.
 For a given $Q$, minimum $E$ occurs at critical depth $y_c$ (where $Fr = 1$).
+
+![Specific energy curve for a rectangular channel showing critical depth and alternate depths](../FIGURES/CH20/specific-energy.svg)
+*Specific energy $E = y + q^2/(2gy^2)$ for a rectangular channel carrying $q = 2$ m²/s per unit width: the curve's nose is the critical point $y_c = (q^2/g)^{1/3} = 0.74$ m, $E_{min} = 1.5y_c = 1.11$ m, separating the subcritical (upper) and supercritical (lower) branches; any $E > E_{min}$, e.g. 1.5 m, admits two alternate depths.*
 
 **Hydraulic jump:** An abrupt transition from supercritical to subcritical flow
 (always increases depth, always dissipates energy). Sequent depths:
@@ -357,6 +365,9 @@ $$U(t) = 1 - \frac{8}{\pi^2}\sum_{n=0}^{\infty}\frac{1}{(2n+1)^2}\exp\!\left(-\f
 where $U(t) = \Delta H/\Delta H_{final}$ is the **degree of consolidation** and
 $T_v = c_v t/H_{dr}^2$ is the dimensionless time factor.
 
+![Degree of consolidation versus time factor from the Terzaghi series](../FIGURES/CH20/terzaghi-consolidation.svg)
+*Average degree of consolidation $U$ versus $T_v$ (log axis) from the series above (50 terms), with the early-time asymptote $U = \sqrt{4T_v/\pi}$ (accurate to $U \approx 60\%$); notice $T_v = 0.197$ gives 50% and $T_v = 0.848$ gives 90%, the value used in the settlement example below.*
+
 `[DERIVATION]` — **this is a mathematical identity, not an analogy.** The
 Fourier-number series above, the step-load boundary condition, and the
 $T_v \approx (\pi/4)U^2$ parabola are the *same* solutions as the slab
@@ -370,7 +381,7 @@ being reinterpreted; only the name of the field changes.
 | Transport coefficient | thermal diffusivity $\alpha$ | coefficient of consolidation $c_v$ |
 | Step boundary condition | surface suddenly cooled | load suddenly applied |
 | Solution | Fourier series in Fo | same series in $T_v$ |
-| Early-time asymptote | $1 - \text{erf}(z/2\sqrt{\alpha t})$ | $U \approx (\pi/4)T_v$ |
+| Early-time asymptote | $1 - \text{erf}(z/2\sqrt{\alpha t})$ | $T_v \approx (\pi/4)U^2$, i.e. $U \approx \sqrt{4T_v/\pi}$ |
 
 **Model Ledger — load step to degree of consolidation**
 
@@ -600,6 +611,9 @@ Since $1/(-r_A)$ increases with $X_A$ (rate decreases as reactant depletes),
 the rectangle is always larger than the area under the curve:
 
 $$V_{CSTR} > V_{PFR} \quad\text{(for positive-order reactions at same conversion)}$$
+
+![Levenspiel plot for a first-order reaction comparing PFR area and CSTR rectangle](../FIGURES/CH20/levenspiel.svg)
+*Levenspiel plot $F_{A0}/(-r_A) = (v_0/k)/(1-X_A)$ for a first-order reaction: to reach $X_A = 0.8$ the PFR needs the shaded area $-\ln(0.2) = 1.61\,v_0/k$ while the CSTR needs the full rectangle $0.8/0.2 = 4.0\,v_0/k$, about 2.5 times larger.*
 
 **Engineering trade-off:**
 - PFR: more efficient (less volume needed); harder to control; temperature

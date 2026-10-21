@@ -52,7 +52,7 @@ Using the Schrödinger equation $i\hbar\,\partial_t\psi = \hat H\psi$ and its co
 
 $$\boxed{\frac{d\langle\hat A\rangle}{dt} = \frac{i}{\hbar}\langle[\hat H, \hat A]\rangle + \left\langle\frac{\partial\hat A}{\partial t}\right\rangle}$$
 
-This is **Ehrenfest's theorem** — the quantum analog of Hamilton's equation of motion $\dot f = {f, H}_{Poisson} + \partial f/\partial t$. Replacing the Poisson bracket with $(i/\hbar)\times$commutator is canonical quantization (Ch. 1 §1.6.4) operating in reverse: here we see the quantum equation reducing to the classical one.
+This is **Ehrenfest's theorem** — the quantum analog of Hamilton's equation of motion $\dot f = \{f, H\}_{Poisson} + \partial f/\partial t$. Replacing the Poisson bracket with $(i/\hbar)\times$commutator is canonical quantization (Ch. 1 §1.6.4) operating in reverse: here we see the quantum equation reducing to the classical one.
 
 ### 9.1.2 — Recovering Newton's Second Law
 
@@ -76,9 +76,7 @@ When do these become identical?
 
 Taylor expand $\nabla V(\mathbf{r})$ around $\langle\mathbf{r}\rangle$:
 
-$$\langle\nabla V\rangle = \nabla V!\big|_{\langle\mathbf{r}\rangle}
-
-- \frac{1}{2}\langle(\Delta\mathbf{r})^2\rangle\nabla^3 V!\big|_{\langle\mathbf{r}\rangle} + \cdots$$
+$$\langle\nabla V\rangle = \nabla V\!\big|_{\langle\mathbf{r}\rangle} + \frac{1}{2}\langle(\Delta\mathbf{r})^2\rangle\nabla^3 V\!\big|_{\langle\mathbf{r}\rangle} + \cdots$$
 
 The correction term involves $(\Delta x)^2 V''' \sim (\Delta x)^2/L_V^3$ where $L_V$ is the scale over which $V$ varies. This is negligible when:
 
@@ -98,7 +96,7 @@ This is Newton's second law — the expectation values of position and momentum 
 
 From quantum mechanics (the rigorous formulation), the amplitude for a particle to travel from $(\mathbf{r}_a, t_a)$ to $(\mathbf{r}_b, t_b)$ is:
 
-$$K(\mathbf{r}_b, t_b\,\mathbf{r}_a, t_a) = \int_{\text{all paths}} \mathcal{D}\mathbf{r}(t)\,\exp!\left(\frac{i}{\hbar}S[\mathbf{r}(t)]\right)$$
+$$K(\mathbf{r}_b, t_b;\,\mathbf{r}_a, t_a) = \int_{\text{all paths}} \mathcal{D}\mathbf{r}(t)\,\exp\!\left(\frac{i}{\hbar}S[\mathbf{r}(t)]\right)$$
 
 where $S[\mathbf{r}(t)] = \int_{t_a}^{t_b} L(\mathbf{r},\dot{\mathbf{r}},t)\,dt$ is the classical action (Ch. 1 §1.4) evaluated along each possible path, and the integral runs over **all continuous paths** connecting the endpoints — not just the classical one.
 
@@ -110,13 +108,16 @@ As $\hbar \to 0$, the phase $S/\hbar$ oscillates infinitely rapidly for any vari
 
 The condition $\delta S = 0$ — stationary action — is exactly the **Euler-Lagrange equation** (Ch. 1 §1.5). The dominant contribution to $K$ comes from the classical trajectory $\mathbf{r}_{cl}(t)$:
 
-$$K \xrightarrow{\hbar\to 0} A(\mathbf{r}_b,\mathbf{r}_a,t)\,\exp!\left(\frac{i}{\hbar}S_{cl}[\mathbf{r}_{cl}(t)]\right)$$
+$$K \xrightarrow{\hbar\to 0} A(\mathbf{r}_b,\mathbf{r}_a,t)\,\exp\!\left(\frac{i}{\hbar}S_{cl}[\mathbf{r}_{cl}(t)]\right)$$
 
 where $A$ is a slowly-varying prefactor from the Gaussian integral over fluctuations around the classical path.
 
 **The physical statement:** In the classical limit, a particle takes the single path of stationary action. In the quantum world, it takes all paths. Classical mechanics is the stationary-phase approximation of quantum mechanics.
 
 This is the answer to the question raised in Ch. 1 §1.4.2: _Why should $\delta S = 0$?_ Because nature is quantum. The classical trajectory is the path that survives when all other paths cancel by interference as $\hbar/S \to 0$.
+
+![Real part of exp(iS/hbar) for a quadratic action at three values of hbar](../FIGURES/CH09/stationary-phase.svg)
+*$\mathrm{Re}\,e^{iS/\hbar}$ for the model action $S = (x - x_0)^2$ with $x_0 = 0$ at $\hbar = 1, 0.1, 0.01$: away from the stationary point the phase oscillates ever faster and neighbouring contributions cancel, so only a window of width $\sim\sqrt{\pi\hbar}$ (shaded) around $\delta S = 0$ survives as $\hbar \to 0$.*
 
 ---
 
@@ -126,7 +127,7 @@ This is the answer to the question raised in Ch. 1 §1.4.2: _Why should $\delta 
 
 Write the wavefunction as:
 
-$$\psi(\mathbf{r}, t) = A(\mathbf{r},t)\,\exp!\left(\frac{i}{\hbar}S(\mathbf{r},t)\right)$$
+$$\psi(\mathbf{r}, t) = A(\mathbf{r},t)\,\exp\!\left(\frac{i}{\hbar}S(\mathbf{r},t)\right)$$
 
 where $A(\mathbf{r},t)$ is a real amplitude and $S(\mathbf{r},t)$ is a real phase. Substituting into the Schrödinger equation and separating real and imaginary parts, collecting terms by power of $\hbar$:
 
@@ -138,7 +139,7 @@ This is the **Hamilton-Jacobi equation** (Ch. 1 §1.8.1). The quantum phase $S$ 
 
 **Order $\hbar^1$ (next order):**
 
-$$\frac{\partial A^2}{\partial t} + \nabla\cdot!\left(A^2\frac{\nabla S}{m}\right) = 0$$
+$$\frac{\partial A^2}{\partial t} + \nabla\cdot\!\left(A^2\frac{\nabla S}{m}\right) = 0$$
 
 This is the **continuity equation** for the probability density $\rho = A^2 = |\psi|^2$, with current density $\mathbf{J} = A^2\nabla S/m = |\psi|^2\mathbf{v}_{cl}$. Probability is conserved — as it must be by Noether's theorem (Ch. 1 §1.7).
 
@@ -152,19 +153,22 @@ This term — sometimes called the **Bohm potential** — vanishes as $\hbar\to 
 
 In one dimension, the HJ equation gives $p(x) = \partial S/\partial x = \sqrt{2m(E-V(x))}$. The WKB wavefunction in a classically allowed region ($E > V$):
 
-$$\psi_{WKB}(x) = \frac{C}{\sqrt{p(x)}}\exp!\left(\pm\frac{i}{\hbar}\int^x p(x'),dx'\right)$$
+$$\psi_{WKB}(x) = \frac{C}{\sqrt{p(x)}}\exp\!\left(\pm\frac{i}{\hbar}\int^x p(x')\,dx'\right)$$
 
 In a classically forbidden region ($E < V$), $p \to i\kappa$ where $\kappa = \sqrt{2m(V-E)}/\hbar$:
 
-$$\psi_{WKB}(x) = \frac{C}{\sqrt{\kappa(x)}}\exp!\left(\mp\int^x\kappa(x'),dx'\right)$$
+$$\psi_{WKB}(x) = \frac{C}{\sqrt{\kappa(x)}}\exp\!\left(\mp\int^x\kappa(x')\,dx'\right)$$
 
 ### 9.3.3 — Validity Criterion
 
 WKB is valid when the de Broglie wavelength $\lambda = h/p$ changes slowly over one wavelength — i.e., when the potential is nearly constant locally:
 
-$$\left|\frac{d\lambda}{dx}\right| \ll 1 \qquad\Longleftrightarrow\qquad \frac{\hbar}{p^2}\left|\frac{dp}{dx}\right| \ll 1$$
+$$\left|\frac{d\bar\lambda}{dx}\right| \ll 1, \quad \bar\lambda = \frac{\lambda}{2\pi} = \frac{\hbar}{p} \qquad\Longleftrightarrow\qquad \frac{\hbar}{p^2}\left|\frac{dp}{dx}\right| \ll 1$$
 
 This fails at **classical turning points** ($p = 0$) where $\lambda \to \infty$. Connection formulas (derived by matching to exact Airy function solutions near the turning point) bridge the oscillatory and evanescent WKB solutions.
+
+![Exact harmonic-oscillator n = 6 eigenfunction compared with the WKB approximation](../FIGURES/CH09/wkb-vs-exact.svg)
+*Exact $\psi_6(x)$ of the harmonic oscillator ($\hbar = m = \omega = 1$, $E = 6.5$) against the WKB form $C\,p^{-1/2}\cos(\int_{-a}^{x}p\,dx'/\hbar - \pi/4)$ inside and the decaying WKB exponential outside: the two agree to within line width away from the turning points $x = \pm\sqrt{13}$ (dashed), and the WKB curves diverge exactly where $p \to 0$ and the validity criterion fails.*
 
 ### 9.3.4 — WKB Applications
 
@@ -226,7 +230,7 @@ Constraint forces never appear. The approach is coordinate-free: it produces the
 
 ### 9.5.2 — The Charged Particle in an EM Field
 
-The Lagrangian for a particle of charge $q$ and mass $m$ in fields $(\phi, \mathbf{A})$ (from Ch. 3 §5.3 — minimal coupling in the Schrödinger equation, now in the classical limit):
+The Lagrangian for a particle of charge $q$ and mass $m$ in fields $(\phi, \mathbf{A})$ (from Ch. 3 §3.9.4 — minimal coupling in the Schrödinger equation, now in the classical limit):
 
 $$L = \frac{1}{2}m|\dot{\mathbf{r}}|^2 - q\phi(\mathbf{r},t) + q\dot{\mathbf{r}}\cdot\mathbf{A}(\mathbf{r},t)$$
 
@@ -244,13 +248,13 @@ This is the **Lorentz force law** — recovered from the Lagrangian with no addi
 
 Two masses $m_1$, $m_2$ on strings of length $\ell_1$, $\ell_2$, angles $\theta_1$, $\theta_2$:
 
-$$T = \frac{1}{2}(m_1+m_2)\ell_1^2\dot\theta_1^2 + m_2\ell_2^2\dot\theta_2^2 + m_2\ell_1\ell_2\dot\theta_1\dot\theta_2\cos(\theta_1-\theta_2)$$
+$$T = \frac{1}{2}(m_1+m_2)\ell_1^2\dot\theta_1^2 + \frac{1}{2}m_2\ell_2^2\dot\theta_2^2 + m_2\ell_1\ell_2\dot\theta_1\dot\theta_2\cos(\theta_1-\theta_2)$$
 
 $$V = -(m_1+m_2)g\ell_1\cos\theta_1 - m_2 g\ell_2\cos\theta_2$$
 
 Applying Euler-Lagrange gives two coupled nonlinear ODEs — the equations of motion for the double pendulum. These cannot be derived from Newton's law without first computing the tension in both strings (constraint forces). The Lagrangian approach is not just elegant; it is simpler.
 
-For small oscillations (§9.7 below), the double pendulum has two normal modes. For large oscillations, it is **chaotic** — sensitive to initial conditions, with adjacent trajectories diverging exponentially. This is the first appearance of chaos in the book. We will return to it briefly in §9.9.
+For small oscillations (§9.8 below), the double pendulum has two normal modes. For large oscillations, it is **chaotic** — sensitive to initial conditions, with adjacent trajectories diverging exponentially. This is the first appearance of chaos in the book. We will return to it briefly in §9.10.
 
 ---
 
@@ -258,7 +262,7 @@ For small oscillations (§9.7 below), the double pendulum has two normal modes. 
 
 ### 9.6.1 — Phase Space
 
-The state of a mechanical system with $n$ degrees of freedom is a point in **phase space** $\Gamma = {(q_1,\ldots,q_n,,p_1,\ldots,p_n)}$ — a $2n$-dimensional space. Hamilton's equations (Ch. 1 §1.6.3):
+The state of a mechanical system with $n$ degrees of freedom is a point in **phase space** $\Gamma = \{(q_1,\ldots,q_n,\,p_1,\ldots,p_n)\}$ — a $2n$-dimensional space. Hamilton's equations (Ch. 1 §1.6.3):
 
 $$\dot q_i = \frac{\partial H}{\partial p_i}, \qquad \dot p_i = -\frac{\partial H}{\partial q_i}$$
 
@@ -273,9 +277,12 @@ define a **flow** on phase space. Every initial condition maps to a unique traje
 For the pendulum ($H = p^2/2m\ell^2 - mg\ell\cos\theta$):
 
 - Small energy: ellipses (harmonic approximation)
-- Energy $= 2mg\ell$: **separatrix** — the figure-eight curve separating libration (bounded oscillation) from rotation (complete loops)
+- Energy $= 2mg\ell$ above the lowest point ($H = +mg\ell$ with the zero of $V$ at the pivot): **separatrix** — the figure-eight curve separating libration (bounded oscillation) from rotation (complete loops)
 - Large energy: rotation trajectories (pendulum spins over the top)
 - The separatrix itself is a **homoclinic orbit** — asymptotically approaches the unstable equilibrium as $t\to\pm\infty$; infinite period
+
+![Pendulum phase portrait with libration, rotation and separatrix](../FIGURES/CH09/pendulum-phase-portrait.svg)
+*Contours of $H = p^2/2m\ell^2 - mg\ell\cos\theta$ (zero of energy at the pivot height; units $m=\ell=g=1$): closed libration orbits (blue) around the stable points $\theta = 0, \pm 2\pi$, open rotation orbits (orange), and the separatrix $H = +mg\ell$ (black, $2mg\ell$ above the bottom of the well) through the unstable inverted points $\theta = \pm\pi$; grey arrows show the Hamiltonian flow $(\dot\theta, \dot p) = (p/m\ell^2, -mg\ell\sin\theta)$.*
 
 ### 9.6.2 — Liouville's Theorem
 
@@ -404,7 +411,7 @@ $$\left(\mathbf{V} - \omega^2\mathbf{T}\right)\mathbf{A} = \mathbf{0}$$
 
 Non-trivial solution requires:
 
-$$\boxed{\det!\left(\mathbf{V} - \omega^2\mathbf{T}\right) = 0}$$
+$$\boxed{\det\!\left(\mathbf{V} - \omega^2\mathbf{T}\right) = 0}$$
 
 This gives $n$ normal frequencies $\omega_k^2$ (eigenvalues) and $n$ normal mode vectors $\mathbf{A}^{(k)}$ (eigenvectors). Each normal mode is an independent oscillation in which all coordinates move at the same frequency $\omega_k$.
 

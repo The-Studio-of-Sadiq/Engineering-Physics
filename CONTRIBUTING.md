@@ -274,6 +274,33 @@ citation is the failure mode this rule exists to prevent. See
 - Worked examples: `EXAMPLES/`, each following the six-step shape documented in
   `EXAMPLES/README.md`.
 - Landing page: `README.md`.
+- Appendices: `APPENDIX/APPENDIX X.md`, X = A…F. An appendix holds the full
+  derivation or proof of results a chapter states or sketches. It follows every
+  rule in this file (tags, no numbering, stated assumptions, failure regime),
+  links back to the chapters that use it, and ends with a summary table. It is
+  supporting material, not a new chapter: the chapter count stays at 21.
+- Figures: `FIGURES/<FOLDER>/<slug>.svg`, where `<FOLDER>` is `CH00`…`CH21`,
+  `EX01`…`EX06`, `MAP` or `EPILOGUE`, and `<slug>` is kebab-case and names the
+  content (`moody-colebrook`, not `fig3`). Every figure is drawn by
+  `FIGURES/<FOLDER>/make_figures.py`, which imports the shared style in
+  `FIGURES/_style.py`. Its parameters come from the text the figure sits in.
+  No hand-drawn or pasted images, and no images that have no script.
+  `python FIGURES/build_all.py` regenerates everything.
+- Embed a figure with standard Markdown, not the Obsidian-only `![[...]]`, and
+  put an italic caption directly below it:
+
+  ```markdown
+  ![Colebrook friction factor against Reynolds number](../FIGURES/EX05/moody-colebrook.svg)
+  *Darcy friction factor from the Colebrook equation for ε/D = 1.125×10⁻³, with
+  the three iterates of Step 5 marked.*
+  ```
+
+  Never number figures or write "Figure 3" (same reason as §3 item 3). The
+  caption states what is plotted, with which parameters, and what to notice.
+  An AI agent reading the repo cannot see the SVG; it reads the caption and the
+  script.
+- A figure must agree with the text. If plotting exposes an error in the text,
+  fix the text in the same pass.
 - Any new top-level file requires updating `00 Map.md` and `README.md` in the
   same pass.
 
@@ -293,6 +320,10 @@ Before a section is considered done:
 - [ ] Summary table gives each result its origin
 - [ ] Engineering Thread and Looking Ahead present
 - [ ] All equations render correctly in preview
+- [ ] Every figure has a script, alt text and an italic caption, and it agrees
+      with the numbers in the text (§9)
+- [ ] `python mcp-server/smoke_test.py` passes (broken links and image embeds
+      fail it)
 
 ---
 

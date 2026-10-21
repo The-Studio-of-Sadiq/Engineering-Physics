@@ -135,6 +135,9 @@ $$\sigma_{xy} = \nu\frac{e^2}{h}, \quad \sigma_{xx} = 0$$
 
 The resistance standard: $R_K = h/e^2 \approx 25812.807\,\Omega$ is now exact by SI definition (2019).
 
+![Illustrative quantum Hall measurement: Hall resistivity plateaus and longitudinal resistivity versus magnetic field](../FIGURES/CH07/quantum-hall.svg)
+*Phenomenological illustration (not a microscopic calculation) for a 2DEG with $n = 3\times10^{15}$ m⁻²: $\rho_{xy}$ follows the classical line $B/ne$ at low field but locks onto plateaus $R_K/\nu$ ($R_K = 25\,812.807\ \Omega$) centred where $\nu = nh/eB$ is an integer (e.g. $\nu = 1$ at 12.4 T), while $\rho_{xx}$ vanishes on each plateau and peaks only in the transitions between them; disorder broadening is put in by hand.*
+
 ### 7.3.3 — Why Topology Protects It
 
 The TKNN result §7.2 says $\sigma_{xy} = (e^2/h)\sum_n C_n$. The Chern number is:
@@ -289,7 +292,7 @@ In a normal metal at $T = 0$, the Fermi sea is filled. Adding two electrons abov
 
 The binding energy of a Cooper pair:
 
-$$E_{binding} \approx -2\hbar\omega_D\,\exp!\left(-\frac{2}{N(0)V}\right)$$
+$$E_{binding} \approx -2\hbar\omega_D\,\exp\!\left(-\frac{2}{N(0)V}\right)$$
 
 where $\omega_D$ is the Debye frequency (maximum phonon frequency), $N(0)$ is the density of states at the Fermi level, and $V > 0$ is the dimensionless pairing strength.
 
@@ -309,13 +312,16 @@ $$\boxed{\Delta = V\sum_\mathbf{k}\frac{\Delta}{2\sqrt{\xi_\mathbf{k}^2 + |\Delt
 
 At $T = 0$, the solution:
 
-$$\Delta(0) = 2\hbar\omega_D\,\exp!\left(-\frac{1}{N(0)V}\right)$$
+$$\Delta(0) = 2\hbar\omega_D\,\exp\!\left(-\frac{1}{N(0)V}\right)$$
 
 At temperature $T$:
 
-$$\Delta(T) \approx \Delta(0)\sqrt{1 - \frac{T}{T_c}}, \qquad k_BT_c = 1.764\,\Delta(0)$$
+$$\Delta(T) \approx 1.74\,\Delta(0)\sqrt{1 - \frac{T}{T_c}}\ \ (T \to T_c), \qquad \Delta(0) = 1.764\,k_BT_c$$
 
 The ratio $2\Delta(0)/k_BT_c = 3.528$ is a universal BCS prediction — one of the first great successes of the theory, confirmed in many conventional superconductors.
+
+![BCS energy gap versus temperature from the weak-coupling gap equation, with the square-root asymptote near Tc](../FIGURES/CH07/bcs-gap.svg)
+*$\Delta(T)/\Delta(0)$ from solving the weak-coupling BCS gap equation numerically: the gap is essentially flat below $T \approx 0.4\,T_c$ and closes as $1.74\,\Delta(0)\sqrt{1 - T/T_c}$ (dashed) near $T_c$, with $\Delta(0) = 1.764\,k_BT_c$.*
 
 ### 7.6.3 — The Mexican Hat: Superconductivity as Symmetry Breaking
 
@@ -328,6 +334,9 @@ The free energy (Ginzburg-Landau):
 $$F = a(T)|\Delta|^2 + b|\Delta|^4 + \frac{\hbar^2}{2m^*}|\nabla\Delta|^2 + \cdots$$
 
 with $a(T) = a_0(T - T_c)$. Below $T_c$: $a < 0$, the minimum is at $|\Delta| = \sqrt{-a/2b} \neq 0$.
+
+![Ginzburg-Landau free energy versus order parameter at four temperatures, showing the double well below Tc](../FIGURES/CH07/landau-gl-free-energy.svg)
+*$F = a_0(T - T_c)|\Delta|^2 + b|\Delta|^4$ (with $a_0 = b = 1$) along a slice through the complex $\Delta$ plane, for $T/T_c = 1.2, 1.0, 0.8, 0.5$: above $T_c$ the only minimum is $\Delta = 0$, at $T_c$ the bottom is flat (quartic), and below $T_c$ the minima (dots) move out to $|\Delta| = \sqrt{-a/2b}$; rotating the curve about the vertical axis gives the Mexican hat (3D picture: Ch. 0 §0.7).*
 
 **This is the Mexican hat potential from Ch. 0 §0.7** — identical mathematics, ten orders of magnitude different in energy scale:
 
@@ -434,7 +443,7 @@ where $I_c$ is the critical current (maximum Cooper pair tunneling rate) and $\p
 
 **AC Josephson effect:** Apply a DC voltage $V$ across the junction. The phase evolves as $d(\phi_1-\phi_2)/dt = 2eV/\hbar$, giving an AC supercurrent:
 
-$$I(t) = I_c\sin!\left(\phi_0 + \frac{2eV}{\hbar}t\right) \quad\Longrightarrow\quad f_{AC} = \frac{2eV}{h}$$
+$$I(t) = I_c\sin\!\left(\phi_0 + \frac{2eV}{\hbar}t\right) \quad\Longrightarrow\quad f_{AC} = \frac{2eV}{h}$$
 
 **The Josephson frequency-voltage relation** $f = 2eV/h = 483597.8\,\text{GHz/V}$:
 
@@ -445,13 +454,16 @@ $$I(t) = I_c\sin!\left(\phi_0 + \frac{2eV}{\hbar}t\right) \quad\Longrightarrow\q
 
 A superconducting quantum interference device (SQUID) consists of a superconducting loop with two Josephson junctions. The critical current:
 
-$$I_c(\Phi) = 2I_{c0}\left|\cos!\left(\frac{\pi\Phi}{\Phi_0}\right)\right|$$
+$$I_c(\Phi) = 2I_{c0}\left|\cos\!\left(\frac{\pi\Phi}{\Phi_0}\right)\right|$$
 
 oscillates with the magnetic flux $\Phi$ through the loop with period $\Phi_0 = h/2e$. Measuring $I_c$ to 1 part in $10^3$ resolves flux changes of:
 
 $$\delta\Phi \sim 10^{-3}\Phi_0 = 2\times 10^{-18}\,\text{Wb}$$
 
-For a loop area of $1\,\text{mm}^2$: $\delta B \sim 2\times 10^{-12}\,\text{T}$ — sensitivity far below Earth's field ($\sim 50\,\mu$T) and the magnetic field of the human brain ($\sim 10^{-13}$ T at the scalp).
+For a loop area of $1\,\text{mm}^2$: $\delta B \sim 2\times 10^{-12}\,\text{T}$ — far below Earth's field ($\sim 50\,\mu$T), though still $\sim 20\times$ the magnetic field of the human brain ($\sim 10^{-13}$ T at the scalp). Practical magnetometers close that gap with finer flux resolution ($\sim 10^{-6}\Phi_0/\sqrt{\text{Hz}}$) and a cm-scale superconducting pickup coil (flux transformer), reaching $\sim 1$–$5\,\text{fT}/\sqrt{\text{Hz}}$.
+
+![SQUID critical current versus applied flux, periodic with one flux quantum](../FIGURES/CH07/squid-ic.svg)
+*The dc-SQUID critical current $I_c(\Phi) = 2I_{c0}|\cos(\pi\Phi/\Phi_0)|$ for $-3 \le \Phi/\Phi_0 \le 3$: it repeats every flux quantum $\Phi_0 = h/2e$, so counting periods measures flux in units of $\Phi_0$ and interpolating within one period resolves small fractions of it.*
 
 **Engineering applications:** Magnetoencephalography (MEG) for brain imaging; non-destructive testing; geodetic surveys; detection of unexploded ordnance; qubit readout in superconducting quantum computers.
 

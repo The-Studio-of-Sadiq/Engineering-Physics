@@ -111,6 +111,9 @@ rises. A compression that cooled the gas would be a physical contradiction.
 
 $$\Delta S = nC_V\ln\frac{T_2}{T_1} + nR\ln\frac{V_2}{V_1} = 12.47(0.6438) + 8.314(-0.9657) = 0 \quad\text{(the two terms cancel)}$$
 
+![P–V diagram of the reversible adiabatic compression with the work shaded](../FIGURES/EX02/pv-adiabatic-work.svg)
+*1.00 mol of monatomic argon compressed along the adiabat $PV^{5/3}$ = const from (1.00 atm, 24.6 L, 300 K) to (5.00 atm, 9.37 L, 571 K); the shaded area under the adiabat is the work done on the gas, 3.38 kJ, and the adiabat climbs from the 300 K isotherm to the 571 K one, which is the temperature rise.*
+
 Three engineering numbers, all from step 4, and the last one is a *check*: it is
 zero because "reversible adiabatic" means exactly that. If a compressor model
 returns $\Delta S \neq 0$, either the compression is irreversible or the model

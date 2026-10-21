@@ -103,6 +103,9 @@ For $f_0 = 5$ Hz → $r = 314/31.4 = 10$ → $T \approx 0.01$ (99% isolation).
 (when machine passes through $\omega_0$) but worsens isolation at operating
 frequency. Optimal: $\zeta \approx 0.05$–$0.15$ for continuous rotating machinery.
 
+![Force transmissibility versus frequency ratio for several damping ratios](../FIGURES/CH19/transmissibility.svg)
+*Transmissibility $T(r)$ on log–log axes for $\zeta = 0.05, 0.1, 0.2, 0.5, 1$: every curve passes through $T = 1$ at $r = \sqrt{2}$, damping tames the resonance peak but raises $T$ throughout the isolation region (shaded), and the fan example at $r = 10$ gives $T \approx 0.014$ at $\zeta = 0.05$ (0.010 undamped).*
+
 ### 19.1.4 — Base Excitation
 
 When the base (floor/ground) moves with displacement $y(t) = Y\cos\omega t$,
@@ -324,7 +327,7 @@ $\eta_{Carnot} = 64\%$, actual $\eta \approx 40$–$47\%$.
 
 $$\boxed{\eta_{Brayton} = 1 - \frac{1}{r_p^{(\gamma-1)/\gamma}}}$$
 
-For $r_p = 30$, $\gamma = 1.4$: $\eta = 53\%$ (ideal). Actual: 35–45%.
+For $r_p = 30$, $\gamma = 1.4$: $\eta = 62\%$ (ideal). Actual: 35–45%.
 
 **Why gas turbines can achieve high $T_H$:** Turbine inlet temperature (TIT)
 now exceeds 1700°C in modern aero-engines — well above the melting point of
@@ -349,6 +352,9 @@ $$\eta_{Diesel} = 1 - \frac{1}{r^{\gamma-1}}\cdot\frac{r_c^\gamma - 1}{\gamma(r_
 where $r_c = V_3/V_2$ is the cutoff ratio. For $r_c < $ corresponding Otto ratio:
 $\eta_{Diesel} < \eta_{Otto}$ at same compression ratio — but diesel engines
 run at higher $r$ (16–22 vs. 9–12 for gasoline) → typically higher actual $\eta$.
+
+![Ideal Otto and Diesel cycle efficiencies versus compression ratio](../FIGURES/CH19/otto-diesel-efficiency.svg)
+*Air-standard efficiency versus compression ratio for $\gamma = 1.4$: Otto $1 - r^{1-\gamma}$ (60% at $r = 10$) and Diesel for cutoff ratios $r_c = 1.5, 2, 3$, with typical gasoline ($r$ = 9–12) and diesel ($r$ = 16–22) ranges shaded; at equal $r$ the Diesel is always below the Otto, but a diesel at $r \approx 18$ still beats a gasoline engine at $r \approx 10$.*
 
 ### 19.5.5 — Vapor Compression Refrigeration Cycle
 
@@ -452,7 +458,7 @@ For a counterflow heat exchanger:
 $$\varepsilon = \frac{1 - e^{-NTU(1-C_r)}}{1 - C_r e^{-NTU(1-C_r)}} \quad (C_r < 1)$$
 
 **Engineering:** A shell-and-tube heat exchanger designed with $NTU = 2$,
-$C_r = 0.5$ achieves $\varepsilon = 0.80$ (80% of maximum possible heat transfer).
+$C_r = 0.5$ achieves $\varepsilon \approx 0.77$ (77% of maximum possible heat transfer).
 The NTU-effectiveness framework connects directly to the thermal circuit (R-network)
 of Ch. 14 — $NTU = UA/C_{min}$ is the ratio of thermal conductance to heat capacity flow rate.
 
@@ -517,6 +523,9 @@ $$\frac{Q_2}{Q_1} = \frac{N_2}{N_1}\left(\frac{D_2}{D_1}\right)^3, \qquad \frac{
 
 These follow from dimensional analysis (Ch. 15 §15.8) — the Reynolds similarity
 and Froude similarity conditions applied to turbomachinery.
+
+![Pump curves at two speeds intersecting a system curve at the operating points](../FIGURES/CH19/pump-system-curves.svg)
+*Illustrative pump curve $H = H_0 - AQ^2$ ($H_0 = 40$ m, $A = 0.020$ m/(L/s)²) against the system curve $H = H_{static} + BQ^2$ ($H_{static} = 10$ m, $B = 0.015$ m/(L/s)²), with the same pump slowed to $N/N_1 = 0.8$ by the affinity laws ($H_0 \to 0.64H_0$); because of the static head, a 20% speed cut drops the operating flow by about 28%, not 20%.*
 
 ---
 

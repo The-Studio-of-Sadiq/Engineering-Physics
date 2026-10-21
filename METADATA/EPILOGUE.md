@@ -76,6 +76,9 @@ The required dark matter density: $\Omega_{DM}h^2 = 0.120 \pm 0.001$ (Planck 201
 The total visible matter: $\Omega_b h^2 = 0.022$.
 **Dark matter is 5.4 times more abundant than ordinary matter.**
 
+![Energy budget of the universe: dark energy, dark matter and ordinary matter](../FIGURES/EPILOGUE/energy-budget.svg)
+*Today's cosmic energy budget (Planck 2018, rounded): dark energy ~68%, dark matter ~27%, ordinary matter ~5%. Everything the Standard Model describes sits in the thin last slice.*
+
 Not one Standard Model particle can be dark matter:
 - Neutrinos: too light, move too fast, would wash out the structures we observe
 - The Higgs: unstable on cosmological timescales
@@ -147,6 +150,9 @@ suppressed by factors of $(E/E_{Pl})^2 \sim (1\;\text{eV}/10^{28}\;\text{eV})^2 
 The four-layer framework of this book is valid to extraordinary precision in
 all engineering contexts. But at black hole horizons, at the Big Bang singularity,
 at the earliest moments of the universe — the framework has an edge.
+
+![Energy-scale ladder from 1 eV to the Planck energy with the (E/E_Pl)² suppression](../FIGURES/EPILOGUE/energy-scale-ladder.svg)
+*The quantum-gravity suppression $(E/E_{Pl})^2$ on log axes from 1 eV through the electroweak scale (246 GeV), LHC collisions (13.6 TeV) and the hypothetical GUT scale (~10¹⁶ GeV) to the Planck energy (1.22×10¹⁹ GeV): at 1 eV the factor is ~10⁻⁵⁶, and even at the LHC it is ~10⁻³⁰.*
 
 ### E.3.4 — The Strong CP Problem and the Axion
 

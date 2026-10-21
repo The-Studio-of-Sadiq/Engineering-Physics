@@ -20,7 +20,7 @@ This document is the **conceptual argument** of the repository: how the whole sy
 - [Layer 3](#layer-3--the-engineering-systems-scale) — engineering systems
 - [Notation](#notation-how-to-read-every-connection) · [Model Ledger](#model-ledger-the-convention) · [Cross-Layer Threads](#cross-layer-threads)
 
-**Companion files.** [`README.md`](../README.md) — what the repository is. [`REFERENCES.md`](../REFERENCES.md) — sources for load-bearing claims. [`EXAMPLES/`](../EXAMPLES/) — single descents worked end to end, each with its validity limits. [`AUTHORING.md`](CONTRIBUTING.md) — the rules for extending any of this.
+**Companion files.** [`README.md`](../README.md) — what the repository is. [`REFERENCES.md`](../REFERENCES.md) — sources for load-bearing claims. [`EXAMPLES/`](../EXAMPLES/) — single descents worked end to end, each with its validity limits. [`CONTRIBUTING.md`](../CONTRIBUTING.md) — the rules for extending any of this. [`FIGURES/`](../FIGURES/) — every figure, with the script that regenerates it. [`APPENDIX/`](../APPENDIX/) — full derivations and proofs behind the chapters (Appendices A–F).
 
 ---
 
@@ -250,6 +250,9 @@ This is the whole book in one diagram, with **every arrow tagged**. It is the sa
                 systems that admit an LTI representation
 ```
 
+![Layered dependency graph from Layer 0 to Layer 3 with Bridges A, B and C and tagged edges](../FIGURES/MAP/dependency-graph.svg)
+*The ASCII graph above redrawn as a layered network, L₀ → L₁ → L₂ → L₃, with Bridges A, B (B.a–B.e) and C as bands and every edge styled by its tag (solid = DERIVATION, dashed = APPROXIMATION, dotted = STRUCTURAL CONNECTION, thin grey = untagged narrative); the only DERIVATION edges are the scattering → Kubo → transport-law chain (B.e), general relativity's weak-field limit is routed straight to B.d where Bridge B lists it, and the cross-domain links (Higgs ↔ Landau, the winding-number thread, effort/flow) are structural.*
+
 ### The three things this graph is claiming
 
 **1. The reconvergence at Layer 2 is the book's central technical result.** Five apparently independent L₀/L₁ threads — gauge structure, gravity, quantum statistics, scattering, field topology — converge on one small set of classical continuum equations. The sharpest statement is the Generalized Transport Law (Bridge B.e / Ch. 13):
@@ -398,7 +401,7 @@ The relationship is a **fan out from one template into independent instances**, 
                                │
         ┌──────────────────────┼──────────────────────┐
         ↓                      ↓                      ↓
-   HIGGS                  LANDBY               CONDENSED
+   HIGGS                  LANDAU               CONDENSED
  MECHANISM               THEORY                MATTER
  (Ch. 0, ~246 GeV)       (Ch. 10)             (Ch. 7, ~meV)
         │                      │                      │
@@ -823,8 +826,8 @@ MAXWELL'S EQUATIONS
      │
      ├── Faraday:  ∮E·dl = −dΦ_B/dt
      │      [STRUCTURAL CONNECTION] ──► circuit voltage relations
-     │      (supplies the element relation V = L di/dt + Ri
-     │       once the loop is small enough to neglect the flux term)
+     │      (supplies the inductor relation V_L = L di/dt once the
+     │       changing flux is confined to inductors — not neglected)
      │
      ├── Ampère–Maxwell:  ∮H·dl = I_enc + dΦ_D/dt
      │      [STRUCTURAL CONNECTION] ──► field/current relations
@@ -842,19 +845,19 @@ MAXWELL'S EQUATIONS
 ```text
 Maxwell (full, with flux terms)
       │
-      │  [APPROXIMATION — quasi-static:
-      │     dΦ_B/dt negligible over the loop,
-      │     equivalently L_loop ≪ λ_EM]
+      │  [APPROXIMATION — lumped / quasi-static:
+      │     changing flux confined to inductors,
+      │     none linking the interconnect; L_loop ≪ λ_EM]
       ↓
-lumped circuit theory
+lumped circuit theory (branch voltages, incl. L di/dt)
       │
       │  [DERIVATION — Bridge C control-volume
       │     integration of Faraday around a closed loop]
       ↓
-KCL + KVL
+KVL
 ```
 
-Under the quasi-static assumption, Faraday's law integrated around a lumped loop reduces to $\sum V_{loop} = 0$ — KVL. Away from that assumption (high frequency, electrically large loops), the induced-EMF term does not vanish, KVL stops being exact, and the full Faraday integral must be used instead — which is exactly why transmission-line theory (Bridge C.3) exists as a separate model.
+Under the lumped assumption, Faraday's law integrated around a loop becomes $\sum_k V_k = 0$ — KVL — with each inductor's induced EMF entering as its branch voltage $L\,di/dt$: the changing flux is *accounted for* in the inductor, not dropped (dropping it would delete the inductor). KVL is a loop statement about $\mathbf{E}$, not energy conservation; the energy balance is Poynting's theorem ([Example 03](../EXAMPLES/03%20Maxwell-to-Circuit.md), step 4). Away from the lumped assumption (high frequency, electrically large loops), flux links the interconnect itself and cannot be assigned to any one element, KVL stops being exact, and the full Faraday integral must be used instead — which is exactly why transmission-line theory (Bridge C.3) exists as a separate model.
 
 **Constitutive relations** (bringing in Layer-1 band theory output):
 
@@ -996,6 +999,9 @@ $$L\ddot{x} + R\dot{x} + \frac{x}{C} = e_{source}$$
 
 An RLC circuit, a damped mass-spring, a hydraulic pipe-with-inertia, and a first-order thermal system: all described by this ODE. Only the labels change.
 
+![Normalised step responses of the R/C/L template for ζ = 0.2, 0.7 and 2](../FIGURES/MAP/r-c-l-step.svg)
+*Unit-step response of $L\ddot x + R\dot x + x/C = e$, normalised to $\omega_n = 1/\sqrt{LC}$ and $\zeta = \tfrac{R}{2}\sqrt{C/L}$, for $\zeta$ = 0.2, 0.7 and 2: the same three curves describe every domain in the table (the thermal row is the $L = 0$ first-order case), and the four-domain schematic is in [Ch. 17](../CHAPTERS/CHAPTER%2017.md).*
+
 **Why is this not an analogy?** Because all of these are derived from the same Layer-2 conservation law (continuity of a Noether charge) + the same constitutive relation (the Generalized Transport Law), just integrated over different control volumes with different units. The structural identity is exact — this is [STRUCTURAL CONNECTION] in the strongest sense the tag allows, one step short of a literal derivation across domains.
 
 ---
@@ -1033,14 +1039,14 @@ The conservation laws from Layer 0 (Noether's theorem) survive all the way here.
 |Conservation law|Layer 3 form|Name|
 |---|---|---|
 |Charge conservation (U(1) Noether)|$\sum I_{node} = 0$|Kirchhoff's Current Law|
-|Energy conservation (time Noether)|$\sum V_{loop} = 0$|Kirchhoff's Voltage Law|
+|Faraday's law, lumped (not a conservation law — energy balance is Poynting's theorem)|$\sum V_{loop} = 0$|Kirchhoff's Voltage Law|
 |Mass conservation|$\sum \dot{m}_{node} = 0$|Continuity (hydraulic, ChE)|
 |Momentum conservation|$\sum F_{node} = 0$|Equilibrium (structural)|
 |Momentum conservation|$\sum F = m\ddot{x}$|Newton's 2nd (dynamic)|
 
 **The student should feel the weight of this:** KCL has a full derivation chain, not a one-line pedigree — global phase symmetry of charged matter (§0.2) → conserved current (Noether's first theorem) → continuity equation $\partial_\mu j^\mu = 0$ (Bridge B.c) → integral charge balance → lumped-node approximation (Bridge C) → $\sum I = 0$. At Layer 3, it's written in two seconds. Both are true. The short form is what you use every day. The long form is what you reach for when the short form stops working — at nanoscale, at high frequency, in a quantum device. (The common shorthand "U(1) gauge symmetry ⟹ Noether ⟹ conserved current" compresses link 1; §0.2 gives the precise version and explains why the global symmetry, not the gauge redundancy, carries the Noether charge.)
 
-KVL follows a parallel but distinct chain (§2.4): Faraday's law → quasi-static approximation → Bridge C lumping → $\sum V = 0$. It is not the same chain as KCL, and does not reduce to the same physics.
+KVL follows a parallel but distinct chain (§2.4): Faraday's law → lumped approximation (changing flux confined to inductors, entering as $L\,di/dt$) → Bridge C lumping → $\sum V = 0$. It is not the same chain as KCL, and does not reduce to the same physics.
 
 ---
 

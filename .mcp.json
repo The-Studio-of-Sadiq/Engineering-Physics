@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "engineering-physics": {
+      "command": "python",
+      "args": ["mcp-server/server.py"],
+      "env": {
+        "EP_SOURCE": "local"
+      }
+    }
+  }
+}

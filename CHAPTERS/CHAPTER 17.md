@@ -259,7 +259,7 @@ The inductor is the lumped form of the **∂²φ/∂t² inertia term** in the PD
 
 ### 17.4.1 — The Flow Conservation Law (KCL Generalization)
 
-At any node (junction point), the sum of all flows must be zero. From the continuity equation (Noether conservation, Ch. 1 §1.7):
+At any node (junction point), the net inflow equals the rate of storage at that node — a balance law from the continuity equation (Ch. 1 §1.7). When storage is drawn as its own element branch (a mass to the inertial reference, $C_{th}$ to ambient), the storage flow is one of the $f_k$ and the node law takes the form:
 
 $$\boxed{\sum_k f_k = 0 \quad\text{at every node}}$$
 
@@ -268,7 +268,7 @@ $$\boxed{\sum_k f_k = 0 \quad\text{at every node}}$$
 |Electrical|$\sum I_k = 0$ — KCL|Charge conservation (Noether U(1), Ch. 11 §11.12)|
 |Translational mech.|$\sum F_k = m\ddot x$ — Newton's law|Momentum conservation (Noether, translation)|
 |Rotational mech.|$\sum\tau_k = I_r\dot\omega$ — rotational Newton|Angular momentum conservation|
-|Thermal|$\sum\dot Q_k = C_{th}\dot T$ — energy balance|Energy conservation (Noether, time translation)|
+|Thermal|$\sum\dot Q_k = C_{th}\dot T$ — energy balance|Energy balance (first law); Noether time-translation applies only to closed Lagrangian systems|
 |Hydraulic|$\sum Q_k = 0$ — continuity|Mass conservation (Noether, particle number)|
 |Chemical|$\sum\dot n_k = 0$ — mole balance|Particle conservation|
 
@@ -288,7 +288,7 @@ $$\boxed{\sum_k e_k = 0 \quad\text{around every loop}}$$
 |Thermal|$\sum\Delta T_k = 0$|Temperature is a potential (no thermal circulation)|
 |Hydraulic|$\sum\Delta P_k = 0$|Pressure is a potential (no spontaneous pressure circuits)|
 
-**Why does the loop law hold?** Effort variables are **potentials** — they derive from scalar potential functions. For electrical: $V = -\nabla\phi - \partial_t\mathbf{A}$ and $\oint\mathbf{E}\cdot d\mathbf{l} = -d\Phi/dt \to 0$ in quasi-static. For mechanical: force is the gradient of a potential. The loop sum is identically zero because the line integral of a gradient over a closed loop is zero — a mathematical identity.
+**Why does the loop law hold?** Effort variables are **potentials** — they derive from scalar potential functions. For electrical: $\mathbf{E} = -\nabla\phi - \partial_t\mathbf{A}$ and $\oint\mathbf{E}\cdot d\mathbf{l} = -d\Phi/dt$, which is not zero in general. The lumped approximation confines changing flux to the inductors: outside them $\mathbf{E}$ is (approximately) a gradient, so the loop integral there reduces to a sum of potential differences, and each inductor's Faraday EMF is booked as its branch voltage $L\,di/dt$. For mechanical: the loop law expresses the compatibility of relative velocities (D'Alembert form). The loop sum vanishes because, under these lumping assumptions, the off-element field is a gradient and the line integral of a gradient over a closed loop is zero.
 
 ---
 
@@ -349,6 +349,9 @@ Se ── 1 ── R (damper b)
 The 1-junction says: same current through all elements (series circuit) = same velocity for all elements (everything moves at the same velocity). The effort equation: $V_{source} = V_R + V_C + V_L$ = $F_{applied} = F_{damper} + F_{spring} + F_{mass}$.
 
 These are **the same equation with different labels.** Every analytical result derived for one (step response, frequency response, resonance) applies directly to the other.
+
+![Four schematics: series RLC circuit, mass-spring-damper, hydraulic line with accumulator, and thermal RC network](../FIGURES/CH17/rlc-template.svg)
+*The R/C/L template in four domains, each labelled with its effort and flow: series RLC circuit, mass–spring–damper ($I=m$, $R=b$, $C=1/k$), hydraulic line (pipe inertance $\rho\ell/A$, constriction resistance, accumulator compliance) and thermal RC, which has no inductive element and so can only respond in first order.*
 
 **Transformer and lever:**
 
@@ -467,6 +470,9 @@ $$q(t) = A\,e^{s_1 t} + B\,e^{s_2 t}$$
 
 Slow exponential approach; no oscillation.
 
+![s-plane pole locus of the second-order system as the damping ratio increases from 0 to 2](../FIGURES/CH17/second-order-poles.svg)
+*Roots $s=-\zeta\omega_0\pm\omega_0\sqrt{\zeta^2-1}$ as $\zeta$ rises from 0 to 2: underdamped poles travel along the circle $|s|=\omega_0$ at angle $\theta$ with $\cos\theta=\zeta$, meet at $-\omega_0$ when $\zeta=1$, then split along the real axis — at $\zeta=2$ one pole sits at $-0.27\omega_0$, which is why overdamped systems are sluggish.*
+
 ### 17.7.3 — Step Response
 
 For a unit step input $e_{source} = E_0\,u(t)$:
@@ -476,10 +482,13 @@ For a unit step input $e_{source} = E_0\,u(t)$:
 $$q(t) = E_0 C\left[1 - e^{-\zeta\omega_0 t}\left(\cos\omega_d t + \frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\right)\right]$$
 
 - Overshoot: $M_p = e^{-\pi\zeta/\sqrt{1-\zeta^2}}$
-- Rise time: $t_r \approx (1.8)/\omega_0$ (10% to 90%)
+- Rise time: $t_r \approx (1.8)/\omega_0$ (10% to 90%, for $\zeta\approx0.5$)
 - Settling time: $t_s \approx 4/\zeta\omega_0$ (±2% band)
 
 **The same metrics apply to every domain:** overshoot in a mass-spring system (mechanical), ringing in an RLC circuit (electrical), thermal overshoot in a temperature controller (thermal), pressure oscillation in a hydraulic ram (hydraulic).
+
+![Second-order step responses for damping ratios from 0.1 to 2 with overshoot, rise and settling time marked](../FIGURES/CH17/second-order-step.svg)
+*Step response $q(t)/E_0C$ versus $\omega_0t$ for $\zeta=0.1$, 0.3, 0.5, 0.707, 1, 2, with the $\zeta=0.3$ curve annotated: overshoot $M_p=0.37$, 10–90% rise time $1.32/\omega_0$, and ±2% settling at $11.2/\omega_0$ against the $4/\zeta\omega_0=13.3/\omega_0$ estimate; $\zeta=1$ is the fastest response without overshoot.*
 
 ### 17.7.4 — Frequency Response
 
@@ -487,7 +496,9 @@ For sinusoidal input $e_{source} = E_0\cos\omega t$:
 
 $$|H(i\omega)| = \frac{\omega_0^2}{\sqrt{(\omega_0^2-\omega^2)^2 + 4\zeta^2\omega_0^2\omega^2}}$$
 
-$$\angle H(i\omega) = -\arctan!\left(\frac{2\zeta\omega_0\omega}{\omega_0^2-\omega^2}\right)$$
+$$\angle H(i\omega) = -\arctan\!\left(\frac{2\zeta\omega_0\omega}{\omega_0^2-\omega^2}\right)$$
+
+(four-quadrant arctangent, $-\operatorname{atan2}(2\zeta\omega_0\omega,\ \omega_0^2-\omega^2)$; the phase passes $-90°$ at $\omega_0$ and tends to $-180°$ as $\omega\to\infty$)
 
 **Resonance peak:** At $\omega_p = \omega_0\sqrt{1-2\zeta^2}$ (for $\zeta < 1/\sqrt{2}$):
 
@@ -497,16 +508,19 @@ The **Q factor physically means:** the resonance amplitude is $Q$ times the DC a
 
 **Half-power bandwidth:** $\Delta\omega = \omega_0/Q$ — the frequency range around resonance where power is above $P_{max}/2$.
 
+![Bode magnitude and phase of the second-order system for several damping ratios](../FIGURES/CH17/second-order-bode.svg)
+*Magnitude (dB) and phase of $H=\omega_0^2/(\omega_0^2-\omega^2+2i\zeta\omega_0\omega)$ for $\zeta=0.1$, 0.3, 0.5, 0.707, 1, 2: light damping gives a resonant peak $\approx Q=1/2\zeta$ (14 dB for $\zeta=0.1$), every curve rolls off at −40 dB/decade above $\omega_0$, and the phase passes −90° at $\omega=\omega_0$ regardless of $\zeta$.*
+
 ### 17.7.5 — The Universal Template Table
 
 |Physical system|$L$ (inertance)|$R$ (resistance)|$C$ (compliance)|$\omega_0$|
 |---|---|---|---|---|
 |Series RLC circuit|Inductance $L$|Resistance $R$|Capacitance $C$|$1/\sqrt{LC}$|
 |Mass-spring-damper|Mass $m$|Damping $b$|$1/k$ (spring)|$\sqrt{k/m}$|
-|Pendulum (small angle)|$m\ell^2$|Air drag|$m\ell/g$|$\sqrt{g/\ell}$|
+|Pendulum (small angle)|$m\ell^2$|Air drag|$1/(mg\ell)$|$\sqrt{g/\ell}$|
 |Torsional oscillator|Inertia $I_r$|Bearing friction|$1/k_r$|$\sqrt{k_r/I_r}$|
 |Hydraulic L-R-C|Fluid inertance $\rho L/A$|Pipe resistance|Accumulator $C_{hyd}$|$1/\sqrt{L_{hyd}C_{hyd}}$|
-|Helmholtz resonator|Air inertance in neck|Air viscosity|Volume compliance|$c_s A/V\ell$|
+|Helmholtz resonator|Air inertance in neck|Air viscosity|Volume compliance|$c_s\sqrt{A/(V\ell)}$|
 |Thermal R-C|(no inductor)|$R_{th}$|$C_{th}$|(first-order only)|
 
 **Design insight:** Every system in this table can be analyzed with identical mathematics. The engineer chooses which row to work in; the equations are the same.

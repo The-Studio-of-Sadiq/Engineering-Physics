@@ -138,6 +138,9 @@ That is: among all curves connecting $(q_i(t_1))$ to $(q_i(t_2))$, the actual mo
 
 This is sometimes called the "principle of least action" — but "stationary" is more accurate. The action is not always minimum; it is always stationary.
 
+![Varied paths around the classical oscillator path and the action as a function of the variation amplitude](../FIGURES/CH01/action-variation.svg)
+*Harmonic oscillator with $m=k=1$ and fixed endpoints $q(0)=0$, $q(\pi/2)=1$: the classical path $q=\sin t$ and varied paths $\sin t+\epsilon\sin 2t$ for $|\epsilon|\le 0.3$ (left), and the numerically integrated action $S(\epsilon)=\int(\tfrac12\dot q^2-\tfrac12 q^2)\,dt$ (right), which matches $(3\pi/8)\epsilon^2$ and is stationary — here a minimum — exactly at $\epsilon=0$.*
+
 ### 1.4.3 — Why Should $\delta S = 0$?
 
 This is the deep question. Several answers exist:
@@ -172,19 +175,19 @@ $$\eta(t_1) = \eta(t_2) = 0$$
 
 The action of the perturbed path:
 
-$$S[q_\epsilon] = \int_{t_1}^{t_2} L(q+\epsilon\eta\,\dot q + \epsilon\dot\eta\, t)\,dt$$
+$$S[q_\epsilon] = \int_{t_1}^{t_2} L(q+\epsilon\eta,\, \dot q + \epsilon\dot\eta,\, t)\,dt$$
 
 Expand to first order in $\epsilon$ using the Taylor expansion of $L$:
 
-$$S[q_\epsilon] = S[q] + \epsilon\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q},\eta + \frac{\partial L}{\partial\dot q},\dot\eta\right)dt + \mathcal{O}(\epsilon^2)$$
+$$S[q_\epsilon] = S[q] + \epsilon\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q}\,\eta + \frac{\partial L}{\partial\dot q}\,\dot\eta\right)dt + \mathcal{O}(\epsilon^2)$$
 
 For stationarity, $dS[q_\epsilon]/d\epsilon\big|_{\epsilon=0} = 0$:
 
-$$\delta S \equiv \int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q},\eta + \frac{\partial L}{\partial\dot q},\dot\eta\right)dt = 0$$
+$$\delta S \equiv \int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q}\,\eta + \frac{\partial L}{\partial\dot q}\,\dot\eta\right)dt = 0$$
 
 Integrate the second term by parts, using $\int u\,dv = uv - \int v\,du$ with $u = \partial L/\partial\dot q$ and $dv = \dot\eta\,dt$:
 
-$$\int_{t_1}^{t_2}\frac{\partial L}{\partial\dot q}\,\dot\eta\,dt = \underbrace{\left[\frac{\partial L}{\partial\dot q},\eta\right]_{t_1}^{t_2}}_{=\,0\,\text{(endpoints fixed)}} - \int_{t_1}^{t_2}\frac{d}{dt}\frac{\partial L}{\partial\dot q}\,\eta\,dt$$
+$$\int_{t_1}^{t_2}\frac{\partial L}{\partial\dot q}\,\dot\eta\,dt = \underbrace{\left[\frac{\partial L}{\partial\dot q}\,\eta\right]_{t_1}^{t_2}}_{=\,0\,\text{(endpoints fixed)}} - \int_{t_1}^{t_2}\frac{d}{dt}\frac{\partial L}{\partial\dot q}\,\eta\,dt$$
 
 Substituting back:
 
@@ -217,6 +220,9 @@ $$\frac{d}{dt}(m\ell^2\dot\theta) - (-mg\ell\sin\theta) = 0$$
 $$m\ell^2\ddot\theta + mg\ell\sin\theta = 0 \quad\Longrightarrow\quad \ddot\theta + \frac{g}{\ell}\sin\theta = 0$$
 
 The pendulum equation of motion — derived in one line, with no forces to resolve, no constraint to handle, and valid in any coordinate.
+
+![Nonlinear pendulum angle versus time for three amplitudes compared with the small-angle solution, and the exact period versus amplitude](../FIGURES/CH01/pendulum-nonlinear.svg)
+*Numerical solutions of $\ddot\theta+(g/\ell)\sin\theta=0$ released from rest at $\theta_0 = 10^\circ, 90^\circ, 170^\circ$, normalised to $\theta_0$ and plotted against $t/T_0$ with $T_0=2\pi\sqrt{\ell/g}$, against the small-angle $\cos(2\pi t/T_0)$ (left); the exact period $T/T_0=(2/\pi)K(\sin^2\tfrac{\theta_0}{2})$ (right) is $1.002$, $1.180$ and $2.439$ for the three amplitudes, so only the $10^\circ$ swing is well described by the linear approximation.*
 
 ---
 
@@ -256,17 +262,17 @@ These are **Hamilton's equations** — 2n first-order ODEs replacing the n secon
 
 For any two functions $f(q,p,t)$ and $g(q,p,t)$ on phase space, define:
 
-$${f, g} = \sum_i\left(\frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i} - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i}\right)$$
+$$\{f, g\} = \sum_i\left(\frac{\partial f}{\partial q_i}\frac{\partial g}{\partial p_i} - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q_i}\right)$$
 
-Hamilton's equations become: $\dot f = {f, H} + \partial f/\partial t$.
+Hamilton's equations become: $\dot f = \{f, H\} + \partial f/\partial t$.
 
-The fundamental Poisson brackets are: $${q_i, p_j} = \delta_{ij}, \qquad {q_i, q_j} = 0, \qquad {p_i, p_j} = 0$$
+The fundamental Poisson brackets are: $$\{q_i, p_j\} = \delta_{ij}, \qquad \{q_i, q_j\} = 0, \qquad \{p_i, p_j\} = 0$$
 
 **Why this matters:** In quantum mechanics, Poisson brackets become commutators:
 
-$${A, B}_{classical} \quad\longrightarrow\quad \frac{1}{i\hbar}[\hat A, \hat B]_{quantum}$$
+$$\{A, B\}_{classical} \quad\longrightarrow\quad \frac{1}{i\hbar}[\hat A, \hat B]_{quantum}$$
 
-The canonical commutation relation $[\hat x, \hat p] = i\hbar$ is the quantum version of ${x, p} = 1$. The entire structure of quantum mechanics — operators, commutators, the Heisenberg picture — is the Poisson bracket structure of classical Hamiltonian mechanics, promoted to operators. This is called **canonical quantization**, and it is one of the bridges to quantum mechanics (Ch. 3).
+The canonical commutation relation $[\hat x, \hat p] = i\hbar$ is the quantum version of $\{x, p\} = 1$. The entire structure of quantum mechanics — operators, commutators, the Heisenberg picture — is the Poisson bracket structure of classical Hamiltonian mechanics, promoted to operators. This is called **canonical quantization**, and it is one of the bridges to quantum mechanics (Ch. 3).
 
 ---
 
@@ -295,6 +301,8 @@ This holds for any $t_1, t_2$. Therefore the quantity:
 $$\boxed{J = \sum_i p_i K_i = \sum_i\frac{\partial L}{\partial\dot q_i}K_i = \text{constant}}$$
 
 is conserved along the physical trajectory. $\square$
+
+**Symmetry up to a total derivative.** The proof assumed $L$ itself is unchanged. The action is still a symmetry if $L$ changes by a total time derivative, $\delta L = \epsilon\,dF/dt$, since that adds only a boundary term; repeating the calculation then gives the conserved quantity $J = \sum_i p_iK_i - F$. Time translation needs this form: for $\partial L/\partial t = 0$, the shift $K_i = \dot q_i$ changes $L$ by $\epsilon\,dL/dt$, so $F = L$ and $J = \sum_i p_i\dot q_i - L = H$ (§1.7.3).
 
 ### 1.7.3 — The Major Conservation Laws, Derived
 
@@ -346,7 +354,7 @@ and the conserved charge $Q = \int j^0\,d^3r = -e\int|\psi|^2\,d^3r = -e$ (for o
 
 |Symmetry|Generator $K_i$|Conserved quantity|Layer 3 form|
 |---|---|---|---|
-|Time translation|$\dot q_i$|$H$ (energy)|Energy balance, 1st law of thermodynamics|
+|Time translation|$\dot q_i$ (with $F = L$, §1.7.2)|$H$ (energy)|Energy balance, 1st law of thermodynamics|
 |Space translation|$(1,0,0)$, $(0,1,0)$, $(0,0,1)$|$p_x, p_y, p_z$|Force balance ($\sum F = 0$)|
 |Rotation|$(-y, x, 0)$ etc.|$L_x, L_y, L_z$|Torque balance; shaft power|
 |U(1) phase|$i\psi$|Electric charge $Q$|Kirchhoff's Current Law|
@@ -371,7 +379,7 @@ $$p_i = \frac{\partial S}{\partial q_i}, \qquad Q_i = \frac{\partial S}{\partial
 
 Setting $K = 0$:
 
-$$\boxed{H!\left(q_i\,\frac{\partial S}{\partial q_i}\,t\right) + \frac{\partial S}{\partial t} = 0}$$
+$$\boxed{H\!\left(q_i,\frac{\partial S}{\partial q_i},t\right) + \frac{\partial S}{\partial t} = 0}$$
 
 This is the **Hamilton-Jacobi (HJ) equation** — a single first-order PDE for the function $S(q_i, t)$.
 
@@ -381,11 +389,11 @@ For a time-independent Hamiltonian, write: $$S(q_i, t) = W(q_i) - Et$$
 
 where $E$ is the (conserved) total energy. Substituting:
 
-$$\boxed{H!\left(q_i\,\frac{\partial W}{\partial q_i}\right) = E}$$
+$$\boxed{H\!\left(q_i,\frac{\partial W}{\partial q_i}\right) = E}$$
 
 This is the **time-independent Hamilton-Jacobi equation**. $W(q_i)$ is called **Hamilton's characteristic function**.
 
-**Example — Free particle in 1D:** $$H = \frac{p^2}{2m} = \frac{1}{2m}\left(\frac{dW}{dq}\right)^2 = E$$ $$\frac{dW}{dq} = \sqrt{2mE} = p \quad\Longrightarrow\quad W = pq$$ $$S = pq - Et = p\left(q - \frac{p}{2m}t\right) - \frac{p^2}{2m}t \to S = pq - \frac{p^2}{2m}t$$
+**Example — Free particle in 1D:** $$H = \frac{p^2}{2m} = \frac{1}{2m}\left(\frac{dW}{dq}\right)^2 = E$$ $$\frac{dW}{dq} = \sqrt{2mE} = p \quad\Longrightarrow\quad W = pq$$ $$S = pq - Et = pq - \frac{p^2}{2m}t$$
 
 The constant-$S$ surfaces are the **wavefronts** of a wave with wavenumber $k = p/\hbar$ and frequency $\omega = E/\hbar$ — exactly a plane wave $e^{i(kq - \omega t)}$. We are already seeing the quantum wavefunction.
 
@@ -405,7 +413,7 @@ Collecting terms order by order in $\hbar$ (after dividing through by $Ae^{iS/\h
 
 **Order $\hbar^0$ (leading order):**
 
-$$\boxed{-\frac{\partial S}{\partial t} = \frac{|\nabla S|^2}{2m} + V = H!\left(\mathbf{r}, \nabla S\right)}$$
+$$\boxed{-\frac{\partial S}{\partial t} = \frac{|\nabla S|^2}{2m} + V = H\!\left(\mathbf{r}, \nabla S\right)}$$
 
 This is the **Hamilton-Jacobi equation** — appearing directly as the $\hbar \to 0$ limit of the Schrödinger equation. Classical mechanics is exactly the leading-order term of quantum mechanics in a $\hbar$-expansion.
 
@@ -429,7 +437,7 @@ Classical mechanics is quantum mechanics with quantum corrections suppressed by 
 
 The **WKB approximation** (Wentzel-Kramers-Brillouin) keeps $\hbar$ small but nonzero:
 
-$$\psi(x) \approx \frac{C}{\sqrt{p(x)}}\exp!\left(\pm\frac{i}{\hbar}\int p(x),dx\right), \quad p(x) = \sqrt{2m(E-V(x))}$$
+$$\psi(x) \approx \frac{C}{\sqrt{p(x)}}\exp\!\left(\pm\frac{i}{\hbar}\int p(x)\,dx\right), \quad p(x) = \sqrt{2m(E-V(x))}$$
 
 This is valid when the potential varies slowly over a de Broglie wavelength ($|dp/dx| \ll p^2/\hbar$). It describes:
 
@@ -443,7 +451,7 @@ WKB sits in the bridge zone between classical mechanics (Layer 2) and quantum me
 
 ## 1.9 — From Particles to Fields: The Extension to $\mathcal{L}_{SM}$
 
-Everything in §§1.2–1.8 was for a finite number of degrees of freedom $q_1\,\ldots\,q_n$. The Standard Model Lagrangian involves **fields** — quantities defined at every point in spacetime. This is an infinite number of degrees of freedom.
+Everything in §§1.2–1.8 was for a finite number of degrees of freedom $q_1,\ldots,q_n$. The Standard Model Lagrangian involves **fields** — quantities defined at every point in spacetime. This is an infinite number of degrees of freedom.
 
 The extension is straightforward and the structure is identical.
 
@@ -485,7 +493,9 @@ The conserved charge: $$Q = \int j^0\,d^3x = \text{const}$$
 
 **The energy-momentum tensor** comes from invariance under spacetime translations $x^\mu \to x^\mu + \epsilon^\mu$:
 
-$$T^{\mu\nu}_{\rm can} = \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi_a)}\partial^\nu\phi_a - g^{\mu\nu}\mathcal{L}$$
+$$T^{\mu\nu}_{\rm can} = -\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi_a)}\partial^\nu\phi_a + g^{\mu\nu}\mathcal{L}$$
+
+(signs for the book's $(-,+,+,+)$ signature, so that $T^{00} = +\mathcal{H}$; in the $(+,-,-,-)$ signature both terms flip — Appendix A §A.7.1)
 
 - $T^{00}$ = energy density
 - $T^{0i}$ = momentum density
@@ -506,7 +516,7 @@ diffeomorphism-invariant theory.
 The two are nonetheless **related**. The canonical tensor can be *improved* — the
 Belinfante-Rosenfeld procedure adds a total divergence,
 
-$$T^{\mu\nu} = T^{\mu\nu}_{\rm can} + \partial_\mu(\cdots)$$
+$$T^{\mu\nu} = T^{\mu\nu}_{\rm can} + \partial_\lambda B^{\lambda\mu\nu}, \qquad B^{\lambda\mu\nu} = -B^{\mu\lambda\nu}$$
 
 which leaves the conserved four-momentum unchanged, and under suitable conditions
 (scalar, spin-0 and spin-1/2 matter with the standard improvement) the result
@@ -564,7 +574,7 @@ what makes "the framework almost forces the answer" sound stronger than it is.
 |Euler-Lagrange|$\frac{d}{dt}\frac{\partial L}{\partial\dot q} - \frac{\partial L}{\partial q} = 0$|Equations of motion for any mechanical system|
 |Canonical momentum|$p_i = \partial L/\partial\dot q_i$|Impulse, momentum flux|
 |Hamiltonian|$H = \sum p_i\dot q_i - L$|Total energy; the thing that is conserved|
-|Poisson brackets|${q_i, p_j} = \delta_{ij}$|Become commutators in QM|
+|Poisson brackets|$\{q_i, p_j\} = \delta_{ij}$|Become commutators in QM|
 |Noether's theorem|Symmetry $\Rightarrow$ conserved $J = p_i K_i$|KCL, KVL, force balance, mass balance|
 |Hamilton-Jacobi|$H(q, \nabla S) + \partial_t S = 0$|Classical limit of Schrödinger equation|
 |WKB|$\psi \sim e^{iS/\hbar}/\sqrt{p}$|Bridge zone between classical and quantum|

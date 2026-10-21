@@ -69,8 +69,7 @@ Linearisation is the operation that makes the transfer function possible, and it
 >
 > **Small parameter:** the ratio of the excursion to the local linearisation radius. **Valid when:** the signal stays inside the region where the linear model tracks the nonlinear one — typically a few percent of full scale, and always domain-specific. **Fails when:** the excursion leaves that region, at which point $P(s)$ is no longer the plant and the loop gains you designed are no longer the loop you have.
 
-```text
-### Model Ledger — LTI plant transfer function
+**Model Ledger — LTI plant transfer function**
 
 | Property | Description |
 |---|---|
@@ -83,7 +82,6 @@ Linearisation is the operation that makes the transfer function possible, and it
 | Valid when | Small-signal operation about a stable equilibrium; bandwidth low enough that the neglected higher-order terms stay small |
 | Fails when | Large excursions, saturation, hysteresis, dead zones, sign changes, or a moving operating point |
 | Next model | Gain scheduling (one local model per operating point), feedback linearisation, or the nonlinear model itself with Lyapunov / MPC design |
-```
 
 **This is the single most important caveat in the chapter**, and it is the reason the chapter is not as aggressive as a first reading suggests. A transfer function is a *local* description of a system near a chosen point, obtained by two named approximations. The mathematics downstream of it is exact; the step that produced it is not.
 
@@ -167,6 +165,9 @@ Closed-loop natural frequency: $\omega_{n,cl} = \omega_n\sqrt{1+K}$. Closed-loop
 
 Higher gain → higher bandwidth (faster) but lower damping (more oscillatory). This is the fundamental speed-stability trade-off, visible directly from the second-order template of Ch. 17 §17.7.
 
+![Closed-loop step responses of a proportionally controlled second-order plant for four gains](../FIGURES/CH21/closed-loop-steps.svg)
+*Unit-step responses of $T(s) = K\omega_n^2/[s^2 + 2\zeta_0\omega_n s + (1+K)\omega_n^2]$ with $\zeta_0 = 0.7$ for $K = 1, 4, 10, 25$ (time in units of $1/\omega_n$): raising $K$ speeds the response and lifts the final value $K/(1+K)$ (dashed) towards the reference, but $\zeta_{cl} = \zeta_0/\sqrt{1+K}$ falls and the overshoot grows — and a proportional loop never removes the steady-state error.*
+
 ---
 
 ## 21.3 — Stability Theory
@@ -185,7 +186,7 @@ $$\Delta(s) = a_n s^n + a_{n-1}s^{n-1} + \cdots + a_1 s + a_0$$
 
 Form the **Routh array** by arranging coefficients:
 
-$$ \begin{array}{c|cccc} s^n & a_n & a_{n-2} & a_{n-4} & \cdots \ s^{n-1} & a_{n-1} & a_{n-3} & a_{n-5} & \cdots \ s^{n-2} & b_1 & b_2 & b_3 & \cdots \ s^{n-3} & c_1 & c_2 & c_3 & \cdots \ \vdots & \vdots & & & \ s^0 & \star & & & \end{array} $$
+$$ \begin{array}{c|cccc} s^n & a_n & a_{n-2} & a_{n-4} & \cdots \\ s^{n-1} & a_{n-1} & a_{n-3} & a_{n-5} & \cdots \\ s^{n-2} & b_1 & b_2 & b_3 & \cdots \\ s^{n-3} & c_1 & c_2 & c_3 & \cdots \\ \vdots & \vdots & & & \\ s^0 & \star & & & \end{array} $$
 
 where $b_1 = (a_{n-1}a_{n-2} - a_n a_{n-3})/a_{n-1}$, $b_2 = (a_{n-1}a_{n-4} - a_na_{n-5})/a_{n-1}$, etc.
 
@@ -194,13 +195,13 @@ where $b_1 = (a_{n-1}a_{n-2} - a_n a_{n-3})/a_{n-1}$, $b_2 = (a_{n-1}a_{n-4} - a
 **Special cases:**
 
 - Zero in first column (non-zero row): replace with small $\epsilon > 0$ and proceed
-- All-zero row: the system has poles on the imaginary axis (marginally stable)
+- All-zero row: the polynomial has roots placed symmetrically about the origin (real pairs $\pm\sigma$, imaginary pairs $\pm j\omega$, or complex quadruplets); form the auxiliary polynomial from the row above, differentiate it to replace the zero row, and proceed — imaginary-axis pairs give marginal stability, the other cases instability
 
 **Example: Third-order system** $\Delta(s) = s^3 + a_2s^2 + a_1s + a_0$
 
 Routh array:
 
-$$ \begin{array}{c|cc} s^3 & 1 & a_1 \ s^2 & a_2 & a_0 \ s^1 & a_1 - a_0/a_2 & 0 \ s^0 & a_0 & \end{array} $$
+$$ \begin{array}{c|cc} s^3 & 1 & a_1 \\ s^2 & a_2 & a_0 \\ s^1 & a_1 - a_0/a_2 & 0 \\ s^0 & a_0 & \end{array} $$
 
 **Stability conditions:** $a_2 > 0$, $a_0 > 0$, and $a_1 a_2 > a_0$.
 
@@ -226,6 +227,9 @@ $$GM = 20\log_{10}\left(\frac{1}{|L(j\omega_{pc})|}\right)\ \text{dB}$$
 
 Systems with adequate PM and GM are robust to model uncertainty — if the real $P(s)$ differs from the model, the system still remains stable.
 
+![Bode magnitude and phase of K over s(s+1)(s+2) with gain and phase margins marked](../FIGURES/CH21/bode-margins.svg)
+*Bode plot of $L(s) = K/[s(s+1)(s+2)]$ with $K = 2$: the gain crossover is at $\omega_{gc} \approx 0.75$ rad/s with PM $\approx 33°$, and the phase crosses $-180°$ at $\omega_{pc} = \sqrt{2}$ rad/s where $|L| = K/6$, giving GM $= 20\log_{10}(6/K) \approx 9.5$ dB — adequate by the rules of thumb above, though short of "robust".*
+
 ### 21.3.4 — The Nyquist Stability Criterion
 
 The Nyquist criterion is exact (not approximate like Bode margin rules). Plot the polar (Nyquist) plot of $L(j\omega)$ for $\omega \in (-\infty, +\infty)$.
@@ -236,7 +240,10 @@ For a stable open-loop plant: the closed-loop is stable iff the Nyquist plot doe
 
 **Engineering insight:** The $(-1, 0)$ point corresponds to gain = 1 AND phase = -180°. If $L = -1$, the feedback signal is exactly equal and opposite to the reference, causing sustained oscillation (marginal stability). Encircling it means the system can go unstable.
 
-**A note on the word "topological" here:** [ANALOGY] The encirclement count is an integer that cannot change under a continuous deformation of the contour unless the contour crosses a pole or zero — in that sense it is a topological invariant of the map $L(j\omega)$. This is the same _kind_ of mathematical object as a Chern number or the QCD θ-term's Pontryagin number (an integer classifying a map, insensitive to smooth deformation), but it is not derived from either of them, and lives on a completely different space (the complex plane traced out by an engineering transfer function, not a physical field configuration). See §21.11.2 for where this book makes that distinction explicit.
+![Nyquist plots of K over s(s+1)(s+2) for K equal to 2 and 10](../FIGURES/CH21/nyquist.svg)
+*Nyquist plot of $L(j\omega) = K/[j\omega(j\omega+1)(j\omega+2)]$ (solid $\omega > 0$, dashed $\omega < 0$; the closing arc at infinity from the pole at $s = 0$ lies off-scale): the real-axis crossing at $\omega = \sqrt{2}$ is $-K/6$, so $K = 2$ leaves $-1$ unencircled (stable, GM $= 3\times$), while $K = 10$ crosses at $-1.67$ and encircles $-1$ twice clockwise (two right-half-plane closed-loop poles).*
+
+**A note on the word "topological" here:** [STRUCTURAL CONNECTION] The encirclement count is an integer that cannot change under a continuous deformation of the contour unless the contour crosses a pole or zero — in that sense it is a topological invariant of the map $L(j\omega)$. This is the same _kind_ of mathematical object as a Chern number or the QCD θ-term's Pontryagin number (an integer classifying a map, insensitive to smooth deformation), but it is not derived from either of them, and lives on a completely different space (the complex plane traced out by an engineering transfer function, not a physical field configuration). See §21.11.2 for where this book makes that distinction explicit.
 
 ---
 
@@ -246,7 +253,7 @@ For a stable open-loop plant: the closed-loop is stable iff the Nyquist plot doe
 
 The **Proportional-Integral-Derivative (PID) controller** in time and frequency:
 
-$$u(t) = \underbrace{K_p,e(t)}_{\text{proportional}} + \underbrace{K_i\int_0^t e(\tau),d\tau}_{\text{integral}} + \underbrace{K_d\frac{de}{dt}}_{\text{derivative}}$$
+$$u(t) = \underbrace{K_p\,e(t)}_{\text{proportional}} + \underbrace{K_i\int_0^t e(\tau)\,d\tau}_{\text{integral}} + \underbrace{K_d\frac{de}{dt}}_{\text{derivative}}$$
 
 $$C(s) = K_p + \frac{K_i}{s} + K_d s = K_p\left(1 + \frac{1}{T_i s} + T_d s\right)$$
 
@@ -266,9 +273,11 @@ The steady-state error for a unit step input depends on the **system type** — 
 
 |System type|Integrators in $L(s)$|Error to step $r(t)=1$|Error to ramp|
 |---|---|---|---|
-|Type 0|0|$1/(1+K_p)$|$\infty$|
+|Type 0|0|$1/(1+K_{pos})$|$\infty$|
 |Type 1|1 (e.g., with I action)|0|$1/K_v$|
 |Type 2|2|0|0|
+
+Here $K_{pos} = \lim_{s\to0}L(s)$ is the position error constant (not the PID gain $K_p$) and $K_v = \lim_{s\to0}sL(s)$ the velocity error constant.
 
 **Adding an integrator** (I action in PID, or an integrating plant) makes the system Type 1 → zero steady-state error for constant inputs. This is the primary reason for the integral term in PID.
 
@@ -288,7 +297,7 @@ A purely empirical tuning method [PHENOMENOLOGICAL — requires no plant model]:
 
 Z-N tuning gives PM $\approx 30°$ — adequate but not robust. Fine-tune from the Z-N starting point using simulation or Bode analysis.
 
-**ITAE (Integral of Time-weighted Absolute Error) tuning** gives better responses: minimizes $\int_0^\infty t|e(t)|,dt$, prioritizing reduction of error at later times.
+**ITAE (Integral of Time-weighted Absolute Error) tuning** gives better responses: minimizes $\int_0^\infty t|e(t)|\,dt$, prioritizing reduction of error at later times.
 
 ### 21.4.4 — PID in Every Engineering Domain
 
@@ -325,6 +334,9 @@ As $K$ varies from $0$ to $\infty$, the closed-loop poles trace the **root locus
 5. **Breakaway/break-in:** Points where branches leave/enter the real axis, found from $dK/ds = 0$
 6. **Imaginary axis crossing:** Found from Routh-Hurwitz (gives the gain $K$ for marginal stability)
 
+![Root locus of K over s(s+1)(s+2) with asymptotes, breakaway point and imaginary-axis crossings](../FIGURES/CH21/root-locus.svg)
+*Closed-loop poles of $s^3 + 3s^2 + 2s + K = 0$ as $K$ rises from 0 to 300, starting at the open-loop poles $0, -1, -2$: the branches from $0$ and $-1$ meet and break away at $s = -1 + 1/\sqrt{3} \approx -0.423$, follow the $\pm 60°$ asymptotes from the centroid $\sigma_a = -1$ (the third runs to $-\infty$ along $180°$), and cross the imaginary axis at $\pm j\sqrt{2}$ when $K = 6$, the Routh–Hurwitz limit $a_1a_2 > a_0$.*
+
 ### 21.5.2 — Design by Root Locus
 
 **Design objective:** Choose $K$ (or a more complex $C(s)$) to place the dominant closed-loop poles at desired locations in the s-plane.
@@ -332,7 +344,7 @@ As $K$ varies from $0$ to $\infty$, the closed-loop poles trace the **root locus
 **Desired pole locations** from performance specs:
 
 - Settling time $t_s \approx 4/\sigma$ where $\sigma = \zeta\omega_n = \text{Re}[s_{pole}]$
-- Damping ratio $\zeta = \cos(\angle s_{pole})$ from the imaginary axis
+- Damping ratio $\zeta = \cos(\angle s_{pole})$, the angle measured from the negative real axis
 - Natural frequency $\omega_n = |s_{pole}|$
 
 **Lead compensator** $C(s) = K(s+z_c)/(s+p_c)$ with $p_c > z_c > 0$: adds phase lead (positive phase contribution) at the design frequency, allowing the root locus to pass through the desired pole locations.
@@ -353,9 +365,9 @@ The open-loop Bode plot of $L(j\omega) = C(j\omega)P(j\omega)$ directly reveals 
 
 **The Bode integral (Bode's sensitivity integral):**
 
-$$\int_0^\infty \ln|S(j\omega)|,d\omega = \pi\sum_k \text{Re}[p_k]$$
+$$\int_0^\infty \ln|S(j\omega)|\,d\omega = \pi\sum_k \text{Re}[p_k]$$
 
-where $p_k$ are the open-loop unstable poles. If there are no unstable poles, the integral is zero — meaning **you cannot reduce sensitivity at some frequencies without increasing it at others.** Suppressing disturbances in one frequency range amplifies them in another. This is a fundamental constraint on what feedback can achieve.
+where $p_k$ are the open-loop unstable poles; the result assumes a stable closed loop and an open loop $L(s)$ of relative degree $\geq 2$. If there are no unstable poles (open loop stable), the integral is zero — meaning **you cannot reduce sensitivity at some frequencies without increasing it at others.** Suppressing disturbances in one frequency range amplifies them in another. This is a fundamental constraint on what feedback can achieve.
 
 ### 21.6.2 — Lead-Lag Compensator Design
 
@@ -393,7 +405,7 @@ where $\mathbf{x}\in\mathbb{R}^n$ is the state vector, $u$ is the input, $y$ is 
 
 $$P(s) = \mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B} + D$$
 
-Eigenvalues of $\mathbf{A}$ = poles of $P(s)$ = natural frequencies of the system.
+Eigenvalues of $\mathbf{A}$ = poles of $P(s)$ = natural frequencies of the system, for a minimal (controllable and observable) realization; otherwise some eigenvalues cancel and do not appear as poles.
 
 **Physical interpretation:**
 
@@ -410,7 +422,7 @@ System is controllable iff $\text{rank}(\mathbf{W}_c) = n$.
 
 **Observability:** Can the initial state $\mathbf{x}(0)$ be determined from the output history $y(0), y(1), \ldots$?
 
-$$\mathbf{W}_o = \begin{bmatrix}\mathbf{C}\\mathbf{CA}\\vdots\\mathbf{CA}^{n-1}\end{bmatrix}$$
+$$\mathbf{W}_o = \begin{bmatrix}\mathbf{C}\\ \mathbf{CA}\\ \vdots\\ \mathbf{CA}^{n-1}\end{bmatrix}$$
 
 System is observable iff $\text{rank}(\mathbf{W}_o) = n$.
 
@@ -473,39 +485,37 @@ $$L_a\frac{di_a}{dt} = V_a - K_e\omega, \qquad J\frac{d\omega}{dt} = K_t i_a - b
 
 **Reduced model.** Eliminating $i_a$ from the two equations gives a single second-order ODE in $\omega$, whose Laplace transform is:
 
-$$P(s) = \frac{\Omega(s)}{V_a(s)} = \frac{K_t/R_a J}{s^2\left(\tau_e\tau_m + 1\right) + s\left(\tau_e + \tau_m\right) + 1}\cdot\frac{1}{s}$$
+$$P(s) = \frac{\Omega(s)}{V_a(s)} = \frac{K_t}{(L_a s + R_a)(J s + b) + K_t K_e}$$
 
-with electrical time constant $\tau_e = L_a/R_a$ and mechanical time constant $\tau_m = J/b$.
+with electrical time constant $\tau_e = L_a/R_a$ and mechanical time constant $\tau_m = R_aJ/(R_a b + K_tK_e)$ (the bare $J/b$, shortened by back-EMF damping).
 
 **Engineering equation.** Further, for $\tau_e \ll \tau_m$:
 
-$$P(s) \approx \frac{K_m}{s(\tau_m s + 1)}, \qquad K_m = \frac{K_t}{R_a b + K_t K_e}$$
+$$P(s) \approx \frac{K_m}{\tau_m s + 1}, \qquad K_m = \frac{K_t}{R_a b + K_t K_e}$$
 
-The integrator (the $1/s$) is the back-EMF: without it a constant voltage would accelerate the rotor without bound. This is why DC motors cannot be controlled open-loop on speed.
+There is no free integrator in the speed transfer function: the back-EMF is internal speed feedback that gives a finite DC gain $K_m$ (a constant voltage settles to a constant speed). The integrator appears only in the position transfer function $\Theta(s)/V_a(s) = P(s)/s$. What open-loop speed control cannot do is hold speed against load torque and parameter drift.
 
 **PID controller design:**
 
-1. Plot uncompensated Bode: integrator ($-20$ dB/dec) + lag ($-40$ dB/dec beyond $1/\tau_m$)
-2. PM with proportional only: inadequate (close to 0° at crossover)
-3. Add lead compensator to recover PM — or tune PID directly with Z-N
+1. Plot uncompensated Bode: flat at $K_m$, then $-20$ dB/dec beyond $1/\tau_m$ ($-40$ dB/dec beyond $1/\tau_e$)
+2. Proportional only: ample PM, but a steady-state speed error of $1/(1+K_pK_m)$
+3. Add integral action (PI) to remove the offset; add lead/derivative only if PM is eroded — or tune PID directly with Z-N
 
 **With PID:** The integral term handles steady-state error (speed offset under load); derivative term improves transient response (reduces settling time).
 
-```text
-### Model Ledger — DC motor speed plant
+**Model Ledger — DC motor speed plant**
 
 | Property | Description |
 |---|---|
 | Parent theory | Two-port electromechanical coupling (Ch. 18 §18.x machines + Ch. 19 §19.x rotational dynamics) |
 | Reduction | Lumped armature R_a–L_a; linear magnetics; linearised (viscous) friction; τ_e ≪ τ_m |
-| Model | P(s) = K_m / [s(τ_m s + 1)] |
+| Model | P(s) = K_m / (τ_m s + 1) |
 | Assumptions | K_t, K_e constant (no saturation); armature electrically small; friction ∝ ω; no cogging; rigid coupling to a load that can be lumped into J and b |
-| Retained | Back-EMF feedback (the integrator); rotor inertia; electrical and mechanical time constants; load torque as a disturbance |
+| Retained | Back-EMF feedback (sets K_m, shortens τ_m); rotor inertia; electrical and mechanical time constants; load torque as a disturbance |
 | Neglected | Magnetic saturation and hysteresis; brush contact dynamics and dead band; torque ripple from commutation; elastic shaft compliance; gearbox backlash; thermal derating of R_a |
 | Valid when | Continuous operation near a nominal speed and duty cycle; τ_e ≪ τ_m; currents below the saturation knee |
 | Fails when | Starting (large slip, $K_e\omega$ negligible, current-limited — the linear model is optimistic there); heavy load transients; high speed into field weakening; brushless/PMSM machines (different torque law, $T \propto i$ → $T \propto i_q$) |
 | Next model | Full nonlinear ẋ = f(x,u); field-weakening control; gearbox as a separate compliant stage; PMSM/BLDC torque–current–flux maps |
-```
 
 **Cross-branch coupling.** This motor drives a gear and load: the mechanical Layer 3 (Ch. 19) and electrical Layer 3 (Ch. 18) are coupled through the motor — exactly a gyrator (GY element) in the bond graph (Ch. 17 §17.5). The coupling is a `[STRUCTURAL CONNECTION]`: the motor is a power-converting element that maps a current-flow pair to a force-flow pair, and that mapping is the same object in Ch. 17's template regardless of the two domains involved.
 
@@ -535,8 +545,7 @@ $$C(s) = \frac{1}{P(s)}\cdot\frac{1/\lambda}{s + 1/\lambda}$$
 
 where $\lambda$ is a tuning parameter (closed-loop time constant). Gives inherently good robustness and explicit trade-off between performance ($\lambda$ small) and robustness ($\lambda$ large).
 
-```text
-### Model Ledger — CSTR temperature plant
+**Model Ledger — CSTR temperature plant**
 
 | Property | Description |
 |---|---|
@@ -549,7 +558,6 @@ where $\lambda$ is a tuning parameter (closed-loop time constant). Gives inheren
 | Valid when | Small excursions about a chosen stable steady state; $\theta\omega \ll 1$ below the bandwidth; single stable operating point in the region of interest |
 | Fails when | Large setpoint steps that cross the ignition/extinction threshold; thermal runaway; batch operation; slow catalyst decay drifting the operating point |
 | Next model | Nonlinear MPC on the full balances — the standard industrial answer for exothermic reactors, precisely because the linear model is local; gain scheduling across multiple steady states |
-```
 
 This example is the clearest demonstration in the book that **the transfer function is a local object.** An exothermic CSTR can have three steady states. The linearisation is valid at each of them separately, with a different $P(s)$ at each, and one of them may be unstable. A single "the" transfer function for that reactor does not exist.
 
@@ -571,8 +579,7 @@ $$C_{PPF}(s) = \frac{g\omega_f^2}{s^2 + 2\zeta_f\omega_f s + \omega_f^2}$$
 
 **Positive Position Feedback (PPF):** a control strategy specific to flexible structures — uses position feedback through a filter tuned to the target mode. When $\omega_f \approx \omega_n$, the PPF controller adds damping to the structural mode. The Bode analysis shows that PPF is unconditionally stable for collocated sensor-actuator pairs — a major advantage over direct velocity feedback in flexible structures where spillover modes can cause instability.
 
-```text
-### Model Ledger — single-mode structural plant
+**Model Ledger — single-mode structural plant**
 
 | Property | Description |
 |---|---|
@@ -585,7 +592,6 @@ $$C_{PPF}(s) = \frac{g\omega_f^2}{s^2 + 2\zeta_f\omega_f s + \omega_f^2}$$
 | Valid when | Excitation is dominated by the targeted mode; the structure remains linear; the collocation assumption holds across the achieved bandwidth |
 | Fails when | Broadband or unpredicted excitation; approaching yield, buckling, or a frictional joint; non-collocated actuator/sensor geometry; higher modes entering the control bandwidth |
 | Next model | Multi-mode modal controller (LQG on the truncated modal model, with a stability check on the unmodelled modes); or collocation-aware $H_\infty$ design |
-```
 
 **The bridge-zone point.** This is Bridge C in its purest form: the structure is a *distributed* system (a PDE), and the control engineer has deliberately chosen a *lumped* model of it, discarding the rest of the spectrum. Ch. 19's failure-mode table and Ch. 16's Beam Ledger are the same content seen from two directions.
 
@@ -598,7 +604,7 @@ All three examples, plus the temperature oven and the distillation column in §2
 | Parent theory | Electromechanical two-port | Nonlinear coupled balances | Elastic PDE |
 | Bridge C reduction | Lumped $R_a$–$L_a$; lumped $J$, $b$ | Perfect mixing; lumped thermal masses | Modal truncation |
 | Linearisation | Constant $K_t$, $K_e$; viscous friction | About a chosen steady state | Small vibration |
-| Reduced model | $K_m/[s(\tau_m s+1)]$ | $K/[(1+\tau_1s)(1+\tau_2s)]e^{-\theta s}$ | $(1/m)/(s^2+2\zeta\omega_n s+\omega_n^2)$ |
+| Reduced model | $K_m/(\tau_m s+1)$ | $K/[(1+\tau_1s)(1+\tau_2s)]e^{-\theta s}$ | $(1/m)/(s^2+2\zeta\omega_n s+\omega_n^2)$ |
 | Engineering equation | PID / PI on speed | IMC / PID on temperature | PPF / $H_\infty$ on displacement |
 | Validity limit | Saturation, field weakening | Ignition/extinction, multiplicity | Spillover, nonlinearity |
 
@@ -668,9 +674,9 @@ This section is the counterpart to §21.0.2. Read together, they bound the capst
 
 **The point of this table is not defeat.** It is that the Layer-3 unification delivered by the transfer function is a *conditional* result, and the condition is worth stating precisely: the system must admit an LTI input–output description. Where it does, the unification is exact and branch-independent — a PID loop genuinely does not know what domain it is in. Where it does not, the Layer-3 template still holds at the level of conservation laws and balance equations, and the correct next step is a different *representation* (state-space, stochastic, constrained, nonlinear), not a different physics. Chapters 18–20 remain valid in every row of this table.
 
-**The sensitivity integral (repeated from §21.6.1)** is perhaps the most important theoretical limitation: for a stable system with no RHP open-loop poles:
+**The sensitivity integral (repeated from §21.6.1)** is perhaps the most important theoretical limitation: for a stable closed loop with no RHP open-loop poles and an open loop of relative degree $\geq 2$:
 
-$$\int_0^\infty \ln|S(j\omega)|,d\omega = 0$$
+$$\int_0^\infty \ln|S(j\omega)|\,d\omega = 0$$
 
 You cannot have $|S| < 1$ (good disturbance rejection) at some frequencies without having $|S| > 1$ (disturbance amplification) at others. This is a conservation law for the sensitivity function [ANALOGY — a conceptual echo of Heisenberg's uncertainty principle, not the same mathematics]: improving performance in one frequency band degrades it in another.
 
@@ -776,7 +782,7 @@ The complete control toolbox, organized by method:
 
 |System|Inner plant $P(s)$|Controller|Performance metric|
 |---|---|---|---|
-|Motor drive|$K_m/s(\tau s+1)$|PI speed + P current|Speed regulation, step response|
+|Motor drive|$K_m/(\tau s+1)$|PI speed + P current|Speed regulation, step response|
 |Temperature oven|$K/(\tau s+1)$|PID|Setpoint tracking, ±0.1°C|
 |Chemical pH|Nonlinear, approximated|PID + feedforward|Disturbance rejection|
 |Aircraft autopilot|6-DOF dynamics|LQR + feedforward|Stability, ride quality|

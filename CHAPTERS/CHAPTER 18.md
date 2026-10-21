@@ -170,6 +170,9 @@ The diode becomes a resistor $r_d$ for small AC signals. At $I_{DQ} = 1$ mA: $r_
 
 where $\phi_B \approx 0.7$ V is the built-in potential and $m \approx 0.33$–$0.5$. Reverse bias increases depletion width → decreases $C_j$ (varactor diode, used in voltage-controlled oscillators and RF tuners).
 
+![Diode current-voltage curves on linear and logarithmic scales for ideality factors 1 and 2](../FIGURES/CH18/diode-iv.svg)
+*$I_D = I_0(e^{V_D/\eta V_T}-1)$ at 300 K for $\eta = 1$ ($I_0 = 10^{-12}$ A) and $\eta = 2$ ($I_0 = 10^{-9}$ A): the linear panel shows the forward "turn-on" knee, the negligible reverse current and a schematic breakdown knee (not to scale), while the log panel shows straight lines of slope $\eta V_T\ln 10 \approx 60$ and $120$ mV per decade.*
+
 ### 18.3.2 — The Bipolar Junction Transistor (BJT)
 
 An NPN BJT is two back-to-back p-n junctions (Emitter-Base-Collector).
@@ -212,6 +215,11 @@ An enhancement-mode NMOS transistor has a p-type substrate with an oxide layer (
 $$I_D = \frac{\mu_n C_{ox} W}{2L}\left(V_{GS} - V_{th}\right)^2(1 + \lambda V_{DS})$$
 
 where $C_{ox} = \epsilon_{ox}/t_{ox}$ is the gate oxide capacitance per area (from $t_{ox}$: oxide thickness), $W/L$ is the width-to-length ratio, and $\lambda$ is the channel length modulation parameter.
+
+**Triode region** ($V_{GS} > V_{th}$, $V_{DS} < V_{GS} - V_{th}$): $I_D = \mu_n C_{ox}\frac{W}{L}\left[(V_{GS}-V_{th})V_{DS} - \tfrac{1}{2}V_{DS}^2\right]$, which meets the saturation expression at $V_{DS} = V_{GS} - V_{th}$.
+
+![NMOS output characteristics showing triode and saturation regions](../FIGURES/CH18/mosfet-output.svg)
+*Drain current $I_D$ versus $V_{DS}$ for $V_{GS} = 1$–$3$ V with $V_{th} = 0.7$ V, $\mu_nC_{ox}W/L = 1$ mA/V² and $\lambda = 0.05$ V⁻¹ (the $(1+\lambda V_{DS})$ factor applied in both regions for continuity); the dashed parabola $V_{DS} = V_{GS}-V_{th}$ separates triode from saturation, and the saturated current grows as $(V_{GS}-V_{th})^2$ with a slight $\lambda$ slope.*
 
 **Connection to physics:** $\mu_n C_{ox}$ traces directly to:
 
@@ -259,12 +267,14 @@ These rules follow from $A_{OL}\to\infty$ and negative feedback — they are not
 **Inverting amplifier:**
 
 ```
-         Rf
-    ┌────┤├────┐
-    │    R1    │
-Vin ──┤├──────── V- ─── Vout
-                │
-               V+ (grounded)
+                 Rf
+          ┌────/\/\/────┐
+          │             │
+Vin ── R1 ┴──── (−)     │
+                   ▷────┴──── Vout
+          ┌──── (+)
+          │
+         GND   (V+ grounded)
 ```
 
 Applying golden rules: $V_- = V_+ = 0$ (virtual ground); $I_{Rf} = I_{R1}$:
@@ -347,21 +357,28 @@ where $\omega_c = 1/RC$ is the $-3$ dB cutoff frequency.
 
 **Elliptic (Cauer):** Ripple in both passband and stopband; most efficient (narrowest transition band for given order) — used when component count matters.
 
+![Magnitude responses of fourth-order Butterworth, Chebyshev I, Bessel and elliptic low-pass filters](../FIGURES/CH18/filter-responses.svg)
+*$|H(j\omega)|$ in dB versus $\omega/\omega_c$ for fourth-order analog prototypes: Butterworth and Bessel ($-3$ dB at $\omega_c$), Chebyshev I (1 dB ripple) and elliptic (1 dB ripple, 40 dB stopband); notice the trade from Bessel (gentlest roll-off) through Butterworth and Chebyshev to the elliptic's sharp edge, bought with stopband nulls and a 40 dB floor.*
+
 ### 18.5.4 — Active Filters: Op-Amp Implementation
 
 **Sallen-Key second-order LPF:**
 
 ```
-Vin ─── R ─── R ─── Vout
-             │
-             C     (op-amp voltage follower: A=1)
-             │
-           ──┤├── C
+                    C1
+            ┌───────┤├───────────┐
+            │                    │
+Vin ── R1 ──┴── R2 ──┬──── (+)   │
+                     │        ▷──┴──┬── Vout
+                    ─┴─  ┌─ (−)     │
+               C2   ─┬─  │          │
+                     │   └──────────┘
+                    GND    (op-amp voltage follower: A=1)
 ```
 
 Transfer function: $$H(s) = \frac{\omega_0^2}{s^2 + (\omega_0/Q)s + \omega_0^2}$$
 
-with $\omega_0 = 1/RC$ and $Q$ adjustable by varying component values. No inductors needed — inductors are bulky, lossy, and non-integrable at audio and signal processing frequencies. Op-amp active filters replace them with R, C, and controlled sources.
+with $\omega_0 = 1/\sqrt{R_1R_2C_1C_2}$ ($= 1/RC$ for equal components) and $Q = \sqrt{R_1R_2C_1C_2}/[C_2(R_1+R_2)]$ adjustable by varying component values. No inductors needed — inductors are bulky, lossy, and non-integrable at audio and signal processing frequencies. Op-amp active filters replace them with R, C, and controlled sources.
 
 **Higher-order filters:** Cascade second-order sections. An $n$-th order Butterworth is cascaded from $n/2$ Sallen-Key sections.
 
@@ -429,12 +446,12 @@ For causal systems (unilateral Laplace, $t \geq 0$): generalizes the Fourier tra
 **Poles and stability:**
 
 - All poles in the left half-plane ($\text{Re}[s_k] < 0$): stable (response decays)
-- Poles on the imaginary axis: marginally stable (sustained oscillation)
+- Simple (non-repeated) poles on the imaginary axis: marginally stable (sustained oscillation) — but not BIBO stable: a bounded input at the pole frequency produces an unbounded response
 - Any pole in the right half-plane: unstable (growing response)
 
 **Initial and final value theorems:** $$x(0^+) = \lim_{s\to\infty} sX(s), \qquad x(\infty) = \lim_{s\to 0} sX(s)$$
 
-Useful for checking step response endpoints without full inverse Laplace.
+The final value theorem holds only if all poles of $sX(s)$ lie in the open left half-plane (i.e. $x(t)$ actually settles); otherwise the limit can return a finite number for a signal that oscillates or diverges. Useful for checking step response endpoints without full inverse Laplace.
 
 ---
 
@@ -507,6 +524,9 @@ where $D = t_{on}/T_{sw}$ is the duty cycle. Efficiency: 90–99% (vs. linear re
 **Boost converter (step-up):** $V_{out} = V_{in}/(1-D)$
 
 **Buck-boost:** $V_{out} = -DV_{in}/(1-D)$ (inverts polarity)
+
+![Ideal buck, boost and buck-boost conversion ratios versus duty cycle](../FIGURES/CH18/converter-gain.svg)
+*Ideal continuous-conduction gain $|V_{out}/V_{in}|$ versus duty cycle $D$ for the buck ($D$), boost ($1/(1-D)$) and buck-boost ($|D/(1-D)|$) converters; note the buck-boost crosses unity at $D = 0.5$ and both step-up gains diverge as $D \to 1$, where real losses cap them.*
 
 **Switching frequency trade-off:**
 

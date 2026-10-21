@@ -126,6 +126,9 @@ the plant never rings. Ziegler–Nichols ultimate-gain tuning, which deliberatel
 drives a plant to its $-180°$ phase point, cannot even be applied: a
 first-order plant has no such point.
 
+![Step responses and phase of a first-order plant versus second-order plants with ζ = 0.2 and 0.7](../FIGURES/EX04/first-vs-second-order.svg)
+*Left: normalised step responses of a first-order plant (the thermal RC) and second-order plants with $\zeta$ = 0.2 and 0.7, against $\omega_c t$; right: their phase against $\omega/\omega_c$. The first-order curve never overshoots and its phase never passes −90°, so it has no −180° point for Ziegler–Nichols tuning to find.*
+
 ---
 
 ## Step 5 — Engineering equation
@@ -139,7 +142,7 @@ temperature after 60 s, and state whether the lumped model was justified.
 
 $$L_c = \frac{V}{A} = \frac{10^{-3}\ \text{m}^3}{6\times 10^{-2}\ \text{m}^2} = 1.667\times 10^{-2}\ \text{m} = 16.67\ \text{mm},\qquad Bi = \frac{hL_c}{k} = \frac{50 \times 0.01667}{205} = 4.07\times 10^{-3}$$
 
-$Bi \ll 0.1$: the lumped model is justified, with a large margin. (At $Bi = 0.1$ the internal gradient reaches 10% of the surface value and lumping fails.)
+$Bi \ll 0.1$: the lumped model is justified, with a large margin. (At $Bi = 0.1$ the internal temperature difference becomes non-negligible — about 5% centre-to-surface for a slab, shape-dependent and larger for other geometries — and lumping begins to fail.)
 
 **Capacitance and resistance:**
 
@@ -148,9 +151,12 @@ $$R = \frac{1}{hA} = \frac{1}{50 \times 6\times 10^{-2}} = 0.333\ \text{K/W}$$
 
 **Time constant and transient:**
 
-$$\tau = RC = 0.333 \times 2900 = 968\ \text{s} \approx 16\ \text{min}$$
+$$\tau = RC = 0.3333 \times 2900 = 967\ \text{s} \approx 16\ \text{min}$$
 $$T(t) = T_\infty + (T_0 - T_\infty)e^{-t/\tau}$$
-$$T(60) = 20 + 60\,e^{-60/968} = 20 + 60\times 0.940 = 76.4\ ^\circ\text{C}$$
+$$T(60) = 20 + 60\,e^{-60/967} = 20 + 60\times 0.940 = 76.4\ ^\circ\text{C}$$
+
+![Cooling curve of the aluminium cube from 80 °C toward 20 °C](../FIGURES/EX04/thermal-cooldown.svg)
+*$T(t) = 20 + 60\,e^{-t/967\,\text{s}}$ over 0–5000 s: after one time constant (967 s) the block is at 42.1 °C, while after the 60 s dwell it is still at 76.4 °C.*
 
 After one minute the block has shed only 6% of its excess temperature. **That is
 the design finding.** A 60 s dwell is thermally meaningless for this part, and
@@ -179,10 +185,10 @@ the diffusion length, so that heat has time to spread through it and it becomes
 nearly isothermal.
 
 Here $\alpha = k/(\rho c_p) = 205/(2.90\times 10^6) = 7.07\times 10^{-5}$ m²/s, so
-over the thermal time constant $\tau = RC = 968$ s the diffusion length is
-$\sqrt{\alpha\tau} = \sqrt{7.07\times 10^{-5}\times 968} = 0.26$ m — about five
+over the thermal time constant $\tau = RC = 967$ s the diffusion length is
+$\sqrt{\alpha\tau} = \sqrt{7.07\times 10^{-5}\times 967} = 0.26$ m — about five
 times the 50 mm half-width. In Fourier-number form,
-$Fo = \alpha\tau/L_c^2 = (7.07\times 10^{-5}\times 968)/(0.01667)^2 = 246$
+$Fo = \alpha\tau/L_c^2 = (7.07\times 10^{-5}\times 967)/(0.01667)^2 = 246$
 $\gg 1$. **The body is therefore well mixed internally, and the single-node RC
 model is self-consistent** — which is exactly what the $Bi \ll 0.1$ check
 already said. $Bi$ compares surface resistance against internal resistance; $Fo$

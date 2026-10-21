@@ -17,11 +17,11 @@ given up to get it?
 The electron's dynamics start from a Lagrangian density. Keeping only the
 U(1)-coupled fermion sector and treating the gauge field classically:
 
-$$\mathcal{L} = \bar\psi\left(i\hbar\gamma^\mu D_\mu - m_ec^2\right)\psi,\qquad D_\mu = \partial_\mu + \frac{ie}{\hbar}A_\mu$$
+$$\mathcal{L} = \bar\psi\left(i\hbar c\gamma^\mu D_\mu - m_ec^2\right)\psi,\qquad D_\mu = \partial_\mu + \frac{ie}{\hbar c}A_\mu$$
 
-Vary with respect to $\bar\psi$ and the Euler–Lagrange equation is immediate:
+(Gaussian units and the conventions of Ch. 3: $e$ is the signed charge, $e = -|e|$ for the electron, and the Dirac algebra uses the signature of Ch. 3 §3.3.1.) Vary with respect to $\bar\psi$ and the Euler–Lagrange equation is immediate:
 
-$$i\hbar\gamma^\mu D_\mu\psi - m_ec^2\psi = 0$$
+$$i\hbar c\gamma^\mu D_\mu\psi - m_ec^2\psi = 0$$
 
 Written with $\gamma^0$ on the left, this is the Dirac equation in Hamiltonian
 form. **This step is a derivation** — `[DERIVATION]` — and nothing has been
@@ -50,14 +50,16 @@ because the usual shorthand attaches the eigenvalues to the wrong operator.
 
 The Dirac Hamiltonian splits by parity:
 
-$$H = \underbrace{\beta m_ec^2 + \mathcal{E}}_{\text{even}} + \underbrace{\mathcal{O}}_{\text{odd}}, \qquad \mathcal{E} = \beta m_ec^2 + eV, \qquad \mathcal{O} = c\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}}$$
+$$H = \underbrace{\beta m_ec^2 + \mathcal{E}}_{\text{even}} + \underbrace{\mathcal{O}}_{\text{odd}}, \qquad \mathcal{E} = eV, \qquad \mathcal{O} = c\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}}$$
 
 **Note carefully what is *not* in the odd operator.** There is no
 $-e\boldsymbol{\sigma}\cdot\mathbf{E}$ term, and it is worth resisting the temptation
 to add one. The coupling to the field arrives entirely through
 $\hat{\boldsymbol{\pi}}$; the electric field never enters as an independent
-$\boldsymbol{\sigma}\cdot\mathbf{E}$ piece, because that combination is not gauge
-invariant on its own. The familiar magnetic coupling is likewise not an *input* — it
+$\boldsymbol{\sigma}\cdot\mathbf{E}$ piece, because the minimal Dirac Hamiltonian's
+only odd operator is $c\boldsymbol{\alpha}\cdot\hat{\boldsymbol{\pi}}$ ($\mathbf{E}$ itself
+is gauge invariant; an extra $\boldsymbol{\sigma}\cdot\mathbf{E}$-type term would be a
+non-minimal, Pauli-type coupling added by hand). The familiar magnetic coupling is likewise not an *input* — it
 is **generated**, out of the $\mathbf{A}$ already sitting inside
 $\hat{\boldsymbol{\pi}}$, when that piece is iterated against the even Hamiltonian.
 That generation is the subject of step 4, and it is the reason $g=2$ comes out as a
@@ -105,7 +107,7 @@ in this example, after the truncation already built into $H_{FW}$.
 Truncating the $H_{FW}$ series above to the $1/m_e$ and $1/m_e^2$ terms — order $\alpha^2$
 and $\alpha^4$ relative to $m_ec^2$ — gives the standard effective Hamiltonian:
 
-$$\boxed{\hat H_{FW} = m_ec^2 + \frac{\hat\pi^2}{2m_e} + eV \underbrace{-\frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B}}_{\text{Zeeman}} \underbrace{-\frac{\hat\pi^4}{8m_e^3c^2}}_{\text{relativistic mass}} \underbrace{-\frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}})}_{\text{spin-orbit}} \underbrace{+\frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}}_{\text{Darwin}}}$$
+$$\boxed{\hat H_{FW} = m_ec^2 + \frac{\hat\pi^2}{2m_e} + eV \underbrace{-\frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B}}_{\text{Zeeman}} \underbrace{-\frac{\hat\pi^4}{8m_e^3c^2}}_{\text{relativistic mass}} \underbrace{-\frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}})}_{\text{spin-orbit}} \underbrace{-\frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}}_{\text{Darwin}}}$$
 
 where $\hat{\boldsymbol{\pi}} = \hat{\mathbf{p}} - e\mathbf{A}/c$.
 
@@ -130,9 +132,7 @@ $$\frac{1}{2m_e}\left(\hat{\mathbf{p}} - \frac{e}{c}\mathbf{A}\right)^2 = \frac{
 No $\hat{\mathbf{S}}$ appears anywhere in this — unsurprisingly, because the term
 is spin-free by construction. It also retains the diamagnetic $A^2$ piece. So a
 derivation that "finds" $g=2$ by expanding this square has smuggled the spin term
-into an expression that cannot contain it. (As written it does not even have the
-right units: pairing $\hat{\mathbf{S}}$ with $\frac{e}{2m_ec}$ yields a length, not
-an energy.)
+into an expression that cannot contain it.
 
 The spin coupling comes from a *different* piece of the Dirac equation. The
 time-derivative half of the interaction, $-\frac{e}{c}\boldsymbol{\alpha}\cdot\mathbf{A}$,
@@ -140,7 +140,7 @@ is an **odd** operator, so it belongs to $\mathcal{O}$ and not to the even kinet
 term. Iterating that odd piece once in the Foldy–Wouthuysen reduction generates
 *both* magnetic couplings at once:
 
-$$H_{\text{Zeeman}} = \frac{e}{2m_e}\left(\hat{\mathbf{L}} + g_e\,\hat{\mathbf{S}}\right)\cdot\mathbf{B}, \qquad g_e = 2$$
+$$H_{\text{Zeeman}} = -\frac{e}{2m_ec}\left(\hat{\mathbf{L}} + g_e\,\hat{\mathbf{S}}\right)\cdot\mathbf{B} = +\frac{|e|}{2m_ec}\left(\hat{\mathbf{L}} + g_e\,\hat{\mathbf{S}}\right)\cdot\mathbf{B}\ \text{(electron)}, \qquad g_e = 2$$
 
 The orbital piece and the spin piece descend from the *same* operator
 $\boldsymbol{\alpha}\cdot\mathbf{A}$, and the algebra fixes their ratio at exactly
@@ -162,7 +162,10 @@ term that can actually produce it.*
 Expanding in $\hat{\mathbf{L}}$ on a hydrogen-like state, $\hat{\mathbf{L}} \to 0$, leaves
 the Zeeman splitting:
 
-$$\Delta E = \mu_B\,g_J\,m_J\,B,\qquad \mu_B = \frac{e\hbar}{2m_ec} = 9.274\times 10^{-24}\ \text{J/T},\qquad g_J = 1 + \frac{J(J+1)+S(S+1)-L(L+1)}{2J(J+1)}$$
+$$\Delta E = \mu_B\,g_J\,m_J\,B,\qquad \mu_B = \frac{|e|\hbar}{2m_e}\ (\text{SI}) = 9.274\times 10^{-24}\ \text{J/T}\ \left(\text{Gaussian: } \frac{|e|\hbar}{2m_ec}\right),\qquad g_J = 1 + \frac{J(J+1)+S(S+1)-L(L+1)}{2J(J+1)}$$
+
+![Zeeman level shifts versus magnetic field for g = 2 and g_J = 4/3](../FIGURES/EX01/zeeman-splitting.svg)
+*Level shifts $\Delta E = \mu_B g_J m_J B$ for $B$ = 0–3 T, for a spin-only $^2S_{1/2}$ level ($g = 2$, left) and a $^2P_{3/2}$ level ($g_J = 4/3$, right), with $\Delta E/h$ on the right axis ($\mu_B/h = 13.996$ GHz/T): the $g = 2$ splitting is 174 µeV (42 GHz) at 1.5 T and 347 µeV (84 GHz) at 3 T, linear in $B$.*
 
 Note the structure: the coefficient multiplying $m_JB$ is the **Bohr magneton**, and
 the reduction has produced it rather than assumed it. This is the equation
