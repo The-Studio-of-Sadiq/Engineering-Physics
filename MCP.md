@@ -50,9 +50,11 @@ Always ask: what parent model produced this equation, what assumptions reduced i
 
 ```text
 README.md
-AUTHORING.md
+CONTRIBUTING.md
 REFERENCES.md
+MCP.md
 LICENSE
+.mcp.json              MCP client config (Claude Code) for mcp-server/
 METADATA/
   00 Map.md
   EPILOGUE.md
@@ -68,7 +70,27 @@ EXAMPLES/
   04 Heat-Equation-to-Thermal-RC.md
   05 Navier-Stokes-to-Fluid-Network.md
   06 Motor-to-Control-System.md
+APPENDIX/
+  APPENDIX A.md        variational calculus, Noether's theorems
+  APPENDIX B.md        Dirac → Foldy–Wouthuysen → Pauli
+  APPENDIX C.md        quantum → classical; GR → Newton
+  APPENDIX D.md        statistical mechanics, Kubo, Green–Kubo
+  APPENDIX E.md        continuum balance laws → lumped networks
+  APPENDIX F.md        linear systems, feedback, stability proofs
+FIGURES/
+  _style.py            shared plot style
+  build_all.py         regenerates every figure
+  CH00/ … CH21/, EX01/ … EX06/, MAP/, EPILOGUE/
+    make_figures.py    draws every SVG in its folder
+    *.svg
+mcp-server/
+  server.py            deterministic MCP tooling layer (§16)
+  smoke_test.py
 ```
+
+Figures are SVGs and cannot be read as images. Each one is described by the
+italic caption under its embed, and exactly by the equation and parameters in
+its folder's `make_figures.py`. The MCP tool `get_figure_index` lists both.
 
 Orientation order:
 1. `README.md`
@@ -78,8 +100,9 @@ Orientation order:
 5. `METADATA/EPILOGUE.md`
 6. `EXAMPLES/README.md`
 7. Worked examples
-8. `AUTHORING.md`
-9. `REFERENCES.md`
+8. `APPENDIX/` (full derivations, on demand)
+9. `CONTRIBUTING.md`
+10. `REFERENCES.md`
 
 The Map is the architectural source of truth.
 
@@ -470,7 +493,7 @@ Example 4:
   Bi ≈ 4.07×10^-3
   C ≈ 2900 J/K
   R ≈ 0.333 K/W
-  τ ≈ 968 s
+  τ ≈ 967 s
   T(60 s) ≈ 76.4 °C
 
 Example 5:

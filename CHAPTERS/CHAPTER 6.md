@@ -85,16 +85,16 @@ Now add a weak periodic potential. Write $V(x) = \sum_G V_G e^{iGx}$ (Fourier se
 
 Most $\mathbf{k}$ values are barely affected by the weak perturbation. But at the Brillouin zone boundary $k = \pm\pi/a$, two degenerate states $|k\rangle$ and $|k - G\rangle = |-\pi/a\rangle$ have equal energy. Degenerate perturbation theory gives two new eigenstates:
 
-$$\psi_\pm = \frac{1}{\sqrt{2}}\left(e^{i\pi x/a} \pm e^{-i\pi x/a}\right) = \begin{cases}\sqrt{2}\cos(\pi x/a)\\sqrt{2}\sin(\pi x/a)\end{cases}$$
+$$\psi_\pm = \frac{1}{\sqrt{2}}\left(e^{i\pi x/a} \pm e^{-i\pi x/a}\right) = \begin{cases}\sqrt{2}\cos(\pi x/a) \\ i\sqrt{2}\sin(\pi x/a)\end{cases}$$
 
 These have different spatial distributions:
 
-- $\psi_+$: $|\psi_+|^2 \propto \cos^2(\pi x/a)$ — maxima at atomic sites (high $V$, ions are there) → **higher energy**
-- $\psi_-$: $|\psi_-|^2 \propto \sin^2(\pi x/a)$ — maxima between atoms (low $V$) → **lower energy**
+- $\psi_+$: $|\psi_+|^2 \propto \cos^2(\pi x/a)$ — maxima at atomic sites (low $V$: the attractive ionic potential is deepest there) → **lower energy**, $E_+ = \varepsilon_{\pi/a} + V_G$ with $V_G < 0$
+- $\psi_-$: $|\psi_-|^2 \propto \sin^2(\pi x/a)$ — maxima between atoms (high $V$) → **higher energy**, $E_- = \varepsilon_{\pi/a} - V_G$
 
 The energy splitting is:
 
-$$E_g = E_+ - E_- = 2|V_G| = 2\left|\int_0^a V(x)e^{-i2\pi x/a}\frac{dx}{a}\right|$$
+$$E_g = E_- - E_+ = 2|V_G| = 2\left|\int_0^a V(x)e^{-i2\pi x/a}\frac{dx}{a}\right|$$
 
 This is the **band gap** — it is twice the first Fourier coefficient of the periodic potential. **Band gaps are Bragg diffraction of electron waves.**
 
@@ -104,20 +104,8 @@ The electron wavelength $\lambda = 2a$ at the zone boundary satisfies the Bragg 
 
 The result: energy $E(k)$ is not a single parabola but a sequence of **bands** separated by **gaps**, with the parabolic shape modified near zone boundaries:
 
-```
-E
-│        ↑ 3rd band
-│       ╱╲
-│      /  ╲          ╱╲
-│     /    ╲        /  ╲      gap (E_g)
-│    /      ╲──────/    ╲     ↑ 2nd band
-│   /                    ╲    │
-│  /              gap     ╲───╯
-│ /                        ╲  ↑ 1st band
-│╱                          ╲╱
-└────────────────────────────── k
-  -π/a         0          π/a
-```
+![Nearly-free-electron band structure in the extended and reduced zone schemes, with gaps at the zone boundaries](../FIGURES/CH06/nfe-bands.svg)
+*Nearly-free-electron bands from diagonalising the plane-wave Hamiltonian with Fourier components $|V_1| = 0.3$ and $|V_2| = 0.25$ (in units of $\hbar^2\pi^2/2ma^2$, exaggerated for visibility): away from the zone boundaries the bands follow the free parabola (dashed), while at $k = \pm\pi/a, \pm2\pi/a$ they split by $E_g \approx 2|V_G|$ (shaded gaps), with the upper and lower bands given by $E = \tfrac12(\varepsilon_k + \varepsilon_{k-G}) \pm \sqrt{\tfrac14(\varepsilon_k - \varepsilon_{k-G})^2 + |V_G|^2}$; the right panel folds the same bands into the first Brillouin zone.*
 
 Each band holds exactly $2N$ electrons (factor of 2 for spin), where $N$ is the number of unit cells. The first band holds $2N$ states, the second holds $2N$ states, and so on.
 
@@ -135,7 +123,7 @@ $$\psi_k(x) = \frac{1}{\sqrt{N}}\sum_{n=1}^{N} e^{ikna}\phi(x - na)$$
 
 Computing the energy $\langle\psi_k|\hat H|\psi_k\rangle$:
 
-$$E(k) = E_0 + \langle\phi_0|\hat H - \hat H_{atom}|\phi_0\rangle + 2t\cos(ka) + \cdots$$
+$$E(k) = E_0 + \langle\phi_0|\hat H - \hat H_{atom}|\phi_0\rangle - 2t\cos(ka) + \cdots$$
 
 where $t = -\langle\phi_0|\hat H|\phi_1\rangle > 0$ is the **hopping integral** — the matrix element for an electron to tunnel from one atom to its neighbor.
 
@@ -242,7 +230,7 @@ This is a topological statement: a completely filled band's contribution to curr
 
 In an intrinsic (undoped) semiconductor with band gap $E_g$:
 
-$$n = p = n_i = \sqrt{N_c N_v}\,\exp!\left(-\frac{E_g}{2k_BT}\right)$$
+$$n = p = n_i = \sqrt{N_c N_v}\,\exp\!\left(-\frac{E_g}{2k_BT}\right)$$
 
 where $N_c = 2(m_e^*k_BT/2\pi\hbar^2)^{3/2}$ and $N_v = 2(m_h^*k_BT/2\pi\hbar^2)^{3/2}$ are the **effective densities of states** for the conduction and valence bands.
 
@@ -307,6 +295,9 @@ For a diatomic chain with masses $M_1$ and $M_2$ and spring constant $K$:
 $$\omega^2 = K\left(\frac{1}{M_1} + \frac{1}{M_2}\right) \pm K\sqrt{\left(\frac{1}{M_1}+\frac{1}{M_2}\right)^2 - \frac{4\sin^2(ka/2)}{M_1M_2}}$$
 
 $+$ sign: optical branch; $-$ sign: acoustic branch. The gap between them is $\sqrt{2K/M_1}$ to $\sqrt{2K/M_2}$ — no phonon modes exist in this gap.
+
+![Acoustic and optical phonon branches of a diatomic chain with mass ratio 2, with the frequency gap shaded](../FIGURES/CH06/diatomic-phonons.svg)
+*The diatomic-chain dispersion above for $M_1 = 2M_2$: the acoustic branch rises linearly from $\omega = 0$ (sound), the optical branch starts at $\sqrt{2K(1/M_1 + 1/M_2)}$ at $k = 0$, and at the zone boundary they end at $\sqrt{2K/M_1}$ and $\sqrt{2K/M_2}$, bounding a frequency gap (shaded) with no propagating modes.*
 
 ### 6.7.2 — Phonons Carry Heat
 
@@ -430,6 +421,9 @@ Dividing $B(Z, A)$ by $A$ gives binding energy per nucleon, which:
 - Peaks near $^{56}$Fe ($B/A = 8.79$ MeV) — the most stable nucleus
 - Decreases slowly from Fe to $^{238}$U ($B/A = 7.6$ MeV)
 
+![Binding energy per nucleon versus mass number from the semi-empirical mass formula, with measured points and fusion and fission arrows](../FIGURES/CH06/binding-energy-curve.svg)
+*Semi-empirical mass formula with the coefficients in the table above ($a_V = 15.8$, $a_S = 18.3$, $a_C = 0.714$, $a_A = 23.2$ MeV; pairing omitted), evaluated along the valley of stability $Z \approx A/(2 + 0.0153A^{2/3})$, with the measured values quoted here: the curve peaks near $A \approx 56$ and reproduces Fe and U well, while light nuclei such as ²H and ¹²C deviate because a liquid-drop formula cannot capture few-body and shell effects.*
+
 **This single curve determines all nuclear energy release:**
 
 - **Fusion** ($A < 56$, building toward Fe): joining two light nuclei increases $B/A$ → releases energy. Sun: $4\text{H} \to {}^4\text{He}$, releases $26.7$ MeV per reaction.
@@ -447,11 +441,11 @@ An $\alpha$ particle ($^4$He nucleus, $Z = 2$, $A = 4$) pre-forms inside a heavy
 
 The Gamow tunneling factor (Ch. 4 §4.4, now applied to the Coulomb potential):
 
-$$T_\alpha \propto \exp!\left(-2\int_R^{r_c}\kappa(r),dr\right), \qquad \kappa(r) = \frac{\sqrt{2m_\alpha(V_C(r)-E)}}{\hbar}$$
+$$T_\alpha \propto \exp\!\left(-2\int_R^{r_c}\kappa(r)\,dr\right), \qquad \kappa(r) = \frac{\sqrt{2m_\alpha(V_C(r)-E)}}{\hbar}$$
 
 where $V_C(r) = 2Ze^2/4\pi\epsilon_0 r$ is the daughter-nucleus Coulomb potential. The integral gives the **Gamow factor** $G$:
 
-$$G = \frac{\pi Ze^2}{\hbar v_\alpha}\left(1 - \frac{2}{\pi}\sqrt{\frac{E}{V_C(R)}}\right) \approx \frac{\pi Ze^2}{\hbar v_\alpha}$$
+$$G = \frac{2\pi Ze^2}{4\pi\epsilon_0\hbar v_\alpha}\left(1 - \frac{4}{\pi}\sqrt{\frac{E}{V_C(R)}}\right) \approx \frac{2\pi Ze^2}{4\pi\epsilon_0\hbar v_\alpha}$$
 
 Decay rate: $\lambda \propto f\cdot e^{-2G}$ where $f \approx 10^{21}$ s$^{-1}$ is the assault frequency.
 
@@ -528,9 +522,9 @@ The four-factor formula for a large reactor: $k_{eff} = \eta f p \varepsilon$ wh
 
 ### 6.11.2 — Fusion: The Gamow Peak
 
-For two nuclei to fuse, they must overcome the Coulomb barrier: $V_C = Z_1 Z_2 e^2/4\pi\epsilon_0 r$ (at nuclear contact radius $r \approx 2$ fm for D-T: $V_C \approx 0.36$ MeV).
+For two nuclei to fuse, they must overcome the Coulomb barrier: $V_C = Z_1 Z_2 e^2/4\pi\epsilon_0 r$ (at nuclear contact radius $r \approx 2$ fm for D-T: $V_C \approx 1.44\,\text{MeV fm}/2\,\text{fm} \approx 0.72$ MeV).
 
-The thermal energy in a plasma at $T$: $\langle E\rangle = \frac{3}{2}k_BT$. Achieving $\langle E\rangle > V_C$ would require $T > 10^{10}$ K — far above stellar core temperatures ($\sim 10^7$ K for the Sun).
+The thermal energy in a plasma at $T$: $\langle E\rangle = \frac{3}{2}k_BT$. Achieving $\langle E\rangle > V_C$ would require $T \gtrsim 6\times 10^9$ K — far above stellar core temperatures ($\sim 10^7$ K for the Sun).
 
 **The resolution is quantum tunneling (Ch. 4 §4.4):** Even at $kT \ll V_C$, particles in the high-energy tail of the Maxwell-Boltzmann distribution can tunnel. The reaction rate involves:
 
@@ -538,9 +532,12 @@ $$\sigma(E)v \propto e^{-2\pi\eta}\times e^{-E/k_BT}$$
 
 where $e^{-2\pi\eta}$ is the Gamow tunneling factor and $e^{-E/k_BT}$ is the Maxwell-Boltzmann weight. The product peaks at the **Gamow peak energy**:
 
-$$E_0 = \left(\frac{\pi\alpha Z_1 Z_2 m_r c^2}{2^{1/2}}\right)^{2/3}(k_BT)^{2/3}$$
+$$E_0 = \left[\frac{(\pi\alpha Z_1 Z_2\,k_BT)^2\,m_r c^2}{2}\right]^{1/3} = \left(\frac{E_G\,(k_BT)^2}{4}\right)^{1/3}, \qquad E_G = 2m_rc^2(\pi\alpha Z_1Z_2)^2$$
 
-For D-T fusion at $k_BT = 10$ keV ($T \approx 10^8$ K): $E_0 \approx 64$ keV — in the tail of the Maxwell-Boltzmann distribution but exponentially enhanced by tunneling.
+For D-T fusion at $k_BT = 10$ keV ($T \approx 10^8$ K): $E_0 \approx 31$ keV — in the tail of the Maxwell-Boltzmann distribution but exponentially enhanced by tunneling.
+
+![Gamow peak for D-T fusion at 10 keV: Maxwell-Boltzmann factor, tunnelling factor and their product](../FIGURES/CH06/gamow-peak.svg)
+*D-T at $k_BT = 10$ keV: the falling Maxwell-Boltzmann weight $e^{-E/k_BT}$ times the rising tunnelling factor $e^{-\sqrt{E_G/E}}$ ($E_G = 2m_rc^2(\pi\alpha Z_1Z_2)^2 \approx 1.18$ MeV) gives a narrow window of reacting energies peaked at $E_0 \approx 31$ keV, three times $k_BT$ yet far below the Coulomb barrier (curves scaled as labelled).*
 
 The D-T reaction ($^2$H + $^3$H $\to$ $^4$He + $n$ + 17.6 MeV) is the most practical fusion reaction due to its low Gamow peak energy and high cross-section. ITER (International Thermonuclear Experimental Reactor) targets $Q \geq 10$ (energy out/energy in $\geq 10$).
 

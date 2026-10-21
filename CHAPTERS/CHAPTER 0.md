@@ -254,6 +254,9 @@ $f^{abc}$ are the SU(3) structure constants — completely determined by the alg
 
 **Coupling constant:** $g_3$ (or equivalently $\alpha_s = g_3^2/4\pi \approx 0.12$ at the Z boson mass scale) is the largest coupling constant of all three forces at everyday energies. The strong force is literally strong.
 
+![One-loop running of the three Standard Model inverse gauge couplings from 100 GeV to 10^19 GeV](../FIGURES/CH00/running-couplings.svg)
+*One-loop Standard Model running $1/\alpha_i(\mu)=1/\alpha_i(M_Z)-(b_i/2\pi)\ln(\mu/M_Z)$ with GUT-normalised $b_i = (41/10,\,-19/6,\,-7)$ and standard inputs $1/\alpha_i(M_Z)\approx 59.0,\ 29.6,\ 8.5$ (not taken from the text): $1/\alpha_3$ rises with energy (asymptotic freedom), and the three lines cross pairwise between about $10^{13}$ and $10^{17}$ GeV — a near miss, not a single unification point.*
+
 **If removed:** No protons, no neutrons, no nuclei, no atoms. No chemistry, no materials, no engineering.
 
 **Engineering thread:** $\rightarrow$ Ch. 6 (nuclear binding energy, fission, fusion)
@@ -274,7 +277,7 @@ The sum runs over all fermion fields $f$ in the Standard Model. This is the kine
 
 **$\bar{\psi}_f = \psi_f^\dagger\gamma^0$** — the **Dirac adjoint**, the appropriate "conjugate" of $\psi$ that makes bilinear expressions Lorentz scalars.
 
-**$\gamma^\mu$** — the four **Dirac gamma matrices** ($\mu = 0,1,2,3$), each a $4\times 4$ matrix satisfying the **Clifford algebra**: $${\gamma^\mu, \gamma^\nu} \equiv \gamma^\mu\gamma^\nu + \gamma^\nu\gamma^\mu = 2g^{\mu\nu}\mathbf{1}_{4\times 4}$$ This relation is the algebraic encoding of the Lorentz metric into the spinor structure. The gamma matrices make $\bar\psi\gamma^\mu\partial_\mu\psi$ a Lorentz scalar — ensuring the action does not depend on the observer's frame.
+**$\gamma^\mu$** — the four **Dirac gamma matrices** ($\mu = 0,1,2,3$), each a $4\times 4$ matrix satisfying the **Clifford algebra**: $$\{\gamma^\mu, \gamma^\nu\} \equiv \gamma^\mu\gamma^\nu + \gamma^\nu\gamma^\mu = -2g^{\mu\nu}\mathbf{1}_{4\times 4}$$ The minus sign goes with this book's signature $g = \text{diag}(-1,+1,+1,+1)$ (§0.2.2): it gives $(\gamma^0)^2 = +\mathbf{1}$ and $(\gamma^i)^2 = -\mathbf{1}$, the same matrices as the particle-physics convention $\{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu\nu}$ with $\eta = \text{diag}(+1,-1,-1,-1)$, so that the Dirac equation below squares to the Klein–Gordon equation with the correct sign of $m^2$. This relation is the algebraic encoding of the Lorentz metric into the spinor structure. The gamma matrices make $\bar\psi\gamma^\mu\partial_\mu\psi$ a Lorentz scalar — ensuring the action does not depend on the observer's frame.
 
 **$D_\mu$** — the **gauge covariant derivative**, which is the ordinary partial derivative $\partial_\mu$ plus terms that couple the fermion to each gauge field according to the fermion's charges: $$D_\mu = \partial_\mu - ig_1 Y B_\mu - ig_2 \frac{\tau^a}{2}W^a_\mu - ig_3\frac{\lambda^a}{2}G^a_\mu$$
 
@@ -302,11 +305,10 @@ Notation: **3** in SU(3) column means it transforms as a color triplet (a quark)
 Written out in full, the fermion Lagrangian is:
 
 $$\mathcal{L}_{fermion} = \sum_{i=1}^{3}\Bigl[ i\bar{Q}_L^i\gamma^\mu D_\mu Q_L^i
-
-- i\bar{u}_R^i\gamma^\mu D_\mu u_R^i
-- i\bar{d}_R^i\gamma^\mu D_\mu d_R^i
-- i\bar{L}_L^i\gamma^\mu D_\mu L_L^i
-- i\bar{e}_R^i\gamma^\mu D_\mu e_R^i \Bigr]$$
++ i\bar{u}_R^i\gamma^\mu D_\mu u_R^i
++ i\bar{d}_R^i\gamma^\mu D_\mu d_R^i
++ i\bar{L}_L^i\gamma^\mu D_\mu L_L^i
++ i\bar{e}_R^i\gamma^\mu D_\mu e_R^i \Bigr]$$
 
 ### 0.5.2 — Chirality: Why Left and Right Are Different
 
@@ -391,6 +393,9 @@ The minimum occurs at: $$\lvert H\rvert_{\min} = \frac{v}{\sqrt{2}}, \quad v = \
 
 $v$ is the **vacuum expectation value (VEV)** of the Higgs field. In "empty" space, the Higgs field is not zero — it sits in the degenerate set of vacuum minima at $\lvert H\rvert = v/\sqrt{2}$. This nonzero background value permeates all of spacetime.
 
+![Mexican-hat potential: 3D surface and a 1D slice through the origin](../FIGURES/CH00/mexican-hat.svg)
+*The potential $V=-\mu^2|\phi|^2+\lambda|\phi|^4$ in dimensionless units ($\mu=\lambda=1$) for a two-component field — a cross-section only, since the true minimum manifold of the four-component Higgs doublet is $S^3$, not a circle: the origin is a local maximum, the minima sit at $|\phi| = v/\sqrt{2}$ with depth $-\mu^4/4\lambda$, the radial (Higgs) direction is curved and the direction along the rim (Goldstone) is flat.*
+
 > [!warning] "Circle of degenerate minima" is a picture, not the geometry
 > The familiar Mexican-hat image shows a **circle of degenerate minima**. Strictly, $H$ is a complex $SU(2)$ doublet, i.e. **four real components**, and the minimum condition is
 > $$H^\dagger H = \frac{v^2}{2}$$
@@ -433,7 +438,7 @@ Without the Higgs term, all fermions and the W, Z bosons are exactly massless. T
 
 ### The Term
 
-$$\mathcal{L}_{Yukawa} = -\Bigl(Y^u_{ij}\bar{Q}_L^i\tilde{H}u_R^j + Y^d_{ij}\bar{Q}_L^i H,d_R^j + Y^e_{ij}\bar{L}_L^i H,e_R^j\Bigr) + \text{h.c.}$$
+$$\mathcal{L}_{Yukawa} = -\Bigl(Y^u_{ij}\bar{Q}_L^i\tilde{H}u_R^j + Y^d_{ij}\bar{Q}_L^i H\,d_R^j + Y^e_{ij}\bar{L}_L^i H\,e_R^j\Bigr) + \text{h.c.}$$
 
 where $\tilde H = i\sigma^2 H^*$ is the **charge-conjugated Higgs doublet** (has hypercharge $Y = -\frac{1}{2}$, needed for up-type quarks).
 
@@ -441,13 +446,16 @@ where $\tilde H = i\sigma^2 H^*$ is the **charge-conjugated Higgs doublet** (has
 
 **$Y^u_{ij}, Y^d_{ij}, Y^e_{ij}$** — the **Yukawa coupling matrices**, each a $3\times 3$ complex matrix in generation space ($i\,j = 1,2,3$). These are dimensionless numbers — measured, not predicted.
 
-After symmetry breaking, insert $\langle H\rangle = (0,, v/\sqrt{2})^T$:
+After symmetry breaking, insert $\langle H\rangle = (0,\, v/\sqrt{2})^T$:
 
 $$\mathcal{L}_{Yukawa} \supset -\frac{v}{\sqrt{2}}\left(Y^u_{ij}\bar{u}_L^i u_R^j + Y^d_{ij}\bar{d}_L^i d_R^j + Y^e_{ij}\bar{e}_L^i e_R^j\right) + \text{h.c.}$$
 
 Comparing with the Dirac mass term $m\bar\psi\psi$: $$m_f = Y_f \cdot \frac{v}{\sqrt{2}}$$
 
 **Every fermion mass is the Yukawa coupling times the Higgs VEV.** The Higgs mechanism gives the framework for mass; the Yukawa coupling provides the specific value.
+
+![Charged-fermion masses by generation on a log scale, with the Yukawa coupling on a second axis](../FIGURES/CH00/fermion-masses.svg)
+*Masses of the up-type quarks, down-type quarks and charged leptons by generation (PDG central values), with the equivalent Yukawa coupling $y_f=\sqrt{2}\,m_f/v$ ($v = 246$ GeV) on the right axis and neutrinos shown only as the direct bound $m < 0.8$ eV: only the top quark has $y \approx 1$, and $m_t/m_e \approx 3.4\times10^5$ is unexplained by the Lagrangian.*
 
 ### The CKM Matrix and Generation Mixing
 

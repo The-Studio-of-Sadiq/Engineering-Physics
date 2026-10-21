@@ -152,7 +152,7 @@ Substituting:
 
 $$j^\nu - \partial_\mu\left(-\frac{1}{\mu_0}F^{\mu\nu}\right) = 0$$
 
-$$\boxed{\partial_\mu F^{\mu\nu} = \mu_0 j^\nu}$$
+$$\boxed{\partial_\mu F^{\mu\nu} = -\mu_0 j^\nu}$$
 
 **This single covariant equation contains two of Maxwell's four equations.**
 
@@ -177,20 +177,20 @@ Maxwell's four equations split exactly 2+2.
 
 ## 11.4 — The Four Maxwell Equations in 3D Form
 
-### 11.4.1 — From $\partial_\mu F^{\mu\nu} = \mu_0 j^\nu$
+### 11.4.1 — From $\partial_\mu F^{\mu\nu} = -\mu_0 j^\nu$
 
 **Component $\nu = 0$** (time component, using $j^0 = c\rho$):
 
-$$\partial_i F^{i0} = \mu_0 j^0 = \mu_0 c\rho$$
+$$\partial_i F^{i0} = -\mu_0 j^0 = -\mu_0 c\rho$$
 
-$$\frac{1}{c}\partial_i E^i = \mu_0 c\rho \quad\Longrightarrow\quad \boxed{\nabla\cdot\mathbf{E} = \frac{\rho}{\epsilon_0}}$$
+$$-\frac{1}{c}\partial_i E^i = -\mu_0 c\rho \quad\Longrightarrow\quad \boxed{\nabla\cdot\mathbf{E} = \frac{\rho}{\epsilon_0}}$$
 
 **Gauss's law for electricity.** The divergence of $\mathbf{E}$ is sourced by
 free charge density.
 
 **Component $\nu = i$** (spatial components, $j^i = J^i$):
 
-Expanding $\partial_0 F^{0i} + \partial_j F^{ji} = \mu_0 J^i$:
+Expanding $\partial_0 F^{0i} + \partial_j F^{ji} = -\mu_0 J^i$:
 
 $$\boxed{\nabla\times\mathbf{B} - \mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t} = \mu_0\mathbf{J}}$$
 
@@ -238,7 +238,7 @@ $$\begin{aligned}
 dynamical equation and one identity. The apparent complexity of Maxwell's
 equations in 3D is a coordinate artifact. In four-dimensional spacetime notation:
 
-$$\partial_\mu F^{\mu\nu} = \mu_0 j^\nu \qquad \partial_{[\lambda}F_{\mu\nu]} = 0$$
+$$\partial_\mu F^{\mu\nu} = -\mu_0 j^\nu \qquad \partial_{[\lambda}F_{\mu\nu]} = 0$$
 
 Two lines. All of classical electrodynamics.
 
@@ -248,7 +248,7 @@ Two lines. All of classical electrodynamics.
 
 Taking the four-divergence of both sides of the dynamical equation:
 
-$$\partial_\nu\partial_\mu F^{\mu\nu} = \mu_0\partial_\nu j^\nu$$
+$$\partial_\nu\partial_\mu F^{\mu\nu} = -\mu_0\partial_\nu j^\nu$$
 
 The left side vanishes identically because $\partial_\nu\partial_\mu$ is
 symmetric in $(\mu,\nu)$ while $F^{\mu\nu}$ is antisymmetric:
@@ -266,7 +266,7 @@ follows from $F = \partial\wedge A$, which follows from U(1) gauge invariance.
 1. Ch. 0: U(1) gauge symmetry in $\mathcal{L}_{SM}$
 2. Ch. 1 Noether: U(1) symmetry → conserved charge, $\partial_\mu j^\mu = 0$
 3. This chapter: $\partial_\mu j^\mu = 0$ → continuity equation $\partial_t\rho + \nabla\cdot\mathbf{J} = 0$
-4. Quasi-static limit (§11.9): $\partial_t\rho \to 0$ → $\nabla\cdot\mathbf{J} = 0$ → $\sum I_{node} = 0$
+4. Quasi-static limit (§11.12): $\partial_t\rho \to 0$ → $\nabla\cdot\mathbf{J} = 0$ → $\sum I_{node} = 0$
 5. Ch. 18 (Layer 3): Kirchhoff's Current Law
 
 KCL is Noether's theorem for the **global** phase symmetry of charged matter, seen from the other end
@@ -293,14 +293,14 @@ theory in a way that makes Lorentz invariance and locality manifest.
 ### 11.6.2 — Gauge Choices
 
 **Lorenz gauge** $\partial_\mu A^\mu = 0$ (Lorentz-covariant):
-$$\Box A^\mu = \mu_0 j^\mu, \qquad \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2} + \nabla^2$$
+$$\Box A^\mu = -\mu_0 j^\mu, \qquad \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2} + \nabla^2$$
 
 Each component of $A^\mu$ satisfies an independent wave equation driven by the
 corresponding component of $j^\mu$. Manifest covariance; retarded potentials.
 
 **Coulomb gauge** $\nabla\cdot\mathbf{A} = 0$ (non-covariant but practical):
 $$\nabla^2\phi = -\frac{\rho}{\epsilon_0} \quad\text{(instantaneous Coulomb potential)}$$
-$$\Box\mathbf{A} = \mu_0\mathbf{J} - \frac{1}{c^2}\nabla\frac{\partial\phi}{\partial t}$$
+$$\Box\mathbf{A} = -\mu_0\mathbf{J} + \frac{1}{c^2}\nabla\frac{\partial\phi}{\partial t}$$
 
 The scalar potential is determined instantaneously by the charge distribution
 (no retardation); retardation enters only through $\mathbf{A}$. Useful for
@@ -339,9 +339,12 @@ and $\epsilon_y$ (linear $y$-polarization). Or equivalently, right and left
 circular polarization. No longitudinal photon in vacuum — this is a consequence
 of U(1) gauge invariance.
 
+![Snapshot of a linearly polarized plane wave with E along x and B along y](../FIGURES/CH11/plane-wave-snapshot.svg)
+*Instantaneous fields of a linearly $x$-polarized vacuum plane wave over two wavelengths: $\mathbf{E} = E_0\cos(kz - \omega t)\,\hat x$ and $\mathbf{B} = (E_0/c)\cos(kz - \omega t)\,\hat y$ oscillate in phase, both transverse to $\mathbf{k} \parallel \hat z$, with $\mathbf{E}\times\mathbf{B}$ along $\mathbf{k}$ — no longitudinal component appears.*
+
 Parallel: gravitational waves (Ch. 8) also have exactly two transverse polarizations
 ($+$ and $\times$), now from the diffeomorphism invariance of the metric.
-The number of physical polarizations is $(d^2 - d)/2 - (d-2) = (d-2)$ for a
+The number of physical polarizations is $d - (1 + 1) = d - 2$ (gauge condition plus residual gauge freedom) for a
 massless spin-1 field in $d$ spacetime dimensions: 2 in 3+1D.
 
 ### 11.7.3 — The Electromagnetic Spectrum
@@ -533,6 +536,9 @@ At 60 Hz (power systems), $\lambda = 5000$ km → valid for all practical circui
 At 1 GHz (RF), $\lambda = 30$ cm → a 3 cm device satisfies $L/\lambda = 0.1$ — marginally valid.
 At 10 GHz, $L = 1$ cm → $L/\lambda = 1/3$ — distributed effects essential.
 
+![Electrical size L over wavelength versus frequency for four circuit sizes](../FIGURES/CH11/lumping-criterion.svg)
+*Electrical size $L/\lambda = Lf/c$ from 10 Hz to 100 GHz for $L = 1$ mm, 1 cm, 10 cm and 1 m, with the lumped-element region $L/\lambda < 0.1$ shaded: a 1 m circuit at 60 Hz sits seven orders of magnitude inside it, a 3 cm device at 1 GHz sits exactly on the boundary, and a 1 cm structure at 10 GHz ($L/\lambda = 1/3$) is firmly distributed.*
+
 ### 11.12.2 — Kirchhoff's Voltage Law from Faraday
 
 In the quasi-static limit, consider a closed loop $\mathcal{C}$. Integrate
@@ -544,7 +550,7 @@ For a circuit with lumped inductors (where flux is concentrated in the inductors
 
 $$\sum_{elements}\int\mathbf{E}\cdot d\mathbf{l} = -\frac{d\Phi_B}{dt}$$
 
-At low frequency (negligible magnetic flux in the "empty" space between components):
+The flux term does not vanish; it is relocated. With the changing flux confined to the inductors (and negligible in the "empty" space between components), each inductor's share of $-d\Phi_B/dt$ is booked as its branch voltage $V_L = L\,di/dt$. With that bookkeeping, the loop sum of branch voltages, inductors included, is zero:
 
 $$\sum_{\text{branches}} V_k = 0$$
 
@@ -631,7 +637,7 @@ Bridge B.c complete. Maxwell's equations descended from one Lagrangian term:
 |---|---|
 | $\mathcal{L}_{EM} = -\frac{1}{4\mu_0}F_{\mu\nu}F^{\mu\nu} + A_\mu j^\mu$ | U(1) sector of $\mathcal{L}_{SM}$, classical field limit |
 | $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ | Definition of field tensor |
-| $\partial_\mu F^{\mu\nu} = \mu_0 j^\nu$ | Euler-Lagrange applied to $A_\nu$ |
+| $\partial_\mu F^{\mu\nu} = -\mu_0 j^\nu$ | Euler-Lagrange applied to $A_\nu$ |
 | $\nabla\cdot\mathbf{E} = \rho/\epsilon_0$ | $\nu = 0$ component |
 | $\nabla\times\mathbf{B} = \mu_0\mathbf{J} + \mu_0\epsilon_0\partial_t\mathbf{E}$ | $\nu = i$ components |
 | $\partial_{[\lambda}F_{\mu\nu]} = 0$ | Bianchi identity (automatic from $F = \partial A$) |

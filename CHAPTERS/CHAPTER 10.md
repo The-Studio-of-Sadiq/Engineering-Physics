@@ -435,6 +435,9 @@ The Debye temperature $T_D = \hbar\omega_D/k_B$ characterizes when quantum
 effects matter: for diamond $T_D = 2230$ K; for lead $T_D = 105$ K. This is
 why diamond remains quantum (low $C_V$) at room temperature while lead is classical.
 
+![Debye and Einstein heat capacities versus reduced temperature with diamond and lead marked](../FIGURES/CH10/debye-heat-capacity.svg)
+*$C_V/3Nk_B$ versus $T/T_D$ for the Debye model, the Einstein model with $T_E = \sqrt{3/5}\,T_D \approx 0.77\,T_D$, and the classical Dulong–Petit value; at 300 K diamond ($T_D = 2230$ K, $T/T_D = 0.13$) sits on the steep quantum rise at $C_V \approx 0.17 \times 3Nk_B$ while lead ($T_D = 105$ K, $T/T_D = 2.86$) is at the classical plateau; the log–log inset shows the Debye $T^3$ law against the far faster exponential freeze-out of the Einstein model.*
+
 ---
 
 ## 10.8 — Quantum Statistics: Bose-Einstein and Fermi-Dirac
@@ -467,6 +470,9 @@ $$\bar n_{MB}(\epsilon) = e^{-(\epsilon-\mu)/k_BT}$$
 At high T (or low density), all three converge to Maxwell-Boltzmann. The quantum
 corrections matter when $\lambda_{th}^3 n \gtrsim 1$ — when the thermal de Broglie
 wavelength becomes comparable to the interparticle spacing.
+
+![Bose-Einstein, Fermi-Dirac and Maxwell-Boltzmann occupation numbers on a log scale](../FIGURES/CH10/quantum-occupations.svg)
+*Mean occupation versus $x = (\epsilon - \mu)/k_BT$: Bose–Einstein diverges as $\epsilon \to \mu^+$, Fermi–Dirac saturates at the Pauli ceiling $\bar n = 1$ for $\epsilon < \mu$, and both merge with the Maxwell–Boltzmann exponential once $\epsilon - \mu \gtrsim 3k_BT$, where $\bar n \ll 1$.*
 
 ### 10.8.3 — The Fermi-Dirac Distribution and Free Electrons
 
@@ -521,13 +527,16 @@ statistics for photons.
   Rayleigh-Jeans law. This diverges as $\nu\to\infty$ (the ultraviolet catastrophe),
   the failure that motivated Planck to quantize energy in 1900.
 - High frequency ($h\nu \gg k_BT$): $u\to 8\pi h\nu^3/c^3 \cdot e^{-h\nu/k_BT}$
-  — Wien's displacement law; exponential suppression of high-frequency modes.
+  — Wien's approximation; exponential suppression of high-frequency modes.
 
-**Wien's displacement law:** Peak of $u(\nu, T)$ at $h\nu_{max} = 2.82\,k_BT$:
+**Wien's displacement law:** Peak of $u(\nu, T)$ at $h\nu_{max} = 2.82\,k_BT$; the peak of the per-wavelength density $u_\lambda$ is a different point, at $hc/\lambda_{max} = 4.965\,k_BT$:
 $$\lambda_{max} T = b = 2.898\times 10^{-3}\;\text{m·K}$$
 
 **Stefan-Boltzmann law:** Total power radiated per unit area:
 $$j = \sigma T^4, \qquad \sigma = \frac{2\pi^5k_B^4}{15c^2h^3} = 5.67\times 10^{-8}\;\text{W/m}^2\text{K}^4$$
+
+![Planck blackbody spectra at four temperatures with the Wien peak locus](../FIGURES/CH10/planck-spectrum.svg)
+*Planck spectral energy density per unit wavelength, $u_\lambda = (8\pi hc/\lambda^5)/(e^{hc/\lambda k_BT} - 1)$, at $T = 3000$, $4000$, $5000$ and $5800$ K: the peak slides along the Wien locus $\lambda_{max}T = 2.898\times10^{-3}$ m·K (dotted) into the visible band for the Sun's 5800 K, the area grows as $T^4$, and the classical Rayleigh–Jeans law (dashed, 5000 K) matches only at long wavelength before diverging.*
 
 ---
 
@@ -554,7 +563,7 @@ with $a(T) = a_0(T - T_c)$ changing sign at the transition.
 
 | System | $\phi$ | Symmetry broken | $T_c$ | Chapter |
 |---|---|---|---|---|
-| Higgs field | Complex scalar $H$ | SU(2)×U(1) → U(1) | 246 GeV | 0, §0.7 |
+| Higgs field | Complex scalar $H$ | SU(2)×U(1) → U(1) | $\approx$160 GeV (crossover; VEV $v = 246$ GeV) | 0, §0.7 |
 | BCS superconductor | Gap $\Delta = \lvert\Delta\rvert e^{i\theta}$ | U(1) | $\sim$ meV | 7, §7.6 |
 | BEC | Condensate $\Psi = \lvert\Psi\rvert e^{i\theta}$ | U(1) | $\sim$ μeV | 7, 10 |
 | Ferromagnet | Magnetization **M** | SO(3) | Curie T | 10 |
@@ -569,6 +578,9 @@ $|\phi|^2 = -a/2b = a_0(T_c-T)/2b \neq 0$ (ordered phase, spontaneous symmetry b
 Order parameter near $T_c$: $|\phi| \propto (T_c-T)^\beta$ with $\beta = \frac{1}{2}$
 (mean-field value; corrected by fluctuations to $\beta \approx 0.326$ in 3D
 Ising universality class).
+
+![Landau free energy above, at and below Tc, and the order parameter versus temperature](../FIGURES/CH10/landau-free-energy.svg)
+*Left: $F - F_0 = a_0(T - T_c)\phi^2 + b\phi^4$ (units $a_0 = b = 1$, $T - T_c = \pm 0.5$ and $0$) — a single minimum at $\phi = 0$ above $T_c$, a flat quartic bottom at $T_c$, and the double well with minima at $\phi_{eq} = \pm\sqrt{-a/2b}$ below $T_c$ (the 1D cut of the Mexican hat of Ch. 0 §0.7); right: $|\phi_{eq}| \propto (T_c - T)^\beta$ for the mean-field $\beta = \tfrac12$ and the 3D Ising $\beta \approx 0.326$, both normalised to 1 at $T = 0$ — the fluctuation-corrected order parameter rises much more steeply just below $T_c$.*
 
 ### 10.9.3 — First-Order vs. Second-Order Transitions
 

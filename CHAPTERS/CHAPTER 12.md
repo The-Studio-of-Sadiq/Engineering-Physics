@@ -83,7 +83,7 @@ The **Beer-Lambert law** for intensity: $I = I_0 e^{-2\alpha z} = I_0 e^{-\mu_a 
 
 For a good conductor ($\sigma \gg \omega\epsilon$): $$\alpha = \beta = \sqrt{\frac{\omega\mu\sigma}{2}} = \frac{1}{\delta}, \qquad \delta = \sqrt{\frac{2}{\omega\mu\sigma}}$$
 
-This recovers the **skin depth** from Ch. 11 §11.10 — confirming that the skin effect is a direct consequence of the complex refractive index of conductors.
+This is the **skin depth** (derived again in Ch. 16 §16.8.1 as the magnetic-diffusion length) — confirming that the skin effect is a direct consequence of the complex refractive index of conductors.
 
 ---
 
@@ -95,7 +95,7 @@ A monochromatic wave at frequency $\omega$ propagates at the **phase velocity** 
 
 A pulse — a superposition of frequencies — travels at the **group velocity**:
 
-$$\boxed{v_g = \frac{d\omega}{dk} = \frac{c}{n + \omega,dn/d\omega} = \frac{c}{n_g}}$$
+$$\boxed{v_g = \frac{d\omega}{dk} = \frac{c}{n + \omega\,dn/d\omega} = \frac{c}{n_g}}$$
 
 where $n_g = n + \omega\,dn/d\omega$ is the **group index**.
 
@@ -196,6 +196,9 @@ At Brewster's angle, the p-polarization is completely transmitted — reflected 
 
 **Engineering applications:** Brewster windows in laser cavities eliminate reflection losses for one polarization; polarizing beam splitter cubes use Brewster-angle stacks; anti-glare coatings exploit Brewster's angle for horizontal polarization.
 
+![Fresnel reflectances for s and p polarization, air to glass and glass to air](../FIGURES/CH12/fresnel-reflectance.svg)
+*Power reflectances $R_s = |r_s|^2$ and $R_p = |r_p|^2$ versus incidence angle for $n = 1.5$ glass: from air (left) $R_p$ vanishes at Brewster's angle $\theta_B = 56.3°$ while both rise to 1 at grazing incidence; from inside the glass (right) $R_p = 0$ at $\theta_B = 33.7°$ and both reach 1 at the critical angle $\theta_c = 41.8°$, beyond which reflection is total (shaded); both panels start from the normal-incidence value $R = 0.04$.*
+
 ### 12.3.5 — Total Internal Reflection
 
 For $n_1 > n_2$ (denser medium), at incidence angle $\theta_i > \theta_c$:
@@ -204,7 +207,7 @@ $$\theta_c = \arcsin\left(\frac{n_2}{n_1}\right)$$
 
 Snell's law gives $\sin\theta_t > 1$ — no real solution. The transmitted wave becomes **evanescent**: it decays exponentially into medium 2 with no time-averaged power transmitted.
 
-The evanescent field: $$\mathbf{E}_t \propto \exp!\left(-\frac{z}{\delta_{ev}}\right)\exp(ik_x x), \qquad \delta_{ev} = \frac{\lambda_0}{2\pi\sqrt{n_1^2\sin^2\theta_i - n_2^2}}$$
+The evanescent field: $$\mathbf{E}_t \propto \exp\!\left(-\frac{z}{\delta_{ev}}\right)\exp(ik_x x), \qquad \delta_{ev} = \frac{\lambda_0}{2\pi\sqrt{n_1^2\sin^2\theta_i - n_2^2}}$$
 
 - At $\theta_i = \theta_c$: $\delta_{ev}\to\infty$ (grazing transmission)
 - For typical glass-air TIR at $\theta_i = 60°$, $n_1 = 1.5$: $\delta_{ev} \approx 100$ nm
@@ -225,11 +228,11 @@ where $E_x$ and $E_y$ are complex amplitudes. Standard polarization states:
 
 |Polarization|Jones vector|
 |---|---|
-|Linear (horizontal)|$(1,,0)^T$|
-|Linear (vertical)|$(0,,1)^T$|
-|Linear ($45°$)|$(1,,1)^T/\sqrt{2}$|
-|Right circular|$(1,,-i)^T/\sqrt{2}$|
-|Left circular|$(1,,+i)^T/\sqrt{2}$|
+|Linear (horizontal)|$(1,\,0)^T$|
+|Linear (vertical)|$(0,\,1)^T$|
+|Linear ($45°$)|$(1,\,1)^T/\sqrt{2}$|
+|Right circular|$(1,\,-i)^T/\sqrt{2}$|
+|Left circular|$(1,\,+i)^T/\sqrt{2}$|
 
 ### 12.4.2 — Waveplates and Birefringence
 
@@ -269,7 +272,7 @@ Two slits separated by distance $d$, at distance $L$ from screen:
 
 Bright fringes at: $y_m = m\lambda L/d$ (fringe spacing $\Delta y = \lambda L/d$)
 
-The intensity pattern is the Fourier transform of the two-slit aperture: $$I(\theta) = 4I_0\cos^2!\left(\frac{\pi d\sin\theta}{\lambda}\right)$$
+The intensity pattern is the Fourier transform of the two-slit aperture: $$I(\theta) = 4I_0\cos^2\!\left(\frac{\pi d\sin\theta}{\lambda}\right)$$
 
 **From linearity of Maxwell:** The superposition principle — which makes interference possible — is a direct consequence of Maxwell's equations being linear. Nonlinear media ($\chi^{(2)}, \chi^{(3)}$) modify this.
 
@@ -302,6 +305,9 @@ The resonances (full transmission) occur at $\delta = 2m\pi$: $$\text{FSR} = \fr
 
 **Resolving power:** $\mathcal{R} = m\mathcal{F}$ — the Fabry-Perot can resolve wavelength differences $\Delta\lambda = \lambda/\mathcal{R}$.
 
+![Fabry-Perot Airy transmission for mirror reflectances 0.5, 0.9 and 0.99](../FIGURES/CH12/fabry-perot.svg)
+*Airy transmission $I_T/I_0 = 1/[1 + F\sin^2(\delta/2)]$ with $F = 4R/(1-R)^2$ for $R = 0.5$, $0.9$ and $0.99$ over one free spectral range ($\Delta\delta = 2\pi$, FSR $= c/2nd$): raising $R$ leaves the peaks at full transmission but narrows them, and the inset shows that for $R = 0.99$ the FWHM is FSR/313, i.e. finesse $\mathcal{F} = \pi\sqrt{R}/(1-R) \approx 313$.*
+
 **Engineering:** Fabry-Perot cavities are the resonators in all lasers; optical spectrum analyzers use scanning FP etalons; wavelength-selective filters in DWDM fiber systems.
 
 ---
@@ -320,13 +326,13 @@ This follows from Green's second identity applied to the wave equation from Ch. 
 
 In the far field ($z \gg a^2/\lambda$, Fraunhofer regime), the Kirchhoff integral simplifies to a **Fourier transform** of the aperture function $t(x,y)$:
 
-$$U(f_x, f_y) \propto \iint t(x,y)\,e^{-i2\pi(f_x x + f_y y)}dx\,dy = \mathcal{F}{t}$$
+$$U(f_x, f_y) \propto \iint t(x,y)\,e^{-i2\pi(f_x x + f_y y)}dx\,dy = \mathcal{F}\{t\}$$
 
 where $f_x = \sin\theta_x/\lambda$, $f_y = \sin\theta_y/\lambda$ are spatial frequencies.
 
 **Single slit** (width $a$): $t(x) = \text{rect}(x/a)$
 
-$$I(\theta) = I_0\left(\frac{\sin(\pi a\sin\theta/\lambda)}{\pi a\sin\theta/\lambda}\right)^2 = I_0\,\text{sinc}^2!\left(\frac{a\sin\theta}{\lambda}\right)$$
+$$I(\theta) = I_0\left(\frac{\sin(\pi a\sin\theta/\lambda)}{\pi a\sin\theta/\lambda}\right)^2 = I_0\,\text{sinc}^2\!\left(\frac{a\sin\theta}{\lambda}\right)$$
 
 First zero at $\sin\theta = \lambda/a$.
 
@@ -340,11 +346,14 @@ A 1 m telescope at $\lambda = 550$ nm: $\theta_{min} = 0.14''$ of arc. A microwa
 
 **Diffraction grating** (N slits, spacing $d$): principal maxima at $d\sin\theta = m\lambda$, spectral resolving power $\mathcal{R} = mN$.
 
+![Fraunhofer patterns of a single slit, a double slit and a circular aperture](../FIGURES/CH12/fraunhofer-diffraction.svg)
+*Left: single-slit pattern $\mathrm{sinc}^2(a\sin\theta/\lambda)$ with its first zeros at $a\sin\theta = \pm\lambda$, and the double slit with $d = 4a$, whose $\cos^2(\pi d\sin\theta/\lambda)$ fringes fill the sinc$^2$ envelope with every fourth order missing; right: the circular-aperture Airy pattern $[2J_1(x)/x]^2$, $x = \pi D\sin\theta/\lambda$, whose first zero moves out to $D\sin\theta = 1.22\lambda$ (Rayleigh criterion), with weaker side lobes than the slit (log-scale inset).*
+
 ### 12.6.3 — Fourier Optics: A Lens as an Analog Computer
 
 A converging lens of focal length $f$ **computes the Fourier transform** of the field in its front focal plane, producing the transform in its back focal plane:
 
-$$U_{back}(x', y') \propto \mathcal{F}\left{U_{front}(x, y)\right}_{f_x = x'/\lambda f,, f_y = y'/\lambda f}$$
+$$U_{back}(x', y') \propto \mathcal{F}\left\{U_{front}(x, y)\right\}_{f_x = x'/\lambda f,\, f_y = y'/\lambda f}$$
 
 Two lenses in succession perform the inverse Fourier transform — restoring the original image. Between the two lenses, the **Fourier plane** contains the spatial frequency spectrum of the object: low frequencies near the center, high frequencies (fine detail) far from the center.
 
@@ -386,6 +395,9 @@ Below cutoff: $\beta$ imaginary → exponential decay (evanescent). This is the 
 $$v_g = c\sqrt{1 - (f_c/f)^2} < c$$
 
 At $f \gg f_c$: $v_g \to c$. Near cutoff $f \to f_c^+$: $v_g \to 0$ (energy "stagnates").
+
+![Dispersion curves of the TE10, TE20 and TE01 modes of WR-90 waveguide](../FIGURES/CH12/waveguide-dispersion.svg)
+*Dispersion $f = (c/2\pi)\sqrt{\beta^2 + (m\pi/a)^2 + (n\pi/b)^2}$ for WR-90 ($a = 22.86$ mm, $b = 10.16$ mm): TE$_{10}$ cuts off at 6.56 GHz, TE$_{20}$ at 13.11 GHz and TE$_{01}$ at 14.75 GHz, so only TE$_{10}$ propagates between 6.56 and 13.11 GHz (shaded); every mode lies above the light line and approaches it at high frequency, and the inset shows the TE$_{10}$ group velocity $v_g/c = \sqrt{1 - (f_c/f)^2}$ falling to zero at cutoff.*
 
 ### 12.7.2 — Optical Fiber: Guided Waves by Total Internal Reflection
 
@@ -526,7 +538,7 @@ Inelastic scattering with energy exchange with a molecular vibration (phonon):
 
 **Anti-Stokes Raman:** Photon gains energy $\hbar\omega_{vib}$ from a thermal phonon $\nu_{anti-Stokes} = \nu_{inc} + \nu_{vib}$
 
-The Stokes-to-anti-Stokes ratio: $$\frac{I_{aS}}{I_S} = \exp!\left(-\frac{\hbar\omega_{vib}}{k_BT}\right)$$
+The Stokes-to-anti-Stokes ratio: $$\frac{I_{aS}}{I_S} = \exp\!\left(-\frac{\hbar\omega_{vib}}{k_BT}\right)$$
 
 This is directly the Boltzmann factor from Ch. 10 §10.3 — measuring the ratio directly gives the sample temperature (Raman thermometry).
 

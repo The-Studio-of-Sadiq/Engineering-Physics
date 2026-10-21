@@ -160,6 +160,9 @@ For $\ell > 0$ (p, d, f-states), the centrifugal barrier $\hbar^2\ell(\ell+1)/2m
 
 This splitting of energies within a shell is what makes the periodic table non-trivial. In hydrogen, $2s$ and $2p$ are degenerate. In lithium, $2s$ is significantly lower than $2p$ — which is why lithium's third electron goes into $2s$, not $2p$.
 
+![Radial probability densities of hydrogenic 2s and 2p orbitals, with the inner 2s lobe shaded](../FIGURES/CH05/penetration-2s-2p.svg)
+*Radial probability $r^2|R_{n\ell}|^2$ for hydrogenic $2s$ and $2p$ ($Z = 1$): the $2p$ peak lies closer in, but the $2s$ orbital has a small inner lobe (shaded, about 5% of its probability inside its node at $r = 2a_0$) that penetrates the core electrons and feels the nearly unscreened nucleus.*
+
 ---
 
 ## 5.4 — Building the Periodic Table: Aufbau and Hund
@@ -348,6 +351,9 @@ $$\Delta E = \mu_B B(m_\ell + 2m_s)$$
 
 The Paschen-Back regime shows that $\mathbf{J}$ is not fundamental — it is the good quantum number only when spin-orbit coupling dominates. In strong fields, $m_\ell$ and $m_s$ are separately conserved (separately good quantum numbers).
 
+![Hydrogen 2p energy levels versus magnetic field from 0 to 3 T, showing the anomalous Zeeman to Paschen-Back crossover](../FIGURES/CH05/paschen-back.svg)
+*Exact eigenvalues of $\xi\,\mathbf{L}\cdot\mathbf{S} + \mu_B B(L_z + 2S_z)$ for hydrogen $2p$ (six $|m_\ell, m_s\rangle$ states, $\xi$ fixed by the zero-field $^2P_{1/2}$–$^2P_{3/2}$ splitting of $4.53\times10^{-5}$ eV): at low field the levels fan out with slopes $g_J m_J\mu_B$ ($g_J = 4/3$ and $2/3$), and above $B \approx \Delta E_{fs}/\mu_B \approx 0.8$ T they approach the dashed Paschen-Back lines $\mu_B B(m_\ell + 2m_s)$; levels of equal $m_J$ never cross.*
+
 **Engineering connection — NMR and MRI:** The Zeeman effect is the foundation of NMR and MRI. A nucleus with spin $I$ (e.g., $^1$H has $I = 1/2$, $^{13}$C has $I = 1/2$) in a magnetic field $B_0$ has energy levels split by:
 
 $$\Delta E = \gamma_N \hbar B_0$$
@@ -409,6 +415,9 @@ where $H_{AB} = \int\phi_{1s}^A \hat H\phi_{1s}^B\,d^3r < 0$ is the resonance in
 Two electrons (one from each H atom, with opposite spins by Pauli exclusion) both occupy $\psi_+$: total energy is $2E_+ < 2E_{1s}$. The molecule is stable.
 
 This is the covalent bond in H₂ — derived from the same quantum mechanics that gave us the hydrogen atom, using only the Pauli exclusion principle and the variational principle.
+
+![LCAO bonding and antibonding orbitals of H2 along the bond axis, with densities and an MO level diagram](../FIGURES/CH05/lcao-h2plus.svg)
+*Hydrogen $1s$ orbitals $e^{-|z\mp R/2|/a_0}$ at $R = 1.4\,a_0$ (the H₂ bond length) combined into $\psi_\pm$ with the $1/\sqrt{2(1\pm S_{AB})}$ normalisation: $\psi_+$ adds charge between the nuclei, $\psi_-$ has a node at the midpoint; the inset (schematic) shows both electrons in $\psi_+$ and the antibonding level raised more than the bonding level is lowered.*
 
 ### 5.8.2 — Bond Types from Electronic Configuration
 

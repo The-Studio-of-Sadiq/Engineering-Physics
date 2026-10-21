@@ -176,7 +176,7 @@ The energy equation (first law of thermodynamics per unit volume in motion):
 
 $$\rho\frac{De}{Dt} = \sigma_{ij}\dot\varepsilon_{ij} - \nabla\cdot\mathbf{q} + \dot Q_{vol}$$
 
-where $e$ is the specific internal energy, $\sigma_{ij}\dot\varepsilon_{ij}$ is the viscous dissipation rate (always positive, second law), $\mathbf{q}$ is the heat flux (from Fourier's law, Ch. 13 §13.5), and $\dot Q_{vol}$ is any volumetric heat source.
+where $e$ is the specific internal energy, $\sigma_{ij}\dot\varepsilon_{ij} = -p\,\nabla\cdot\mathbf{v} + \tau_{ij}\dot\varepsilon_{ij}$ is the stress power — the reversible compression work $-p\,\nabla\cdot\mathbf{v}$ (either sign) plus the viscous dissipation rate $\tau_{ij}\dot\varepsilon_{ij}$ (always non-negative, second law), $\mathbf{q}$ is the heat flux (from Fourier's law, Ch. 13 §13.5), and $\dot Q_{vol}$ is any volumetric heat source.
 
 ---
 
@@ -311,7 +311,7 @@ The $R^4$ dependence is dramatic: doubling the pipe radius increases flow by 16�
 
 $$R_{hyd} = \frac{\Delta p}{Q} = \frac{8\mu L}{\pi R^4}$$
 
-This is the fluid analog of electrical resistance ($R = \rho L/A$) — the same formula structure from the same Kubo-derived transport law. In Bridge C (Ch. 17), this becomes the "R" element in the hydraulic circuit.
+This is the fluid analog of electrical resistance ($R = \rho L/A$) — the same linear effort–flow structure, though $R_{hyd}$ comes from solving Navier–Stokes in the pipe while electrical $R$ comes from Ohm's law; what they share is the R/C/L representation [STRUCTURAL CONNECTION]. In Bridge C (Ch. 17), this becomes the "R" element in the hydraulic circuit.
 
 **Validity:** Laminar flow only. Turbulence onset at $Re_c \approx 2300$.
 
@@ -326,6 +326,9 @@ Linear velocity profile. Wall shear stress:
 $$\tau_w = \mu\frac{dv_x}{dy} = \frac{\mu U}{h}$$
 
 This is Newton's law of viscosity from Ch. 13 §13.7 — now derived as an exact solution of NS with the appropriate boundary conditions. Couette flow is the canonical laboratory setup for measuring viscosity (the cone-and-plate rheometer is a variant).
+
+![Parabolic Poiseuille pipe-flow profile and linear Couette shear-flow profile](../FIGURES/CH15/poiseuille-couette.svg)
+*Left: Poiseuille profile $v_z/v_{max}=1-(r/R)^2$ across a pipe, zero at the no-slip walls and maximal on the axis. Right: Couette profile $v_x/U=y/h$ between a fixed and a moving plate, with uniform shear stress $\tau_w=\mu U/h$.*
 
 ### 15.7.3 — Stokes Flow (Very Low Reynolds Number)
 
@@ -372,7 +375,7 @@ balance is visible rather than assumed. (Stokes–Einstein).
 
 Scale all variables by characteristic values: velocity $U_0$, length $L_0$, time $L_0/U_0$, pressure $\rho U_0^2$. The dimensionless NS equation:
 
-$$\frac{D\mathbf{v}^_}{Dt^_} = -\nabla^* p^* + \frac{1}{Re}\nabla^{_2}\mathbf{v}^_ + \frac{1}{Fr^2}\hat g$$
+$$\frac{D\mathbf{v}^*}{Dt^*} = -\nabla^* p^* + \frac{1}{Re}\nabla^{*2}\mathbf{v}^* + \frac{1}{Fr^2}\hat g$$
 
 where the **Reynolds number** $Re$ and **Froude number** $Fr$:
 
@@ -504,6 +507,9 @@ For most metals ($\nu_P \approx 0.3$): $v_P/v_S \approx 1.87$. For incompressibl
 
 **Seismology:** The time delay between P-wave and S-wave arrivals at a seismometer directly gives the distance to an earthquake epicenter. Three stations triangulate the location. The ratio $v_P/v_S$ also reveals subsurface geology — different for water-saturated rock vs. dry rock.
 
+![P-to-S wave speed ratio versus Poisson's ratio with steel, aluminum and granite marked](../FIGURES/CH15/vp-vs-ratio.svg)
+*$v_P/v_S=\sqrt{2(1-\nu_P)/(1-2\nu_P)}$ for $0\le\nu_P\le0.49$, with steel, aluminum and granite placed at the Poisson's ratio implied by their tabulated speeds (0.29, 0.36, 0.20); the ratio starts at $\sqrt2$ and diverges as $\nu_P\to0.5$.*
+
 ---
 
 ## 15.11 — Failure Criteria
@@ -525,6 +531,9 @@ Simpler but slightly more conservative: yielding occurs when the maximum shear s
 $$\tau_{max} = \frac{\sigma_1 - \sigma_3}{2} \geq \frac{\sigma_y}{2}$$
 
 Von Mises is more accurate for ductile metals; Tresca is simpler and safe (conservative). Both give the same result for uniaxial stress.
+
+![Von Mises ellipse and Tresca hexagon in the plane-stress principal-stress plane](../FIGURES/CH15/yield-loci.svg)
+*Plane-stress yield loci in $(\sigma_1,\sigma_2)/\sigma_y$: the von Mises ellipse $\sigma_1^2-\sigma_1\sigma_2+\sigma_2^2=\sigma_y^2$ circumscribes the Tresca hexagon; they touch at uniaxial and equibiaxial states and differ most in pure shear ($\tau_y=0.577\sigma_y$ vs. $0.5\sigma_y$), which is why Tresca is the conservative choice.*
 
 ### 15.11.3 — Fracture Mechanics (Brittle Materials)
 
@@ -564,6 +573,9 @@ The Newtonian constitutive relation $\tau = \mu\dot\varepsilon$ (constant $\mu$)
 **Bingham plastics:** require a yield stress $\tau_0$ before flowing: $\tau = \tau_0 + \mu_B\dot\varepsilon$ for $|\tau| > \tau_0$, $\dot\varepsilon = 0$ otherwise. Examples: toothpaste, certain drilling muds, fresh concrete.
 
 **Thixotropy:** viscosity is history-dependent (decreased by recent shearing and recovers over time). Paints, gels, some clays.
+
+![Shear stress versus shear rate for Newtonian, shear-thinning, shear-thickening and Bingham fluids](../FIGURES/CH15/rheology-curves.svg)
+*Flow curves $\tau(\dot\varepsilon)$ for a Newtonian fluid, power-law fluids with $n=0.5$ and $1.5$ ($K=1$), and a Bingham plastic with $\tau_0=0.5$, $\mu_B=1$ (arbitrary units); the effective viscosity is the secant slope $\tau/\dot\varepsilon$, falling with rate for $n<1$ and rising for $n>1$.*
 
 **Engineering importance:** Non-Newtonian rheology governs polymer processing (injection molding, extrusion), food processing, pharmaceutical formulation, concrete placement, drilling mud design, and biological fluid dynamics (blood is shear-thinning; this matters in arterial flow).
 

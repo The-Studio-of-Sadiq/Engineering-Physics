@@ -19,12 +19,14 @@ described in the repo's own MCP.md, section 16:
     link checks           references       synthesis
     numerical checks     dependencies    contradiction scan
 
-This file is the left+middle columns. It fetches real files from the
-live GitHub repo (no local clone required) and runs mechanical checks:
-heading structure, links/anchors, fence balance, table shape, LaTeX
+This file is the left+middle columns. It reads the repository -- by
+default the local working copy this server sits in, optionally the live
+GitHub repo -- and runs mechanical checks: heading structure,
+links/anchors, image embeds, fence balance, table shape, LaTeX
 delimiter balance, and forbidden numbered-equation syntax. It also
 parses the repo's "Model Ledger" convention (MCP.md section 7) into
-structured records and assembles a reduction graph from them.
+structured records, assembles a reduction graph from them, and indexes
+the figures embedded in each file (FIGURES/, see CONTRIBUTING.md).
 
 WHAT THIS DELIBERATELY IS NOT
 ------------------------------
@@ -58,7 +60,13 @@ machine-readable metadata in section 23: `autonomous_writes: false`.
 
 CONFIGURATION (environment variables)
 --------------------------------------
-EP_REPO_OWNER   default "The-Studio-of-Sadiq"
+EP_SOURCE       "local" (default) or "github". Local mode reads files
+                straight from disk on every call, so edits are visible
+                immediately with no restart.
+EP_LOCAL_ROOT   local-mode repository root; default is the parent of the
+                folder containing this file (i.e. the repo this server
+                ships in).
+EP_REPO_OWNER   github mode only. default "The-Studio-of-Sadiq"
 EP_REPO_NAME    default "Engineering-Physics"
 EP_REPO_BRANCH  default "main"
 GITHUB_TOKEN    optional. Unauthenticated GitHub API calls are rate-limited
@@ -71,6 +79,7 @@ GITHUB_TOKEN    optional. Unauthenticated GitHub API calls are rate-limited
 from __future__ import annotations
 
 import os
+import pathlib
 import re
 from dataclasses import dataclass, field
 from typing import Any, Optional
@@ -82,6 +91,15 @@ from mcp.server.mcpserver import MCPServer
 # --------------------------------------------------------------------------
 # Configuration
 # --------------------------------------------------------------------------
+
+SOURCE = os.environ.get("EP_SOURCE", "local").strip().lower()
+if SOURCE not in ("local", "github"):
+    raise SystemExit(f"EP_SOURCE must be 'local' or 'github', got {SOURCE!r}")
+LOCAL_ROOT = pathlib.Path(
+    os.environ.get("EP_LOCAL_ROOT") or pathlib.Path(__file__).resolve().parent.parent
+).resolve()
+# Never walked in local mode: VCS internals, caches, editor/vault config.
+_LOCAL_SKIP_DIRS = {".git", "__pycache__", ".obsidian", ".venv", "node_modules"}
 
 GITHUB_OWNER = os.environ.get("EP_REPO_OWNER", "The-Studio-of-Sadiq")
 GITHUB_REPO = os.environ.get("EP_REPO_NAME", "Engineering-Physics")
@@ -97,13 +115,14 @@ if GITHUB_TOKEN:
 
 mcp = MCPServer("engineering-physics")
 
-# Process-lifetime caches. A restart clears them; there is no
+# Process-lifetime caches, used in github mode only (local mode always
+# reads from disk). A restart clears them; there is no
 # invalidation-on-push, so long-running processes should be restarted
 # after known upstream edits if freshness matters.
 _tree_cache: dict[str, Any] = {}
 _file_cache: dict[str, str] = {}
 
-ORIENT_FILES = ["README.md", "MCP.md", "METADATA/00 Map.md", "AUTHORING.md"]
+ORIENT_FILES = ["README.md", "MCP.md", "METADATA/00 Map.md", "CONTRIBUTING.md"]
 
 # Recognized Model Ledger field names (MCP.md section 7's canonical list,
 # plus "Model"/"Reduction" which is what the worked EXAMPLE in that same
@@ -122,7 +141,27 @@ LEDGER_FIELDS = [
     "Failure regime",
     "Failure",
     "Next reduced model",
+    # Field names used by the table form of the ledger (00 Map.md "Model
+    # Ledger: the Convention"); folded onto the names above by
+    # _LEDGER_ALIASES where they mean the same thing.
+    "Ledger",
+    "Physics retained",
+    "Physics neglected",
+    "Retained",
+    "Neglected",
+    "Valid when",
+    "Fails when",
+    "Next model",
 ]
+
+_LEDGER_ALIASES = {
+    "Retained": "Physics retained",
+    "Neglected": "Physics neglected",
+    "Valid when": "Validity",
+    "Fails when": "Failure",
+    "Next model": "Next reduced model",
+}
+_LEDGER_TITLE_RE = re.compile(r"Model Ledger\s*[—–-]+\s*(.+?)\**\s*$")
 
 _LEDGER_FIELD_RE = re.compile(
     r"^(" + "|".join(re.escape(f) for f in LEDGER_FIELDS) + r")\s*:\s*(.*)$",
@@ -131,6 +170,8 @@ _LEDGER_FIELD_RE = re.compile(
 
 _HEADING_RE = re.compile(r"^(#{1,6})[ \t]+(.+?)[ \t]*#*[ \t]*$", re.MULTILINE)
 _MD_LINK_RE = re.compile(r'(?<!!)\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)')
+_MD_IMAGE_RE = re.compile(r'!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)')
+_WIKI_EMBED_RE = re.compile(r"!\[\[([^\]]+)\]\]")
 _FENCE_RE = re.compile(r"^(```|~~~)", re.MULTILINE)
 _NUMBERED_EQ_RE = re.compile(
     r"\\begin\{(equation|align|eqnarray|gather|multline)\*?\}|\\tag\{[^}]*\}"
@@ -139,12 +180,42 @@ _TABLE_SEP_RE = re.compile(r"^\s*\|?[\s:|-]+\|[\s:|-]*\|?\s*$")
 
 
 # --------------------------------------------------------------------------
-# GitHub access helpers
+# Repository access helpers (local disk or GitHub)
 # --------------------------------------------------------------------------
 
 
+def _local_tree() -> list[dict[str, Any]]:
+    tree = []
+    for dirpath, dirnames, filenames in os.walk(LOCAL_ROOT):
+        dirnames[:] = sorted(d for d in dirnames if d not in _LOCAL_SKIP_DIRS)
+        for name in filenames:
+            rel = (pathlib.Path(dirpath) / name).relative_to(LOCAL_ROOT).as_posix()
+            tree.append({"path": rel, "type": "blob"})
+    return tree
+
+
+def _local_read(path: str) -> str:
+    target = (LOCAL_ROOT / path).resolve()
+    # refuse anything that escapes the repository root
+    if LOCAL_ROOT != target and LOCAL_ROOT not in target.parents:
+        raise FileNotFoundError(f"'{path}' is outside the repository root")
+    if not target.is_file():
+        raise FileNotFoundError(f"'{path}' not found under {LOCAL_ROOT}")
+    return target.read_text(encoding="utf-8")
+
+
+def _source_label() -> str:
+    if SOURCE == "local":
+        return f"local working copy at {LOCAL_ROOT}"
+    return f"github {GITHUB_OWNER}/{GITHUB_REPO}@{GITHUB_BRANCH}"
+
+
 async def _fetch_tree() -> list[dict[str, Any]]:
-    """Fetch and cache the full recursive blob tree for the configured branch."""
+    """Return every file in the repository as GitHub-style blob records.
+    Local mode walks the disk on each call; github mode fetches and
+    caches the recursive tree for the configured branch."""
+    if SOURCE == "local":
+        return _local_tree()
     if "tree" in _tree_cache:
         return _tree_cache["tree"]
     url = f"{GITHUB_API}/repos/{GITHUB_OWNER}/{GITHUB_REPO}/git/trees/{GITHUB_BRANCH}?recursive=1"
@@ -159,7 +230,10 @@ async def _fetch_tree() -> list[dict[str, Any]]:
 
 
 async def _fetch_file(path: str) -> str:
-    """Fetch and cache raw text content of `path` from the configured branch."""
+    """Return the text of `path`: read from disk in local mode, fetched
+    and cached from the configured branch in github mode."""
+    if SOURCE == "local":
+        return _local_read(path)
     if path in _file_cache:
         return _file_cache[path]
     url = f"{RAW_BASE}/{path}"
@@ -183,7 +257,8 @@ def _github_slugify(heading_text: str, seen: dict[str, int]) -> str:
     word chars/spaces/hyphens, spaces -> hyphens, de-duplicate with a
     numeric suffix on repeats."""
     slug = re.sub(r"[^\w\s-]", "", heading_text.strip().lower())
-    slug = re.sub(r"\s+", "-", slug)
+    # one hyphen per space, as GitHub does: "A — B" -> "a--b"
+    slug = slug.replace(" ", "-")
     if slug in seen:
         seen[slug] += 1
         return f"{slug}-{seen[slug]}"
@@ -200,17 +275,17 @@ def _github_slugify(heading_text: str, seen: dict[str, int]) -> str:
 async def orient() -> str:
     """Return the project's thesis, repository map, layer/bridge
     architecture, and epistemic rules (MCP.md's `ORIENT` mode), by
-    reading README.md, MCP.md, METADATA/00 Map.md, and AUTHORING.md
+    reading README.md, MCP.md, METADATA/00 Map.md, and CONTRIBUTING.md
     live from the repository. Always reflects current source, never a
     cached summary -- if a file has moved or been renamed, that shows
     up here as "not found" rather than stale content."""
-    parts = []
+    parts = [f"Source: {_source_label()}"]
     for path in ORIENT_FILES:
         try:
             content = await _fetch_file(path)
             parts.append(f"## {path}\n\n{content}")
         except FileNotFoundError:
-            parts.append(f"## {path}\n\n[not found at this path on branch '{GITHUB_BRANCH}']")
+            parts.append(f"## {path}\n\n[not found at this path in {_source_label()}]")
     return "\n\n---\n\n".join(parts)
 
 
@@ -224,7 +299,7 @@ async def list_repo_structure(path_prefix: str = "") -> str:
     """List every file in the repository (optionally filtered to those
     whose path starts with `path_prefix`, e.g. "CHAPTERS/" or
     "EXAMPLES/"). Returns one path per line, sorted. Use this before
-    get_file() to find the exact path/casing GitHub has on record --
+    get_file() to find the exact path/casing the repository uses --
     chapter filenames contain spaces (e.g. "CHAPTER 12.md") and are
     easy to mistype."""
     tree = await _fetch_tree()
@@ -244,7 +319,7 @@ async def list_repo_structure(path_prefix: str = "") -> str:
 async def get_file(path: str) -> str:
     """Fetch the raw text content of one file at `path` (e.g.
     "CHAPTERS/CHAPTER 3.md" or "METADATA/00 Map.md"), exactly as it is
-    on the configured branch. Use list_repo_structure() first if
+    in the configured source. Use list_repo_structure() first if
     unsure of the exact path."""
     try:
         return await _fetch_file(path)
@@ -262,6 +337,7 @@ class StructureReport:
     path: str
     heading_issues: list[str] = field(default_factory=list)
     link_issues: list[str] = field(default_factory=list)
+    image_issues: list[str] = field(default_factory=list)
     fence_issues: list[str] = field(default_factory=list)
     equation_issues: list[str] = field(default_factory=list)
     table_issues: list[str] = field(default_factory=list)
@@ -270,6 +346,7 @@ class StructureReport:
         return not (
             self.heading_issues
             or self.link_issues
+            or self.image_issues
             or self.fence_issues
             or self.equation_issues
             or self.table_issues
@@ -282,6 +359,7 @@ class StructureReport:
         for label, issues in (
             ("Headings", self.heading_issues),
             ("Links/anchors", self.link_issues),
+            ("Images", self.image_issues),
             ("Code/math fences", self.fence_issues),
             ("Equation delimiters/numbering", self.equation_issues),
             ("Tables", self.table_issues),
@@ -307,6 +385,68 @@ def _check_headings(text: str) -> list[str]:
     return issues
 
 
+def _resolve_relative(file_part: str, source_path: str) -> str:
+    """Resolve a link target relative to the linking file, normalising
+    ./ and ../ segments into a repo-root-relative path."""
+    source_dir = source_path.rsplit("/", 1)[0] if "/" in source_path else ""
+    if file_part.startswith("/"):
+        resolved = file_part.lstrip("/")
+    elif source_dir:
+        resolved = f"{source_dir}/{file_part}"
+    else:
+        resolved = file_part
+    parts: list[str] = []
+    for seg in resolved.split("/"):
+        if seg in ("", "."):
+            continue
+        if seg == "..":
+            if parts:
+                parts.pop()
+            continue
+        parts.append(seg)
+    return "/".join(parts)
+
+
+def _path_exists(resolved: str, all_paths: set[str]) -> bool:
+    """A file, or a directory (some file lives under it)."""
+    if resolved in all_paths:
+        return True
+    prefix = resolved.rstrip("/") + "/"
+    return any(p.startswith(prefix) for p in all_paths)
+
+
+_FENCED_BLOCK_RE = re.compile(r"^(```|~~~)[^\n]*\n.*?^\1\s*$", re.MULTILINE | re.DOTALL)
+_INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
+
+
+def _strip_code(text: str) -> str:
+    """Drop fenced blocks and inline code spans, so syntax quoted as an
+    example (e.g. `![[...]]` or `\\tag{}` in a style guide) isn't
+    checked as if it were live Markdown or math."""
+    return _INLINE_CODE_RE.sub("", _FENCED_BLOCK_RE.sub("", text))
+
+
+def _check_images(text: str, source_path: str, all_paths: set[str]) -> list[str]:
+    issues = []
+    text = _strip_code(text)
+    for m in _MD_IMAGE_RE.finditer(text):
+        alt, target = m.group(1).strip(), m.group(2)
+        if target.startswith(("http://", "https://", "data:")):
+            issues.append(f'image "{target}" is remote; figures belong in FIGURES/ (CONTRIBUTING.md)')
+            continue
+        resolved = _resolve_relative(unquote(target), source_path)
+        if resolved not in all_paths:
+            issues.append(f'image "{target}" -> resolved path "{resolved}" not found in repo')
+        if not alt:
+            issues.append(f'image "{target}" has empty alt text')
+    for m in _WIKI_EMBED_RE.finditer(text):
+        issues.append(
+            f'Obsidian-only embed "![[{m.group(1)}]]" -- use standard ![alt](path) '
+            "so the file renders outside Obsidian (CONTRIBUTING.md)"
+        )
+    return issues
+
+
 async def _check_links(text: str, source_path: str, all_paths: set[str]) -> list[str]:
     issues = []
     # anchors available within THIS file, for same-file "#anchor" links
@@ -314,7 +454,6 @@ async def _check_links(text: str, source_path: str, all_paths: set[str]) -> list
     own_anchors = {
         _github_slugify(m.group(2), own_seen) for m in _HEADING_RE.finditer(text)
     }
-    source_dir = source_path.rsplit("/", 1)[0] if "/" in source_path else ""
 
     for m in _MD_LINK_RE.finditer(text):
         target = m.group(2)
@@ -327,25 +466,8 @@ async def _check_links(text: str, source_path: str, all_paths: set[str]) -> list
             if anchor and anchor not in own_anchors:
                 issues.append(f'link "#{anchor}" has no matching heading in this file')
             continue
-        # resolve relative path against this file's directory
-        if file_part.startswith("/"):
-            resolved = file_part.lstrip("/")
-        elif source_dir:
-            resolved = f"{source_dir}/{file_part}"
-        else:
-            resolved = file_part
-        # normalize any ./ and ../
-        parts: list[str] = []
-        for seg in resolved.split("/"):
-            if seg in ("", "."):
-                continue
-            if seg == "..":
-                if parts:
-                    parts.pop()
-                continue
-            parts.append(seg)
-        resolved = "/".join(parts)
-        if resolved not in all_paths:
+        resolved = _resolve_relative(file_part, source_path)
+        if not _path_exists(resolved, all_paths):
             issues.append(f'link target "{target}" -> resolved path "{resolved}" not found in repo')
         elif anchor:
             # can't cheaply verify anchors in OTHER files without fetching
@@ -370,6 +492,7 @@ def _check_fences(text: str) -> list[str]:
 
 def _check_equations(text: str) -> list[str]:
     issues = []
+    text = _strip_code(text)
 
     numbered = _NUMBERED_EQ_RE.findall(text)
     if numbered:
@@ -382,6 +505,7 @@ def _check_equations(text: str) -> list[str]:
             "instead, per this project's no-numbering rule."
         )
 
+    text = text.replace("\\$", "")  # escaped dollar = literal currency sign
     dollar_dollar = text.count("$$")
     if dollar_dollar % 2 != 0:
         issues.append(f"odd number of '$$' delimiters ({dollar_dollar}) -- unbalanced display math")
@@ -398,12 +522,24 @@ def _check_equations(text: str) -> list[str]:
     if open_paren != close_paren:
         issues.append(f"unbalanced \\( / \\) : {open_paren} open vs {close_paren} close")
 
-    open_brack = text.count("\\[")
-    close_brack = text.count("\\]")
+    # "\\[2ex]" is a LaTeX row break with spacing, not a \[ display opener
+    no_rowbreaks = re.sub(r"\\\\\[[^\]]*\]", "", text)
+    open_brack = no_rowbreaks.count("\\[")
+    close_brack = no_rowbreaks.count("\\]")
     if open_brack != close_brack:
         issues.append(f"unbalanced \\[ / \\] : {open_brack} open vs {close_brack} close")
 
     return issues
+
+
+def _count_cells(row: str) -> int:
+    """Cells in a table row, not counting escaped \\| pipes."""
+    row = row.strip()
+    # drop exactly one outer pipe each side, so a trailing empty cell
+    # ("| a ||") still counts
+    row = row[1:] if row.startswith("|") else row
+    row = row[:-1] if row.endswith("|") and not row.endswith("\\|") else row
+    return len(re.split(r"(?<!\\)\|", row))
 
 
 def _check_tables(text: str) -> list[str]:
@@ -413,8 +549,8 @@ def _check_tables(text: str) -> list[str]:
     while i < len(lines):
         line = lines[i]
         if line.strip().startswith("|") and i + 1 < len(lines) and _TABLE_SEP_RE.match(lines[i + 1]):
-            header_cols = len([c for c in line.strip().strip("|").split("|")])
-            sep_cols = len([c for c in lines[i + 1].strip().strip("|").split("|")])
+            header_cols = _count_cells(line)
+            sep_cols = _count_cells(lines[i + 1])
             if header_cols != sep_cols:
                 issues.append(
                     f'table near "{line.strip()[:60]}" has {header_cols} header '
@@ -423,7 +559,7 @@ def _check_tables(text: str) -> list[str]:
             j = i + 2
             row_num = 1
             while j < len(lines) and lines[j].strip().startswith("|"):
-                row_cols = len([c for c in lines[j].strip().strip("|").split("|")])
+                row_cols = _count_cells(lines[j])
                 if row_cols != header_cols:
                     issues.append(
                         f'table near "{line.strip()[:60]}", data row {row_num} has '
@@ -437,11 +573,24 @@ def _check_tables(text: str) -> list[str]:
     return issues
 
 
+async def _audit_one(path: str, text: str, all_paths: set[str]) -> StructureReport:
+    report = StructureReport(path=path)
+    report.heading_issues = _check_headings(text)
+    report.link_issues = await _check_links(text, path, all_paths)
+    report.image_issues = _check_images(text, path, all_paths)
+    report.fence_issues = _check_fences(text)
+    report.equation_issues = _check_equations(text)
+    report.table_issues = _check_tables(text)
+    return report
+
+
 @mcp.tool()
 async def audit_structure(path: Optional[str] = None) -> str:
     """Run MCP.md's `AUDIT_STRUCTURE` checks against one file or, if
     `path` is omitted, every .md file in the repo: heading-level
-    jumps, broken/relative links and same-file anchors, unclosed code
+    jumps, broken/relative links and same-file anchors, image embeds
+    that point at missing files / lack alt text / use Obsidian-only
+    ![[...]] syntax, unclosed code
     fences, unbalanced $ / $$ / \\( \\) / \\[ \\] math delimiters, use
     of numbered-equation LaTeX (\\begin{equation}, \\tag{}, etc. --
     forbidden by this project's own no-numbering rule and a known
@@ -456,16 +605,11 @@ async def audit_structure(path: Optional[str] = None) -> str:
         except FileNotFoundError as e:
             return f"ERROR: {e}"
         all_paths = {item["path"] for item in await _fetch_tree()}
-        report = StructureReport(path=path)
-        report.heading_issues = _check_headings(text)
-        report.link_issues = await _check_links(text, path, all_paths)
-        report.fence_issues = _check_fences(text)
-        report.equation_issues = _check_equations(text)
-        report.table_issues = _check_tables(text)
-        return report.render()
+        return (await _audit_one(path, text, all_paths)).render()
 
-    all_paths_list = await _all_markdown_paths()
-    all_paths_set = set(all_paths_list)
+    # every file (not just .md), so links to LICENSE, figures, etc. resolve
+    all_paths_set = {item["path"] for item in await _fetch_tree()}
+    all_paths_list = sorted(p for p in all_paths_set if p.lower().endswith(".md"))
     reports = []
     for p in all_paths_list:
         try:
@@ -473,13 +617,7 @@ async def audit_structure(path: Optional[str] = None) -> str:
         except FileNotFoundError:
             reports.append(f"### {p}\nERROR: could not fetch file")
             continue
-        r = StructureReport(path=p)
-        r.heading_issues = _check_headings(text)
-        r.link_issues = await _check_links(text, p, all_paths_set)
-        r.fence_issues = _check_fences(text)
-        r.equation_issues = _check_equations(text)
-        r.table_issues = _check_tables(text)
-        reports.append(r.render())
+        reports.append((await _audit_one(p, text, all_paths_set)).render())
     dirty = [r for r in reports if not r.endswith("No structural issues found.")]
     summary = f"Audited {len(all_paths_list)} markdown files. {len(dirty)} have issues.\n\n"
     return summary + "\n\n".join(reports)
@@ -509,6 +647,7 @@ def _parse_ledger_block(block_text: str) -> dict[str, str]:
             current_key = next(
                 (f for f in LEDGER_FIELDS if f.lower() == matched.lower()), matched
             )
+            current_key = _LEDGER_ALIASES.get(current_key, current_key)
             rest = m.group(2).strip()
             current_lines = [rest] if rest else []
         elif current_key and line:
@@ -517,18 +656,57 @@ def _parse_ledger_block(block_text: str) -> dict[str, str]:
     return entry
 
 
+def _ledger_title_before(lines: list[str], idx: int) -> Optional[str]:
+    """The "Model Ledger — <name>" line within a few lines above idx."""
+    for j in range(idx - 1, max(idx - 5, -1), -1):
+        m = _LEDGER_TITLE_RE.search(lines[j].strip().lstrip("#").strip().strip("*"))
+        if m:
+            return m.group(1).strip().strip("*").strip()
+    return None
+
+
 def _find_ledger_blocks(text: str) -> list[str]:
-    """Return the contents of every fenced code block (``` or ~~~,
-    any/no language tag) whose content contains at least two
-    recognized Model Ledger field names -- a heuristic that avoids
-    treating ordinary code samples as ledger entries."""
+    """Return every Model Ledger as "Field: value" lines. Two forms exist
+    in the repo: fenced code blocks (``` or ~~~, any/no language tag)
+    of "Field: value" lines, and Markdown tables whose first column is
+    the field name (the form 00 Map.md defines). Either form counts only
+    if it has at least two recognized field names -- a heuristic that
+    avoids treating ordinary code samples or tables as ledger entries.
+    The "Model Ledger — <name>" title above the block, when present, is
+    returned as a "Ledger:" field."""
     blocks = []
     fence_re = re.compile(r"^(```|~~~)([^\n]*)\n(.*?)^\1\s*$", re.MULTILINE | re.DOTALL)
+    lines = text.split("\n")
+    fenced_spans = []
     for m in fence_re.finditer(text):
+        fenced_spans.append((m.start(), m.end()))
         body = m.group(3)
         field_hits = sum(1 for f in LEDGER_FIELDS if re.search(rf"(?im)^{re.escape(f)}\s*:", body))
         if field_hits >= 2:
-            blocks.append(body)
+            title = _ledger_title_before(lines, text.count("\n", 0, m.start()))
+            blocks.append((f"Ledger: {title}\n" if title else "") + body)
+
+    field_names = {f.lower() for f in LEDGER_FIELDS}
+    offset = 0
+    i = 0
+    while i < len(lines):
+        start_offset = offset
+        if lines[i].strip().startswith("|") and not any(a <= start_offset < b for a, b in fenced_spans):
+            j = i
+            rows = []
+            while j < len(lines) and lines[j].strip().startswith("|"):
+                cells = [c.strip() for c in lines[j].strip().strip("|").split("|")]
+                if len(cells) >= 2 and cells[0].strip("*").lower() in field_names:
+                    rows.append(f"{cells[0].strip('*')}: {' | '.join(cells[1:])}")
+                offset += len(lines[j]) + 1
+                j += 1
+            if len(rows) >= 2:
+                title = _ledger_title_before(lines, i)
+                blocks.append("\n".join(([f"Ledger: {title}"] if title else []) + rows))
+            i = j
+            continue
+        offset += len(lines[i]) + 1
+        i += 1
     return blocks
 
 
@@ -740,6 +918,65 @@ async def trace_model(model_name: str) -> str:
         if parsed.get("Next reduced model"):
             out.append(f"- **next reduced model**: {parsed['Next reduced model']}")
         out.append("")
+    return "\n".join(out)
+
+
+# --------------------------------------------------------------------------
+# Tool: get_figure_index
+# --------------------------------------------------------------------------
+
+
+@mcp.tool()
+async def get_figure_index(path: Optional[str] = None) -> str:
+    """Index every figure embedded with ![alt](path) in one file or the
+    whole repo: the image path, whether it exists, its alt text, the
+    italic caption line that follows it (CONTRIBUTING.md convention),
+    the nearest preceding heading, and the generating script
+    (FIGURES/<FOLDER>/make_figures.py) when present. Figures are SVGs,
+    so a model cannot see them directly; the caption and the script's
+    source (via get_file) are the readable description of what each
+    figure plots. Lists FIGURES/ files no document embeds, too."""
+    tree_paths = {item["path"] for item in await _fetch_tree()}
+    targets = [path] if path else sorted(p for p in tree_paths if p.lower().endswith(".md"))
+    rows: list[str] = []
+    embedded: set[str] = set()
+    for p in targets:
+        try:
+            text = await _fetch_file(p)
+        except FileNotFoundError as e:
+            if path:
+                return f"ERROR: {e}"
+            continue
+        headings = list(_HEADING_RE.finditer(text))
+        for im in _MD_IMAGE_RE.finditer(text):
+            target = im.group(2)
+            resolved = _resolve_relative(unquote(target), p)
+            embedded.add(resolved)
+            nearest_heading = "(before first heading)"
+            for hm in headings:
+                if hm.start() <= im.start():
+                    nearest_heading = hm.group(2).strip()
+                else:
+                    break
+            after = text[im.end():].lstrip("\n").split("\n", 1)[0].strip()
+            caption = after.strip("*_ ") if after.startswith(("*", "_")) else "(no caption)"
+            script = resolved.rsplit("/", 1)[0] + "/make_figures.py"
+            rows.append(
+                f"- **{resolved}** in {p} under \"{nearest_heading}\"\n"
+                f"  - exists: {'yes' if resolved in tree_paths else 'NO'}"
+                f"; script: {script if script in tree_paths else '(none)'}\n"
+                f"  - alt: {im.group(1).strip() or '(empty)'}\n"
+                f"  - caption: {caption}"
+            )
+    out = [f"{len(rows)} embedded figures ({_source_label()})."] + rows
+    if not path:
+        orphans = sorted(
+            q for q in tree_paths
+            if q.startswith("FIGURES/") and q.lower().endswith((".svg", ".png", ".jpg"))
+            and q not in embedded
+        )
+        out.append(f"\n{len(orphans)} figure files not embedded anywhere:")
+        out.extend(f"- {q}" for q in orphans)
     return "\n".join(out)
 
 

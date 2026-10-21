@@ -155,6 +155,9 @@ Identify: $v = 1/\sqrt{L'C'}$, $\beta = R'/L' + G'/C'$, $\omega_c^2 = R'G'/L'C'$
 
 **The transmission line is the bridge zone** (Ch. 1 §1.9, Bridge C) — it retains spatial variation that the lumped circuit drops, but can be analyzed with the same mathematics as wave/diffusion problems.
 
+![Finite-difference telegraph-equation pulses: lightly damped propagation versus overdamped diffusion](../FIGURES/CH16/telegraph-pulse.svg)
+*Finite-difference solutions of $\partial_{tt}V+\beta\,\partial_tV=v^2\partial_{zz}V$ for a Gaussian initial pulse ($v=1$): with $\beta=0.1$ (left) it splits into two pulses moving at $\pm v$ that shrink as $e^{-\beta t/2}$ and leave a low wake, while with $\beta=10$ (right) it stays put and spreads exactly like diffusion with $D=v^2/\beta$ (dotted).*
+
 ---
 
 ## 16.4 — Plane Wave Solutions and the Dispersion Relation
@@ -201,6 +204,9 @@ This is the **dispersion relation** — the algebraic relationship between frequ
 |Transmission line (lossless)|$\omega = k/\sqrt{L'C'}$|Non-dispersive|
 
 **The Schrödinger equation is a diffusion equation in imaginary time:** replacing $t\to it$ in the diffusion equation gives $-i\partial_t\phi = D\nabla^2\phi$, which is $i\hbar\partial_t\psi = -\hbar^2\nabla^2\psi/2m$ with $D = \hbar/2m$. This mathematical connection between quantum mechanics and diffusion is not a coincidence — it underlies the path integral formulation (Ch. 1 §1.8.2): the Euclidean (imaginary-time) path integral is literally a diffusion problem.
+
+![Dispersion relations omega versus k for non-dispersive, Klein-Gordon, deep-water, flexural and diffusive systems](../FIGURES/CH16/dispersion-relations.svg)
+*Normalised dispersion relations: non-dispersive $\omega=vk$, Klein–Gordon/waveguide $\sqrt{v^2k^2+\omega_c^2}$ (cutoff at $\omega_c$), deep water $\sqrt{gk}$ and flexural $\kappa k^2$, with the phase velocity (chord from the origin) and group velocity (tangent) marked on the Klein–Gordon branch at $k=k_0$; the right panel shows diffusion, whose $\omega=-iDk^2$ is purely imaginary, so every mode decays without propagating.*
 
 ---
 
@@ -256,7 +262,7 @@ The coefficients $c_n(t)$ are the **normal mode amplitudes** — each evolves in
 |1D box $[0,L]$|$X'(0) = X'(L) = 0$|$\cos(n\pi x/L)$|$(n\pi/L)^2$|
 |Circular disk radius $R$|$X(R) = 0$|$J_m(j_{mn}r/R)e^{im\phi}$|$(j_{mn}/R)^2$|
 |Sphere radius $R$|$X(R) = 0$|$j_\ell(k_{n\ell}r)Y_\ell^m(\hat r)$|$k_{n\ell}^2$|
-|Rectangular box $a\times b\times c$|Dirichlet|$\sin!\left(\frac{m\pi x}{a}\right)\sin!\left(\frac{n\pi y}{b}\right)\sin!\left(\frac{p\pi z}{c}\right)$|$\pi^2(m^2/a^2+n^2/b^2+p^2/c^2)$|
+|Rectangular box $a\times b\times c$|Dirichlet|$\sin\!\left(\frac{m\pi x}{a}\right)\sin\!\left(\frac{n\pi y}{b}\right)\sin\!\left(\frac{p\pi z}{c}\right)$|$\pi^2(m^2/a^2+n^2/b^2+p^2/c^2)$|
 
 **Connection to quantum mechanics (Ch. 4):** The spherical eigenfunctions $j_\ell(kr)Y_\ell^m(\hat r)$ are exactly the wavefunctions of the hydrogen atom in free space. The Helmholtz equation $\nabla^2 X + \lambda X = 0$ is the spatial part of the Schrödinger equation for a free particle — the same eigenfunctions appear in acoustics (resonant cavities), EM (microwave cavities), and quantum mechanics. Different physics, identical mathematics.
 
@@ -288,7 +294,7 @@ $$\mathcal{L}G(\mathbf{r},t\,\mathbf{r}',t') = \delta^3(\mathbf{r}-\mathbf{r}')\
 
 where $\mathcal{L}$ is the differential operator of the PDE. The general solution for any source distribution $S(\mathbf{r}', t')$:
 
-$$\phi(\mathbf{r}, t) = \int G(\mathbf{r},t\,\mathbf{r}',t')\,S(\mathbf{r}',t')\,d^3r',dt' + \text{boundary terms}$$
+$$\phi(\mathbf{r}, t) = \int G(\mathbf{r},t\,\mathbf{r}',t')\,S(\mathbf{r}',t')\,d^3r'\,dt' + \text{boundary terms}$$
 
 **Systems thinking:** The Green's function is the **impulse response** — exactly the same concept as in control theory and signal processing (Ch. 21). The convolution integral $\phi = G * S$ is the same operation as filtering a signal through a linear system. **Layer 2 PDEs and Layer 3 transfer functions are the same mathematics operating at different spatial scales.**
 
@@ -296,7 +302,7 @@ $$\phi(\mathbf{r}, t) = \int G(\mathbf{r},t\,\mathbf{r}',t')\,S(\mathbf{r}',t')\
 
 **Diffusion equation** in free 3D space ($t > t'$):
 
-$$\boxed{G_{diff}(\mathbf{r},t\,\mathbf{r}',t') = \frac{1}{[4\pi D(t-t')]^{3/2}}\exp!\left(-\frac{|\mathbf{r}-\mathbf{r}'|^2}{4D(t-t')}\right)}$$
+$$\boxed{G_{diff}(\mathbf{r},t\,\mathbf{r}',t') = \frac{1}{[4\pi D(t-t')]^{3/2}}\exp\!\left(-\frac{|\mathbf{r}-\mathbf{r}'|^2}{4D(t-t')}\right)}$$
 
 A **Gaussian** centered at $\mathbf{r}'$, spreading with time as $\sigma^2 = 2D(t-t')$. This is the fundamental solution — any initial condition spreads according to convolution with this Gaussian.
 
@@ -310,9 +316,12 @@ An **expanding spherical shell** at radius $v(t-t')$ from the source. Informatio
 
 **1D diffusion (heat or mass):**
 
-$$G_{diff}^{1D}(x,t\,x',t') = \frac{1}{\sqrt{4\pi D(t-t')}}\exp!\left(-\frac{(x-x')^2}{4D(t-t')}\right)$$
+$$G_{diff}^{1D}(x,t\,x',t') = \frac{1}{\sqrt{4\pi D(t-t')}}\exp\!\left(-\frac{(x-x')^2}{4D(t-t')}\right)$$
 
 This gives the solution to the semi-infinite solid problem of Ch. 14 §14.8.1 directly by convolution with the initial condition.
+
+![Spreading diffusion Gaussians compared with sharp expanding wave shells](../FIGURES/CH16/greens-functions.svg)
+*Left: 1D diffusion Green's function $e^{-x^2/4Dt}/\sqrt{4\pi Dt}$ ($D=1$) at $t=0.1$, 0.5, 1, 2 — it widens as $\sqrt{2Dt}$ and is nonzero everywhere at once. Right: the 3D wave Green's function at the same times ($v=1$) is a sharp shell at $r=vt$ of strength $1/4\pi vr$, zero both inside and outside — signals arrive exactly at speed $v$.*
 
 ### 16.6.3 — The Connection Between Wave and Diffusion Green's Functions
 
@@ -376,7 +385,7 @@ $$\frac{\partial\mathbf{B}}{\partial t} = \frac{1}{\mu\sigma}\nabla^2\mathbf{B}$
 
 The **magnetic diffusivity** is $\eta_m = 1/\mu\sigma$. Magnetic field diffuses into a conductor at rate $\partial_t\mathbf{B} = \eta_m\nabla^2\mathbf{B}$.
 
-**Skin depth** from the diffusion equation: at frequency $\omega$, the field penetrates to depth $\delta = \sqrt{2\eta_m/\omega} = \sqrt{2/\mu\sigma\omega}$ — exactly the skin depth formula from Ch. 11 §11.10, now derived as the characteristic length of the magnetic diffusion equation.
+**Skin depth** from the diffusion equation: at frequency $\omega$, the field penetrates to depth $\delta = \sqrt{2\eta_m/\omega} = \sqrt{2/\mu\sigma\omega}$ — exactly the skin depth formula from Ch. 12 §12.1.2, now derived as the characteristic length of the magnetic diffusion equation.
 
 **Magnetic Reynolds number:** $Rm = \mu\sigma vL$ compares convective transport of magnetic field (by conducting fluid flow) to diffusive transport. $Rm \gg 1$: magnetic field is "frozen into" the fluid (MHD limit, important for plasma physics, stellar interiors, liquid metal reactors).
 

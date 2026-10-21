@@ -192,6 +192,9 @@ $$h_f = 0.0220\times 1500\times\frac{11.90}{19.62} = 33.0\times 0.607 = 20.0\ \t
 
 $$Q = vA = 3.45\times\frac{\pi(0.04)^2}{4} = 3.45\times 1.257\times 10^{-3} = 4.33\times 10^{-3}\ \text{m}^3/\text{s} \approx 4.33\ \text{L/s}$$
 
+![Colebrook friction factor versus Reynolds number with the three iterates marked](../FIGURES/EX05/moody-colebrook.svg)
+*Colebrook $f(Re)$ for $\varepsilon/D = 1.125\times10^{-3}$ and for a smooth pipe, with laminar $f = 64/Re$, over $Re$ = 10³–10⁷: the three iterates (4×10⁴, 0.0251), (1.2×10⁵, 0.0223) and (1.38×10⁵, 0.0220) sit where the rough-pipe curve is already flattening toward its fully rough limit, which is why $f$ barely moves between guesses.*
+
 **A caution about the friction factor.** It is worth being explicit about why the
 answer is sensitive to $f$, because the arithmetic is easy to get wrong in the
 direction that flatters the result. Colebrook at this roughness
@@ -203,7 +206,7 @@ $Re$ here precisely *because* the relative roughness dominates at these Reynolds
 numbers, which is exactly the regime the Colebrook form is built to handle.
 
 **The design finding.** Head loss scales as $v^2$, so for a fixed pipe the
-available head is consumed as the *square root* of the flow rate: $Q\propto\sqrt{\Delta h}$.
+flow rate grows only as the *square root* of the available head: $Q\propto\sqrt{\Delta h}$.
 That is the nonlinearity that matters, and it is why a pump curve has to be
 intersected with a system curve numerically.
 
@@ -222,6 +225,9 @@ shared run develops a pressure drop as total flow rises, the effective head acro
 each branch falls, and the gain is less than a factor of two. The doubling is the
 ideal limit, and stating it as "roughly double, but not quite" is wrong for the
 clean case and vague for the imperfect one.)
+
+![System curves for one pipe and two parallel pipes crossing the 20 m available head](../FIGURES/EX05/system-curve.svg)
+*Head loss $h_f(Q)$ from Darcy–Weisbach with Colebrook $f$ for the 60 m, 40 mm pipe, and for two identical pipes in parallel (each carrying $Q/2$ at the same head): the curves cross the 20 m available head at 4.33 L/s and 8.66 L/s, exactly a factor of two apart.*
 
 ---
 

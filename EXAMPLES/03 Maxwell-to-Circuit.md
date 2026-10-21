@@ -170,6 +170,9 @@ circuit that was analysed. **The same design is correct or useless depending on 
 load the circuit theory never mentions**, because the load is outside the
 lumped element and only enters as a boundary condition.
 
+![Bode magnitude and phase of the RC stage unloaded, with a 1 MΩ scope and with a 50 Ω scope](../FIGURES/EX03/rc-loading-bode.svg)
+*$H = [R_L/(R+R_L)]/(1 + j\omega R_{eq}C)$ for $R$ = 2.2 kΩ, $C$ = 10 nF, from 10 Hz to 10 MHz: the 1 MΩ scope leaves the 7.2 kHz corner where it was, while the 50 Ω scope (Thevenin $R_{eq}$ = 48.89 Ω) drops the passband to 50/2250 ≈ −33 dB and moves the corner to ≈325 kHz.*
+
 This is the practical meaning of the lumping criterion: it is not a statement
 about the circuit, it is a statement about the circuit *and its surroundings*.
 
@@ -195,6 +198,9 @@ $L/\lambda \approx 0.3$ — and the lumping criterion is already violated in ord
 FR-4 at ordinary signal rates. The "just wires" model is an approximation with a
 hard frequency ceiling, and that ceiling is the reason signal-integrity engineering
 exists as a discipline.
+
+![Electrical length L/λ versus frequency for 1, 10 and 30 cm FR-4 traces](../FIGURES/EX03/lumped-limit-fr4.svg)
+*$L/\lambda = Lf\sqrt{\epsilon_{eff}}/c$ on FR-4 microstrip ($\epsilon_{eff}$ = 3.25) from 10 MHz to 5 GHz for 1, 10 and 30 cm traces, with the $L/\lambda$ = 0.1 lumping threshold and the quarter-wave line: the 10 cm trace is already at $L/\lambda \approx 0.30$ at 500 MHz.*
 
 **What this example demonstrates.** Three of the four steps — integrate,
 apply the divergence theorem, identify $L$ and $C$ — are exact. The entire

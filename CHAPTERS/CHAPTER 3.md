@@ -58,7 +58,7 @@ magnitude larger than the value a careless estimate would suggest, and the
 order-of-magnitude is not the interesting part. What matters is the reasoning.
 Two traps are worth flagging. $G_F$ carries units of $\text{GeV}^{-2}$, so $G_F E^2$ is dimensionless *only* if $E$ is in GeV; writing $E\sim10$ without converting silently gains or loses nine orders of magnitude. And there is no $\hbar c$ to divide out, because the combination is already dimensionless in natural units. The ratio is also energy-dependent: at $E\sim1$ GeV the same calculation gives $\sim10^{-3}$, which is precisely why the weak interaction dominates at collider energies while being irrelevant in atoms. Discard it.
     
-- **U(1)$_{EM}$:** Electromagnetism. After the Higgs mechanism (§0.7), the physical photon $A_\mu$ couples to electrons with charge $-e$. This is the only force relevant for atomic structure.
+- **U(1)$_{EM}$:** Electromagnetism. After the Higgs mechanism (§0.7), the physical photon $A_\mu$ couples to electrons with charge $e = -|e|$ (throughout this chapter $e$ denotes the particle's *signed* charge, so every formula below holds for any charge and is evaluated for the electron with $e<0$). This is the only force relevant for atomic structure.
     
 
 **What we keep:**
@@ -67,9 +67,9 @@ $$\mathcal{L}_{electron} = \bar\psi\left(i\gamma^\mu\partial_\mu - m_e - e\gamma
 
 where $A_\mu$ is the electromagnetic four-potential ($A_0 = V/c$ is the scalar potential, $\mathbf{A}$ is the vector potential).
 
-Using the shorthand $\not!\partial \equiv \gamma^\mu\partial_\mu$ and $\not!!A \equiv \gamma^\mu A_\mu$:
+Using the shorthand $\not\!\partial \equiv \gamma^\mu\partial_\mu$ and $\not\!\!A \equiv \gamma^\mu A_\mu$:
 
-$$\mathcal{L}_{electron} = \bar\psi\bigl(i\not!\partial - m_e - e\not!!A\bigr)\psi$$
+$$\mathcal{L}_{electron} = \bar\psi\bigl(i\not\!\partial - m_e - e\not\!\!A\bigr)\psi$$
 
 This is the **QED Lagrangian for the electron** — quantum electrodynamics reduced to its matter content. The photon's own kinetic term $-\frac{1}{4}F_{\mu\nu}F^{\mu\nu}$ is still present (it governs the electromagnetic field), but for atomic physics we treat $A_\mu$ as an external, given field rather than a dynamical one.
 
@@ -121,7 +121,7 @@ $$\boxed{i\hbar\frac{\partial\psi}{\partial t} = \left[c\boldsymbol{\alpha}\cdot
 This is the **Dirac equation in Hamiltonian form**, where:
 
 - $\hat{\mathbf{p}} = -i\hbar\nabla$ is the momentum operator
-- $V = A_0$ is the electric scalar potential (with $e > 0$, the electron has charge $-e$)
+- $V = A_0$ is the electric scalar potential, and $eV$ the potential energy ($e$ is the signed charge, $e = -|e|$ for the electron)
 - $\boldsymbol{\alpha}$ and $\beta$ are $4\times 4$ matrices defined by the gamma matrices
 
 ---
@@ -132,7 +132,9 @@ This is the **Dirac equation in Hamiltonian form**, where:
 
 The four gamma matrices $\gamma^\mu$ ($\mu = 0,1,2,3$) are $4\times 4$ complex matrices satisfying the **Clifford algebra**:
 
-$${\gamma^\mu, \gamma^\nu} = \gamma^\mu\gamma^\nu + \gamma^\nu\gamma^\mu = 2g^{\mu\nu}\mathbf{1}_{4\times 4}$$
+$$\{\gamma^\mu, \gamma^\nu\} = \gamma^\mu\gamma^\nu + \gamma^\nu\gamma^\mu = 2g^{\mu\nu}\mathbf{1}_{4\times 4}$$
+
+**Signature in this chapter.** The Dirac algebra of this chapter is written in the particle-physics signature $g^{\mu\nu} = \text{diag}(+1,-1,-1,-1)$, so that $(\gamma^0)^2 = +\mathbf{1}$ (consistent with $\gamma^0 = \beta$ below), $(\gamma^i)^2 = -\mathbf{1}$, and $A_0 = +V/c$ as in §3.1. In the book's $(-,+,+,+)$ signature of Ch. 0 §0.2.2 the same matrices satisfy $\{\gamma^\mu,\gamma^\nu\} = -2g^{\mu\nu}\mathbf{1}_{4\times 4}$ (Ch. 0 §0.5).
 
 In the **Dirac representation** (standard representation, most transparent for the non-relativistic limit):
 
@@ -188,13 +190,13 @@ $$\hat{\mathbf{S}} = \frac{\hbar}{2}\begin{pmatrix}\boldsymbol{\sigma} & 0 \\ 0 
 
 falls directly from the spinor structure. It satisfies $\hat S^2 = \frac{3}{4}\hbar^2$, confirming spin-$\frac{1}{2}$.
 
-**Nobody put spin into the Dirac equation.** It is there because the Lorentz group, when acting on a four-component field, has spin-$\frac{1}{2}$ built into its representation theory. The Clifford algebra ${\gamma^\mu,\gamma^\nu} = 2g^{\mu\nu}$ is the minimal algebraic structure consistent with a first-order, Lorentz-covariant wave equation — and it forces spin-$\frac{1}{2}$ as a consequence.
+**Nobody put spin into the Dirac equation.** It is there because the Lorentz group, when acting on a four-component field, has spin-$\frac{1}{2}$ built into its representation theory. The Clifford algebra $\{\gamma^\mu,\gamma^\nu\} = 2g^{\mu\nu}$ (signature as in §3.3.1) is the minimal algebraic structure consistent with a first-order, Lorentz-covariant wave equation — and it forces spin-$\frac{1}{2}$ as a consequence.
 
 ### 3.4.2 — The Magnetic Moment: $g = 2$
 
 For an electron in a magnetic field $\mathbf{B}$, the Dirac equation contains an interaction term: $$\hat H_{mag} = -\frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B} = -g_e\frac{e}{2m_ec}\hat{\mathbf{S}}\cdot\mathbf{B}$$
 
-This gives $g_e = 2$ exactly — the electron has twice the magnetic moment you would expect from classical orbital motion. This was a mysterious experimental result before 1928. The Dirac equation explains it with no fitting: $g = 2$ is a mathematical consequence of the Clifford algebra.
+This gives $g_e = 2$ exactly — the electron has twice the magnetic moment you would expect from classical orbital motion. This was a mysterious experimental result before 1928. The Dirac equation explains it with no fitting: $g = 2$ is a mathematical consequence of the Clifford algebra together with minimal coupling $D_\mu = \partial_\mu + ieA_\mu$ (a non-minimal Pauli term $\propto \bar\psi\sigma^{\mu\nu}F_{\mu\nu}\psi$ is equally Lorentz- and gauge-invariant and would shift $g$ freely).
 
 (The small departure from exactly 2, $g_e = 2.00231930...$, is the QED correction — the Lamb-shift-era legacy, discarded in §3.1.2 as $\alpha/\pi$.)
 
@@ -204,19 +206,25 @@ The negative-energy solutions of the Dirac equation — the lower two components
 
 The positron was discovered by Anderson in 1932. It was the first antiparticle ever found — predicted by the formalism, not hypothesized by experiment.
 
+![Free Dirac dispersion: positive and negative energy branches separated by a gap of two rest energies](../FIGURES/CH03/dirac-dispersion.svg)
+*The two branches $E=\pm\sqrt{p^2c^2+m^2c^4}$ of the free Dirac equation in units of $mc^2$ against $p/mc$, with the non-relativistic parabola $mc^2+p^2/2m$ (dashed) and the light-cone asymptotes $E=\pm pc$ (dotted): no states exist in the shaded gap of width $2mc^2$, and the negative-energy branch is the one reinterpreted as the positron.*
+
 ### 3.4.4 — Fine Structure of Hydrogen
 
-Without any modification, the Dirac equation applied to the hydrogen atom (Coulomb potential $V = -e^2/r$) gives energy levels:
+Without any modification, the Dirac equation applied to the hydrogen atom (Coulomb potential energy $eV = -e^2/r$) gives energy levels:
 
 $$E_{nj} = m_ec^2\left(1 + \left(\frac{\alpha}{n - j - \frac{1}{2} + \sqrt{(j+\frac{1}{2})^2 - \alpha^2}}\right)^2\right)^{-1/2}$$
 
 Expanding in $\alpha^2$ (where $\alpha = e^2/\hbar c \approx 1/137$ is the fine structure constant):
 
-$$E_{nj} \approx -\frac{m_ec^2\alpha^2}{2n^2}\left(1 + \frac{\alpha^2}{n}\left(\frac{1}{j+\frac{1}{2}} - \frac{3}{4n}\right)\right)$$
+$$E_{nj} - m_ec^2 \approx -\frac{m_ec^2\alpha^2}{2n^2}\left(1 + \frac{\alpha^2}{n}\left(\frac{1}{j+\frac{1}{2}} - \frac{3}{4n}\right)\right)$$
 
 The first term is the Bohr energy $-13.6/n^2\,\text{eV}$. The second term — the **fine structure correction** — splits energy levels with the same $n$ but different $j$ (total angular momentum). This splitting is observed in the hydrogen spectrum to exactly the precision the Dirac equation predicts.
 
 No additional assumptions. No spin-orbit coupling inserted by hand. Just the Dirac equation and a Coulomb potential.
+
+![Hydrogen levels n = 1 to 3: Bohr levels at full scale and the Dirac fine-structure shifts in a zoomed panel](../FIGURES/CH03/hydrogen-fine-structure.svg)
+*Hydrogen $n=1,2,3$ from the exact Dirac formula: at full scale (left) the levels are indistinguishable from Bohr's $-13.6/n^2$ eV, while the zoom (right) shows $E_{nj}-m_ec^2$ minus the Bohr energy in units of $\alpha^2\,\mathrm{Ry}$ — every level is pushed down, levels depend only on $n$ and $j$ (so 2S$_{1/2}$ and 2P$_{1/2}$ stay degenerate), and 2P$_{3/2}$ lies $4.53\times10^{-5}$ eV above them.*
 
 ---
 
@@ -246,7 +254,7 @@ The remaining odd terms are of order $(v/c)^3 \times m_ec^2$ — two orders smal
 
 After completing the transformation to order $(v/c)^2$, the full FW Hamiltonian acting on the **large component $\phi$ only** is:
 
-$$\boxed{\hat H_{FW} = m_ec^2 + \frac{\hat\pi^2}{2m_e} + eV \underbrace{- \frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B}}_{\text{Zeeman term}} \underbrace{- \frac{\hat\pi^4}{8m_e^3c^2}}_{\text{rel. mass corr.}} \underbrace{- \frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}})}_{\text{spin-orbit coupling}} \underbrace{+ \frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}}_{\text{Darwin term}}}$$
+$$\boxed{\hat H_{FW} = m_ec^2 + \frac{\hat\pi^2}{2m_e} + eV \underbrace{- \frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B}}_{\text{Zeeman term}} \underbrace{- \frac{\hat\pi^4}{8m_e^3c^2}}_{\text{rel. mass corr.}} \underbrace{- \frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}})}_{\text{spin-orbit coupling}} \underbrace{- \frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}}_{\text{Darwin term}}}$$
 
 Each term has a name and a physics:
 
@@ -257,7 +265,7 @@ Each term has a name and a physics:
 |$-\frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B}$|$\sim\alpha^2 E_{atom}$|**Zeeman effect** (spin in magnetic field)|
 |$-\hat\pi^4/8m_e^3c^2$|$\sim\alpha^4 m_ec^2$|Relativistic kinetic energy correction|
 |$-\frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}})$|$\sim\alpha^4 m_ec^2$|**Spin-orbit coupling** (fine structure)|
-|$\frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}$|$\sim\alpha^4 m_ec^2$|**Darwin term** (contact interaction at $r=0$)|
+|$-\frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}$|$\sim\alpha^4 m_ec^2$|**Darwin term** (contact interaction at $r=0$; positive for hydrogen, since $e<0$)|
 
 The last three terms together account for the fine structure of hydrogen — matching the exact Dirac result to order $\alpha^4$.
 
@@ -281,9 +289,9 @@ $\alpha^4$ terms compete with the structure being resolved.
 
 | Field | Content |
 |---|---|
-| Parent theory | Relativistic quantum mechanics: $i\hbar\gamma^\mu D_\mu\psi - m_ec^2\psi = 0$ (Ch. 0, Ch. 3 §3.2) |
+| Parent theory | Relativistic quantum mechanics: $i\hbar c\gamma^\mu D_\mu\psi - m_ec^2\psi = 0$ (Ch. 0, Ch. 3 §3.2) |
 | Reduction | Exact unitary transformation to the even/odd (FW) basis; square the odd operator once; truncate at $(v/c)^2$ |
-| Model | 2×2 operator on the large component: $\hat\pi^2/2m_e + eV - \frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B} - \frac{\hat\pi^4}{8m_e^3c^2} - \frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}}) + \frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}$ |
+| Model | 2×2 operator on the large component: $\hat\pi^2/2m_e + eV - \frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B} - \frac{\hat\pi^4}{8m_e^3c^2} - \frac{e\hbar}{4m_e^2c^2}\boldsymbol{\sigma}\cdot(\mathbf{E}\times\hat{\mathbf{p}}) - \frac{e\hbar^2}{8m_e^2c^2}\nabla\cdot\mathbf{E}$ |
 | Assumptions | one-particle (no pair creation); external potential with $\mathbf{E},\mathbf{B}$ treated as given; expansion valid where $v/c \ll 1$; spin-½ |
 | Physics retained | kinetic energy, Zeeman splitting, relativistic mass correction, spin-orbit coupling, Darwin contact term |
 | Physics neglected | vacuum polarisation, pair creation, radiative self-energy ( Lamb shift), higher-order $\alpha^6$ terms, negative-energy states |
@@ -304,7 +312,7 @@ Keeping only the Schrödinger term and the Zeeman term, and dropping the rest-ma
 
 $$\boxed{i\hbar\frac{\partial\phi}{\partial t} = \left[\frac{\left(\hat{\mathbf{p}} - \frac{e}{c}\mathbf{A}\right)^2}{2m_e} - \frac{e\hbar}{2m_ec}\boldsymbol{\sigma}\cdot\mathbf{B} + eV\right]\phi}$$
 
-where $\phi$ is now a **two-component Pauli spinor**: $$\phi = \begin{pmatrix}\phi_\uparrow\\phi_\downarrow\end{pmatrix}$$
+where $\phi$ is now a **two-component Pauli spinor**: $$\phi = \begin{pmatrix}\phi_\uparrow\\ \phi_\downarrow\end{pmatrix}$$
 
 $\phi_\uparrow$ and $\phi_\downarrow$ are the spin-up and spin-down components.
 
@@ -460,15 +468,15 @@ A complex-valued function of position and time. It is not a classical field you 
 
 From the Dirac Lagrangian, the U(1) symmetry $\psi \to e^{i\alpha}\psi$ gives, via Noether's theorem, a conserved current:
 
-$$j^\mu = -e\bar\psi\gamma^\mu\psi = \left(-e|\psi|^2\, -e\bar\psi\gamma^i\psi\right)$$
+$$j^\mu = e\bar\psi\gamma^\mu\psi = \left(e|\psi|^2,\, e\bar\psi\gamma^i\psi\right)$$
 
 The conservation law $\partial_\mu j^\mu = 0$ becomes, in 3+1 notation:
 
-$$\frac{\partial(-e|\psi|^2)}{\partial t} + \nabla\cdot\mathbf{j} = 0$$
+$$\frac{\partial(e|\psi|^2)}{\partial t} + \nabla\cdot\mathbf{j} = 0$$
 
-Dividing by $-e$:
+Dividing by $e$ ($= -|e|$ for the electron):
 
-$$\frac{\partial|\psi|^2}{\partial t} + \nabla\cdot\left(\frac{\mathbf{j}}{-e}\right) = 0$$
+$$\frac{\partial|\psi|^2}{\partial t} + \nabla\cdot\left(\frac{\mathbf{j}}{e}\right) = 0$$
 
 This is the **continuity equation for $|\psi|^2$**: the quantity $|\psi|^2$ is a conserved density, and current flows so that its integral over any closed region is time-independent.
 
@@ -556,6 +564,9 @@ $$[\hat x, \hat p] = \hat x\hat p - \hat p\hat x = i\hbar$$
 This commutation relation is a **mathematical consequence of $\hat p = -i\hbar\nabla$** — which is itself a consequence of the field $\psi$ having the Fourier decomposition $\psi(\mathbf{r}) = \int \tilde\psi(\mathbf{k})e^{i\mathbf{k}\cdot\mathbf{r}}d^3k$ with $\hat p\psi = \hbar\mathbf{k}\psi$ for a definite-$k$ component.
 
 A standard result from Fourier analysis then gives: $$\Delta x\,\Delta k \geq \frac{1}{2} \qquad\Longrightarrow\qquad \Delta x\,\Delta p \geq \frac{\hbar}{2}$$
+
+![Gaussian wave packets of three widths in position space and their Fourier transforms in wavenumber space](../FIGURES/CH03/gaussian-uncertainty.svg)
+*Gaussian packets $|\psi(x)|^2$ with $\sigma_x = 0.5, 1, 2$ (left) and their numerically computed Fourier transforms $|\tilde\psi(k)|^2$ (right): halving the width in $x$ doubles it in $k$, and every Gaussian sits exactly on the bound, $\Delta x\,\Delta k = 1/2$.*
 
 **The uncertainty principle is the Fourier bandwidth theorem, applied to the wavefunction.** It is structural — it would hold for any wave-like description, classical or quantum. What makes it quantum is that $p = \hbar k$ — that momentum is proportional to wavenumber, which is itself a consequence of $\hat p = -i\hbar\nabla$ in the Schrödinger equation, which traces back to the covariant derivative in $\mathcal{L}_{SM}$.
 

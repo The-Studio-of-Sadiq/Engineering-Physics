@@ -128,7 +128,7 @@ To recover Newton's law, apply three simultaneous limits:
 
 The stress-energy tensor for a pressureless dust of density $\rho$ and velocity $\mathbf{v}$:
 
-$$T^{\mu\nu} = \rho c^2 u^\mu u^\nu$$
+$$T^{\mu\nu} = \rho\, u^\mu u^\nu$$
 
 where $u^\mu = \gamma(c, \mathbf{v})$ is the four-velocity. For $v \ll c$: $\gamma \approx 1$, and:
 
@@ -170,7 +170,7 @@ $$\frac{d^2x^\mu}{d\tau^2} + \Gamma^\mu_{\nu\rho}\frac{dx^\nu}{d\tau}\frac{dx^\r
 
 For slow motion ($dx^i/d\tau \approx v^i \ll c$, $dx^0/d\tau \approx c$):
 
-$$\frac{d^2x^i}{dt^2} \approx -c^2\Gamma^i_{00} = -c^2\cdot\frac{1}{2}\eta^{ij}\partial_j h_{00} = -\partial_i\Phi$$
+$$\frac{d^2x^i}{dt^2} \approx -c^2\Gamma^i_{00} = +c^2\cdot\frac{1}{2}\eta^{ij}\partial_j h_{00} = -\partial_i\Phi$$
 
 Therefore:
 
@@ -285,6 +285,9 @@ $$h_{\mu\nu}^{TT} = \begin{pmatrix}0&0&0&0\\0&h_+&h_\times&0\\0&h_\times&-h_+&0\
 
 **The cross polarization** ($h_\times$): same as $h_+$ but rotated 45°.
 
+![A ring of test particles deformed by plus and cross polarized gravitational waves at four phases](../FIGURES/CH08/gw-polarizations.svg)
+*A ring of free test particles in the plane transverse to the wave, at $\omega t = 0, \pi/2, \pi, 3\pi/2$, with an exaggerated strain $h = 0.3$ (real signals are $\sim10^{-21}$): $h_+$ stretches $x$ while squeezing $y$ and then the reverse, $h_\times$ does the same along the diagonals, and the ring is momentarily circular between the extremes.*
+
 Gravitational waves have exactly 2 independent polarizations — as predicted for a massless spin-2 field. (Compare: photons have 2 polarizations for a massless spin-1 field.)
 
 ### 8.6.2 — The Quadrupole Formula
@@ -321,7 +324,7 @@ The expansion of GR beyond leading-order Newtonian gravity gives **post-Newtonia
 
 The Newtonian orbit of a planet around the Sun is a closed ellipse (Kepler). In GR, there is an additional term in the effective potential:
 
-$$V_{eff}(r) = -\frac{GM}{r} - \frac{L^2}{2m^2r^2} + \underbrace{\frac{GML^2}{m^2c^2r^3}}_{\text{GR correction}}$$
+$$V_{eff}(r) = -\frac{GM}{r} + \frac{L^2}{2m^2r^2} - \underbrace{\frac{GML^2}{m^2c^2r^3}}_{\text{GR correction}}$$
 
 This causes the ellipse to **precess** — the perihelion advances by:
 
@@ -332,6 +335,9 @@ For Mercury: $a = 5.79\times 10^{10}$ m, $e = 0.206$: $$\Delta\phi = \frac{6\pi\
 Mercury completes 415 orbits per century: $\Delta\phi_{century} = 2.08\times 10^{-4}$ rad/century $= 43.0''$/century.
 
 This matches the observed anomalous precession of Mercury (after accounting for perturbations from other planets) to better than 0.1% — one of the first and most famous confirmations of GR.
+
+![Effective potential per unit mass for Newtonian gravity and GR, and an exaggerated precessing orbit](../FIGURES/CH08/gr-effective-potential.svg)
+*(a) $V_{eff}/m$ in units of $c^2$ versus $r/r_s$ for $L/(m r_s c) = 2$: far out the curves agree, but the $-GML^2/m^2c^2r^3$ term turns the Newtonian centrifugal wall into a finite barrier near $r = 2r_s$. (b) Orbit from $u'' + u = GM m^2/L^2 + 3GMu^2/c^2$ with the GR term exaggerated to about 14° of perihelion advance per orbit (Mercury: $5\times10^{-7}$ rad), against the closed Newtonian ellipse.*
 
 ### 8.7.2 — Gravitational Deflection of Light
 
@@ -373,7 +379,7 @@ GPS is the most commercially important application of general relativity. The ca
 ### 8.8.1 — GPS Orbital Parameters
 
 - Orbital altitude: $h = 20{,}200$ km above Earth's surface
-- Orbital radius: $r_{sat} = R_\oplus + h = 2.659\times 10^7$ m
+- Orbital radius: $r_{sat} = R_\oplus + h = 2.657\times 10^7$ m
 - Orbital velocity: $v_{sat} = \sqrt{GM_\oplus/r_{sat}} = 3.87$ km/s
 
 ### 8.8.2 — Gravitational Time Dilation (GR Effect)
@@ -393,6 +399,9 @@ Per day: $-8.32\times10^{-11}\times 86{,}400\,\text{s} = -7.2\,\mu\text{s/day}$ 
 ### 8.8.4 — Net Correction
 
 $$\Delta t_{net} = +45.7 - 7.2 = +38.5\,\mu\text{s/day}$$
+
+![Relativistic clock-rate offsets versus orbital radius: gravitational gain, velocity loss and net, with GPS and ISS marked](../FIGURES/CH08/gps-clock.svg)
+*Rate of a circular-orbit clock relative to a ground clock, in μs/day, versus $r/R_\oplus$: the gravitational term $GM(1/R_\oplus - 1/r)/c^2$ (blue) and the velocity term $-GM/2rc^2$ (orange) sum to a net that crosses zero at $r = 1.5\,R_\oplus$; GPS at $r = 2.657\times10^7$ m gets $+45.7 - 7.2 = +38.5$ μs/day, while the ISS clock runs slow (Earth's rotation neglected).*
 
 The satellite clock runs fast by 38.5 μs/day. Since GPS positioning requires timing accuracy $\delta t < 20$ ns for $\delta x < 6$ m accuracy, and the uncorrected error would be $38{,}500$ ns/day:
 
@@ -434,6 +443,9 @@ $$\text{GR correction} \sim \frac{v^2}{c^2} \sim \frac{r_s}{r} = \frac{2GM}{rc^2
 |White dwarf surface|$\sim 10^{-4}$|Yes — spectral line shifts|
 |Neutron star surface|$\sim 0.3$|Full GR|
 |Black hole horizon|$= 1$|Full GR (beyond perturbation theory)|
+
+![Logarithmic bar chart of compactness r_s/r for the contexts in the table, against Newtonian, post-Newtonian and full-GR bands](../FIGURES/CH08/gr-strength-scale.svg)
+*Compactness $r_s/r = 2GM/rc^2$ computed for each row of the table (Earth's surface, GPS orbit, Mercury, the solar limb, a $0.6\,M_\odot$ white dwarf, a $1.4\,M_\odot$ neutron star, a horizon) on a log scale: the contexts span ten decades, and only the last two lie where the weak-field expansion fails; the band edges are indicative, not sharp.*
 
 The rule of thumb: **Newton's law is sufficient when $GM/rc^2 \ll 1$ and $v \ll c$**. For engineering on Earth or in near-Earth orbit, the only GR correction that matters in practice is the gravitational time dilation for precision timekeeping.
 

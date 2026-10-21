@@ -42,12 +42,15 @@ $$\rho(T) = \rho_0 + \rho_{phonon}(T) + \rho_{other}$$
 
 **Bloch-Grüneisen formula** for phonon contribution:
 
-$$\rho_{phonon}(T) = A\left(\frac{T}{T_D}\right)^5\int_0^{T_D/T}\frac{x^5}{(e^x-1)(1-e^{-x})}dx$$
+$$\rho_{phonon}(T) = 4A\left(\frac{T}{T_D}\right)^5\int_0^{T_D/T}\frac{x^5}{(e^x-1)(1-e^{-x})}dx$$
 
 Limits:
 
 - $T \gg T_D$: $\rho_{phonon} \to AT/T_D$ (linear, observed in room-temperature metals)
-- $T \ll T_D$: $\rho_{phonon} \to 4.18A(T/T_D)^5$ (steep $T^5$ power law)
+- $T \ll T_D$: $\rho_{phonon} \to 4\cdot 5!\,\zeta(5)\,A(T/T_D)^5 \approx 497.6A(T/T_D)^5$ (steep $T^5$ power law)
+
+![Log-log plot of Bloch–Grüneisen resistivity plus residual resistivity versus T over T_D](../FIGURES/CH14/bloch-gruneisen.svg)
+*$\rho(T)=\rho_0+\rho_{phonon}(T)$ from the Bloch–Grüneisen integral for $\rho_0=0.001A$, $0.01A$ and $0.1A$, with the $497.6A(T/T_D)^5$ and $AT/T_D$ asymptotes (grey); the residual floor hides the $T^5$ regime at low $T$, and the purer the metal the larger the RRR.*
 
 ### 14.1.2 — The Residual Resistivity Ratio
 
@@ -63,7 +66,7 @@ Higher RRR means lower residual resistivity, which means lower heat load in supe
 
 The nearly linear $\rho(T)$ of platinum is exploited in RTDs. The Callendar-Van Dusen equation (empirical fit to the Bloch-Grüneisen result):
 
-$$R(T) = R_0\left(1 + A,T + B,T^2 + C,T^3(T-100)\right)$$
+$$R(T) = R_0\left(1 + A\,T + B\,T^2 + C\,T^3(T-100)\right)$$
 
 For Pt100 ($R_0 = 100\,\Omega$ at 0°C): $A = 3.9083\times10^{-3}$, $B = -5.775\times10^{-7}$, $C = -4.183\times10^{-12}$ (IEC 60751 standard).
 
@@ -192,6 +195,9 @@ Hot side (T_H)
      (+) current    current flows through external circuit
 ```
 
+![Schematic of a thermoelectric module with alternating P and N legs between hot and cold plates](../FIGURES/CH14/thermoelectric-module.svg)
+*Generator-mode module: P and N legs joined by copper straps so current runs down each P leg and up each N leg (electrically in series), while every leg spans the same hot-to-cold gap (thermally in parallel).*
+
 For $N$ couples with matched resistance $R_{total} = NR_0$ and thermal conductance $K_{total} = NK_0$:
 
 **Thermoelectric generator (TEG):**
@@ -214,13 +220,16 @@ is the **dimensionless figure of merit**. The Carnot efficiency $\eta_C = \Delta
 
 |$ZT$|$\eta_{max}/\eta_{Carnot}$ (for $T_C/T_H = 300/600$ K)|
 |---|---|
-|0.5|0.24|
-|1.0|0.32|
-|2.0|0.42|
-|5.0|0.58|
+|0.5|0.13|
+|1.0|0.22|
+|2.0|0.33|
+|5.0|0.49|
 |$\infty$|1.00 (Carnot)|
 
-Current best materials ($ZT \sim 2$–$3$): ~40–50% of Carnot efficiency.
+Current best materials ($ZT \sim 2$–$3$): ~33–40% of Carnot efficiency.
+
+![Thermoelectric generator efficiency as a fraction of Carnot versus ZT](../FIGURES/CH14/thermoelectric-efficiency.svg)
+*$\eta_{max}/\eta_{Carnot}=(\sqrt{1+ZT_M}-1)/(\sqrt{1+ZT_M}+T_C/T_H)$ for $T_C/T_H=0.5$ (solid; dots are the table values) and 0.25, 0.75 (dashed); the approach to Carnot is slow — even $ZT=5$ reaches only about half of Carnot.*
 
 **Thermoelectric cooler (TEC/Peltier module):**
 
@@ -228,9 +237,9 @@ Peltier cooling power (heat pumped from cold side): $$\dot Q_C = S_{PN}\,T_C\,I 
 
 Maximum $\Delta T$ (at $\dot Q_C = 0$, optimizing over $I$):
 
-$$\boxed{\Delta T_{max} = \frac{1}{2}ZT_C^2}$$
+$$\boxed{\Delta T_{max} = \frac{1}{2}Z\,T_C^2}$$
 
-For Bi₂Te₃ module ($ZT = 1$ at 300 K, $T_C = 300$ K): $\Delta T_{max} = 45°$C.
+For Bi₂Te₃ module ($ZT = 1$ at 300 K, $T_C = 300$ K, so $Z = 1/300$ K⁻¹): the ideal formula gives $\Delta T_{max} = \frac{1}{2}(1/300)(300)^2 = 150$ K; real modules achieve $\sim 70$ K because of contact resistance, parasitic heat leaks and temperature-dependent properties.
 
 Coefficient of performance at maximum $\Delta T$:
 
@@ -332,15 +341,18 @@ $$\boxed{I = I_0\left(e^{eV/k_BT} - 1\right), \qquad I_0 = Ae^2\left(\frac{D_n n
 
 Under illumination, minority carriers are generated at rate $G_{opt}$. The short-circuit current:
 
-$$I_{SC} = Aqe(G_{opt}L_n + G_{opt}L_p) = Aq G_{opt}(L_n + L_p)$$
+$$I_{SC} = Ae(G_{opt}L_n + G_{opt}L_p) = Ae\, G_{opt}(L_n + L_p)$$
 
 Open-circuit voltage (from $I = 0$):
 
 $$V_{OC} = \frac{k_BT}{e}\ln\left(\frac{I_{SC}}{I_0}+1\right) \approx \frac{k_BT}{e}\ln\frac{I_{SC}}{I_0}$$
 
-For silicon solar cell: $I_0 \approx 10^{-10}$ A, $I_{SC} \approx 30$ mA/cm² → $V_{OC} \approx 0.6$–$0.7$ V at 300 K.
+For a 1 cm² silicon solar cell: $I_0 \approx 10^{-12}$ A, $I_{SC} \approx 30$ mA → $V_{OC} \approx 0.62$ V at 300 K (typical cells: 0.6–0.7 V).
 
 **Maximum power point:** Efficiency limited by the Shockley-Queisser limit ($\eta_{max} \approx 33\%$ for single-junction under AM1.5 spectrum) from thermodynamic analysis of blackbody radiation (Ch. 10 §10.8.4) + Carnot considerations at the bandgap.
+
+![Dark and illuminated I–V curves of a silicon solar cell with delivered power and maximum power point](../FIGURES/CH14/solar-cell-iv.svg)
+*Ideal-diode solar cell $I=I_0(e^{eV/k_BT}-1)-I_{SC}$ with $I_0=10^{-12}$ A, $I_{SC}=30$ mA at 300 K, dark (dashed) and illuminated, with delivered power $-IV$ on the right axis; illumination shifts the curve down by $I_{SC}$, giving $V_{OC}\approx0.62$ V and a maximum power point near 0.54 V, 28.6 mA (15.6 mW, fill factor 0.83).*
 
 ---
 
@@ -404,7 +416,7 @@ $$\dot Q = \frac{\kappa A}{L}\Delta T = \frac{\Delta T}{R_{th}}$$
 
 $$\boxed{R_{th} = \frac{L}{\kappa A}} \qquad\text{(units: K/W)}$$
 
-This is exactly Ohm's law with $\Delta T\leftrightarrow\Delta V$ and $\dot Q\leftrightarrow I$ and $R_{th}\leftrightarrow R$. The analogy is exact because both Fourier's law and Ohm's law are the same Kubo result applied to different currents (Ch. 13 §13.10).
+This is exactly Ohm's law with $\Delta T\leftrightarrow\Delta V$ and $\dot Q\leftrightarrow I$ and $R_{th}\leftrightarrow R$. The analogy is exact because Fourier's law and Ohm's law are instances of the same linear-response (Kubo) template, applied to different currents with different closures (Ch. 13 §13.10).
 
 ### 14.7.2 — Thermal Resistance Networks
 
@@ -458,15 +470,18 @@ Fick's second law: $\partial c/\partial t = D\nabla^2 c$
 
 For a semi-infinite solid ($x > 0$) with surface concentration $c_s$ (constant) and initial uniform concentration $c_0$:
 
-$$\boxed{c(x,t) = c_s + (c_0 - c_s),\text{erf}!\left(\frac{x}{2\sqrt{Dt}}\right)}$$
+$$\boxed{c(x,t) = c_s + (c_0 - c_s)\,\text{erf}\!\left(\frac{x}{2\sqrt{Dt}}\right)}$$
 
 where $\text{erf}(z) = \frac{2}{\sqrt{\pi}}\int_0^z e^{-u^2}\,du$.
 
-**Junction depth in semiconductor doping:** After a diffusion anneal at temperature $T$ for time $t$, the dopant profile is approximately Gaussian. The junction depth $x_j$ (where $c = c_{background}$):
+**Junction depth in semiconductor doping:** After a diffusion anneal at temperature $T$ for time $t$, the dopant profile is the complementary error function above (constant-source predeposition; a Gaussian profile arises instead for a limited-source drive-in). The junction depth $x_j$ (where $c = c_{background}$):
 
-$$x_j \approx 2\sqrt{Dt}\,\text{erfc}^{-1}!\left(\frac{c_{background}}{c_s}\right)$$
+$$x_j \approx 2\sqrt{Dt}\,\text{erfc}^{-1}\!\left(\frac{c_{background}}{c_s}\right)$$
 
 For phosphorus in silicon at $1000°$C ($D = 2.5\times10^{-14}$ cm²/s) for $t = 1$ h: $\sqrt{Dt} = \sqrt{2.5\times10^{-14}\times3600} = 9.5\times10^{-6}$ cm $= 95$ nm.
+
+![Normalised erfc dopant profiles of phosphorus in silicon after 0.25, 1 and 4 h at 1000 °C](../FIGURES/CH14/erfc-diffusion.svg)
+*Normalised concentration $(c-c_0)/(c_s-c_0)=\text{erfc}(x/2\sqrt{Dt})$ for P in Si with $D=2.5\times10^{-14}$ cm²/s at $t=0.25$, 1 and 4 h; dots mark $x=\sqrt{Dt}$ (47, 95, 190 nm) and squares $x=2\sqrt{Dt}$ — quadrupling the time only doubles the depth.*
 
 ### 14.8.2 — Arrhenius Diffusivity in Solids
 

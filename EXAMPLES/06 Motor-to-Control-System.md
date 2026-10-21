@@ -150,7 +150,10 @@ constants of $1.34$ s and $10.1$ ms. Two things are worth understanding here,
 because both are counter-intuitive:
 
 - **The electrical pole is essentially where it was supposed to be.** $1/\tau_e = R_a/L_a = 100$ rad/s, and the actual fast pole is $-99.36$ s⁻¹. The back-EMF has barely moved it, exactly as step 3 predicts: the $K_tK_b$ coupling changes only the constant term, so it shifts $\omega_n$ and the DC gain but leaves the $s$-coefficient — and hence the fast pole — essentially alone. (A *closed-loop* design can move this pole; the open-loop plant cannot.)
-- **The back-EMF's real job is to damp the mechanical side.** Without it, the mechanical pole would sit at $-B/J = -0.1$ s⁻¹ ($\tau = 10$ s). With it, the pole is at $-0.745$ s⁻¹ ($\tau = 1.34$ s) — a factor of 7.5 faster. The back-EMF behaves like an added resistance referred through the gearbox ratio $K_t/K_b$, and resistance is damping.
+- **The back-EMF's real job is to damp the mechanical side.** Without it, the mechanical pole would sit at $-B/J = -0.1$ s⁻¹ ($\tau = 10$ s). With it, the pole is at $-0.745$ s⁻¹ ($\tau = 1.34$ s) — a factor of 7.5 faster. The back-EMF behaves like an added resistance coupled through the motor constants $K_t$ and $K_b$, and resistance is damping.
+
+![s-plane pole locations of the DC motor and its open-loop step response](../FIGURES/EX06/motor-poles.svg)
+*Left: poles of $G(s) = 8000/(s^2 + 100.1s + 74)$ at −0.745 and −99.36 s⁻¹ (crosses) against the uncoupled references $-B/J = -0.1$ and $-R_a/L_a = -100$ (circles), on a symmetric-log axis; there is no pole at the origin. Right: the open-loop speed per volt settles at the DC gain of 108 rad/s per V, and the dominant-pole approximation is indistinguishable from the two-pole model on this time scale.*
 
 ---
 
@@ -182,6 +185,9 @@ electrical pole at $99.4$ rad/s. So $\omega_{cl}\tau_e = 0.015 \ll 1$, reduction
 is self-consistent, and the plant really was first order over this band. Had we
 demanded a closed loop ten times faster, the check would have failed and the
 second-order plant would have had to be kept.
+
+![Closed-loop PI step response compared with the open-loop motor response](../FIGURES/EX06/pi-closed-loop.svg)
+*Normalised speed after a step: the PI loop with $\tau_i = \tau_m$ gives the pure first-order response $1 - e^{-t/0.67\,\text{s}}$, twice as fast as the open-loop plant ($\tau_m \approx 1.34$ s), with no overshoot and zero steady-state error.*
 
 **Now check the real constraint.** There are two candidate speed limits, and
 the point of the example is that they do not agree.
